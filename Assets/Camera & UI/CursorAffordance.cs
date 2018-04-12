@@ -17,7 +17,7 @@ public class CursorAffordance : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		switch (cameraRaycaster.layerHit) {
 			case Layer.Walkable:
 				Cursor.SetCursor (moveCursor, cursorHotspot, CursorMode.Auto);
@@ -29,7 +29,7 @@ public class CursorAffordance : MonoBehaviour {
 				Cursor.SetCursor (unknownCursor, cursorHotspot, CursorMode.Auto);
 				break;
 			default:
-				Debug.Log ("No cursor assigned for this layer.");
+				Debug.LogError ("No cursor assigned for this layer.");
 				return;
 		}
 	}
