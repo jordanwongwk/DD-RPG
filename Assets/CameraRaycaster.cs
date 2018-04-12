@@ -48,7 +48,7 @@ public class CameraRaycaster : MonoBehaviour
 
     RaycastHit? RaycastForLayer(Layer layer)
     {
-        int layerMask = 1 << (int)layer; // See Unity docs for mask formation
+		int layerMask = 1 << (int)layer; // See Unity docs for mask formation
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit; // used as an out parameter
