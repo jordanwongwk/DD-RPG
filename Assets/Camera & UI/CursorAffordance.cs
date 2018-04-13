@@ -19,8 +19,8 @@ public class CursorAffordance : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void CursorChange () {
-		switch (cameraRaycaster.currentLayerHit) {
+	void CursorChange (Layer newLayer) {
+		switch (newLayer) {
 			case Layer.Walkable:
 				Cursor.SetCursor (moveCursor, cursorHotspot, CursorMode.Auto);
 				break;
@@ -35,4 +35,6 @@ public class CursorAffordance : MonoBehaviour {
 				return;
 		}
 	}
+
+	//TODO Think about wheter should de-register the CursorChange
 }
