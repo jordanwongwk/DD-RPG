@@ -9,7 +9,7 @@ public class MyEnemyHealthBar : MonoBehaviour {
 	Image image;
 	// Use this for initialization
 	void Start () {
-		enemy = FindObjectOfType<Enemy> ();
+		enemy = GetComponentInParent<Enemy> ();
 		image = GetComponent<Image> ();
 	}
 

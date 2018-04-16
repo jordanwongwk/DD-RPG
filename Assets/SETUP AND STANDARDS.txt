@@ -1,0 +1,4 @@
+## World Unit
+World unit is 1 unit per m. Terrain has a min sea level of -100 unit in Y. Currently, terrain is uplifted for 100 units in Y.
+
+## Test
