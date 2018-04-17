@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 218312665662059510}
   - component: {fileID: 154016297997109698}
   m_Layer: 8
-  m_Name: Terrain
+  m_Name: Level Sandbox Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
