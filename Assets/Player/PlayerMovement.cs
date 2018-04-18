@@ -20,22 +20,22 @@ public class PlayerMovement : MonoBehaviour
         thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
         currentDestination = transform.position;
     }
-
-    // Fixed update is called in sync with physics
-    private void FixedUpdate()
-    {
-		if (Input.GetKeyDown (KeyCode.G)) {
-			isDirectMode = !isDirectMode; 	// Toggle direct mode
-			currentDestination = transform.position;	// Prevent player from running back to ori position when changing from direct to mouse
-		}
-
-		if (isDirectMode) {
-			ProcessDirectMovement ();
-		} else {
-			ProcessMouseMovement ();
-		}
-    }
 		
+//    // Fixed update is called in sync with physics
+//    private void FixedUpdate()
+//    {
+//		if (Input.GetKeyDown (KeyCode.G)) {
+//			isDirectMode = !isDirectMode; 	// Toggle direct mode
+//			currentDestination = transform.position;	// Prevent player from running back to ori position when changing from direct to mouse
+//		}
+//
+//		if (isDirectMode) {
+//			ProcessDirectMovement ();
+//		} else {
+//			ProcessMouseMovement ();
+//		}
+//    }
+//		
 	void ProcessDirectMovement(){
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
@@ -49,20 +49,21 @@ public class PlayerMovement : MonoBehaviour
 
 	void ProcessMouseMovement ()
 	{
-		clickPoint = cameraRaycaster.hit.point;
-		if (Input.GetMouseButton (0)) {
-			switch (cameraRaycaster.currentLayerHit) {
-			case Layer.Walkable:
-				currentDestination = ShortDestination(clickPoint, walkMoveStopRadius);
-				break;
-			case Layer.Enemy:
-				currentDestination = ShortDestination(clickPoint, attackMoveStopRadius);
-				break;
-			default:
-				Debug.Log ("Unregistered Layer.");
-				return;
-			}
-		}
+
+//		clickPoint = cameraRaycaster.hit.point;
+//		if (Input.GetMouseButton (0)) {
+//			switch (cameraRaycaster.currentLayerHit) {
+//			case Layer.Walkable:
+//				currentDestination = ShortDestination(clickPoint, walkMoveStopRadius);
+//				break;
+//			case Layer.Enemy:
+//				currentDestination = ShortDestination(clickPoint, attackMoveStopRadius);
+//				break;
+//			default:
+//				Debug.Log ("Unregistered Layer.");
+//				return;
+//			}
+//		}
 		MoveToDestination ();
 	}
 

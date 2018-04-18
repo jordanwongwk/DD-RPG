@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour {
 	void Start(){
 		aiCharacterControl = GetComponent<AICharacterControl> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
+
 	}
 
 	void Update(){
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour {
 
 		if (distanceDiff <= triggerRadius) {
 			aiCharacterControl.SetTarget (player.transform);
-		} else if (distanceDiff > triggerRadius){
+		} else {
 			aiCharacterControl.SetTarget (transform);
 		}
 	}
