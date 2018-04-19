@@ -16,7 +16,8 @@ public class EnemyUI : MonoBehaviour {
     void Start()
     {
         cameraToLookAt = Camera.main;
-        Instantiate(enemyCanvasPrefab, transform.position, Quaternion.identity, transform);
+		GameObject canvas = Instantiate(enemyCanvasPrefab, transform.position, Quaternion.identity, transform) as GameObject;
+		canvas.transform.rotation = transform.rotation;
     }
 
     // Update is called once per frame 

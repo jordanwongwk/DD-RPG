@@ -30,7 +30,7 @@ public class CameraRaycaster : MonoBehaviour
 
 		// Raycast to max depth, every frame as things can move under mouse
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit[] raycastHits = Physics.RaycastAll (ray, maxRaycastDepth);
+		RaycastHit[] raycastHits = Physics.RaycastAll (ray, maxRaycastDepth).OrderBy(h => h.distance).ToArray();
 
         RaycastHit? priorityHit = FindTopPriorityHit(raycastHits);
         if (!priorityHit.HasValue) // if hit no priority object
