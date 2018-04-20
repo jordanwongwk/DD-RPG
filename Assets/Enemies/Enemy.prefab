@@ -1374,8 +1374,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
   m_LocalRotation: {x: -0, y: 0.661779, z: -0, w: 0.74969906}
-  m_LocalPosition: {x: 30.29715, y: 0, z: 0.9391022}
-  m_LocalScale: {x: 0.9526272, y: 0.95262444, z: 0.9526272}
+  m_LocalPosition: {x: 37.38, y: 0.15898895, z: 5.61}
+  m_LocalScale: {x: 0.95262754, y: 0.95262444, z: 0.95262754}
   m_Children:
   - {fileID: 469942}
   - {fileID: 495908}
@@ -2754,7 +2754,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1680488350353982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.639, z: 0}
+  m_LocalPosition: {x: -0, y: 1.618, z: 0.255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 408730}
@@ -2787,9 +2787,11 @@ MonoBehaviour:
   attackRadius: 5
   moveRadius: 6
   projectileDamage: 9
+  projectileShotDelay: 0.5
   projectileToUse: {fileID: 1241740911561924, guid: 66b87f00564dc2f49a6e6283a06cbe1a,
     type: 2}
   projectileSpawnPoint: {fileID: 1680488350353982}
+  aimOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &114401839668632654
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable {
 	[SerializeField] float projectileShotDelay = 0.5f;
 	[SerializeField] GameObject projectileToUse;
 	[SerializeField] GameObject projectileSpawnPoint;
+	[SerializeField] Vector3 aimOffset = new Vector3(0,1f,0);
 
 	bool isAttacking = false;
 	float currentHealthPoints;
@@ -30,9 +31,13 @@ public class Enemy : MonoBehaviour, IDamageable {
 		float distanceDiff = Vector3.Distance (player.transform.position, transform.position);
 
 		// For attack radius
-		if (distanceDiff <= attackRadius && !isAttacking) {
-			isAttacking = true;
-			InvokeRepeating ("SpawnProjectiles", 0f, projectileShotDelay);
+		if (distanceDiff <= attackRadius) {
+			if (!isAttacking) {
+				isAttacking = true;
+				InvokeRepeating ("SpawnProjectiles", 0f, projectileShotDelay);
+			}
+			// Make enemy keep looking at player
+			transform.LookAt (player.transform.position);
 		} 
 
 		if (distanceDiff > attackRadius) {
@@ -40,6 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable {
 			CancelInvoke ();
 		}	
 
+		//TODO Move and attack
 		// For move radius
 		if (distanceDiff <= moveRadius) {
 			aiCharacterControl.SetTarget (player.transform);
@@ -54,13 +60,17 @@ public class Enemy : MonoBehaviour, IDamageable {
 		Projectile projComponent = projectile.GetComponent<Projectile> ();
 		projComponent.SetDamage(projectileDamage);
 
-		Vector3 unitVectorToPlayer = (player.transform.position - projectileSpawnPoint.transform.position).normalized;
+		Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSpawnPoint.transform.position).normalized;
 		float projectileSpeed = projComponent.projectileSpeed;
 		projectile.GetComponent<Rigidbody> ().velocity = unitVectorToPlayer * projectileSpeed;
 	}
 
 	public void TakeDamage (float damage){
 		currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
+
+		if (currentHealthPoints <= 0f) {
+			Destroy (gameObject);
+		}
 	}
 
 	void OnDrawGizmos(){
