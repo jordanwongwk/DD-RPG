@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, IDamageable{
 
 
 	float timeLastHit;
-	float currentHealthPoints;
+	[SerializeField] float currentHealthPoints;
 	GameObject currentTarget;
 	CameraRaycaster cameraRayCaster;
 

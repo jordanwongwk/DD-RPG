@@ -556,8 +556,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345200765492126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.054779053, y: 0, z: -2.4480896}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 27.34, y: 0.29, z: -1.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4717758621747612}
@@ -846,8 +846,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a226f89997e126046bbae9dd7936a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
-  currentHealthPoints: 100
+  enemyLayer: 9
+  maxHealthPoints: 1000
+  playerMeleeDamage: 50
+  timeBetweenHits: 1
+  attackRange: 2
+  currentHealthPoints: 0
 --- !u!114 &114156612095147228
 MonoBehaviour:
   m_ObjectHideFlags: 1
