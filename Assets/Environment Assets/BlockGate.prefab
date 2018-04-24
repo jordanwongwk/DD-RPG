@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4896460360546508}
+  - component: {fileID: 65811949303511342}
   m_Layer: 0
   m_Name: SpikedWall
   m_TagString: Untagged
@@ -255,3 +256,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5546494, y: 3.334713, z: 0.57704484}
   m_Center: {x: 0.025377512, y: 3.7558417, z: 0.10996838}
+--- !u!65 &65811949303511342
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1349212631767460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
