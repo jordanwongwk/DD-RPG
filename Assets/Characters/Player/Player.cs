@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamageable{
 	[SerializeField] float timeBetweenHits = 0.5f;
 	[SerializeField] float attackRange = 1f;
 	[SerializeField] Weapon weaponInUse;
+	[SerializeField] GameObject armToHoldWeapon;
 
 	float timeLastHit;
 	float currentHealthPoints;
@@ -21,12 +22,22 @@ public class Player : MonoBehaviour, IDamageable{
 
 	void Start(){
 		currentHealthPoints = maxHealthPoints;
+		RegisterInDelegates ();
+		PutWeaponInHand ();
+	}
+
+	void PutWeaponInHand ()
+	{
+		var weaponPrefab = weaponInUse.GetWeaponPrefab ();
+		var usingWeapon = Instantiate(weaponPrefab, armToHoldWeapon.transform);
+		usingWeapon.transform.localPosition = weaponInUse.gripTransform.transform.localPosition;
+		usingWeapon.transform.localRotation = weaponInUse.gripTransform.transform.localRotation;
+	}
+
+	void RegisterInDelegates ()
+	{
 		cameraRayCaster = FindObjectOfType<CameraRaycaster> ();
 		cameraRayCaster.notifyMouseClickObservers += OnMouseClick;
-
-		var weaponPrefab = weaponInUse.GetWeaponPrefab();
-		var usingWeapon = Instantiate (weaponPrefab, Vector3.zero, Quaternion.identity) as GameObject; 
-		usingWeapon.transform.parent = GameObject.Find ("Hand_R").transform;
 	}
 
 	void OnMouseClick (RaycastHit raycastHit, int layerHit){

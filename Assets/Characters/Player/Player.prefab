@@ -34,6 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374878927201608}
+  - component: {fileID: 114526351496170404}
   m_Layer: 0
   m_Name: Hand_R
   m_TagString: Untagged
@@ -676,7 +677,19 @@ MonoBehaviour:
   playerMeleeDamage: 50
   timeBetweenHits: 1
   attackRange: 2
-  currentHealthPoints: 0
+  weaponInUse: {fileID: 11400000, guid: 398276b350092824aa56feb8f3feb1ee, type: 2}
+  armToHoldWeapon: {fileID: 1048746043396536}
+--- !u!114 &114526351496170404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048746043396536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ed13129af71e341b40babb6913dcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114566465204983110
 MonoBehaviour:
   m_ObjectHideFlags: 1
