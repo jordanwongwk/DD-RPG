@@ -3,21 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
+	
+	[SerializeField] float projectileSpeed;
+	[SerializeField] GameObject shooter;
 
-	public float projectileSpeed;
-
+	const float DESTROY_DELAY = 0.2f;
 	float damageCaused;
+
+	public float GetProjectileSpeed (){
+		return projectileSpeed;
+	}
 
 	public void SetDamage(float damage){
 		damageCaused = damage;
 	}
 
+	public void SetShooter (GameObject shooter){
+		this.shooter = shooter;
+	}
+
 	void OnCollisionEnter (Collision collision){
+		var collidedObjectLayer = collision.gameObject.layer;
 		IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
-		if (damageable != null) {
+
+		if (damageable != null && collidedObjectLayer != shooter.layer) {
 			damageable.TakeDamage (damageCaused);
 			Destroy (gameObject);
 		}
-		Destroy (gameObject, 0.2f);
+		Destroy (gameObject, DESTROY_DELAY);
 	}
 }

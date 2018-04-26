@@ -15,7 +15,6 @@ public class Player : MonoBehaviour, IDamageable{
 
 	float timeLastHit;
 	float currentHealthPoints;
-	GameObject currentTarget;
 	CameraRaycaster cameraRayCaster;
 
 	public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
@@ -51,8 +50,7 @@ public class Player : MonoBehaviour, IDamageable{
 
 	void OnMouseClick (RaycastHit raycastHit, int layerHit){
 		if (layerHit == enemyLayer) {
-			var enemy = raycastHit.collider.gameObject;
-			currentTarget = enemy;
+			var enemy = raycastHit.collider.gameObject; 
 			Enemy enemyComponent = enemy.GetComponent<Enemy> ();
 
 			float distanceDiff = Vector3.Distance (transform.position, enemy.transform.position);
