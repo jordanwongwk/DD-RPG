@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Player : MonoBehaviour, IDamageable{
@@ -11,7 +12,6 @@ public class Player : MonoBehaviour, IDamageable{
 	[SerializeField] float timeBetweenHits = 0.5f;
 	[SerializeField] float attackRange = 1f;
 	[SerializeField] Weapon weaponInUse;
-	[SerializeField] GameObject armToHoldWeapon;
 
 	float timeLastHit;
 	float currentHealthPoints;
@@ -29,9 +29,18 @@ public class Player : MonoBehaviour, IDamageable{
 	void PutWeaponInHand ()
 	{
 		var weaponPrefab = weaponInUse.GetWeaponPrefab ();
+		GameObject armToHoldWeapon = SelectDominantHand ();
 		var usingWeapon = Instantiate(weaponPrefab, armToHoldWeapon.transform);
 		usingWeapon.transform.localPosition = weaponInUse.gripTransform.transform.localPosition;
 		usingWeapon.transform.localRotation = weaponInUse.gripTransform.transform.localRotation;
+	}
+
+	GameObject SelectDominantHand(){
+		var dominantHands = GetComponentsInChildren<DominantHand> ();
+		int numberOfDominantHands = dominantHands.Length;
+		Assert.IsFalse (numberOfDominantHands <= 0, "No dominantHands detected in Player, please add one.");
+		Assert.IsFalse (numberOfDominantHands >  1, "Multiple dominantHands detected in Player, please remove one.");
+		return dominantHands[0].gameObject;
 	}
 
 	void RegisterInDelegates ()
