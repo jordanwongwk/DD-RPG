@@ -1,5 +1,5 @@
 ﻿using UnityEditor;
-
+using RPG.CameraUI;
 
 // TODO consider changing to a property drawer
 [CustomEditor(typeof(CameraRaycaster))]
