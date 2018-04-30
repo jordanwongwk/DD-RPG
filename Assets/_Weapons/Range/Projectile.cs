@@ -27,13 +27,20 @@ namespace RPG.Weapons {
 
 		void OnCollisionEnter (Collision collision){
 			var collidedObjectLayer = collision.gameObject.layer;
-			IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
+			if (shooter && collidedObjectLayer != shooter.layer) {
+				DamageIfDamageable (collision);
+			}
 
-			if (damageable != null && collidedObjectLayer != shooter.layer) {
+			Destroy (gameObject, DESTROY_DELAY);
+		}
+
+		void DamageIfDamageable (Collision collision)
+		{
+			IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
+			if (damageable != null) {
 				damageable.TakeDamage (damageCaused);
 				Destroy (gameObject);
 			}
-			Destroy (gameObject, DESTROY_DELAY);
 		}
 	}
 }
