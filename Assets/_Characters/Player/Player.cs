@@ -17,6 +17,7 @@ namespace RPG.Characters{
 		[SerializeField] float timeBetweenHits = 0.5f;
 		[SerializeField] float attackRange = 1f;
 		[SerializeField] Weapon weaponInUse;
+		[SerializeField] AnimatorOverrideController animatorOverrideController;
 
 		float timeLastHit;
 		float currentHealthPoints;
@@ -25,9 +26,21 @@ namespace RPG.Characters{
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
 		void Start(){
-			currentHealthPoints = maxHealthPoints;
+			SetMaxHealth ();
 			RegisterInDelegates ();
 			PutWeaponInHand ();
+			AnimatorOverride ();
+		}
+
+		void SetMaxHealth ()
+		{
+			currentHealthPoints = maxHealthPoints;
+		}
+
+		void AnimatorOverride(){
+			var animator = GetComponent<Animator> ();
+			animator.runtimeAnimatorController = animatorOverrideController;
+			animatorOverrideController ["DEFAULT ATTACK"] = weaponInUse.GetAttAnimClip ();
 		}
 
 		void PutWeaponInHand ()

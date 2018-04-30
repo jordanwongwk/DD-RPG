@@ -14,5 +14,16 @@ namespace RPG.Weapons {
 		public GameObject GetWeaponPrefab(){
 			return weaponPrefab;
 		}
+
+		public AnimationClip GetAttAnimClip(){
+			RemoveAnimationEvent (); 
+			return weaponAnimation;
+		}
+
+		// Removing the asset pack's animation's event clip to prevent errors or bugs
+		void RemoveAnimationEvent ()
+		{
+			weaponAnimation.events = new AnimationEvent[0];
+		}
 	}
 }
