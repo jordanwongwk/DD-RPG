@@ -178,6 +178,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1546974355695434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4900961524241826}
+  - component: {fileID: 114035882712336870}
+  m_Layer: 0
+  m_Name: AudioTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1607576101297872
 GameObject:
   m_ObjectHideFlags: 1
@@ -329,6 +345,7 @@ GameObject:
   - component: {fileID: 114566465204983110}
   - component: {fileID: 114641410554265986}
   - component: {fileID: 114239544759234110}
+  - component: {fileID: 114313803170016704}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -601,6 +618,19 @@ Transform:
   m_Father: {fileID: 4487787053922222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4900961524241826
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546974355695434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4922386615519990}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4922386615519990
 Transform:
   m_ObjectHideFlags: 1
@@ -608,11 +638,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939906218202142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.97, y: 0.27, z: 0.9}
+  m_LocalPosition: {x: -128.85, y: 0.27, z: 160.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4107724213436146}
   - {fileID: 4503571314332118}
+  - {fileID: 4900961524241826}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -661,6 +692,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114035882712336870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546974355695434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3644fc579118dd4284688acc0cdf6a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 86f0aa21a6a76354097de1caa001ce5b, type: 3}
+  layerFilter: 11
+  triggerRadius: 5
+  isOneTimeOnly: 1
+  hasPlayed: 0
 --- !u!114 &114239544759234110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,11 +722,22 @@ MonoBehaviour:
   enemyLayer: 9
   maxHealthPoints: 1000
   playerMeleeDamage: 50
-  timeBetweenHits: 1
-  attackRange: 2
-  weaponInUse: {fileID: 11400000, guid: 9c99c6cd67b98a74d9ec51f69e0d67bc, type: 2}
+  weaponInUse: {fileID: 11400000, guid: f5a89a7ef8fed5e43ae0578e832b231d, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
     type: 2}
+--- !u!114 &114313803170016704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939906218202142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1b72c2b3ba32649ac5f4dfb1a486dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyBar: {fileID: 0}
+  maxEnergy: 100
 --- !u!114 &114526351496170404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -739,7 +797,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939906218202142}
-  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
