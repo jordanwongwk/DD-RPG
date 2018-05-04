@@ -21,10 +21,17 @@ namespace RPG.Characters {
 
 		void RegisterInDelegates (){
 			cameraRaycaster = FindObjectOfType<CameraRaycaster> ();
-			cameraRaycaster.notifyRightClickObservers += ConsumeEnergy;
+			cameraRaycaster.onMouseOverEnemy += MouseOverEnemy;
 		}
 
-		void ConsumeEnergy(RaycastHit raycastHit, int layerHit){
+		void MouseOverEnemy (Enemy enemy){
+			if (Input.GetMouseButtonDown (1)) {
+				UpdateEnergyBar ();
+			}
+		}
+			
+		void UpdateEnergyBar ()
+		{
 			currentEnergyPoints = Mathf.Clamp (currentEnergyPoints - pointsPerHit, 0f, maxEnergyPoints);
 			energyBar.fillAmount = (currentEnergyPoints / maxEnergyPoints);
 		}

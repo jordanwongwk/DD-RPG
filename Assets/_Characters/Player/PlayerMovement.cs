@@ -16,32 +16,27 @@ namespace RPG.Characters {
 		AICharacterControl aiCharacterControl;
 		GameObject walkTarget;
 
-		[SerializeField] const int walkableLayerNumber = 8;
-		[SerializeField] const int enemyLayerNumber = 9;
-
-	    private void Start()
+	   	void Start()
 	    {
 	        cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
 	        thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
 			aiCharacterControl = GetComponent<AICharacterControl> ();
 
 			walkTarget = new GameObject ("WalkTarget");
-			cameraRaycaster.notifyMouseClickObservers += MovePlayer;
+			cameraRaycaster.onMouseOverWalkable += MouseOverWalkable;
+			cameraRaycaster.onMouseOverEnemy += MouseOverEnemy;
 	    }
 			
-		void MovePlayer (RaycastHit raycastHit, int layerHit){
-			switch (layerHit) {
-				case walkableLayerNumber:
-					walkTarget.transform.position = raycastHit.point;
-					aiCharacterControl.SetTarget (walkTarget.transform);
-					break;
-				case enemyLayerNumber:
-					GameObject enemy = raycastHit.collider.gameObject;
-					aiCharacterControl.SetTarget (enemy.transform);
-					break;
-				default:
-					Debug.LogWarning ("Not sure how to move to this place");
-					return;
+		void MouseOverWalkable (Vector3 destination){
+			if (Input.GetMouseButton (0)) {
+				walkTarget.transform.position = destination;
+				aiCharacterControl.SetTarget (walkTarget.transform);
+			}
+		}
+
+		void MouseOverEnemy (Enemy enemy){
+			if (Input.GetMouseButton (0) || Input.GetMouseButton (1)) {
+				aiCharacterControl.SetTarget (enemy.transform);
 			}
 		}
 

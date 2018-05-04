@@ -11,11 +11,10 @@ using RPG.Core;
 namespace RPG.Characters{
 	public class Player : MonoBehaviour, IDamageable{
 
-		[SerializeField] float enemyLayer = 9;
 		[SerializeField] float maxHealthPoints = 100f;
 		[SerializeField] float playerMeleeDamage = 10f;
-		[SerializeField] Weapon weaponInUse;
-		[SerializeField] AnimatorOverrideController animatorOverrideController;
+		[SerializeField] Weapon weaponInUse = null;
+		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
 		float timeLastHit;
 		float currentHealthPoints;
@@ -62,27 +61,22 @@ namespace RPG.Characters{
 		void RegisterInDelegates ()
 		{
 			cameraRayCaster = FindObjectOfType<CameraRaycaster> ();
-			cameraRayCaster.notifyMouseClickObservers += OnMouseClick;
+			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
 		}
 
 		public void TakeDamage (float damage){
 			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
 		} 
 
-		void OnMouseClick (RaycastHit raycastHit, int layerHit){
-			if (layerHit == enemyLayer) {
-				var enemy = raycastHit.collider.gameObject; 
-				if (IsTargetInRange (enemy)) {
-					AttackTarget (enemy);
-				}
+		void MouseOverEnemy (Enemy enemy){
+			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
+				AttackTarget (enemy);
 			}
 		}
 
-		void AttackTarget (GameObject target){
-			Enemy enemyComponent = target.GetComponent<Enemy> ();
-
+		void AttackTarget (Enemy enemy){
 			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
-				enemyComponent.TakeDamage (playerMeleeDamage);
+				enemy.TakeDamage (playerMeleeDamage);
 				animator.SetTrigger ("isAttacking");
 				timeLastHit = Time.time;
 			}
