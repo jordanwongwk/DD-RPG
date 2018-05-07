@@ -8,8 +8,8 @@ namespace RPG.Weapons {
 
 		public GameObject gripTransform;
 
-		[SerializeField] GameObject weaponPrefab;
-		[SerializeField] AnimationClip weaponAnimation;
+		[SerializeField] GameObject weaponPrefab = null;
+		[SerializeField] AnimationClip weaponAnimation = null;
 		[SerializeField] float timeBetweenHits = 0.5f;
 		[SerializeField] float maxAttackRange = 1f;
 

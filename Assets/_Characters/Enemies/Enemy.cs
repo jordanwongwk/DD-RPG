@@ -14,8 +14,8 @@ namespace RPG.Characters {
 		[SerializeField] float moveRadius = 6f;
 		[SerializeField] float projectileDamage = 9f;
 		[SerializeField] float projectileShotDelay = 0.5f;
-		[SerializeField] GameObject projectileToUse;
-		[SerializeField] GameObject projectileSpawnPoint;
+		[SerializeField] GameObject projectileToUse = null;
+		[SerializeField] GameObject projectileSpawnPoint = null;
 		[SerializeField] Vector3 aimOffset = new Vector3(0,1f,0);
 
 		bool isAttacking = false;

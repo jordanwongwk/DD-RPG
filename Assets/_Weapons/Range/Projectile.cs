@@ -7,7 +7,7 @@ using RPG.Core;
 namespace RPG.Weapons {
 	public class Projectile : MonoBehaviour {
 		
-		[SerializeField] float projectileSpeed;
+		[SerializeField] float projectileSpeed = 0f;
 		[SerializeField] GameObject shooter;
 
 		const float DESTROY_DELAY = 0.2f;
