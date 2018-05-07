@@ -673,12 +673,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a226f89997e126046bbae9dd7936a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLayer: 9
   maxHealthPoints: 1000
-  playerMeleeDamage: 50
+  baseDamage: 15
   weaponInUse: {fileID: 11400000, guid: f5a89a7ef8fed5e43ae0578e832b231d, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
     type: 2}
+  abilities:
+  - {fileID: 11400000, guid: 9e68e852c4f11d749b4318d0e4837074, type: 2}
 --- !u!114 &114313803170016704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -692,8 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 0}
   maxEnergyPoints: 100
-  pointsPerHit: 10
-  currentEnergyPoints: 0
+  regenEnergyPerSecond: 1
 --- !u!114 &114526351496170404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -756,7 +756,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -836,7 +836,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1939906218202142}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
