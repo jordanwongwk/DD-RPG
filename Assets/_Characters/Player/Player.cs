@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 using RPG.CameraUI;
 using RPG.Weapons;
