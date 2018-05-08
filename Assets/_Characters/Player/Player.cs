@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 using RPG.CameraUI;
 using RPG.Weapons;
@@ -14,6 +15,8 @@ namespace RPG.Characters{
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon weaponInUse = null;
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
+		[SerializeField] AudioClip[] damageSounds = null;
+		[SerializeField] AudioClip[] deathSounds = null;
 
 		// Serialized for debugging
 		[SerializeField] SpecialAbility[] abilities = null;
@@ -22,6 +25,7 @@ namespace RPG.Characters{
 		float currentHealthPoints;
 		CameraRaycaster cameraRayCaster;
 		Animator animator;
+		AudioSource audioSource;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
@@ -30,6 +34,7 @@ namespace RPG.Characters{
 			RegisterInDelegates ();
 			PutWeaponInHand ();
 			SetupRuntimeAnimator ();
+			audioSource = GetComponent<AudioSource> ();
 			abilities[0].AttachComponentTo (gameObject);
 		}
 
@@ -68,8 +73,28 @@ namespace RPG.Characters{
 		}
 
 		public void TakeDamage (float damage){
-			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
+			ReduceHealth (damage);
+
+			if (currentHealthPoints - damage <= 0) {	
+				StartCoroutine (KillPlayer ());
+			} 
 		} 
+
+		void ReduceHealth (float damage) {
+			if (!audioSource.isPlaying) {
+				audioSource.clip = damageSounds [Random.Range (0, damageSounds.Length)];
+				audioSource.Play ();
+			}
+			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
+		}
+
+		IEnumerator KillPlayer() {
+			audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
+			audioSource.Play ();
+			animator.SetBool ("isDead", true);
+			yield return new WaitForSeconds (audioSource.clip.length);
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		}
 
 		void MouseOverEnemy (Enemy enemy){
 			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {

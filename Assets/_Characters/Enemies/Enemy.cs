@@ -20,17 +20,22 @@ namespace RPG.Characters {
 		bool isAttacking = false;
 		float currentHealthPoints;
 		AICharacterControl aiCharacterControl = null;
-		GameObject player;
+		Player player;
 
 		public float healthAsPercentage { get {	return currentHealthPoints / maxHealthPoints; }	}
 
 		void Start(){
 			currentHealthPoints = maxHealthPoints;
 			aiCharacterControl = GetComponent<AICharacterControl> ();
-			player = GameObject.FindGameObjectWithTag ("Player");
+			player = FindObjectOfType<Player>();
 		}
 
 		void Update(){
+			if (player.healthAsPercentage <= Mathf.Epsilon) {
+				StopAllCoroutines ();
+				Destroy (this);		// Stop all Enemies' Behaviours
+			}
+
 			float distanceDiff = Vector3.Distance (player.transform.position, transform.position);
 
 			// For attack radius
