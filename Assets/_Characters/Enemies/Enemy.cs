@@ -13,6 +13,7 @@ namespace RPG.Characters {
 		[SerializeField] float moveRadius = 6f;
 		[SerializeField] float projectileDamage = 9f;
 		[SerializeField] float projectileShotDelay = 0.5f;
+		[SerializeField] float variationDelay = 0.1f;
 		[SerializeField] GameObject projectileToUse = null;
 		[SerializeField] GameObject projectileSpawnPoint = null;
 		[SerializeField] Vector3 aimOffset = new Vector3(0,1f,0);
@@ -42,7 +43,8 @@ namespace RPG.Characters {
 			if (distanceDiff <= attackRadius) {
 				if (!isAttacking) {
 					isAttacking = true;
-					InvokeRepeating ("SpawnProjectiles", 0f, projectileShotDelay);
+					float randomizedDelay = Random.Range ((projectileShotDelay - variationDelay), (projectileShotDelay + variationDelay));
+					InvokeRepeating ("SpawnProjectiles", 0f, randomizedDelay);
 				}
 				// Make enemy keep looking at player
 				transform.LookAt (player.transform.position);

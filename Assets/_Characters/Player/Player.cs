@@ -21,6 +21,10 @@ namespace RPG.Characters{
 		// Serialized for debugging
 		[SerializeField] SpecialAbility[] abilities = null;
 
+		const string ATTACK_TRIGGER = "isAttacking";
+		const string DEATH_TRIGGER = "isDead";
+		const float DEATH_DELAY = 1.0f;
+
 		float timeLastHit;
 		float currentHealthPoints;
 		CameraRaycaster cameraRayCaster;
@@ -73,9 +77,9 @@ namespace RPG.Characters{
 		}
 
 		public void TakeDamage (float damage){
+			bool playerDies = (currentHealthPoints - damage <= 0); // must ask first
 			ReduceHealth (damage);
-
-			if (currentHealthPoints - damage <= 0) {	
+			if (playerDies) {	
 				StartCoroutine (KillPlayer ());
 			} 
 		} 
@@ -89,10 +93,12 @@ namespace RPG.Characters{
 		}
 
 		IEnumerator KillPlayer() {
+			animator.SetTrigger (DEATH_TRIGGER);
+
 			audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
 			audioSource.Play ();
-			animator.SetBool ("isDead", true);
-			yield return new WaitForSeconds (audioSource.clip.length);
+			yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
+
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 
@@ -119,7 +125,7 @@ namespace RPG.Characters{
 		void AttackTarget (Enemy enemy){
 			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
 				enemy.TakeDamage (baseDamage);
-				animator.SetTrigger ("isAttacking");
+				animator.SetTrigger (ATTACK_TRIGGER);
 				timeLastHit = Time.time;
 			}
 		}
