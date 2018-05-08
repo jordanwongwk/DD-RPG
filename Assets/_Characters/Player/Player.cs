@@ -74,7 +74,7 @@ namespace RPG.Characters{
 		void MouseOverEnemy (Enemy enemy){
 			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
 				AttackTarget (enemy);
-			} else if (Input.GetMouseButtonDown (1)) {
+			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
 				AttemptSpecialAbility (0, enemy);
 			}
 		}

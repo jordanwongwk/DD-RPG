@@ -14,6 +14,8 @@ namespace RPG.CameraUI {
 		const int WALKABLE_LAYER = 8;
 	    float maxRaycastDepth = 100f; // Hard coded value
 
+		Rect screenRectAtStartPlay = new Rect (0, 0, Screen.width, Screen.height);
+
 		public delegate void OnMouseOverEnemy (Enemy enemy);
 		public event OnMouseOverEnemy onMouseOverEnemy; 
 
@@ -35,10 +37,12 @@ namespace RPG.CameraUI {
 
 		void PerformRaycasts ()
 		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			// Setting raycast priorities, the order matters cause return will exit the function
-			if (RaycastForEnemy (ray)) { return; }
-			if (RaycastForWalkable (ray)) {	return;	}
+			if (screenRectAtStartPlay.Contains (Input.mousePosition)) {
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				// Setting raycast priorities, the order matters cause return will exit the function
+				if (RaycastForEnemy (ray)) { return; }
+				if (RaycastForWalkable (ray)) { return;	}
+			}
 		}
 
 		bool RaycastForEnemy (Ray ray) {
