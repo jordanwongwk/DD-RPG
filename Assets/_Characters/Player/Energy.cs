@@ -14,7 +14,7 @@ namespace RPG.Characters {
 
 		void Start () {
 			currentEnergyPoints = maxEnergyPoints;
-			InvokeRepeating ("RegenEnergy", 0f, 1f);
+			UpdateEnergyBar ();
 		}
 
 		void Update() {
