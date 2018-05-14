@@ -30,16 +30,24 @@ namespace RPG.Characters{
 		CameraRaycaster cameraRayCaster;
 		Animator animator;
 		AudioSource audioSource;
+		Enemy enemy;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
 		void Start(){
+			audioSource = GetComponent<AudioSource> ();
+
 			SetMaxHealth ();
 			RegisterInDelegates ();
 			PutWeaponInHand ();
 			SetupRuntimeAnimator ();
-			audioSource = GetComponent<AudioSource> ();
-			abilities[0].AttachComponentTo (gameObject);
+			SetupAbilitiesBehaviour ();
+		}
+
+		void SetupAbilitiesBehaviour () {
+			for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++) {
+				abilities[abilityIndex].AttachComponentTo (gameObject);
+			}
 		}
 
 		void SetMaxHealth ()
@@ -76,6 +84,21 @@ namespace RPG.Characters{
 			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
 		}
 
+
+		void Update() {
+			if (healthAsPercentage > Mathf.Epsilon) {
+				ScanForAbilityKeyDown ();
+			}
+		}
+
+		void ScanForAbilityKeyDown(){
+			for (int abilityIndex = 1; abilityIndex < abilities.Length; abilityIndex++) {
+				if (Input.GetKeyDown(abilityIndex.ToString())){
+					AttemptSpecialAbility (abilityIndex);
+				}
+			}
+		}
+
 		public void AdjustHealth (float changeAmount){
 			bool playerDies = (currentHealthPoints - changeAmount <= 0); // must ask first
 			ReduceHealth (changeAmount);
@@ -85,7 +108,7 @@ namespace RPG.Characters{
 		} 
 
 		void ReduceHealth (float damage) {
-			if (!audioSource.isPlaying) {
+			if (!audioSource.isPlaying && damage > 0) {
 				audioSource.clip = damageSounds [Random.Range (0, damageSounds.Length)];
 				audioSource.Play ();
 			}
@@ -102,15 +125,16 @@ namespace RPG.Characters{
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 
-		void MouseOverEnemy (Enemy enemy){
+		void MouseOverEnemy (Enemy enemyToSet){
+			enemy = enemyToSet;
 			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
-				AttackTarget (enemy);
+				AttackTarget ();
 			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
-				AttemptSpecialAbility (0, enemy);
+				AttemptSpecialAbility (0);
 			}
 		}
 
-		void AttemptSpecialAbility (int abilityNumber, Enemy enemy)
+		void AttemptSpecialAbility (int abilityNumber)
 		{
 			var energy = GetComponent<Energy> ();
 			float energyCost = abilities [abilityNumber].GetEnergyCost ();
@@ -122,7 +146,7 @@ namespace RPG.Characters{
 			}
 		}
 
-		void AttackTarget (Enemy enemy){
+		void AttackTarget (){
 			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
 				enemy.AdjustHealth (baseDamage);
 				animator.SetTrigger (ATTACK_TRIGGER);

@@ -10,19 +10,8 @@ namespace RPG.Characters {
 		public void SetConfig(PowerAttackConfig configToSet){
 			this.config = configToSet;
 		}
-
-		// Use this for initialization
-		void Start () {
-			Debug.Log ("Power Attack Behaviour is attached to " + gameObject.name);
-		}
-		
-		// Update is called once per frame
-		void Update () {
 			
-		}
-
 		public void Use(AbilityUseParams useParams) {
-			Debug.Log ("Ability is used by " + gameObject.name);
 			DealingPowerDamage (useParams);
 			PlayParticleEffect ();
 		}

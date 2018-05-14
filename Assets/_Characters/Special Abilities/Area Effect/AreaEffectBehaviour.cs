@@ -12,16 +12,6 @@ namespace RPG.Characters {
 			this.config = configToSet;
 		}
 
-		// Use this for initialization
-		void Start () {
-			Debug.Log ("Area Effect Behaviour is attached to " + gameObject.name);
-		}
-
-		// Update is called once per frame
-		void Update () {
-
-		}
-
 		public void Use(AbilityUseParams useParams) {
 			DealingRadialDamage (useParams);
 			PlayParticleEffect ();
@@ -36,7 +26,6 @@ namespace RPG.Characters {
 
 		void DealingRadialDamage (AbilityUseParams useParams)
 		{
-			Debug.Log ("Area Effect Behaviour used by " + gameObject.name);
 			RaycastHit[] hits = Physics.SphereCastAll (transform.position, config.GetRadius (), Vector3.up, config.GetRadius ());
 			foreach (RaycastHit hit in hits) {
 				var damageable = hit.collider.gameObject.GetComponent<IDamageable> ();

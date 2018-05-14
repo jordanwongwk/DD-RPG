@@ -18,7 +18,6 @@ namespace RPG.Characters {
 		}
 
 		public void Use(AbilityUseParams useParams) {
-			Debug.Log ("Heal used by " + gameObject.name);
 			player.AdjustHealth (-config.GetHealAmount ());
 		}
 	}
