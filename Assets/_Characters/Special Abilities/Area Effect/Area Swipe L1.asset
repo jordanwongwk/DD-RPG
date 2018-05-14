@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Name: Area Swipe L1
   m_EditorClassIdentifier: 
   energyCost: 50
+  particleSystem: {fileID: 1841480406975476, guid: c8ad9fe9b9b2b4447a96836cd2401f5e,
+    type: 2}
   radius: 5
   damageEachTarget: 15
