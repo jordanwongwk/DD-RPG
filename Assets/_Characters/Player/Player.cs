@@ -25,7 +25,7 @@ namespace RPG.Characters{
 		const string DEATH_TRIGGER = "isDead";
 		const float DEATH_DELAY = 1.0f;
 
-		float timeLastHit;
+		float timeLastHit = 0f;
 		float currentHealthPoints;
 		CameraRaycaster cameraRayCaster;
 		Animator animator;
