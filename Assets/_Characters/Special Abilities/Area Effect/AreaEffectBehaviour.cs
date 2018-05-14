@@ -7,14 +7,21 @@ namespace RPG.Characters {
 	public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
 
 		AreaEffectConfig config;
+		AudioSource audioSource;
 
 		public void SetConfig(AreaEffectConfig configToSet){
 			this.config = configToSet;
 		}
 
+		void Start() {
+			audioSource = GetComponent<AudioSource> ();
+		}
+
 		public void Use(AbilityUseParams useParams) {
 			DealingRadialDamage (useParams);
 			PlayParticleEffect ();
+			audioSource.clip = config.GetAudioClip ();
+			audioSource.Play ();
 		}
 
 		void PlayParticleEffect () {
@@ -31,7 +38,7 @@ namespace RPG.Characters {
 				var damageable = hit.collider.gameObject.GetComponent<IDamageable> ();
 				if (damageable != null && hit.collider.tag != gameObject.tag) {
 					float damageToDeal = useParams.baseDamage + config.GetDamageEachTarget ();
-					damageable.AdjustHealth (damageToDeal);
+					damageable.TakeDamage (damageToDeal);
 				}
 			}
 		}

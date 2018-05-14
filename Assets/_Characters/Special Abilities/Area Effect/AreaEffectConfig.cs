@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Characters{
 	[CreateAssetMenu(menuName=("RPG/Special Ability/Area Effect"))]
-	public class AreaEffectConfig : SpecialAbility {
+	public class AreaEffectConfig : AbilityConfig {
 		
 		[Header("Area Effect Config")]
 		[SerializeField] float radius = 5f;

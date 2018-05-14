@@ -1,5 +1,5 @@
 ﻿namespace RPG.Core {
 	public interface IDamageable {
-		void AdjustHealth (float changeAmount);
+		void TakeDamage (float damage);
 	}
 }

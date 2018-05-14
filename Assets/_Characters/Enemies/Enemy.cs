@@ -76,8 +76,8 @@ namespace RPG.Characters {
 			projectile.GetComponent<Rigidbody> ().velocity = unitVectorToPlayer * projectileSpeed;
 		}
 
-		public void AdjustHealth (float changeAmount){
-			currentHealthPoints = Mathf.Clamp (currentHealthPoints - changeAmount, 0f, maxHealthPoints);
+		public void TakeDamage (float damage){
+			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
 
 			if (currentHealthPoints <= 0f) {
 				Destroy (gameObject);
