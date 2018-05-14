@@ -76,9 +76,9 @@ namespace RPG.Characters{
 			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
 		}
 
-		public void TakeDamage (float damage){
-			bool playerDies = (currentHealthPoints - damage <= 0); // must ask first
-			ReduceHealth (damage);
+		public void AdjustHealth (float changeAmount){
+			bool playerDies = (currentHealthPoints - changeAmount <= 0); // must ask first
+			ReduceHealth (changeAmount);
 			if (playerDies) {	
 				StartCoroutine (KillPlayer ());
 			} 
@@ -124,7 +124,7 @@ namespace RPG.Characters{
 
 		void AttackTarget (Enemy enemy){
 			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
-				enemy.TakeDamage (baseDamage);
+				enemy.AdjustHealth (baseDamage);
 				animator.SetTrigger (ATTACK_TRIGGER);
 				timeLastHit = Time.time;
 			}

@@ -42,7 +42,7 @@ namespace RPG.Characters {
 				var damageable = hit.collider.gameObject.GetComponent<IDamageable> ();
 				if (damageable != null && hit.collider.tag != gameObject.tag) {
 					float damageToDeal = useParams.baseDamage + config.GetDamageEachTarget ();
-					damageable.TakeDamage (damageToDeal);
+					damageable.AdjustHealth (damageToDeal);
 				}
 			}
 		}

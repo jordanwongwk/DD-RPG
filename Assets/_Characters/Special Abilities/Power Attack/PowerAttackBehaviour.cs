@@ -22,6 +22,7 @@ namespace RPG.Characters {
 		}
 
 		public void Use(AbilityUseParams useParams) {
+			Debug.Log ("Ability is used by " + gameObject.name);
 			DealingPowerDamage (useParams);
 			PlayParticleEffect ();
 		}
@@ -35,9 +36,8 @@ namespace RPG.Characters {
 
 		void DealingPowerDamage (AbilityUseParams useParams)
 		{
-			Debug.Log ("Ability is used by " + gameObject.name);
 			float damageToDeal = useParams.baseDamage + config.GetExtraDamage ();
-			useParams.target.TakeDamage (damageToDeal);
+			useParams.target.AdjustHealth (damageToDeal);
 		}
 	}
 }
