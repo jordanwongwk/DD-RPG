@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: PA_L2
   m_EditorClassIdentifier: 
   energyCost: 35
-  particleSystem: {fileID: 1648536993662296, guid: 4df8e39ea489e964eb453a9a9b61eb61,
+  particleSystem: {fileID: 1533688703077228, guid: 80992e8d1a54bfa46a119d411ebe3eb8,
     type: 2}
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: d451768b949dad142ab8368d64839ceb, type: 3}
   extraDamage: 30

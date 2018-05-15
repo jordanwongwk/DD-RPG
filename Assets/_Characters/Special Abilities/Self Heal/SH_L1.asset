@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: SH_L1
   m_EditorClassIdentifier: 
   energyCost: 25
-  particleSystem: {fileID: 1058317076567312, guid: e746d988ea774034991d5476b6f4dea1,
+  particleSystem: {fileID: 1090271798564504, guid: e746d988ea774034991d5476b6f4dea1,
     type: 2}
   audioClip: {fileID: 8300000, guid: 1cb532bb06c81bf4d9eff3cfcdd39b18, type: 3}
   healAmount: 50
