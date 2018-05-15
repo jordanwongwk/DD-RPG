@@ -8767,17 +8767,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114313803170016704, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 1129850991}
     - target: {fileID: 136207882968248356, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
         type: 2}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff,
         type: 2}
-    - target: {fileID: 114313803170016704, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
-        type: 2}
-      propertyPath: energyBar
-      value: 
-      objectReference: {fileID: 1129850991}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
   m_IsPrefabParent: 0

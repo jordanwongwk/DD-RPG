@@ -17,6 +17,9 @@ namespace RPG.Characters{
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 		[SerializeField] AudioClip[] damageSounds = null;
 		[SerializeField] AudioClip[] deathSounds = null;
+		[Range (0.1f, 1.0f)][SerializeField] float criticalHitChance = 0.1f;
+		[SerializeField] float criticalHitMultiplier = 1.25f;
+		[SerializeField] ParticleSystem criticalHitParticle = null;
 
 		// Serialized for debugging
 		[SerializeField] AbilityConfig[] abilities = null;
@@ -147,9 +150,21 @@ namespace RPG.Characters{
 
 		void AttackTarget (){
 			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
-				enemy.TakeDamage (baseDamage);
+				enemy.TakeDamage (CalculateDamage ());		// Weapon additional damage applies to normal attack only (For now)
 				animator.SetTrigger (ATTACK_TRIGGER);
 				timeLastHit = Time.time;
+			}
+		}
+
+		float CalculateDamage ()
+		{
+			bool isCriticalHit = Random.Range (0f, 1.0f) <= criticalHitChance;
+			float damageBeforeCritical = baseDamage + weaponInUse.GetAdditionalDamage ();
+			if (isCriticalHit) {
+				criticalHitParticle.Play ();
+				return damageBeforeCritical * criticalHitMultiplier;
+			} else {
+				return damageBeforeCritical;
 			}
 		}
 
