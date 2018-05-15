@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a841c4936ad9c9448a303e2d7e3366c3, type: 3}
   m_Name: AOE_L1
   m_EditorClassIdentifier: 
-  energyCost: 10
+  energyCost: 1
   particleSystem: {fileID: 1202755107640684, guid: 012f8f42a17b1c44690695a3bd0cd24e,
     type: 2}
   audioClip: {fileID: 8300000, guid: 3e259a26ca0f7ea44b567f830e1672a3, type: 3}
