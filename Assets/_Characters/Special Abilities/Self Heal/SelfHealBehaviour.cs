@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters { 
-	public class SelfHealBehaviour : MonoBehaviour, ISpecialAbility {
+	public class SelfHealBehaviour : AbilityBehaviour {
 
 		SelfHealConfig config;
 		Player player;
@@ -19,7 +19,7 @@ namespace RPG.Characters {
 			audioSource = GetComponent<AudioSource> ();
 		}
 
-		public void Use(AbilityUseParams useParams) {
+		public override void Use(AbilityUseParams useParams) {
 			player.Heal (config.GetHealAmount ());
 			PlayParticleEffect ();
 			audioSource.clip = config.GetAudioClip ();

@@ -4,7 +4,7 @@ using UnityEngine;
 using RPG.Core;
 
 namespace RPG.Characters {
-	public class AreaEffectBehaviour : MonoBehaviour, ISpecialAbility {
+	public class AreaEffectBehaviour : AbilityBehaviour {
 
 		AreaEffectConfig config;
 		AudioSource audioSource;
@@ -17,7 +17,7 @@ namespace RPG.Characters {
 			audioSource = GetComponent<AudioSource> ();
 		}
 
-		public void Use(AbilityUseParams useParams) {
+		public override void Use(AbilityUseParams useParams) {
 			DealingRadialDamage (useParams);
 			PlayParticleEffect ();
 			audioSource.clip = config.GetAudioClip ();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters {
-	public class PowerAttackBehaviour : MonoBehaviour, ISpecialAbility {
+	public class PowerAttackBehaviour : AbilityBehaviour {
 
 		PowerAttackConfig config;
 		AudioSource audioSource;
@@ -16,7 +16,7 @@ namespace RPG.Characters {
 			audioSource = GetComponent<AudioSource> ();
 		}
 			
-		public void Use(AbilityUseParams useParams) {
+		public override void Use(AbilityUseParams useParams) {
 			DealingPowerDamage (useParams);
 			PlayParticleEffect ();
 			audioSource.clip = config.GetAudioClip ();
