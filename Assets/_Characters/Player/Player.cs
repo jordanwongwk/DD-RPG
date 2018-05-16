@@ -13,7 +13,7 @@ namespace RPG.Characters{
 
 		[SerializeField] float maxHealthPoints = 100f;
 		[SerializeField] float baseDamage = 10f;
-		[SerializeField] Weapon weaponInUse = null;
+		[SerializeField] Weapon currentWeapon = null;
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 		[SerializeField] AudioClip[] damageSounds = null;
 		[SerializeField] AudioClip[] deathSounds = null;
@@ -26,8 +26,10 @@ namespace RPG.Characters{
 
 		const string ATTACK_TRIGGER = "isAttacking";
 		const string DEATH_TRIGGER = "isDead";
+		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 		const float DEATH_DELAY = 1.0f;
 
+		GameObject weaponObject;
 		float timeLastHit = 0f;
 		float currentHealthPoints;
 		CameraRaycaster cameraRayCaster;
@@ -42,11 +44,11 @@ namespace RPG.Characters{
 
 			SetMaxHealth ();
 			RegisterInDelegates ();
-			PutWeaponInHand ();
-			SetupRuntimeAnimator ();
+			ChangeWeaponInHand (currentWeapon);
+			SetAttackAnimation (currentWeapon);
 			SetupAbilitiesBehaviour ();
 		}
-
+			
 		void SetupAbilitiesBehaviour () {
 			for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++) {
 				abilities[abilityIndex].AttachAbilityTo (gameObject);
@@ -58,19 +60,21 @@ namespace RPG.Characters{
 			currentHealthPoints = maxHealthPoints;
 		}
 
-		void SetupRuntimeAnimator(){
+		void SetAttackAnimation(Weapon currentWeaponAnim){
 			animator = GetComponent<Animator> ();
 			animator.runtimeAnimatorController = animatorOverrideController;
-			animatorOverrideController ["DEFAULT ATTACK"] = weaponInUse.GetAttAnimClip ();
+			animatorOverrideController [DEFAULT_ATTACK] = currentWeaponAnim.GetAttAnimClip ();
 		}
 
-		void PutWeaponInHand ()
+		public void ChangeWeaponInHand (Weapon weaponToChange)
 		{
-			var weaponPrefab = weaponInUse.GetWeaponPrefab ();
+			currentWeapon = weaponToChange;		// Initializing that the equipped weapon is now the pickup weapon
+			var weaponPrefab = weaponToChange.GetWeaponPrefab ();
 			GameObject armToHoldWeapon = SelectDominantHand ();
-			var usingWeapon = Instantiate(weaponPrefab, armToHoldWeapon.transform);
-			usingWeapon.transform.localPosition = weaponInUse.gripTransform.transform.localPosition;
-			usingWeapon.transform.localRotation = weaponInUse.gripTransform.transform.localRotation;
+			Destroy (weaponObject);				// Empty hand (Initially when game run, null is return then only equip with starting hand)
+			weaponObject = Instantiate(weaponPrefab, armToHoldWeapon.transform);
+			weaponObject.transform.localPosition = weaponToChange.gripTransform.transform.localPosition;
+			weaponObject.transform.localRotation = weaponToChange.gripTransform.transform.localRotation;
 		}
 
 		GameObject SelectDominantHand(){
@@ -149,7 +153,8 @@ namespace RPG.Characters{
 		}
 
 		void AttackTarget (){
-			if (Time.time - timeLastHit > weaponInUse.GetTimeBetweenHits()) {
+			if (Time.time - timeLastHit > currentWeapon.GetTimeBetweenHits()) {
+				SetAttackAnimation (currentWeapon);
 				enemy.TakeDamage (CalculateDamage ());		// Weapon additional damage applies to normal attack only (For now)
 				animator.SetTrigger (ATTACK_TRIGGER);
 				timeLastHit = Time.time;
@@ -159,7 +164,7 @@ namespace RPG.Characters{
 		float CalculateDamage ()
 		{
 			bool isCriticalHit = Random.Range (0f, 1.0f) <= criticalHitChance;
-			float damageBeforeCritical = baseDamage + weaponInUse.GetAdditionalDamage ();
+			float damageBeforeCritical = baseDamage + currentWeapon.GetAdditionalDamage ();
 			if (isCriticalHit) {
 				criticalHitParticle.Play ();
 				return damageBeforeCritical * criticalHitMultiplier;
@@ -170,7 +175,7 @@ namespace RPG.Characters{
 
 		bool IsTargetInRange (GameObject target){
 			float distanceDiff = Vector3.Distance (transform.position, target.transform.position);
-			return distanceDiff <= weaponInUse.GetMaxAttackRange();
+			return distanceDiff <= currentWeapon.GetMaxAttackRange();
 		}
 	}
 }
