@@ -5,33 +5,19 @@ using UnityEngine;
 namespace RPG.Characters { 
 	public class SelfHealBehaviour : AbilityBehaviour {
 
-		SelfHealConfig config;
 		Player player;
 		AudioSource audioSource;
 
-		public void SetConfig(SelfHealConfig configToSet){
-			this.config = configToSet;
-		}
-
-		// Use this for initialization
 		void Start () {
 			player = GetComponent<Player> ();
 			audioSource = GetComponent<AudioSource> ();
 		}
 
 		public override void Use(AbilityUseParams useParams) {
-			player.Heal (config.GetHealAmount ());
+			player.Heal ((config as SelfHealConfig).GetHealAmount ());
 			PlayParticleEffect ();
 			audioSource.clip = config.GetAudioClip ();
 			audioSource.Play ();
-		}
-
-		void PlayParticleEffect () {
-			GameObject particleSystemPrefab = Instantiate (config.GetParticleSystem(), transform.position, Quaternion.identity);
-			particleSystemPrefab.transform.parent = transform;
-			ParticleSystem myParticleSystem = particleSystemPrefab.GetComponent<ParticleSystem> ();
-			myParticleSystem.Play ();
-			Destroy (particleSystemPrefab, myParticleSystem.main.duration);
 		}
 	}
 }
