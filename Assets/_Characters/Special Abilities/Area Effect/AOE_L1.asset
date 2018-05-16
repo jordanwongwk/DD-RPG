@@ -14,6 +14,7 @@ MonoBehaviour:
   energyCost: 50
   particleSystem: {fileID: 1202755107640684, guid: 012f8f42a17b1c44690695a3bd0cd24e,
     type: 2}
-  audioClip: {fileID: 8300000, guid: 3e259a26ca0f7ea44b567f830e1672a3, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 3e259a26ca0f7ea44b567f830e1672a3, type: 3}
   radius: 5
   damageEachTarget: 15

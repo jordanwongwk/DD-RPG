@@ -29,5 +29,11 @@ namespace RPG.Characters {
 			Destroy (particlePrefab);
 			yield return new WaitForEndOfFrame ();
 		}
+
+		protected void PlayAbilitySound() {
+			var abilitySound = config.GetRandomAudioClip ();
+			var audioSource = GetComponent<AudioSource> ();
+			audioSource.PlayOneShot (abilitySound);
+		}
 	}
 }

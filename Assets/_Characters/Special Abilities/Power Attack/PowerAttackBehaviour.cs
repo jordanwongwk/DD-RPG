@@ -5,17 +5,10 @@ using UnityEngine;
 namespace RPG.Characters {
 	public class PowerAttackBehaviour : AbilityBehaviour {
 
-		AudioSource audioSource;
-
-		void Start() {
-			audioSource = GetComponent<AudioSource> ();
-		}
-			
 		public override void Use(AbilityUseParams useParams) {
 			DealingPowerDamage (useParams);
 			PlayParticleEffect ();
-			audioSource.clip = config.GetAudioClip ();
-			audioSource.Play ();
+			PlayAbilitySound ();
 		}
 
 		void DealingPowerDamage (AbilityUseParams useParams)

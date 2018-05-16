@@ -19,7 +19,7 @@ namespace RPG.Characters {
 		[Header("Special Attack General")]
 		[SerializeField] float energyCost = 10f;
 		[SerializeField] GameObject particleSystem = null;
-		[SerializeField] AudioClip audioClip = null;
+		[SerializeField] AudioClip[] audioClips = null;
 
 		protected AbilityBehaviour behaviour;
 
@@ -37,8 +37,8 @@ namespace RPG.Characters {
 			return particleSystem;
 		}
 
-		public AudioClip GetAudioClip() {
-			return audioClip;
+		public AudioClip GetRandomAudioClip() {
+			return audioClips[Random.Range(0, audioClips.Length)];
 		}
 	}
 }
