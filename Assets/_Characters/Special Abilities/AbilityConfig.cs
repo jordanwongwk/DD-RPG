@@ -23,12 +23,18 @@ namespace RPG.Characters {
 
 		protected AbilityBehaviour behaviour;
 
-		abstract public void AttachComponentTo(GameObject gameObjectToAttachTo);
+		public abstract AbilityBehaviour GetAbilityBehaviour (GameObject gameObjectToAttachTo);
+
+		public void AttachAbilityTo (GameObject gameObjectToAttachTo){
+			var behaviourComponent = GetAbilityBehaviour (gameObjectToAttachTo);
+			behaviourComponent.SetConfig (this);
+			behaviour = behaviourComponent;
+		}
 
 		public void Use(AbilityUseParams useParams) {
 			behaviour.Use (useParams);
 		}
-
+			
 		public float GetEnergyCost () {
 			return energyCost;
 		}
