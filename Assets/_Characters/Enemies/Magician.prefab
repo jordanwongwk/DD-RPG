@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 114707486720099404}
   - component: {fileID: 195529830101565920}
   - component: {fileID: 114769014810787974}
-  - component: {fileID: 114619300837433174}
   m_Layer: 9
   m_Name: Magician
   m_TagString: Untagged
@@ -731,18 +730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1236496267007890, guid: ce97f38f4c955d04cb0288236d22ebcf,
     type: 2}
---- !u!114 &114619300837433174
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552397467846190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114707486720099404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -778,6 +765,7 @@ MonoBehaviour:
   moveRadius: 3
   projectileDamage: 54
   projectileShotDelay: 1.5
+  variationDelay: 0.1
   projectileToUse: {fileID: 1241740911561924, guid: 67bb82285d744ba4dbc9e0bfdb30fc7c,
     type: 2}
   projectileSpawnPoint: {fileID: 1230908395113908}

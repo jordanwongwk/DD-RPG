@@ -832,7 +832,6 @@ GameObject:
   - component: {fileID: 114859666394640264}
   - component: {fileID: 195742667541489380}
   - component: {fileID: 114566465204983110}
-  - component: {fileID: 114641410554265986}
   - component: {fileID: 114239544759234110}
   - component: {fileID: 114313803170016704}
   - component: {fileID: 82582316234923308}
@@ -1656,7 +1655,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939906218202142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -127.51, y: 0.27, z: 161.61}
+  m_LocalPosition: {x: -128.25, y: 0.27, z: 162.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4191751098049110}
@@ -2094,7 +2093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 300
   baseDamage: 10
-  weaponInUse: {fileID: 11400000, guid: 307816da55147e2408e9da82cc197ded, type: 2}
+  currentWeapon: {fileID: 11400000, guid: 307816da55147e2408e9da82cc197ded, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
     type: 2}
   damageSounds:
@@ -2137,21 +2136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939906218202142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd07c7e96734ac40ac0988dd149e72f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a670ce2565f5984bbd886afa5097672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114641410554265986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1939906218202142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  stoppingDistance: 1.2
 --- !u!114 &114859666394640264
 MonoBehaviour:
   m_ObjectHideFlags: 1

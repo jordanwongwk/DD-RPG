@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 11469404}
   - component: {fileID: 195365879101920092}
   - component: {fileID: 114126450303657828}
-  - component: {fileID: 114063879761980762}
   m_Layer: 9
   m_Name: Healing Station
   m_TagString: Untagged
@@ -758,18 +757,6 @@ Transform:
   m_Father: {fileID: 4451792630588958}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114063879761980762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114126450303657828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,6 +773,7 @@ MonoBehaviour:
   moveRadius: 0.5
   projectileDamage: -1000
   projectileShotDelay: 5
+  variationDelay: 0.1
   projectileToUse: {fileID: 1241740911561924, guid: 939e6cade0981124d99a206327e30881,
     type: 2}
   projectileSpawnPoint: {fileID: 1680488350353982}

@@ -297,7 +297,6 @@ GameObject:
   - component: {fileID: 114879198859066120}
   - component: {fileID: 195568457555530256}
   - component: {fileID: 114222945314792060}
-  - component: {fileID: 114506490168566864}
   m_Layer: 9
   m_Name: Bruiser
   m_TagString: Untagged
@@ -734,6 +733,7 @@ MonoBehaviour:
   moveRadius: 5
   projectileDamage: 40
   projectileShotDelay: 1
+  variationDelay: 0.1
   projectileToUse: {fileID: 1241740911561924, guid: 66b87f00564dc2f49a6e6283a06cbe1a,
     type: 2}
   projectileSpawnPoint: {fileID: 1258687609759906}
@@ -751,18 +751,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1236496267007890, guid: ce97f38f4c955d04cb0288236d22ebcf,
     type: 2}
---- !u!114 &114506490168566864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860485693815320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114879198859066120
 MonoBehaviour:
   m_ObjectHideFlags: 1

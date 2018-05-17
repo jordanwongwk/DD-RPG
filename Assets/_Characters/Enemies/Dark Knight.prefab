@@ -1123,7 +1123,6 @@ GameObject:
   - component: {fileID: 114394950717591344}
   - component: {fileID: 195205579720415214}
   - component: {fileID: 114426519235079392}
-  - component: {fileID: 114308819768029640}
   m_Layer: 9
   m_Name: Dark Knight
   m_TagString: Untagged
@@ -2559,18 +2558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1236496267007890, guid: ce97f38f4c955d04cb0288236d22ebcf,
     type: 2}
---- !u!114 &114308819768029640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1849831327305978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &114394950717591344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2606,6 +2593,7 @@ MonoBehaviour:
   moveRadius: 12
   projectileDamage: 100
   projectileShotDelay: 2
+  variationDelay: 0.1
   projectileToUse: {fileID: 1241740911561924, guid: 66b87f00564dc2f49a6e6283a06cbe1a,
     type: 2}
   projectileSpawnPoint: {fileID: 1289671090785534}
