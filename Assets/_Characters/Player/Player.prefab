@@ -828,13 +828,13 @@ GameObject:
   - component: {fileID: 4922386615519990}
   - component: {fileID: 95331977420056822}
   - component: {fileID: 54569737037717172}
+  - component: {fileID: 82582316234923308}
   - component: {fileID: 136207882968248356}
-  - component: {fileID: 114859666394640264}
   - component: {fileID: 195742667541489380}
+  - component: {fileID: 114859666394640264}
   - component: {fileID: 114566465204983110}
   - component: {fileID: 114239544759234110}
   - component: {fileID: 114313803170016704}
-  - component: {fileID: 82582316234923308}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2151,14 +2151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 1800
-  m_StationaryTurnSpeed: 900
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1.2
-  m_GroundCheckDistance: 1
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  runCycleLegOffset: 0.2
 --- !u!114 &114868929214744236
 MonoBehaviour:
   m_ObjectHideFlags: 1
