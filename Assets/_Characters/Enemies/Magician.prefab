@@ -202,7 +202,6 @@ GameObject:
   - component: {fileID: 95206651236241488}
   - component: {fileID: 54097434474729454}
   - component: {fileID: 136682119513047824}
-  - component: {fileID: 114707486720099404}
   - component: {fileID: 195529830101565920}
   - component: {fileID: 114769014810787974}
   m_Layer: 9
@@ -730,25 +729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1236496267007890, guid: ce97f38f4c955d04cb0288236d22ebcf,
     type: 2}
---- !u!114 &114707486720099404
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552397467846190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 1800
-  m_StationaryTurnSpeed: 900
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 0.5
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 1
 --- !u!114 &114769014810787974
 MonoBehaviour:
   m_ObjectHideFlags: 1
