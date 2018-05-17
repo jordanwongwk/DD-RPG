@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 using RPG.CameraUI;
-using RPG.Weapons;
 using RPG.Core;
 
 namespace RPG.Characters{

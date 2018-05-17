@@ -4,7 +4,7 @@ using UnityEngine;
 
 using RPG.Core;
 
-namespace RPG.Weapons {
+namespace RPG.Characters {
 	public class Projectile : MonoBehaviour {
 		
 		[SerializeField] float projectileSpeed = 0f;
