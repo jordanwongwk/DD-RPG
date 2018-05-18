@@ -43,8 +43,8 @@ namespace RPG.Characters{
 		public void TakeDamage (float damage){
 			bool characterDies = (currentHealthPoints - damage <= 0);
 			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
-			var clip = damageSounds [Random.Range (0, damageSounds.Length)];
-			audioSource.PlayOneShot (clip);
+//			var clip = damageSounds [Random.Range (0, damageSounds.Length)];
+//			audioSource.PlayOneShot (clip);
 			if (characterDies) {	
 				StartCoroutine (KillCharacter ());
 			} 

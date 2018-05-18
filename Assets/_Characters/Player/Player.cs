@@ -80,15 +80,13 @@ namespace RPG.Characters{
 				}
 			}
 		}
-
-
-
+			
 		void MouseOverEnemy (Enemy enemyToSet){
 			enemy = enemyToSet;
 			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
 				AttackTarget ();
 			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
-				abilities.AttemptSpecialAbility (0);
+				abilities.AttemptSpecialAbility (0, enemy.gameObject);
 			}
 		}
 
