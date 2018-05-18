@@ -5,7 +5,7 @@ using UnityEngine;
 using RPG.Core;
 
 namespace RPG.Characters {
-	public class Enemy : MonoBehaviour, IDamageable {		//TODO Remove Interface
+	public class Enemy : MonoBehaviour{		
 
 		[SerializeField] float attackRadius = 5f;
 		[SerializeField] float moveRadius = 6f;

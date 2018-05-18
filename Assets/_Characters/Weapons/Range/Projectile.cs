@@ -28,19 +28,19 @@ namespace RPG.Characters {
 		void OnCollisionEnter (Collision collision){
 			var collidedObjectLayer = collision.gameObject.layer;
 			if (shooter && collidedObjectLayer != shooter.layer) {
-				DamageIfDamageable (collision);
+//				DamageIfDamageable (collision);
 			}
 
 			Destroy (gameObject, DESTROY_DELAY);
 		}
 
-		void DamageIfDamageable (Collision collision)
-		{
-			IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
-			if (damageable != null) {
-				damageable.TakeDamage (damageCaused);
-				Destroy (gameObject);
-			}
-		}
+//		void DamageIfDamageable (Collision collision)
+//		{
+//			IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
+//			if (damageable != null) {
+//				damageable.TakeDamage (damageCaused);
+//				Destroy (gameObject);
+//			}
+//		}
 	}
 }

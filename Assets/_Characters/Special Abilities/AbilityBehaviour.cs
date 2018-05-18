@@ -9,7 +9,7 @@ namespace RPG.Characters {
 
 		const float PARTICLE_EFFECT_DELAY = 10f;
 
-		public abstract void Use (AbilityUseParams useParams);
+		public abstract void Use (GameObject target = null);
 
 		public void SetConfig(AbilityConfig configToSet){
 			config = configToSet;

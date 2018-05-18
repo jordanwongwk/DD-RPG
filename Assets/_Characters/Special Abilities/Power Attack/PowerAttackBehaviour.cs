@@ -5,16 +5,16 @@ using UnityEngine;
 namespace RPG.Characters {
 	public class PowerAttackBehaviour : AbilityBehaviour {
 
-		public override void Use(AbilityUseParams useParams) {
-			DealingPowerDamage (useParams);
+		public override void Use(GameObject target) {
+			DealingPowerDamage (target);
 			PlayParticleEffect ();
 			PlayAbilitySound ();
 		}
 
-		void DealingPowerDamage (AbilityUseParams useParams)
+		void DealingPowerDamage (GameObject target)
 		{
-			float damageToDeal = useParams.baseDamage + (config as PowerAttackConfig).GetExtraDamage ();
-			useParams.target.TakeDamage (damageToDeal);
+			float damageToDeal = (config as PowerAttackConfig).GetExtraDamage ();
+			target.GetComponent<HealthSystem>().TakeDamage (damageToDeal);
 		}
 	}
 }
