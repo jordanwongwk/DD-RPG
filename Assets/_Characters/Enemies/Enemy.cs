@@ -24,6 +24,7 @@ namespace RPG.Characters {
 		}
 
 		public void TakeDamage (float amount){
+			Debug.Log ("OUCH!");
 			//TODO Remove this
 		}
 

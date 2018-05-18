@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 195742667541489380}
   - component: {fileID: 114566465204983110}
   - component: {fileID: 114239544759234110}
-  - component: {fileID: 114313803170016704}
+  - component: {fileID: 114810148887738032}
   - component: {fileID: 114767606073093910}
   m_Layer: 11
   m_Name: Player
@@ -2098,24 +2098,6 @@ MonoBehaviour:
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 198412813387300044}
-  abilities:
-  - {fileID: 11400000, guid: bb8ab058dc7a10842ace54ac4dfab4ba, type: 2}
-  - {fileID: 11400000, guid: 9e68e852c4f11d749b4318d0e4837074, type: 2}
-  - {fileID: 11400000, guid: 59e1efabe2a1c3e498970eb5cf896102, type: 2}
---- !u!114 &114313803170016704
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1939906218202142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1b72c2b3ba32649ac5f4dfb1a486dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyBar: {fileID: 0}
-  maxEnergyPoints: 100
-  regenEnergyPerSecond: 3
 --- !u!114 &114566465204983110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2150,6 +2132,24 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   currentHealthPoints: 0
+--- !u!114 &114810148887738032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939906218202142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea695dd4efc9f2548890f6363f1aaea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyBar: {fileID: 0}
+  abilities:
+  - {fileID: 11400000, guid: 9a4b5023512e11946bd5295a349b2729, type: 2}
+  - {fileID: 11400000, guid: 9e68e852c4f11d749b4318d0e4837074, type: 2}
+  - {fileID: 11400000, guid: 59e1efabe2a1c3e498970eb5cf896102, type: 2}
+  maxEnergyPoints: 100
+  regenEnergyPerSecond: 3
 --- !u!114 &114868929214744236
 MonoBehaviour:
   m_ObjectHideFlags: 1
