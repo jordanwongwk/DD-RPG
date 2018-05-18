@@ -831,10 +831,10 @@ GameObject:
   - component: {fileID: 82582316234923308}
   - component: {fileID: 136207882968248356}
   - component: {fileID: 195742667541489380}
-  - component: {fileID: 114859666394640264}
   - component: {fileID: 114566465204983110}
   - component: {fileID: 114239544759234110}
   - component: {fileID: 114313803170016704}
+  - component: {fileID: 114767606073093910}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2091,22 +2091,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a226f89997e126046bbae9dd7936a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 300
   baseDamage: 10
   currentWeapon: {fileID: 11400000, guid: 307816da55147e2408e9da82cc197ded, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
     type: 2}
-  damageSounds:
-  - {fileID: 8300000, guid: da84d6dfff318164c9a0475379df155d, type: 3}
-  - {fileID: 8300000, guid: 1a36361030c6e694c8f97f3216479f87, type: 3}
-  - {fileID: 8300000, guid: dd361f90220474348a6116edb16253f7, type: 3}
-  - {fileID: 8300000, guid: da39e6027af0bc348b6916cb70658b10, type: 3}
-  - {fileID: 8300000, guid: 44391561aa068cf49aedd20aea4fc30e, type: 3}
-  - {fileID: 8300000, guid: b0d96ec5f40b3a447988d33424083021, type: 3}
-  deathSounds:
-  - {fileID: 8300000, guid: 193209fef52834b46ab53104cf88dd33, type: 3}
-  - {fileID: 8300000, guid: e14cf2f1e0ec8934c92ea23474bc4cf2, type: 3}
-  - {fileID: 8300000, guid: 0862cf6f22485c8498dadc80c0efe71c, type: 3}
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 198412813387300044}
@@ -2140,7 +2128,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoppingDistance: 1.2
---- !u!114 &114859666394640264
+  moveSpeedMultiplier: 1.5
+  animationSpeedMultiplier: 1.25
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  moveThreshold: 1
+--- !u!114 &114767606073093910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2148,12 +2141,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939906218202142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
+  m_Script: {fileID: 11500000, guid: 742fbee13f1732b42a45580ffdc40ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingTurnSpeed: 360
-  stationaryTurnSpeed: 180
-  runCycleLegOffset: 0.2
+  maxHealthPoints: 100
+  deathVanishInSeconds: 2
+  healthBar: {fileID: 0}
+  damageSounds: []
+  deathSounds: []
+  currentHealthPoints: 0
 --- !u!114 &114868929214744236
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -74,6 +74,10 @@ namespace RPG.Characters {
 			}
 		}
 
+		public void Kill(){
+			// Implement a code to stop characters from moving when they die
+		}
+
 		public void Move(Vector3 movement)
 		{
 			SetForwardAndTurn (movement);

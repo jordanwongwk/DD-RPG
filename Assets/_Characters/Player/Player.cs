@@ -8,14 +8,11 @@ using RPG.CameraUI;
 using RPG.Core;
 
 namespace RPG.Characters{
-	public class Player : MonoBehaviour, IDamageable{
+	public class Player : MonoBehaviour{
 
-		[SerializeField] float maxHealthPoints = 100f;
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon currentWeapon = null;
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
-		[SerializeField] AudioClip[] damageSounds = null;
-		[SerializeField] AudioClip[] deathSounds = null;
 		[Range (0.1f, 1.0f)][SerializeField] float criticalHitChance = 0.1f;
 		[SerializeField] float criticalHitMultiplier = 1.25f;
 		[SerializeField] ParticleSystem criticalHitParticle = null;
@@ -24,24 +21,15 @@ namespace RPG.Characters{
 		[SerializeField] AbilityConfig[] abilities = null;
 
 		const string ATTACK_TRIGGER = "isAttacking";
-		const string DEATH_TRIGGER = "isDead";
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-		const float DEATH_DELAY = 1.0f;
 
-		GameObject weaponObject;
 		float timeLastHit = 0f;
-		float currentHealthPoints;
+		GameObject weaponObject;
 		CameraRaycaster cameraRayCaster;
 		Animator animator;
-		AudioSource audioSource;
 		Enemy enemy;
 
-		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
-
 		void Start(){
-			audioSource = GetComponent<AudioSource> ();
-
-			SetMaxHealth ();
 			RegisterInDelegates ();
 			ChangeWeaponInHand (currentWeapon);
 			SetAttackAnimation (currentWeapon);
@@ -52,11 +40,6 @@ namespace RPG.Characters{
 			for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++) {
 				abilities[abilityIndex].AttachAbilityTo (gameObject);
 			}
-		}
-
-		void SetMaxHealth ()
-		{
-			currentHealthPoints = maxHealthPoints;
 		}
 
 		void SetAttackAnimation(Weapon currentWeaponAnim){
@@ -92,7 +75,8 @@ namespace RPG.Characters{
 
 
 		void Update() {
-			if (healthAsPercentage > Mathf.Epsilon) {
+			var healthPercentage = GetComponent<HealthSystem> ().healthAsPercentage;
+			if (healthPercentage > Mathf.Epsilon) {
 				ScanForAbilityKeyDown ();
 			}
 		}
@@ -105,30 +89,7 @@ namespace RPG.Characters{
 			}
 		}
 
-		public void TakeDamage (float damage){
-			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
-			if (!audioSource.isPlaying) {
-				audioSource.clip = damageSounds [Random.Range (0, damageSounds.Length)];
-				audioSource.Play ();
-			}
-			if (currentHealthPoints <= 0) {	
-				StartCoroutine (KillPlayer ());
-			} 
-		} 
 
-		public void Heal (float amount) {
-			currentHealthPoints = Mathf.Clamp (currentHealthPoints + amount, 0f, maxHealthPoints);
-		}
-
-		IEnumerator KillPlayer() {
-			animator.SetTrigger (DEATH_TRIGGER);
-
-			audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
-			audioSource.Play ();
-			yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
-
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-		}
 
 		void MouseOverEnemy (Enemy enemyToSet){
 			enemy = enemyToSet;
