@@ -38,7 +38,7 @@ namespace RPG.Characters {
 
 		void OnTriggerEnter(){
 			Debug.Log ("Equipped with " + weaponConfig);
-			FindObjectOfType<Player> ().ChangeWeaponInHand (weaponConfig);
+			FindObjectOfType<PlayerMovement> ().ChangeWeaponInHand (weaponConfig);
 			audioSource.PlayOneShot (pickUpSFX);
 		}
 	}

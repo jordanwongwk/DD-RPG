@@ -5,10 +5,9 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 using RPG.CameraUI;
-using RPG.Core;
 
 namespace RPG.Characters{
-	public class Player : MonoBehaviour{
+	public class PlayerMovement : MonoBehaviour{
 
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon currentWeapon;
@@ -26,20 +25,24 @@ namespace RPG.Characters{
 		Animator animator;
 		Enemy enemy;
 		SpecialAbilities abilities;
+		Character character;
 
 		void Start(){
 			abilities = GetComponent<SpecialAbilities> ();
-			RegisterInDelegates ();
-			ChangeWeaponInHand (currentWeapon);
-			SetAttackAnimation (currentWeapon);
+			character = GetComponent<Character> ();
+			RegisterOnMouseEvents ();
+			ChangeWeaponInHand (currentWeapon);	//TODO Change to WeaponSystem
+			SetAttackAnimation (currentWeapon); //TODO Change to WeaponSystem
 		}
 
+		//TODO Change to WeaponSystem
 		void SetAttackAnimation(Weapon currentWeaponAnim){
 			animator = GetComponent<Animator> ();
 			animator.runtimeAnimatorController = animatorOverrideController;
 			animatorOverrideController [DEFAULT_ATTACK] = currentWeaponAnim.GetAttAnimClip ();
 		}
 
+		//TODO Change to WeaponSystem
 		public void ChangeWeaponInHand (Weapon weaponToChange)
 		{
 			currentWeapon = weaponToChange;		// Initializing that the equipped weapon is now the pickup weapon
@@ -51,6 +54,7 @@ namespace RPG.Characters{
 			weaponObject.transform.localRotation = weaponToChange.gripTransform.transform.localRotation;
 		}
 
+		//TODO Change to WeaponSystem
 		GameObject SelectDominantHand(){
 			var dominantHands = GetComponentsInChildren<DominantHand> ();
 			int numberOfDominantHands = dominantHands.Length;
@@ -59,18 +63,30 @@ namespace RPG.Characters{
 			return dominantHands[0].gameObject;
 		}
 
-		void RegisterInDelegates ()
+		void RegisterOnMouseEvents ()
 		{
 			cameraRayCaster = FindObjectOfType<CameraRaycaster> ();
 			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
+			cameraRayCaster.onMouseOverWalkable += MouseOverWalkable;
 		}
 
+		void MouseOverEnemy (Enemy enemyToSet){
+			enemy = enemyToSet;
+			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
+				AttackTarget ();
+			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
+				abilities.AttemptSpecialAbility (0, enemy.gameObject);
+			}
+		}
+
+		void MouseOverWalkable (Vector3 destination) {
+			if (Input.GetMouseButton (0)) {
+				character.SetDestination (destination);
+			}
+		}
 
 		void Update() {
-			var healthPercentage = GetComponent<HealthSystem> ().healthAsPercentage;
-			if (healthPercentage > Mathf.Epsilon) {
-				ScanForAbilityKeyDown ();
-			}
+			ScanForAbilityKeyDown ();
 		}
 
 		void ScanForAbilityKeyDown(){
@@ -81,17 +97,7 @@ namespace RPG.Characters{
 			}
 		}
 			
-		void MouseOverEnemy (Enemy enemyToSet){
-			enemy = enemyToSet;
-			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
-				AttackTarget ();
-			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
-				abilities.AttemptSpecialAbility (0, enemy.gameObject);
-			}
-		}
-
-
-
+		//TODO Change to WeaponSystem
 		void AttackTarget (){
 			if (Time.time - timeLastHit > currentWeapon.GetTimeBetweenHits()) {
 				SetAttackAnimation (currentWeapon);
@@ -101,6 +107,7 @@ namespace RPG.Characters{
 			}
 		}
 
+		//TODO Change to WeaponSystem
 		float CalculateDamage ()
 		{
 			bool isCriticalHit = Random.Range (0f, 1.0f) <= criticalHitChance;

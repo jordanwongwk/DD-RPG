@@ -18,14 +18,14 @@ namespace RPG.Characters{
 		[SerializeField] float currentHealthPoints;
 		Animator animator;
 		AudioSource audioSource;
-		CharacterMovement characterMovement;
+		Character characterMovement;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
 		void Start () {
 			animator = GetComponent<Animator> ();
 			audioSource = GetComponent<AudioSource> ();
-			characterMovement = GetComponent<CharacterMovement> ();
+			characterMovement = GetComponent<Character> ();
 
 			currentHealthPoints = maxHealthPoints;
 		}
@@ -59,7 +59,7 @@ namespace RPG.Characters{
 			characterMovement.Kill ();
 			animator.SetTrigger (DEATH_TRIGGER);
 
-			var playerComponent = GetComponent<Player> ();
+			var playerComponent = GetComponent<PlayerMovement> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
 				audioSource.Play ();	// Don't use PlayOneShot, we need this clip to override the current clip

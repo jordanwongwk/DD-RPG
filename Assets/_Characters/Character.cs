@@ -6,21 +6,28 @@ using RPG.CameraUI;
 
 namespace RPG.Characters {
 	[SelectionBase]
-	[RequireComponent(typeof (NavMeshAgent))]
-	public class CharacterMovement : MonoBehaviour
+	public class Character : MonoBehaviour
 	{
 		[Header("Capsule Collider Settings")]
 		[SerializeField] Vector3 colliderCenter = new Vector3(0, 1.0f, 0);
 		[SerializeField] float colliderRadius = 0.2f;
 		[SerializeField] float colliderHeight = 2.0f;
 
+		[Header("Nav Mesh Settings")]
+		[SerializeField] float steeringSpeed = 1.0f;
+		[SerializeField] float stoppingDistance = 1f;
+		[SerializeField] float obstacleAvoidanceRadius = 0.1f;
+
 		[Header("Animator Setup Settings")]
 		[SerializeField] RuntimeAnimatorController animatorController = null;
 		[SerializeField] AnimatorOverrideController animatorOverrideController;
 		[SerializeField] Avatar characterAvatar = null;
 
+		[Header("Audio Source Settings")]
+		[Range(0, 1.0f)][SerializeField] float audioVolume = 0.8f;
+		[Range(0, 1.0f)][SerializeField] float audioSpatialBlend = 0f;
+
 		[Header("Movement Settings")]
-		[SerializeField] float stoppingDistance = 1f;
 		[SerializeField] float moveSpeedMultiplier = 1.5f;
 		[SerializeField] float animationSpeedMultiplier = 1.5f;
 		[SerializeField] float movingTurnSpeed = 360;
@@ -33,6 +40,7 @@ namespace RPG.Characters {
 		Rigidbody myRigidbody;
 		float turnAmount;
 		float forwardAmount;
+		bool isAlive = true;
 
 		void Awake(){
 			AddRequiredComponent ();
@@ -44,45 +52,36 @@ namespace RPG.Characters {
 			capsuleCollider.radius = colliderRadius;
 			capsuleCollider.height = colliderHeight;
 
+			myRigidbody = gameObject.AddComponent<Rigidbody> ();
+			myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+			agent = gameObject.AddComponent<NavMeshAgent> ();
+			agent.speed = steeringSpeed;
+			agent.stoppingDistance = stoppingDistance;
+			agent.radius = obstacleAvoidanceRadius;
+			agent.updateRotation = false;
+			agent.updatePosition = true;
+			agent.autoBraking = false;
+
 			animator = gameObject.AddComponent<Animator> ();
 			animator.runtimeAnimatorController = animatorController;
 			animator.avatar = characterAvatar;
+
+			var audioSource = gameObject.AddComponent<AudioSource> ();
+			audioSource.volume = audioVolume;
+			audioSource.spatialBlend = audioSpatialBlend;
 		}
 
-	   	void Start()
-	    {
-	        cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-
-			myRigidbody = GetComponent<Rigidbody> ();
-			myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-
-			agent = GetComponent<NavMeshAgent> ();
-			agent.updateRotation = false;
-			agent.updatePosition = true;
-			agent.stoppingDistance = stoppingDistance;
-
-			cameraRaycaster.onMouseOverWalkable += MouseOverWalkable;
-			cameraRaycaster.onMouseOverEnemy += MouseOverEnemy;
-	    }
-
 		void Update(){
-			if (agent.remainingDistance > agent.stoppingDistance) {
+			if (agent.remainingDistance > agent.stoppingDistance && isAlive) {
 				Move (agent.desiredVelocity);
 			} else {
 				Move (Vector3.zero);
 			}
 		}
-			
-		void MouseOverWalkable (Vector3 destination){
-			if (Input.GetMouseButton (0)) {
-				agent.SetDestination (destination);
-			}
-		}
 
-		void MouseOverEnemy (Enemy enemy){
-			if (Input.GetMouseButton (0) || Input.GetMouseButton (1)) {
-				agent.SetDestination (enemy.transform.position);
-			}
+		public void Kill(){
+			isAlive = false;
 		}
 
 		public void OnAnimatorMove(){
@@ -97,11 +96,11 @@ namespace RPG.Characters {
 			}
 		}
 
-		public void Kill(){
-			// Implement a code to stop characters from moving when they die
+		public void SetDestination(Vector3 worldPos){
+			agent.destination = worldPos;
 		}
 
-		public void Move(Vector3 movement)
+		void Move(Vector3 movement)
 		{
 			SetForwardAndTurn (movement);
 			ApplyExtraTurnRotation();
