@@ -716,7 +716,7 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: dce006b022fe2b24ebc65f2437625d3f,
     type: 2}
-  characterAvatar: {fileID: 9000000, guid: df66970bb136a93488cc9847e44efd27, type: 3}
+  characterAvatar: {fileID: 9000000, guid: 8d0a57b326030fc44ad6eeab6f398c6a, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
   moveSpeedMultiplier: 1.5
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRadius: 6
+  chaseRadius: 6
 --- !u!114 &114921459400778172
 MonoBehaviour:
   m_ObjectHideFlags: 1
