@@ -8,13 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebabd1bb4258d5940884df5444db2ff4, type: 3}
+  m_Script: {fileID: 11500000, guid: 03ed3fa27aabfec4ebcdf653bdbf1ee2, type: 3}
   m_Name: Hoe
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 1726597572802918, guid: 777d797809412c74fb1b90323cfb6f90,
     type: 2}
   weaponPrefab: {fileID: 1274797246840802, guid: cc0dbe33ee8adbe4eb124e2d95d37fe4,
     type: 2}
-  weaponAnimation: {fileID: 7400000, guid: 1fc94e9b71f1f5e4f97b6a0021007bf5, type: 3}
-  timeBetweenHits: 2.5
-  maxAttackRange: 3
+  weaponAnimation: {fileID: 7400000, guid: f0f38438b1a0602489d98f902699342b, type: 3}
+  timeBetweenHits: 0.5
+  maxAttackRange: 1
+  additionalDamage: 10
