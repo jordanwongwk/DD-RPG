@@ -62,11 +62,10 @@ namespace RPG.Characters{
 		}
 			
 		void AttackingTarget (){
-			var enemy = GetComponent<Enemy> ();
+			var enemy = GetComponent<EnemyAI> ();
 
 			if (Time.time - timeLastHit > currentWeapon.GetTimeBetweenHits()) {
 				SetAttackAnimation ();
-				enemy.TakeDamage (CalculateDamage ());		// Weapon additional damage applies to normal attack only (For now)
 				animator.SetTrigger (ATTACK_TRIGGER);
 				timeLastHit = Time.time;
 			}

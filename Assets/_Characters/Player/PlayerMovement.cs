@@ -14,7 +14,7 @@ namespace RPG.Characters{
 
 		CameraRaycaster cameraRayCaster;
 		WeaponSystem weaponSystem;
-		Enemy enemy;
+		EnemyAI enemy;
 		SpecialAbilities abilities;
 		Character character;
 
@@ -33,7 +33,7 @@ namespace RPG.Characters{
 			cameraRayCaster.onMouseOverWalkable += MouseOverWalkable;
 		}
 
-		void MouseOverEnemy (Enemy enemyToSet){
+		void MouseOverEnemy (EnemyAI enemyToSet){
 			enemy = enemyToSet;
 			if (Input.GetMouseButton (0) && IsTargetInRange (enemy.gameObject)) {
 				weaponSystem.AttackTarget (enemy.gameObject);

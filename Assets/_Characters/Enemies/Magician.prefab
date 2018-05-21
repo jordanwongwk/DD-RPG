@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208470673373084}
+  - component: {fileID: 114607348785241936}
   m_Layer: 0
   m_Name: Hand_R
   m_TagString: Untagged
@@ -199,11 +200,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4362459683012042}
-  - component: {fileID: 95206651236241488}
-  - component: {fileID: 54097434474729454}
-  - component: {fileID: 136682119513047824}
-  - component: {fileID: 195529830101565920}
-  - component: {fileID: 114769014810787974}
+  - component: {fileID: 114183101593040792}
+  - component: {fileID: 114630784010576296}
+  - component: {fileID: 114172667623266896}
   m_Layer: 9
   m_Name: Magician
   m_TagString: Untagged
@@ -467,7 +466,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552397467846190}
   m_LocalRotation: {x: -0, y: 0.661779, z: -0, w: 0.74969906}
-  m_LocalPosition: {x: -211.18, y: 0, z: 139.39}
+  m_LocalPosition: {x: -124.41291, y: 0, z: 160.1662}
   m_LocalScale: {x: 0.95262754, y: 0.95262444, z: 0.95262754}
   m_Children:
   - {fileID: 4859248172886010}
@@ -684,38 +683,46 @@ Transform:
   m_Father: {fileID: 4874334717789368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54097434474729454
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552397467846190}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!95 &95206651236241488
-Animator:
-  serializedVersion: 3
+--- !u!114 &114172667623266896
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552397467846190}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0400b2f0550683e408a431979d547479, type: 3}
-  m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveRadius: 6
+--- !u!114 &114183101593040792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552397467846190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6435b8653cd0cba4b95e0ce0d0e220e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderCenter: {x: 0, y: 1, z: 0}
+  colliderRadius: 0.2
+  colliderHeight: 2
+  steeringSpeed: 1
+  stoppingDistance: 1
+  obstacleAvoidanceRadius: 0.1
+  animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: dce006b022fe2b24ebc65f2437625d3f,
+    type: 2}
+  characterAvatar: {fileID: 9000000, guid: 0400b2f0550683e408a431979d547479, type: 3}
+  audioVolume: 0.8
+  audioSpatialBlend: 0
+  moveSpeedMultiplier: 1.5
+  animationSpeedMultiplier: 1.5
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  moveThreshold: 1
 --- !u!114 &114577584066726544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -729,7 +736,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1236496267007890, guid: ce97f38f4c955d04cb0288236d22ebcf,
     type: 2}
---- !u!114 &114769014810787974
+--- !u!114 &114607348785241936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1012566396136052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ed13129af71e341b40babb6913dcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114630784010576296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -737,32 +755,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1552397467846190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dcb7e6e5ca518f4ebcf246e073e1b35, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aacfd68d83a88b47abad5dc2149b91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 120
-  attackRadius: 10
-  moveRadius: 3
-  projectileDamage: 54
-  projectileShotDelay: 1.5
-  variationDelay: 0.1
-  projectileToUse: {fileID: 1241740911561924, guid: 67bb82285d744ba4dbc9e0bfdb30fc7c,
-    type: 2}
-  projectileSpawnPoint: {fileID: 1230908395113908}
-  aimOffset: {x: 0, y: 1, z: 0}
---- !u!136 &136682119513047824
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552397467846190}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.6
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  baseDamage: 10
+  currentWeapon: {fileID: 11400000, guid: f634af8f15ec22a4597754a4f65518e2, type: 2}
 --- !u!137 &137491252536749940
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -831,24 +828,3 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.16793194, y: -0.00029855967, z: 0.04182753}
     m_Extent: {x: 0.95747745, y: 0.88750696, z: 0.32924226}
   m_DirtyAABB: 0
---- !u!195 &195529830101565920
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552397467846190}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.4
-  m_Speed: 2
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
