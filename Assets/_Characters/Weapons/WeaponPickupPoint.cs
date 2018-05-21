@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters {
-	[ExecuteInEditMode]
+//	[ExecuteInEditMode]
 	public class WeaponPickupPoint : MonoBehaviour {
 		
 		[SerializeField] Weapon weaponConfig = null;
