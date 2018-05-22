@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 114109641349741982}
   - component: {fileID: 114942172366405216}
   - component: {fileID: 114165963055290674}
+  - component: {fileID: 114204728890290068}
   m_Layer: 9
   m_Name: Enemy 101
   m_TagString: Untagged
@@ -1926,6 +1927,32 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 0.5
+--- !u!114 &114204728890290068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132815019608494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742fbee13f1732b42a45580ffdc40ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  deathVanishInSeconds: 2
+  healthBar: {fileID: 0}
+  damageSounds:
+  - {fileID: 8300000, guid: da84d6dfff318164c9a0475379df155d, type: 3}
+  - {fileID: 8300000, guid: 1a36361030c6e694c8f97f3216479f87, type: 3}
+  - {fileID: 8300000, guid: dd361f90220474348a6116edb16253f7, type: 3}
+  - {fileID: 8300000, guid: da39e6027af0bc348b6916cb70658b10, type: 3}
+  - {fileID: 8300000, guid: 44391561aa068cf49aedd20aea4fc30e, type: 3}
+  - {fileID: 8300000, guid: b0d96ec5f40b3a447988d33424083021, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 193209fef52834b46ab53104cf88dd33, type: 3}
+  - {fileID: 8300000, guid: e14cf2f1e0ec8934c92ea23474bc4cf2, type: 3}
+  - {fileID: 8300000, guid: 0862cf6f22485c8498dadc80c0efe71c, type: 3}
+  currentHealthPoints: 0
 --- !u!114 &114601146586190720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1949,7 +1976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeapon: {fileID: 11400000, guid: 9f755b8f4a5912a48811ce5859d42498, type: 2}
+  currentWeaponConfig: {fileID: 11400000, guid: 9f755b8f4a5912a48811ce5859d42498,
+    type: 2}
 --- !u!137 &137549824513849432
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

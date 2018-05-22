@@ -794,7 +794,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4191751098049110}
-  - component: {fileID: 95547261700920510}
   m_Layer: 0
   m_Name: Character_Knights_Soldier_02
   m_TagString: Untagged
@@ -814,6 +813,7 @@ GameObject:
   - component: {fileID: 114239544759234110}
   - component: {fileID: 114810148887738032}
   - component: {fileID: 114767606073093910}
+  - component: {fileID: 114473020469667452}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1916,23 +1916,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971999094097600}
   m_Mesh: {fileID: 4300004, guid: d288a0e4a2d923b46898986e979da643, type: 3}
---- !u!95 &95547261700920510
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931674138841166}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  m_Controller: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114239544759234110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1941,16 +1924,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939906218202142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a226f89997e126046bbae9dd7936a4ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 601fb48d5d99a654f8ae9282893cd429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
-  currentWeapon: {fileID: 11400000, guid: 307816da55147e2408e9da82cc197ded, type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
-    type: 2}
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 198412813387300044}
+--- !u!114 &114473020469667452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939906218202142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aacfd68d83a88b47abad5dc2149b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: 9f755b8f4a5912a48811ce5859d42498,
+    type: 2}
 --- !u!114 &114566465204983110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1959,20 +1952,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939906218202142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a670ce2565f5984bbd886afa5097672, type: 3}
+  m_Script: {fileID: 11500000, guid: 6435b8653cd0cba4b95e0ce0d0e220e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
   colliderRadius: 0.2
   colliderHeight: 2
   steeringSpeed: 1
+  stoppingDistance: 1.2
   obstacleAvoidanceRadius: 0.1
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 934e000baf440af44b8d3fdf450d39a2,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
-  stoppingDistance: 1.2
+  audioSpatialBlend: 0
   moveSpeedMultiplier: 1.5
   animationSpeedMultiplier: 1.25
   movingTurnSpeed: 1000
@@ -1992,8 +1986,17 @@ MonoBehaviour:
   maxHealthPoints: 100
   deathVanishInSeconds: 2
   healthBar: {fileID: 0}
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: da84d6dfff318164c9a0475379df155d, type: 3}
+  - {fileID: 8300000, guid: 1a36361030c6e694c8f97f3216479f87, type: 3}
+  - {fileID: 8300000, guid: dd361f90220474348a6116edb16253f7, type: 3}
+  - {fileID: 8300000, guid: da39e6027af0bc348b6916cb70658b10, type: 3}
+  - {fileID: 8300000, guid: 44391561aa068cf49aedd20aea4fc30e, type: 3}
+  - {fileID: 8300000, guid: b0d96ec5f40b3a447988d33424083021, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 193209fef52834b46ab53104cf88dd33, type: 3}
+  - {fileID: 8300000, guid: e14cf2f1e0ec8934c92ea23474bc4cf2, type: 3}
+  - {fileID: 8300000, guid: 0862cf6f22485c8498dadc80c0efe71c, type: 3}
   currentHealthPoints: 0
 --- !u!114 &114810148887738032
 MonoBehaviour:

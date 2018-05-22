@@ -36,9 +36,9 @@ namespace RPG.Characters {
 			Instantiate (weapon, gameObject.transform);
 		}
 
-		void OnTriggerEnter(){
+		void OnTriggerEnter(Collider collider){
 			Debug.Log ("Equipped with " + weaponConfig);
-			FindObjectOfType<WeaponSystem> ().ChangeWeaponInHand (weaponConfig);
+			collider.GetComponent<WeaponSystem>().ChangeWeaponInHand (weaponConfig);
 			audioSource.PlayOneShot (pickUpSFX);
 		}
 	}
