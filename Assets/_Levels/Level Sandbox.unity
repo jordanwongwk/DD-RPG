@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.50735295, g: 0.13646047, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 1, g: 0, b: 0.020689487, a: 1}
   m_AmbientGroundColor: {r: 0.45588237, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 0.83
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 9967d51a94835904f88a2546e508db60, type: 2}
   m_HaloStrength: 0.5
@@ -19513,6 +19513,28 @@ Transform:
   m_PrefabParentObject: {fileID: 4159277622895012, guid: 81d9142159d3dc44fbf6592cee566464,
     type: 2}
   m_PrefabInternal: {fileID: 1217503617}
+--- !u!1 &1218346375 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1939906218202142, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+    type: 2}
+  m_PrefabInternal: {fileID: 624583306}
+--- !u!95 &1218346376
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1218346375}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1220033789
 Prefab:
   m_ObjectHideFlags: 0

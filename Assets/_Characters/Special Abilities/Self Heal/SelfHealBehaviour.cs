@@ -16,6 +16,7 @@ namespace RPG.Characters {
 			playerHealth.Heal ((config as SelfHealConfig).GetHealAmount ());
 			PlayParticleEffect ();
 			PlayAbilitySound ();
+			PlayAbilityAnimation ();
 		}
 	}
 }

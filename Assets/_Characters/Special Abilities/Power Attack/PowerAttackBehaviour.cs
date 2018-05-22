@@ -9,6 +9,7 @@ namespace RPG.Characters {
 			DealingPowerDamage (target);
 			PlayParticleEffect ();
 			PlayAbilitySound ();
+			PlayAbilityAnimation ();
 		}
 
 		void DealingPowerDamage (GameObject target)

@@ -16,4 +16,5 @@ MonoBehaviour:
     type: 2}
   audioClips:
   - {fileID: 8300000, guid: 1cb532bb06c81bf4d9eff3cfcdd39b18, type: 3}
+  abilityAnimation: {fileID: 7400000, guid: 1d560a4bb04e49543866526067ba1d35, type: 3}
   healAmount: 50
