@@ -26,7 +26,25 @@ namespace RPG.Characters{
 		}
 
 		void Update() {
-			// TODO check if the target is dead / run off
+			bool targetIsDead;
+			bool targetIsOutOfRange;
+
+			if (target == null) {
+				targetIsDead = false;
+				targetIsOutOfRange = false;
+			} else {
+				var targetHealth = target.GetComponent<HealthSystem> ().healthAsPercentage;
+				targetIsDead = (targetHealth <= Mathf.Epsilon); 
+
+				var targetDistance = Vector3.Distance (transform.position, target.transform.position);
+				targetIsOutOfRange = (targetDistance > currentWeaponConfig.GetMaxAttackRange());
+			}
+
+			float characterHealth = GetComponent<HealthSystem> ().healthAsPercentage;
+			bool characterIsDead = (characterHealth <= Mathf.Epsilon);
+			if (characterIsDead || targetIsDead || targetIsOutOfRange) {
+				StopAllCoroutines ();
+			}
 		}
 
 		public WeaponConfig GetCurrentWeaponConfig(){
