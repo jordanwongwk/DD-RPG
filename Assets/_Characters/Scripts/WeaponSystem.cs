@@ -76,7 +76,7 @@ namespace RPG.Characters{
 		void AttackTargetOnce(){
 			transform.LookAt (target.transform);
 			animator.SetTrigger (ATTACK_TRIGGER);
-			float damageDelay = 1.0f; 		// TODO set a damage delay for each weapon
+			float damageDelay = 0.5f; 		// TODO set a damage delay for each weapon
 			SetAttackAnimation();
 			StartCoroutine (DamageAfterDelay (damageDelay));
 		}

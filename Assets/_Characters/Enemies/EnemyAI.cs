@@ -13,7 +13,7 @@ namespace RPG.Characters {
 		int nextWaypointIndex;
 		float currentWeaponRange;
 		float distanceToPlayer;
-		PlayerMovement player;
+		PlayerControl player;
 		Character character;
 
 		enum State { idle, attacking, chasing, patroling }
@@ -21,7 +21,7 @@ namespace RPG.Characters {
 
 		void Start(){
 			character = GetComponent<Character> ();
-			player = FindObjectOfType<PlayerMovement>();
+			player = FindObjectOfType<PlayerControl>();
 		}
 
 		void Update(){

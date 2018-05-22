@@ -59,7 +59,7 @@ namespace RPG.Characters{
 			characterMovement.Kill ();
 			animator.SetTrigger (DEATH_TRIGGER);
 
-			var playerComponent = GetComponent<PlayerMovement> ();
+			var playerComponent = GetComponent<PlayerControl> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
 				audioSource.Play ();	// Don't use PlayOneShot, we need this clip to override the current clip
