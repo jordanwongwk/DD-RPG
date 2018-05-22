@@ -1906,8 +1906,8 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
-  moveSpeedMultiplier: 1.5
-  animationSpeedMultiplier: 1.5
+  moveSpeedMultiplier: 1
+  animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
@@ -1923,6 +1923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRadius: 6
+  patrolPath: {fileID: 0}
+  waypointTolerance: 2
+  waitAtWaypoint: 0.5
 --- !u!114 &114601146586190720
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,7 +6,11 @@ namespace RPG.Characters {
 	[RequireComponent(typeof(WeaponSystem))]
 	public class EnemyAI : MonoBehaviour{		
 		[SerializeField] float chaseRadius = 6f;
+		[SerializeField] WaypointContainer patrolPath;
+		[SerializeField] float waypointTolerance = 2.0f;
+		[SerializeField] float waitAtWaypoint = 2.0f;
 
+		int nextWaypointIndex;
 		float currentWeaponRange;
 		float distanceToPlayer;
 		PlayerMovement player;
@@ -27,7 +31,7 @@ namespace RPG.Characters {
 
 			if (distanceToPlayer > chaseRadius && state != State.patroling) {
 				StopAllCoroutines ();
-				state = State.patroling;
+				StartCoroutine (Patrol ());
 			}
 			if (distanceToPlayer <= chaseRadius && state != State.chasing) {
 				StopAllCoroutines ();
@@ -36,6 +40,23 @@ namespace RPG.Characters {
 			if (distanceToPlayer <= currentWeaponRange && state != State.attacking) {
 				StopAllCoroutines ();
 				state = State.attacking;
+			}
+		}
+
+		IEnumerator Patrol(){
+			state = State.patroling;
+			while (true) {
+				Vector3 nextWaypointPos = patrolPath.transform.GetChild (nextWaypointIndex).position;
+				character.SetDestination (nextWaypointPos);
+				CycleWaypointWhenClose (nextWaypointPos);
+				yield return new WaitForSeconds (waitAtWaypoint);
+			}
+		}
+
+		void CycleWaypointWhenClose (Vector3 nextWaypointPos){
+			// Only increase index if enemy is sufficiently close to the last waypoint (eg after chase, run back to original spot before proceed)
+			if (Vector3.Distance (transform.position, nextWaypointPos) <= waypointTolerance) {		
+				nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
 			}
 		}
 
