@@ -16,6 +16,7 @@ namespace RPG.Characters{
 		GameObject target;
 		GameObject weaponObject;
 		Character character;
+		GameObject projectile;
 
 		void Start () {
 			character = GetComponent<Character> ();
@@ -74,16 +75,36 @@ namespace RPG.Characters{
 		}
 
 		void AttackTargetOnce(){
+			projectile = currentWeaponConfig.GetWeaponProjectile();
+
 			transform.LookAt (target.transform);
 			animator.SetTrigger (ATTACK_TRIGGER);
 			float damageDelay = currentWeaponConfig.GetDamageDelay ();
 			SetAttackAnimation();
-			StartCoroutine (DamageAfterDelay (damageDelay));
+			if (projectile != null) {
+				float fireDelay = currentWeaponConfig.GetFiringDelay ();
+				StartCoroutine (FireProjectile (target, fireDelay));
+			} else {
+				StartCoroutine (DamageAfterDelay (damageDelay));
+			}
 		}
 
 		IEnumerator DamageAfterDelay (float damageDelay){
 			yield return new WaitForSecondsRealtime (damageDelay);
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
+		}
+
+		IEnumerator FireProjectile(GameObject target, float firingDelay){
+			yield return new WaitForSecondsRealtime (firingDelay);
+			var projectileFirePoint = GetComponentInChildren<ProjectileSpawner> ().gameObject;
+			GameObject instantProj = Instantiate (projectile, projectileFirePoint.transform.position, Quaternion.Euler(270,0,0));
+			var projectileComponent = instantProj.GetComponent<Projectile> ();
+			projectileComponent.SetDamage (currentWeaponConfig.GetProjectileDamage ());
+			projectileComponent.SetShooter (gameObject);
+
+			Vector3 unitVectorToTarget = (target.transform.position - projectileFirePoint.transform.position).normalized;
+			float projectileSpeed = currentWeaponConfig.GetProjectileSpeed ();
+			instantProj.GetComponent<Rigidbody> ().velocity = unitVectorToTarget * projectileSpeed;
 		}
 			
 		void SetAttackAnimation(){

@@ -6,16 +6,10 @@ using RPG.Core;
 
 namespace RPG.Characters {
 	public class Projectile : MonoBehaviour {
-		
-		[SerializeField] float projectileSpeed = 0f;
 		[SerializeField] GameObject shooter;
 
 		const float DESTROY_DELAY = 0.2f;
 		float damageCaused;
-
-		public float GetProjectileSpeed (){
-			return projectileSpeed;
-		}
 
 		public void SetDamage(float damage){
 			damageCaused = damage;
@@ -27,8 +21,10 @@ namespace RPG.Characters {
 
 		void OnCollisionEnter (Collision collision){
 			var collidedObjectLayer = collision.gameObject.layer;
-			if (shooter && collidedObjectLayer != shooter.layer) {
-//				DamageIfDamageable (collision);
+			var healthSystem = collision.gameObject.GetComponent<HealthSystem> ();
+			if (shooter && collidedObjectLayer != shooter.layer && healthSystem) {
+				healthSystem.TakeDamage (damageCaused);
+				Destroy (gameObject);
 			}
 
 			Destroy (gameObject, DESTROY_DELAY);

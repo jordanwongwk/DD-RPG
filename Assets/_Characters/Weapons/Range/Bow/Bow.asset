@@ -17,7 +17,11 @@ MonoBehaviour:
     type: 2}
   weaponAnimation: {fileID: 7400000, guid: 522e6e5c331853c46a1b4bf644d62789, type: 3}
   timeBetweenHits: 2
-  maxAttackRange: 5
+  maxAttackRange: 10
   additionalDamage: 10
   damageDelay: 0.7
-  dominantHand: 0
+  weaponProjectile: {fileID: 1659504181823486, guid: 440ab293b4b7ff5438c4c61cd08e5601,
+    type: 2}
+  projectileDamage: 10
+  projectileSpeed: 30
+  firingDelay: 0.5

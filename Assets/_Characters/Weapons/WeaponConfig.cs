@@ -14,16 +14,27 @@ namespace RPG.Characters {
 		[SerializeField] float maxAttackRange = 1f;
 		[SerializeField] float additionalDamage = 10f;
 		[SerializeField] float damageDelay = 1f;
-		[SerializeField] DominantHand dominantHand;
 
-		public enum DominantHand
-		{
-			LeftHand,
-			RightHand
+		[Header("Projectile Settings")]
+		[SerializeField] GameObject weaponProjectile = null;
+		[SerializeField] float projectileDamage = 10f;
+		[SerializeField] float projectileSpeed = 1.0f;
+		[SerializeField] float firingDelay = 0.5f;
+
+		public float GetFiringDelay(){
+			return firingDelay;
 		}
 
-		public DominantHand GetDominantHand(){
-			return dominantHand;
+		public float GetProjectileDamage(){
+			return projectileDamage;
+		}
+
+		public float GetProjectileSpeed(){
+			return projectileSpeed;
+		}
+
+		public GameObject GetWeaponProjectile(){
+			return weaponProjectile;
 		}
 
 		public float GetTimeBetweenHits (){

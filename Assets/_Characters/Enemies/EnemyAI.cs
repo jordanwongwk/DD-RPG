@@ -17,7 +17,7 @@ namespace RPG.Characters {
 		Character character;
 		WeaponSystem weaponSystem;
 
-		enum State { idle, attacking, chasing, patroling }
+		public enum State { idle, attacking, chasing, patroling }
 		State state = State.idle;
 
 		void Start(){
