@@ -13,6 +13,18 @@ namespace RPG.Characters {
 		[SerializeField] float timeBetweenHits = 0.5f;
 		[SerializeField] float maxAttackRange = 1f;
 		[SerializeField] float additionalDamage = 10f;
+		[SerializeField] float damageDelay = 1f;
+		[SerializeField] DominantHand dominantHand;
+
+		public enum DominantHand
+		{
+			LeftHand,
+			RightHand
+		}
+
+		public DominantHand GetDominantHand(){
+			return dominantHand;
+		}
 
 		public float GetTimeBetweenHits (){
 			return timeBetweenHits;
@@ -33,6 +45,10 @@ namespace RPG.Characters {
 
 		public float GetAdditionalDamage(){
 			return additionalDamage;
+		}
+
+		public float GetDamageDelay(){
+			return damageDelay;
 		}
 
 		// Removing the asset pack's animation's event clip to prevent errors or bugs

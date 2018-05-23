@@ -37,9 +37,10 @@ namespace RPG.Characters {
 		}
 
 		void OnTriggerEnter(Collider collider){
-			Debug.Log ("Equipped with " + weaponConfig);
-			collider.GetComponent<WeaponSystem>().ChangeWeaponInHand (weaponConfig);
-			audioSource.PlayOneShot (pickUpSFX);
+			if (collider.GetComponent<PlayerControl> ()) {
+				collider.GetComponent<WeaponSystem> ().ChangeWeaponInHand (weaponConfig);
+				audioSource.PlayOneShot (pickUpSFX);
+			}
 		}
 	}
 }

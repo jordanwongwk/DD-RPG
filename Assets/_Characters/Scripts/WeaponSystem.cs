@@ -76,7 +76,7 @@ namespace RPG.Characters{
 		void AttackTargetOnce(){
 			transform.LookAt (target.transform);
 			animator.SetTrigger (ATTACK_TRIGGER);
-			float damageDelay = 0.5f; 		// TODO set a damage delay for each weapon
+			float damageDelay = currentWeaponConfig.GetDamageDelay ();
 			SetAttackAnimation();
 			StartCoroutine (DamageAfterDelay (damageDelay));
 		}
@@ -112,7 +112,7 @@ namespace RPG.Characters{
 			var dominantHands = GetComponentsInChildren<DominantHand> ();
 			int numberOfDominantHands = dominantHands.Length;
 			Assert.IsFalse (numberOfDominantHands <= 0, "No dominantHands detected in Player, please add one.");
-			Assert.IsFalse (numberOfDominantHands >  1, "Multiple dominantHands detected in Player, please remove one.");
+			Assert.IsFalse (numberOfDominantHands >  2, "Multiple dominantHands detected in Player, please remove one.");
 			return dominantHands[0].gameObject;
 		}
 			

@@ -19,3 +19,5 @@ MonoBehaviour:
   timeBetweenHits: 1.5
   maxAttackRange: 2
   additionalDamage: 10
+  damageDelay: 1
+  dominantHand: 1
