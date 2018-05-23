@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1368968028811168
 GameObject:
@@ -82,8 +82,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800113367532696}
   m_LocalRotation: {x: -0, y: -0.99752635, z: -0, w: -0.070294015}
-  m_LocalPosition: {x: -80.17, y: 4.9642196, z: 130.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -77.02, y: 0.01, z: 152.36}
+  m_LocalScale: {x: 1.0000007, y: 1, z: 1.0000007}
   m_Children:
   - {fileID: 4951465096147614}
   - {fileID: 4133600038487188}
@@ -203,9 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b421f52d5ac94057b2c2a0437d01809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRotationsPerMinute: 1
-  yRotationsPerMinute: 1
-  zRotationsPerMinute: 1
+  xRotationsPerMinute: 0
+  yRotationsPerMinute: 0
+  zRotationsPerMinute: 5
 --- !u!136 &136750357224237930
 CapsuleCollider:
   m_ObjectHideFlags: 1
