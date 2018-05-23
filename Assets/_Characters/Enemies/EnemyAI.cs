@@ -15,12 +15,14 @@ namespace RPG.Characters {
 		float distanceToPlayer;
 		PlayerControl player;
 		Character character;
+		WeaponSystem weaponSystem;
 
 		enum State { idle, attacking, chasing, patroling }
 		State state = State.idle;
 
 		void Start(){
 			character = GetComponent<Character> ();
+			weaponSystem = GetComponent<WeaponSystem> ();
 			player = FindObjectOfType<PlayerControl>();
 		}
 
@@ -39,7 +41,7 @@ namespace RPG.Characters {
 			}
 			if (distanceToPlayer <= currentWeaponRange && state != State.attacking) {
 				StopAllCoroutines ();
-				state = State.attacking;
+				StartCoroutine (AttackPlayer ());
 			}
 		}
 
@@ -65,6 +67,14 @@ namespace RPG.Characters {
 			while (distanceToPlayer >= currentWeaponRange) {
 				character.SetDestination (player.transform.position);
 				yield return new WaitForEndOfFrame();
+			}
+		}
+
+		IEnumerator AttackPlayer(){
+			state = State.attacking;
+			while (distanceToPlayer <= currentWeaponRange) {
+				weaponSystem.AttackTarget (player.gameObject);
+				yield return new WaitForEndOfFrame ();
 			}
 		}
 
