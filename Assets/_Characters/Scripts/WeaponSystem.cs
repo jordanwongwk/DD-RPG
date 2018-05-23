@@ -97,6 +97,7 @@ namespace RPG.Characters{
 		IEnumerator FireProjectile(GameObject target, float firingDelay){
 			yield return new WaitForSecondsRealtime (firingDelay);
 			var projectileFirePoint = GetComponentInChildren<ProjectileSpawner> ().gameObject;
+
 			GameObject instantProj = Instantiate (projectile, projectileFirePoint.transform.position, Quaternion.Euler(270,0,0));
 			var projectileComponent = instantProj.GetComponent<Projectile> ();
 			projectileComponent.SetDamage (currentWeaponConfig.GetProjectileDamage ());

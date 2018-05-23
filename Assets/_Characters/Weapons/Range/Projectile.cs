@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using RPG.Core;
-
 namespace RPG.Characters {
 	public class Projectile : MonoBehaviour {
-		[SerializeField] GameObject shooter;
-
+		GameObject shooter;
 		const float DESTROY_DELAY = 0.2f;
 		float damageCaused;
 
@@ -26,17 +23,7 @@ namespace RPG.Characters {
 				healthSystem.TakeDamage (damageCaused);
 				Destroy (gameObject);
 			}
-
 			Destroy (gameObject, DESTROY_DELAY);
 		}
-
-//		void DamageIfDamageable (Collision collision)
-//		{
-//			IDamageable damageable = collision.gameObject.GetComponent<IDamageable> ();
-//			if (damageable != null) {
-//				damageable.TakeDamage (damageCaused);
-//				Destroy (gameObject);
-//			}
-//		}
 	}
 }
