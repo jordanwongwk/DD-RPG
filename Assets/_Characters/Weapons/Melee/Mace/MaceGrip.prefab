@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1765665551499132}
+  m_RootGameObject: {fileID: 1615926803347518}
   m_IsPrefabParent: 1
---- !u!1 &1765665551499132
+--- !u!1 &1615926803347518
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4554949010062066}
+  - component: {fileID: 4320916785206370}
   m_Layer: 0
-  m_Name: Dagger Grip
+  m_Name: MaceGrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4554949010062066
+--- !u!4 &4320916785206370
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1765665551499132}
-  m_LocalRotation: {x: 0.4575771, y: 0.48459494, z: 0.68762493, w: 0.28803283}
-  m_LocalPosition: {x: 0.1261, y: 0.0657, z: -0.107}
+  m_GameObject: {fileID: 1615926803347518}
+  m_LocalRotation: {x: -0.6293486, y: -0.00000054016675, z: 0.00000006984915, w: 0.7771231}
+  m_LocalPosition: {x: 0.144, y: 0.004, z: 0.142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -23.756, y: 82.998, z: -246.538}
+  m_LocalEulerAnglesHint: {x: -78.004005, y: 0, z: 0}

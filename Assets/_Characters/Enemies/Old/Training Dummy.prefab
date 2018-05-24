@@ -2524,6 +2524,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRadius: 6
+  patrolPath: {fileID: 0}
+  waypointTolerance: 2
+  waitAtWaypoint: 2
 --- !u!114 &114025930156255524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2605,7 +2608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeapon: {fileID: 11400000, guid: f634af8f15ec22a4597754a4f65518e2, type: 2}
+  currentWeaponConfig: {fileID: 0}
 --- !u!137 &137208029074163726
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

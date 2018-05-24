@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RPG.Characters {
 	[RequireComponent(typeof(WeaponSystem))]
+	[RequireComponent(typeof(HealthSystem))]
 	public class EnemyAI : MonoBehaviour{		
 		[SerializeField] float chaseRadius = 6f;
 		[SerializeField] WaypointContainer patrolPath;

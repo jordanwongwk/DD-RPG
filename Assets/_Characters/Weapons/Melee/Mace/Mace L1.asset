@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ed3fa27aabfec4ebcdf653bdbf1ee2, type: 3}
+  m_Name: Mace L1
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 1615926803347518, guid: 1a2a5d0b7b196b040980b48f224ef3b4,
+    type: 2}
+  weaponPrefab: {fileID: 100884, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 2}
+  weaponAnimation: {fileID: 7400000, guid: 9e5d42c64f4181e4e92729d62fa2d0fd, type: 3}
+  timeBetweenHits: 1.25
+  maxAttackRange: 1.25
+  additionalDamage: 10
+  damageDelay: 0.3
+  weaponProjectile: {fileID: 0}
+  projectileDamage: 10
+  projectileSpeed: 1
+  firingDelay: 0.5

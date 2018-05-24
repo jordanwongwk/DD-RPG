@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ed3fa27aabfec4ebcdf653bdbf1ee2, type: 3}
+  m_Name: Dagger L1
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 1765665551499132, guid: e8827570a704445429c81e2fb60ba459,
+    type: 2}
+  weaponPrefab: {fileID: 111206, guid: 19dfeb72114f1d045aa3924480f3a482, type: 2}
+  weaponAnimation: {fileID: 7400000, guid: 32dbe676b3c566c4a9836c244bb478dd, type: 3}
+  timeBetweenHits: 1
+  maxAttackRange: 1
+  additionalDamage: 10
+  damageDelay: 0.5
+  weaponProjectile: {fileID: 0}
+  projectileDamage: 10
+  projectileSpeed: 1
+  firingDelay: 0.5
