@@ -2708,6 +2708,7 @@ MonoBehaviour:
   colliderCenter: {x: 0, y: 1, z: 0}
   colliderRadius: 0.2
   colliderHeight: 2
+  isTriggerCollider: 1
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
@@ -2746,7 +2747,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRadius: 0
+  chaseRadius: 6
+  patrolPath: {fileID: 0}
+  waypointTolerance: 2
+  waitAtWaypoint: 2
 --- !u!114 &114487886307109596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2787,4 +2791,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeapon: {fileID: 11400000, guid: f634af8f15ec22a4597754a4f65518e2, type: 2}
+  currentWeaponConfig: {fileID: 0}
