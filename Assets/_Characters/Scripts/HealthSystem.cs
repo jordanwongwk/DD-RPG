@@ -57,11 +57,11 @@ namespace RPG.Characters{
 		IEnumerator KillCharacter() {
 			characterMovement.Kill ();
 			animator.SetTrigger (DEATH_TRIGGER);
+			audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
+			audioSource.Play ();	// Don't use PlayOneShot, we need this clip to override the current clip
 
 			var playerComponent = GetComponent<PlayerControl> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
-				audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
-				audioSource.Play ();	// Don't use PlayOneShot, we need this clip to override the current clip
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
 				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 			}

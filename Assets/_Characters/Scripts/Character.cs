@@ -12,6 +12,7 @@ namespace RPG.Characters {
 		[SerializeField] Vector3 colliderCenter = new Vector3(0, 1.0f, 0);
 		[SerializeField] float colliderRadius = 0.2f;
 		[SerializeField] float colliderHeight = 2.0f;
+		[SerializeField] bool isTriggerCollider = true;
 
 		[Header("Nav Mesh Settings")]
 		[SerializeField] float steeringSpeed = 1.0f;
@@ -51,6 +52,7 @@ namespace RPG.Characters {
 			capsuleCollider.center = colliderCenter;
 			capsuleCollider.radius = colliderRadius;
 			capsuleCollider.height = colliderHeight;
+			capsuleCollider.isTrigger = isTriggerCollider;
 
 			myRigidbody = gameObject.AddComponent<Rigidbody> ();
 			myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
