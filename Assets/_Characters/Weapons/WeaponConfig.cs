@@ -10,6 +10,7 @@ namespace RPG.Characters {
 
 		[SerializeField] GameObject weaponPrefab = null;
 		[SerializeField] AnimationClip weaponAnimation = null;
+		[SerializeField] AudioClip weaponSFX = null;
 		[SerializeField] float timeBetweenHits = 0.5f;
 		[SerializeField] float maxAttackRange = 1f;
 		[SerializeField] float additionalDamage = 10f;
@@ -17,6 +18,7 @@ namespace RPG.Characters {
 
 		[Header("Projectile Settings")]
 		[SerializeField] GameObject weaponProjectile = null;
+		[SerializeField] AudioClip impactSFX = null;
 		[SerializeField] float projectileDamage = 10f;
 		[SerializeField] float projectileSpeed = 1.0f;
 		[SerializeField] float firingDelay = 0.5f;
@@ -33,6 +35,10 @@ namespace RPG.Characters {
 			return projectileSpeed;
 		}
 
+		public AudioClip GetImpactSFX(){
+			return impactSFX;
+		}
+
 		public GameObject GetWeaponProjectile(){
 			return weaponProjectile;
 		}
@@ -43,6 +49,10 @@ namespace RPG.Characters {
 
 		public float GetMaxAttackRange (){
 			return maxAttackRange;
+		}
+
+		public AudioClip GetWeaponSFX(){
+			return weaponSFX;
 		}
 
 		public GameObject GetWeaponPrefab(){

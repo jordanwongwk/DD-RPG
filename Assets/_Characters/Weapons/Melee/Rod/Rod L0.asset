@@ -16,11 +16,13 @@ MonoBehaviour:
   weaponPrefab: {fileID: 1043570622086896, guid: 12a844c38f88e734c826dbe78fe33966,
     type: 2}
   weaponAnimation: {fileID: 7400000, guid: 4496e3e9b4c7231499b46f4e5d36d430, type: 3}
+  weaponSFX: {fileID: 8300000, guid: bf58418d9a91b8c41bc0375337141ff5, type: 3}
   timeBetweenHits: 1.6
   maxAttackRange: 2
   additionalDamage: 0
   damageDelay: 0.3
   weaponProjectile: {fileID: 0}
+  impactSFX: {fileID: 0}
   projectileDamage: 0
   projectileSpeed: 0
   firingDelay: 0

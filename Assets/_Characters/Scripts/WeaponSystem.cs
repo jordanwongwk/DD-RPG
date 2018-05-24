@@ -81,6 +81,7 @@ namespace RPG.Characters{
 			animator.SetTrigger (ATTACK_TRIGGER);
 			float damageDelay = currentWeaponConfig.GetDamageDelay ();
 			SetAttackAnimation();
+
 			if (projectile != null) {
 				float fireDelay = currentWeaponConfig.GetFiringDelay ();
 				StartCoroutine (FireProjectile (target, fireDelay));
@@ -92,6 +93,7 @@ namespace RPG.Characters{
 		IEnumerator DamageAfterDelay (float damageDelay){
 			yield return new WaitForSecondsRealtime (damageDelay);
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
+			PlayWeaponSFX ();
 		}
 
 		IEnumerator FireProjectile(GameObject target, float firingDelay){
@@ -102,10 +104,17 @@ namespace RPG.Characters{
 			var projectileComponent = instantProj.GetComponent<Projectile> ();
 			projectileComponent.SetDamage (currentWeaponConfig.GetProjectileDamage ());
 			projectileComponent.SetShooter (gameObject);
+			PlayWeaponSFX ();
 
 			Vector3 unitVectorToTarget = (target.transform.position - projectileFirePoint.transform.position).normalized;
 			float projectileSpeed = currentWeaponConfig.GetProjectileSpeed ();
 			instantProj.GetComponent<Rigidbody> ().velocity = unitVectorToTarget * projectileSpeed;
+		}
+
+		void PlayWeaponSFX(){
+			var weaponSound = currentWeaponConfig.GetWeaponSFX ();
+			AudioSource audioSource = GetComponent<AudioSource> ();
+			audioSource.PlayOneShot (weaponSound);
 		}
 			
 		void SetAttackAnimation(){
@@ -141,6 +150,12 @@ namespace RPG.Characters{
 		float CalculateDamage ()
 		{
 			return baseDamage + currentWeaponConfig.GetAdditionalDamage ();
+		}
+
+		public void PlayImpactSFX(){
+			var impactSound = currentWeaponConfig.GetImpactSFX ();
+			AudioSource audioSource = GetComponent<AudioSource> ();
+			audioSource.PlayOneShot (impactSound);
 		}
 
 	}

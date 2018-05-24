@@ -20,6 +20,7 @@ namespace RPG.Characters {
 			var collidedObjectLayer = collision.gameObject.layer;
 			var healthSystem = collision.gameObject.GetComponent<HealthSystem> ();
 			if (shooter && collidedObjectLayer != shooter.layer && healthSystem) {
+				shooter.GetComponent<WeaponSystem> ().PlayImpactSFX ();
 				healthSystem.TakeDamage (damageCaused);
 				Destroy (gameObject);
 			}
