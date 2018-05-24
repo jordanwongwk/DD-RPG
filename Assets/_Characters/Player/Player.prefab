@@ -1620,7 +1620,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939906218202142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -128.25, y: 0.27, z: 162.12}
+  m_LocalPosition: {x: -74.46, y: 0.27, z: 144.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4191751098049110}
@@ -1964,10 +1964,10 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
-  moveSpeedMultiplier: 1.5
+  moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1.25
   movingTurnSpeed: 1000
-  stationaryTurnSpeed: 500
+  stationaryTurnSpeed: 800
   moveThreshold: 1
 --- !u!114 &114767606073093910
 MonoBehaviour:
