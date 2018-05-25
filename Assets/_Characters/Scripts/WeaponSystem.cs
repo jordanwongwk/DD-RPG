@@ -158,5 +158,8 @@ namespace RPG.Characters{
 			audioSource.PlayOneShot (impactSound);
 		}
 
+		public void StopAttacking(){
+			StopAllCoroutines ();
+		}
 	}
 }
