@@ -16,9 +16,11 @@ namespace RPG.Characters {
 		float energyAsPercent { get { return currentEnergyPoints / maxEnergyPoints; } }
 
 		AudioSource audioSource;
+		WeaponSystem weaponSystem;
 
 		void Start () {
 			audioSource = GetComponent<AudioSource> ();
+			weaponSystem = GetComponent<WeaponSystem> ();
 
 			currentEnergyPoints = maxEnergyPoints;
 			UpdateEnergyBar ();
@@ -48,6 +50,7 @@ namespace RPG.Characters {
 
 			if (energyCost <= currentEnergyPoints) {		
 				ConsumeEnergy (energyCost);
+				weaponSystem.StopAttacking ();
 				abilities [abilityNumber].Use (target);
 			} else {
 				audioSource.PlayOneShot (outOfEnergy);
