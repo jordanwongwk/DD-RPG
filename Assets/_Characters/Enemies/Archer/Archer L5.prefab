@@ -2126,7 +2126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
-  colliderRadius: 0.2
+  colliderRadius: 0.5
   colliderHeight: 2
   isTriggerCollider: 1
   steeringSpeed: 1
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
-  moveSpeedMultiplier: 1
+  moveSpeedMultiplier: 1.25
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180

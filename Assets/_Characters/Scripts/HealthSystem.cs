@@ -67,6 +67,7 @@ namespace RPG.Characters{
 			}
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
+				GetComponent<CapsuleCollider> ().enabled = false;
 				DestroyObject (gameObject, deathVanishInSeconds);
 			}
 		}
