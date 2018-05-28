@@ -2046,11 +2046,12 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
-  moveSpeedMultiplier: 1.2
+  moveSpeedMultiplier: 1.1
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
+  characterForwardMove: 1
 --- !u!114 &114360444782723516
 MonoBehaviour:
   m_ObjectHideFlags: 1

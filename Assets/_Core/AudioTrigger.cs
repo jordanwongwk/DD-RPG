@@ -4,25 +4,23 @@ namespace RPG.Characters{
 	public class AudioTrigger : MonoBehaviour {
 
 		[SerializeField] AudioClip clip = null;
-		[SerializeField] float triggerRadius = 5f;
+		[SerializeField] float distanceToPlayerToTrigger = 5f;
 		[SerializeField] bool isOneTimeOnly = false;
 
 		[SerializeField] bool hasPlayed = false;
 		AudioSource audioSource;
+		GameObject player;
 
 		void Start () {
 			audioSource = gameObject.AddComponent<AudioSource> ();
 			audioSource.playOnAwake = false;
 			audioSource.clip = clip;
-
-			SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider> ();
-			sphereCollider.isTrigger = true;
-			sphereCollider.radius = triggerRadius;
-			gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
+			player = FindObjectOfType<PlayerControl> ().gameObject;
 		}
 		
-		void OnTriggerEnter (Collider other){
-			if (other.GetComponent<PlayerControl>()) {
+		void Update(){
+			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
+			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
 				RequestPlayAudioClip ();
 			}
 		}
@@ -38,7 +36,7 @@ namespace RPG.Characters{
 
 		void OnDrawGizmos () {
 			Gizmos.color = new Color(0,0,255f, 0.5f);
-			Gizmos.DrawWireSphere (transform.position, triggerRadius);
+			Gizmos.DrawWireSphere (transform.position, distanceToPlayerToTrigger);
 		}
 	}
 }
