@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 0.001
+  chaseRadius: 2
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
@@ -1939,6 +1939,7 @@ MonoBehaviour:
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
+  characterForwardMove: 0.5
 --- !u!114 &114409062841828184
 MonoBehaviour:
   m_ObjectHideFlags: 1

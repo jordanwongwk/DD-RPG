@@ -34,6 +34,7 @@ namespace RPG.Characters {
 		[SerializeField] float movingTurnSpeed = 360;
 		[SerializeField] float stationaryTurnSpeed = 180;
 		[SerializeField] float moveThreshold = 1f;
+		[Tooltip("0.5 to walk; 1.0 to run")] [SerializeField] [Range(0.1f, 1.0f)] float characterForwardMove = 1.0f;
 
 		NavMeshAgent agent;
 		CameraRaycaster cameraRaycaster;
@@ -131,7 +132,7 @@ namespace RPG.Characters {
 
 		void UpdateAnimator()
 		{
-			animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
+			animator.SetFloat("Forward", forwardAmount*characterForwardMove, 0.1f, Time.deltaTime);
 			animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
 			animator.speed = animationSpeedMultiplier;
 		}
