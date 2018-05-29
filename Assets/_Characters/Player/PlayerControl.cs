@@ -12,6 +12,7 @@ namespace RPG.Characters{
 		WeaponSystem weaponSystem;
 		SpecialAbilities abilities;
 		Character character;
+		bool isPlayerStillAlive = true;			
 
 		void Start(){
 			abilities = GetComponent<SpecialAbilities> ();
@@ -28,14 +29,16 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
-			if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
-				weaponSystem.AttackTarget (enemy.gameObject);
-			} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
-				StartCoroutine (MoveAndAttack (enemy.gameObject));
-			} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
-				abilities.AttemptSpecialAbility (0, enemy.gameObject);
-			} else if (Input.GetMouseButtonDown (1) && !IsTargetInRange (enemy.gameObject)) {
-				StartCoroutine (MoveAndSpecialAttack (enemy.gameObject));
+			if (isPlayerStillAlive) {
+				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
+					weaponSystem.AttackTarget (enemy.gameObject);
+				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
+					StartCoroutine (MoveAndAttack (enemy.gameObject));
+				} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
+					abilities.AttemptSpecialAbility (0, enemy.gameObject);
+				} else if (Input.GetMouseButtonDown (1) && !IsTargetInRange (enemy.gameObject)) {
+					StartCoroutine (MoveAndSpecialAttack (enemy.gameObject));
+				}
 			}
 		}
 
@@ -57,12 +60,13 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
-			if (Input.GetMouseButton (0)) {
+			if (Input.GetMouseButton (0) && isPlayerStillAlive) {
 				character.SetDestination (destination);
 			}
 		}
 
 		void Update() {
+			isPlayerStillAlive = GetComponent<HealthSystem> ().healthAsPercentage >= Mathf.Epsilon;
 			ScanForAbilityKeyDown ();
 		}
 
