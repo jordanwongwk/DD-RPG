@@ -8,16 +8,21 @@ using RPG.CameraUI;
 
 namespace RPG.Characters{
 	public class PlayerControl : MonoBehaviour{
+		[SerializeField] GameObject targetIndicator = null;
 		CameraRaycaster cameraRayCaster;
 		WeaponSystem weaponSystem;
 		SpecialAbilities abilities;
 		Character character;
-		bool isPlayerStillAlive = true;			
+		bool isPlayerStillAlive = true;	
+		float playerStopDistance;
+
+		const float TARGET_OFFSET = 0.25f;
 
 		void Start(){
 			abilities = GetComponent<SpecialAbilities> ();
 			character = GetComponent<Character> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
+			playerStopDistance = character.GetStoppingDistance ();
 			RegisterOnMouseEvents ();
 		}
 			
@@ -44,6 +49,7 @@ namespace RPG.Characters{
 
 		IEnumerator MoveToTarget (GameObject target){
 			while (!IsTargetInRange (target)) {
+				MovingTargetIndication (target);
 				character.SetDestination (target.transform.position);
 				yield return new WaitForEndOfFrame();
 			}
@@ -51,16 +57,26 @@ namespace RPG.Characters{
 
 		IEnumerator MoveAndAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
+			character.SetStoppingDistance (playerStopDistance);				// Leave some distance for combat
+			MovingTargetIndication (enemy);
 			weaponSystem.AttackTarget (enemy);
 		}
 
 		IEnumerator MoveAndSpecialAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
+			character.SetStoppingDistance (playerStopDistance);
+			MovingTargetIndication (enemy);
 			abilities.AttemptSpecialAbility (0, enemy);
+		}
+
+		void MovingTargetIndication (GameObject target){
+			targetIndicator.transform.position = target.transform.position;
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
 			if (Input.GetMouseButton (0) && isPlayerStillAlive) {
+				targetIndicator.transform.position = destination;
+				character.SetStoppingDistance (TARGET_OFFSET); 				// So that the character move closer to the target center point
 				character.SetDestination (destination);
 			}
 		}

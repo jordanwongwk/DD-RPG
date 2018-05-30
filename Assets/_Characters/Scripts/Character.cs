@@ -107,6 +107,14 @@ namespace RPG.Characters {
 			agent.destination = worldPos;
 		}
 
+		public void SetStoppingDistance (float newStopDistance){
+			agent.stoppingDistance = newStopDistance;
+		}
+
+		public float GetStoppingDistance (){
+			return agent.stoppingDistance;
+		}
+
 		public AnimatorOverrideController GetOverrideController (){
 			return animatorOverrideController;
 		}
