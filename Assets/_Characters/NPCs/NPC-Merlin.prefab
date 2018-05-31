@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 114298298872563360}
   - component: {fileID: 114447078796637806}
   - component: {fileID: 114763974547195000}
+  - component: {fileID: 114013868552129362}
   m_Layer: 2
   m_Name: NPC-Merlin
   m_TagString: Untagged
@@ -1884,6 +1885,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756802567763200}
   m_Mesh: {fileID: 4300006, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+--- !u!114 &114013868552129362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958104081128648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09e04232d216b244b3b6306afbf8e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healingRadius: 5
+  energyRecoveryRate: 10
+  isHealer: 0
+  healingParticles: {fileID: 0}
 --- !u!114 &114298298872563360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1958,6 +1974,7 @@ MonoBehaviour:
   colliderRadius: 0.2
   colliderHeight: 2
   isTriggerCollider: 1
+  isThisKinematic: 0
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
@@ -1972,6 +1989,7 @@ MonoBehaviour:
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
+  characterForwardMove: 1
 --- !u!137 &137048641615382896
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 114134108668692934}
   - component: {fileID: 114851743174223112}
   - component: {fileID: 114256210428473714}
+  - component: {fileID: 114738996284701350}
   m_Layer: 2
   m_Name: NPC-Derrick
   m_TagString: Untagged
@@ -1929,6 +1930,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ed13129af71e341b40babb6913dcb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114738996284701350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576368052723510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09e04232d216b244b3b6306afbf8e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healingRadius: 5
+  energyRecoveryRate: 10
+  isHealer: 0
+  healingParticles: {fileID: 0}
 --- !u!114 &114806071431537248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1944,6 +1960,7 @@ MonoBehaviour:
   colliderRadius: 0.2
   colliderHeight: 2
   isTriggerCollider: 1
+  isThisKinematic: 0
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
@@ -1958,6 +1975,7 @@ MonoBehaviour:
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
+  characterForwardMove: 1
 --- !u!114 &114851743174223112
 MonoBehaviour:
   m_ObjectHideFlags: 1

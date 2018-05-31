@@ -7,9 +7,12 @@ namespace RPG.Characters{
 
 		[SerializeField] float healingRadius = 5f;
 		[SerializeField] float energyRecoveryRate = 10f;
+		[Tooltip("Character setup for healer : Capsule Collider Size = healingRadius; isKinematic = true")]
 		[SerializeField] bool isHealer = true;
+		[SerializeField] GameObject healingParticles;
 
 		GameObject player;
+		GameObject healParticles;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
@@ -18,12 +21,15 @@ namespace RPG.Characters{
 		void OnTriggerEnter (Collider collider){
 			if (isHealer && collider.gameObject == player) {			// TODO Tag reference?
 				collider.GetComponent<SpecialAbilities>().SetEnergyRecoveryRate(energyRecoveryRate);
+				healParticles = Instantiate (healingParticles, player.transform.position, Quaternion.identity);
+				healParticles.transform.parent = player.transform;
 			}
 		}
 
 		void OnTriggerExit (Collider collider){
 			if (isHealer && collider.gameObject == player) {
 				collider.GetComponent<SpecialAbilities> ().SetDefaultEnergyRecoveryRate ();
+				Destroy (healParticles);
 			}
 		}
 
