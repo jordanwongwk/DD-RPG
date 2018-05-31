@@ -10,28 +10,40 @@ namespace RPG.Characters {
 		[SerializeField] AbilityConfig[] abilities = null;
 		[SerializeField] float maxEnergyPoints = 100f;
 		[SerializeField] float regenEnergyPerSecond = 1f;
-		[SerializeField] AudioClip outOfEnergy;
+		[SerializeField] AudioClip outOfEnergy = null;
 
 		float currentEnergyPoints;
+		float defaultEnergyRecoverRate;
 		float energyAsPercent { get { return currentEnergyPoints / maxEnergyPoints; } }
 
 		AudioSource audioSource;
 		WeaponSystem weaponSystem;
+		GameObject encounteredNPC;
 
 		void Start () {
 			audioSource = GetComponent<AudioSource> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
 
 			currentEnergyPoints = maxEnergyPoints;
+			defaultEnergyRecoverRate = regenEnergyPerSecond;
 			UpdateEnergyBar ();
 			SetupAbilitiesBehaviour ();
 		}
 
 		void Update() {
+			Debug.Log (regenEnergyPerSecond);
 			if (currentEnergyPoints < maxEnergyPoints) {
 				RegenEnergy ();
 				UpdateEnergyBar ();
 			}
+		}
+
+		public void SetEnergyRecoveryRate (float newEnergyRecRate){
+			regenEnergyPerSecond = newEnergyRecRate;
+		}
+
+		public void SetDefaultEnergyRecoveryRate (){
+			regenEnergyPerSecond = defaultEnergyRecoverRate;
 		}
 
 		public int GetAbilitiesLength () {

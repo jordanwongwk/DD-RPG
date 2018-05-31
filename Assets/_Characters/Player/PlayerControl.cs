@@ -75,6 +75,7 @@ namespace RPG.Characters{
 
 		void MouseOverWalkable (Vector3 destination) {
 			if (Input.GetMouseButton (0) && isPlayerStillAlive) {
+				StopAllCoroutines ();
 				targetIndicator.transform.position = destination;
 				character.SetStoppingDistance (TARGET_OFFSET); 				// So that the character move closer to the target center point
 				character.SetDestination (destination);

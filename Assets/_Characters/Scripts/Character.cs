@@ -14,6 +14,9 @@ namespace RPG.Characters {
 		[SerializeField] float colliderHeight = 2.0f;
 		[SerializeField] bool isTriggerCollider = true;
 
+		[Header("Rigidbody Settings")]
+		[SerializeField] bool isThisKinematic = false;
+
 		[Header("Nav Mesh Settings")]
 		[SerializeField] float steeringSpeed = 1.0f;
 		[SerializeField] float stoppingDistance = 1f;
@@ -21,7 +24,7 @@ namespace RPG.Characters {
 
 		[Header("Animator Setup Settings")]
 		[SerializeField] RuntimeAnimatorController animatorController = null;
-		[SerializeField] AnimatorOverrideController animatorOverrideController;
+		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 		[SerializeField] Avatar characterAvatar = null;
 
 		[Header("Audio Source Settings")]
@@ -56,6 +59,7 @@ namespace RPG.Characters {
 			capsuleCollider.isTrigger = isTriggerCollider;
 
 			myRigidbody = gameObject.AddComponent<Rigidbody> ();
+			myRigidbody.isKinematic = isThisKinematic;
 			myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
 			agent = gameObject.AddComponent<NavMeshAgent> ();
