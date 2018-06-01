@@ -115,6 +115,7 @@ namespace RPG.Characters {
 		IEnumerator CastAbility(){
 			state = State.castingAbility;
 			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
+			targetCircle.transform.parent = gameObject.transform;
 			// TODO Add Audio
 			yield return new WaitForSeconds (channelTime);
 

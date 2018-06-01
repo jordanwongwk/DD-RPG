@@ -7,7 +7,7 @@ namespace RPG.Characters {
 
 		protected AbilityConfig config;
 
-		const float PARTICLE_EFFECT_DELAY = 10f;
+		const float PARTICLE_EFFECT_DELAY = 5f;
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 		const string ATTACK_TRIGGER = "isAttacking";
 
@@ -26,6 +26,7 @@ namespace RPG.Characters {
 
 		IEnumerator DestroyParticleEffectAfterPlaying (GameObject particlePrefab){
 			while (particlePrefab.GetComponent<ParticleSystem> ().isPlaying) {
+				Debug.Log ("Playing" + gameObject.name);
 				yield return new WaitForSeconds (PARTICLE_EFFECT_DELAY);
 			}
 			Destroy (particlePrefab);

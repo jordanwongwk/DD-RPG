@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: Boss_AOE_L1
   m_EditorClassIdentifier: 
   energyCost: 0
-  particleSystem: {fileID: 1202755107640684, guid: f9229732097c9d143b915a1e876f9d10,
+  particleSystem: {fileID: 1030251185491102, guid: 73a8e8a2f60657248a04e5a3fbb839e8,
     type: 2}
   audioClips:
-  - {fileID: 0}
-  abilityAnimation: {fileID: 0}
+  - {fileID: 8300000, guid: cd375f53f4bfaa544a80ea52b37df650, type: 3}
+  abilityAnimation: {fileID: 7400000, guid: d3c489e10a6d2a845a62c2119a24b697, type: 3}
   radius: 5
   damageEachTarget: 100
