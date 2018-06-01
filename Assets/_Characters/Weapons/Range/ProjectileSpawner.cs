@@ -4,13 +4,5 @@ using UnityEngine;
 
 public class ProjectileSpawner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	// DO NOT DELETE THIS, HAS DEPENDENCY ON RANGED WEAPON
 }

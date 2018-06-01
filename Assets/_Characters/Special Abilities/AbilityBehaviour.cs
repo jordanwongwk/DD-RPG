@@ -26,7 +26,6 @@ namespace RPG.Characters {
 
 		IEnumerator DestroyParticleEffectAfterPlaying (GameObject particlePrefab){
 			while (particlePrefab.GetComponent<ParticleSystem> ().isPlaying) {
-				Debug.Log ("Playing" + gameObject.name);
 				yield return new WaitForSeconds (PARTICLE_EFFECT_DELAY);
 			}
 			Destroy (particlePrefab);
