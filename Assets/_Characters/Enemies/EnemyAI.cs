@@ -16,6 +16,7 @@ namespace RPG.Characters {
 		[SerializeField] AbilityConfig[] abilities = null;
 		[SerializeField] GameObject dangerCircle = null;
 		[SerializeField] float timeWaitBetweenCasts = 5f;
+		[SerializeField] float channelTime = 3f;
 
 		const int ABILITY_NUMBER_0 = 0;
 
@@ -98,7 +99,7 @@ namespace RPG.Characters {
 		IEnumerator AttackPlayer(){
 			state = State.attacking;
 			while (distanceToPlayer <= currentWeaponRange) {
-				if (abilities != null) {
+				if (abilities.Length != 0) {				// If there is ability in the enemy
 					float timeWaitForCast = timeWaitBetweenCasts;
 
 					bool isTimeToCast = (Time.time - timeLastCast) > timeWaitForCast;
@@ -114,7 +115,8 @@ namespace RPG.Characters {
 		IEnumerator CastAbility(){
 			state = State.castingAbility;
 			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
-			yield return new WaitForSeconds (3f);
+			// TODO Add Audio
+			yield return new WaitForSeconds (channelTime);
 
 			timeLastCast = Time.time;
 			abilities [ABILITY_NUMBER_0].Use (null);
