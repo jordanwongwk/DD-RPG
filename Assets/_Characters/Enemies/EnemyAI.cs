@@ -14,6 +14,7 @@ namespace RPG.Characters {
 
 		[Header("Skills")]
 		[SerializeField] AbilityConfig[] abilities = null;
+		[SerializeField] GameObject dangerCircle = null;
 		[SerializeField] float timeWaitBetweenCasts = 5f;
 
 		const int ABILITY_NUMBER_0 = 0;
@@ -50,7 +51,7 @@ namespace RPG.Characters {
 			WeaponSystem weaponSystem = GetComponent<WeaponSystem> ();
 			currentWeaponRange = weaponSystem.GetCurrentWeaponConfig ().GetMaxAttackRange ();
 
-			if (distanceToPlayer > chaseRadius && state != State.patroling) {
+			if (distanceToPlayer > chaseRadius && state != State.patroling && !isReadyToCastAbility) {
 				StopAllCoroutines ();
 				StartCoroutine (Patrol ());
 			}
@@ -65,7 +66,6 @@ namespace RPG.Characters {
 			if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility) {
 				StopAllCoroutines ();
 				weaponSystem.StopAttacking ();
-				Debug.Log ("Ready");
 				StartCoroutine (CastAbility ());
 			}
 		}
@@ -113,11 +113,12 @@ namespace RPG.Characters {
 
 		IEnumerator CastAbility(){
 			state = State.castingAbility;
-			Debug.Log ("Channeling");
+			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
 			yield return new WaitForSeconds (3f);
+
 			timeLastCast = Time.time;
 			abilities [ABILITY_NUMBER_0].Use (null);
-			Debug.Log ("KKABBOOOOM");
+			Destroy (targetCircle);
 			isReadyToCastAbility = false;
 		}
 
