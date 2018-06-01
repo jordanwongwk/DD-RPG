@@ -31,7 +31,6 @@ namespace RPG.Characters {
 		}
 
 		void Update() {
-			Debug.Log (regenEnergyPerSecond);
 			if (currentEnergyPoints < maxEnergyPoints) {
 				RegenEnergy ();
 				UpdateEnergyBar ();

@@ -19,6 +19,7 @@ namespace RPG.Characters{
 		Animator animator;
 		AudioSource audioSource;
 		Character characterMovement;
+		float regenAmount = 0f;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
@@ -32,12 +33,17 @@ namespace RPG.Characters{
 
 		void Update () {
 			UpdateHealthBar ();
+			RegenHealth (regenAmount);			// TODO Consider a better alternative if laggy
 		}
 
 		void UpdateHealthBar(){
 			if (healthBar) {
 				healthBar.fillAmount = healthAsPercentage;
 			}
+		}
+
+		public void SetRegenAmount (float regenHealth){
+			regenAmount = regenHealth;
 		}
 
 		public void TakeDamage (float damage){
@@ -52,6 +58,11 @@ namespace RPG.Characters{
 
 		public void Heal (float amount) {
 			currentHealthPoints = Mathf.Clamp (currentHealthPoints + amount, 0f, maxHealthPoints);
+		}
+
+		void RegenHealth (float amount) {
+			float pointsToAdd = amount * Time.deltaTime;
+			Heal (pointsToAdd);
 		}
 
 		IEnumerator KillCharacter() {
