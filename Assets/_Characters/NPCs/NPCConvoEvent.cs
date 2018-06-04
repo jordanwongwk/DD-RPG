@@ -22,6 +22,9 @@ namespace RPG.Characters{
 		bool startConversation = false;
 		bool storyPhase1Done = false;
 
+		// Normal NPC Conversation Change
+		bool dockGuyInitialChat = false;
+
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
 			textManager = FindObjectOfType<UITextManager> ();
@@ -89,8 +92,19 @@ namespace RPG.Characters{
 			switch (NPCIdentity) 
 			{
 			case NPCName.DockGuy:
-				NPCText.Add ("Man: \nI'm feeling so tired.");
-				NPCText.Add ("You: \nTake a break man, its a long day.");
+				if (dockGuyInitialChat == false) {
+					NPCText.Add ("Man: \nHeard a lot of commotion in town. Is everything alright?");
+					NPCText.Add ("You: \nSome weird people in hood and the townsman start attacking me for no reason. I'm not even sure why.");
+					NPCText.Add ("Man: \nSounds like hypnotize spell to me. You should be careful and head back to the city if you can.");
+					NPCText.Add ("You: \nThanks but I'm heading to Kalm, which way should I go?");
+					NPCText.Add ("Man: \nOnly way is up the hill. Take the rod over there, it should be lighter compared to your hoe. Should be handy.");
+					NPCText.Add ("You: \nThanks a lot!");
+					NPCText.Add ("Man: \nDo be careful, the day grows dark and a lot of weird stuff been going on around. Keep your eyes wide open and watch your back.");
+
+					dockGuyInitialChat = true;
+				} else {
+					NPCText.Add ("Man: \nKalm is up the hill to the west. Be careful and stay safe.");
+				}
 				break;
 
 			case NPCName.Derrick:
@@ -119,6 +133,13 @@ namespace RPG.Characters{
 				} else {
 					NPCText.Add ("Derrick: \nBe extra careful boy");
 				}
+				break;
+
+			case NPCName.HutGuy:
+				NPCText.Add ("Man: \nI've heard of a news saying that a thief stole a legendary dagger from the palace and escape to the plains here few months ago.");
+				NPCText.Add ("Man: \nThe knights and archers pursued him and with a lot of fatal wounds, he died floating on the river nearby.");
+				NPCText.Add ("Man: \nThe knights recovered the body but no one is able to find the dagger. Not even in the river and the rest is history.");
+				NPCText.Add ("Man: \nA lot of people are offering high price for the dagger but heck even I can't find when I'm here all the time.");
 				break;
 
 			default:
