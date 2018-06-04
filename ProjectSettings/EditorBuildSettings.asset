@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Levels/Level Sandbox.unity
     guid: 2d0c664059839ef42a52f900d5e80008
+  - enabled: 1
+    path: Assets/_Levels/LoadingScene.unity
+    guid: 8e1b6fc39e06ca545b2109b8ff9a00fb
