@@ -8,9 +8,11 @@ namespace RPG.Characters{
 	public class NPCConvoEvent : MonoBehaviour {
 
 		[SerializeField] NPCName NPCIdentity;
-		[SerializeField] float distanceToPlayerToTrigger = 5f;
+		[SerializeField] float distanceToPlayerToTrigger = 2f;
 
 		public enum NPCName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy };
+
+		const float OFFSET_TO_CLEAR_CONVO = 0.5f;
 
 		GameObject player;
 		UITextManager textManager;
@@ -18,6 +20,7 @@ namespace RPG.Characters{
 		List<string> NPCText = new List<string>();
 		int convoSequence;
 		bool startConversation = false;
+		bool storyPhase1Done = false;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
@@ -29,9 +32,11 @@ namespace RPG.Characters{
 			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
 				textManager.ShowInstruction ();
-			} else if (distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
-				textManager.DisableInstructionAndNPCTextBox ();
-			}
+			} else if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger + OFFSET_TO_CLEAR_CONVO && distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
+				EndConversation ();
+			} 
+			// The "else if" statement is to clear the conversation state when player pass by the circle.
+			// Also functions to avoid clearing of conversation box caused by other NPC's scripts.
 
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger && Input.GetKeyDown (KeyCode.F)) {
 				if (!startConversation) {
@@ -45,8 +50,10 @@ namespace RPG.Characters{
 
 		void ManageConversation ()
 		{
+			// Triggers only when conversation successfully ended in a natural way
 			if (convoSequence >= NPCText.Count) {
 				EndConversation ();
+				CheckStoryProgress ();
 			} else {
 				textManager.SetNPCConvoText (NPCText [convoSequence]);
 			}
@@ -56,14 +63,23 @@ namespace RPG.Characters{
 		{
 			startConversation = false;
 			NPCText.Clear ();
+
 			textManager.DisableInstructionAndNPCTextBox ();
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
+		}
+
+		void CheckStoryProgress ()
+		{
+			if (storyPhase1Done) {
+				levelManager.SetPhase1Done ();
+			}
 		}
 
 		void StartConvoWithNPC(){
 			startConversation = true;
 			convoSequence = 0;
 			SettingUpConvoText ();
+
 			textManager.ShowNPCTextBox ();
 			textManager.SetNPCConvoText (NPCText [convoSequence]);
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
@@ -99,7 +115,7 @@ namespace RPG.Characters{
 					NPCText.Add ("You: \nGot it!");
 					NPCText.Add ("Derrick: \nBe careful, I don't want my head being cut off by Sieg if something happened to you.");
 
-					levelManager.SetPhase1Done ();
+					storyPhase1Done = true;	
 				} else {
 					NPCText.Add ("Derrick: \nBe extra careful boy");
 				}

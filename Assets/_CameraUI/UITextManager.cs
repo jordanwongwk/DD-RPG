@@ -14,6 +14,7 @@ namespace RPG.CameraUI {
 		Text questText;
 		Text instructionText;
 		Text convoText;
+		LevelManager levelManager;
 
 		// Use this for initialization
 		void Start () {
@@ -22,8 +23,9 @@ namespace RPG.CameraUI {
 			questText = questTrackerTextBar.GetComponentInChildren<Text> (); 
 			instructionText = NPCConvoInstruction.GetComponent<Text> ();
 			convoText = convoTextBar.GetComponentInChildren<Text> ();
+			levelManager = FindObjectOfType<LevelManager> ();
 
-			Quest01 ();
+			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
 
 		// Conversation Tracker
@@ -44,12 +46,17 @@ namespace RPG.CameraUI {
 			NPCConvoInstruction.SetActive (false);
 			convoTextBar.SetActive (false);
 		}
-			
+		// END Conversation Tracker
 
+		void Update(){
+			if (levelManager.GetPhase1Info() == true) {
+				QuestTrackerUpdate ("Head to the castle to find out what happened to the missing villagers.");
+			}
+		}
 
 		// Quest Tracker
-		public void Quest01(){
-			questText.text = "- Head to the village on top of the hill to the west.\n- Deliver mysterious parcel to Derrick.";
+		public void QuestTrackerUpdate(string questObjective){
+			questText.text = questObjective;
 		}
 		// END Quest Tracker
 
