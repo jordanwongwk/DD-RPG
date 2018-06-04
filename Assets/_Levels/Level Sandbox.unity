@@ -13709,7 +13709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1eae9fadf4966744b2ba0966a11c38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCIdentityID: 0
+  NPCIdentity: 0
   distanceToPlayerToTrigger: 2
 --- !u!1001 &320069529
 Prefab:

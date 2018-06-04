@@ -7,8 +7,10 @@ using RPG.CameraUI;
 namespace RPG.Characters{
 	public class NPCConvoEvent : MonoBehaviour {
 
-		[SerializeField] int NPCIdentityID = 0;
+		[SerializeField] NPCName NPCIdentity;
 		[SerializeField] float distanceToPlayerToTrigger = 5f;
+
+		enum NPCName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy };
 
 		GameObject player;
 		UITextManager textManager;
@@ -68,13 +70,21 @@ namespace RPG.Characters{
 		}
 
 		void SettingUpConvoText(){
-			if (NPCIdentityID == 0) {
-				NPCText.Add("Man:\n I'm feeling so tired.");
-				NPCText.Add("You:\n Take a break man, its a long day.");
-			}
+			switch (NPCIdentity) 
+			{
+			case NPCName.DockGuy:
+				NPCText.Add ("Man: \nI'm feeling so tired.");
+				NPCText.Add ("You: \nTake a break man, its a long day.");
+				break;
 
-			if (NPCIdentityID == 1) {
-				Debug.Log ("HELP");
+			case NPCName.Derrick:
+				NPCText.Add ("Drunk Man: \nELLO BOI, WANT SOME ***GA?");
+				NPCText.Add ("You: \nYou do know I can't add that to the game");
+				break;
+
+			default:
+				NPCText.Add ("Invalid NPC");
+				break;
 			}
 		}
 
