@@ -10,20 +10,19 @@ namespace RPG.Characters{
 		[SerializeField] NPCName NPCIdentity;
 		[SerializeField] float distanceToPlayerToTrigger = 5f;
 
-		enum NPCName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy };
+		public enum NPCName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy };
 
 		GameObject player;
 		UITextManager textManager;
+		LevelManager levelManager;
 		List<string> NPCText = new List<string>();
 		int convoSequence;
 		bool startConversation = false;
 
-
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
 			textManager = FindObjectOfType<UITextManager> ();
-
-			SettingUpConvoText ();
+			levelManager = FindObjectOfType<LevelManager> ();
 		}
 
 		void Update(){
@@ -37,7 +36,6 @@ namespace RPG.Characters{
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger && Input.GetKeyDown (KeyCode.F)) {
 				if (!startConversation) {
 					StartConvoWithNPC ();
-					Debug.Log (NPCText.Count);
 				} else if (startConversation) {
 					convoSequence += 1;
 					ManageConversation ();
@@ -57,16 +55,18 @@ namespace RPG.Characters{
 		void EndConversation ()
 		{
 			startConversation = false;
+			NPCText.Clear ();
 			textManager.DisableInstructionAndNPCTextBox ();
-			// Can Move
+			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
 		}
 
 		void StartConvoWithNPC(){
 			startConversation = true;
 			convoSequence = 0;
+			SettingUpConvoText ();
 			textManager.ShowNPCTextBox ();
 			textManager.SetNPCConvoText (NPCText [convoSequence]);
-			// Stop Moving Player
+			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
 		}
 
 		void SettingUpConvoText(){
@@ -78,8 +78,31 @@ namespace RPG.Characters{
 				break;
 
 			case NPCName.Derrick:
-				NPCText.Add ("Drunk Man: \nELLO BOI, WANT SOME ***GA?");
-				NPCText.Add ("You: \nYou do know I can't add that to the game");
+				if (levelManager.GetPhase1Info() == false) {
+					NPCText.Add ("You: \nAre you Derrick? I'm here for a delivery.");
+					NPCText.Add ("Derrick: \nIndeed I am. Oh, I've been waiting for this. Thank you. You did not peek into it right?");
+					NPCText.Add ("You: \nI didn't, sir. Its very rude to do so.");
+					NPCText.Add ("Derrick: \nHaha just joking, its not something big. You must be the boy Sieghart always mentioned.");
+					NPCText.Add ("You: \nI'm honoured, sir. My guild master always treat me as his son.");
+					NPCText.Add ("Derrick: \nSounds like good, old Sieghart to me. Hahaha.");
+					NPCText.Add ("You: \nSir, if you don't mind me asking, what happened to the town? It seems awfully quiet.");
+					NPCText.Add ("Derrick: \nThose hooded guys invaded the town during daytime. I am the only survivor left.");
+					NPCText.Add ("You: \nThat's awful. I'm glad you are safe, sir. But where are the people?");
+					NPCText.Add ("Derrick: \nI've eavesdropped the guards during the raid, they seemed to be bringing them to the dungeons in a castle south of here.");
+					NPCText.Add ("Derrick: \nI wanted to check it out but I got my hands full in guarding the town.");
+					NPCText.Add ("You: \nLet me help. I'll try to investigate for you.");
+					NPCText.Add ("Derrick: \nI'm grateful but its already this late and the road there is crawling with bandits and the hoodie rats.");
+					NPCText.Add ("Derrick: \nSieg would kill me if you did not make it back safely.");
+					NPCText.Add ("You: \nTrust me! I'm stronger than I looked.");
+					NPCText.Add ("Derrick: \nIf you insists, I've already asked a few town guards to help me with the investigation.");
+					NPCText.Add ("Derrick: \nYou should be able to meet them there at the castle.");
+					NPCText.Add ("You: \nGot it!");
+					NPCText.Add ("Derrick: \nBe careful, I don't want my head being cut off by Sieg if something happened to you.");
+
+					levelManager.SetPhase1Done ();
+				} else {
+					NPCText.Add ("Derrick: \nBe extra careful boy");
+				}
 				break;
 
 			default:

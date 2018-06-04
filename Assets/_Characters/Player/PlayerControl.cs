@@ -14,6 +14,7 @@ namespace RPG.Characters{
 		SpecialAbilities abilities;
 		Character character;
 		bool isPlayerStillAlive = true;	
+		bool isPlayerFreeToMove = true;
 		float playerStopDistance;
 
 		const float TARGET_OFFSET = 0.25f;
@@ -34,7 +35,7 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
-			if (isPlayerStillAlive) {
+			if (isPlayerStillAlive && isPlayerFreeToMove) {
 				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
 					weaponSystem.AttackTarget (enemy.gameObject);
 				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
@@ -74,7 +75,7 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
-			if (Input.GetMouseButton (0) && isPlayerStillAlive) {
+			if (Input.GetMouseButton (0) && isPlayerStillAlive && isPlayerFreeToMove) {
 				StopAllCoroutines ();
 				targetIndicator.transform.position = destination;
 				character.SetStoppingDistance (TARGET_OFFSET); 				// So that the character move closer to the target center point
@@ -98,6 +99,10 @@ namespace RPG.Characters{
 		bool IsTargetInRange (GameObject target){
 			float distanceDiff = Vector3.Distance (transform.position, target.transform.position);
 			return distanceDiff <= weaponSystem.GetCurrentWeaponConfig().GetMaxAttackRange();
+		}
+
+		public void SetPlayerFreeToMove(bool permission){
+			isPlayerFreeToMove = permission;
 		}
 	}
 }
