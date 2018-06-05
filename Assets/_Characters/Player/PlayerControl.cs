@@ -102,7 +102,6 @@ namespace RPG.Characters{
 
 		void ScanForBoss(){
 			var boss = GameObject.FindGameObjectWithTag ("Boss");
-			Debug.Log (inBossBattle);
 
 			if (boss != null) {
 				float bossDistance = Vector3.Distance (transform.position, boss.transform.position);

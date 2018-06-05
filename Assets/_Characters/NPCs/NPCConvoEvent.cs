@@ -21,6 +21,7 @@ namespace RPG.Characters{
 		int convoSequence;
 		bool startConversation = false;
 		bool storyPhase1Done = false;
+		bool storyPhase2Done = false;
 
 		// Normal NPC Conversation Change
 		bool dockGuyInitialChat = false;
@@ -85,6 +86,8 @@ namespace RPG.Characters{
 		{
 			if (storyPhase1Done) {
 				gameManager.SetPhase1Done ();
+			} else if (storyPhase2Done) {
+				gameManager.SetPhase2Done ();
 			}
 		}
 
@@ -142,6 +145,30 @@ namespace RPG.Characters{
 				NPCText.Add ("Man: \nThe knights recovered the body but no one is able to find the dagger. Not even in the river and the rest is history.");
 				NPCText.Add ("Man: \nA lot of people are offering high price for the dagger but heck even I can't find when I'm here all the time.");
 				break;
+
+			case NPCName.Merlin:
+				if (gameManager.GetPhase2Info () == false) {
+					NPCText.Add ("Merlin: \nWhat in the blaze is a young boy doing here and this time of the day?");
+					NPCText.Add ("You: \nI'm looking for missing villagers from Kalm, do you have any idea where they went? I'm trying to rescue them.");
+					NPCText.Add ("Merlin: \nAre you sane, boy? What you are facing is not ordinary threat, not some slime in a local forest.");
+					NPCText.Add ("You: \nBeen fighting some of them shady people and bandits on my way here so I'm pretty confident.");
+					NPCText.Add ("Merlin: \nWell guess I could give you what I see here.");
+					NPCText.Add ("Merlin: \nI've seen a lot of captured men and women being escorted to the west. Down the forest trail to the village of Cornelia.");
+					NPCText.Add ("You: \nIs there a castle near there?");
+					NPCText.Add ("Merlin: \nCastle? If you mean the abandoned, haunted castle across the river of the village then yes, there is one.");
+					NPCText.Add ("You: \nThat is exactly what I need to know! Thanks, kind sir.");
+					NPCText.Add ("Merlin: \nWhile you are heading here, apart from the blasted hoody people and bandits, you did not see their leader?");
+					NPCText.Add ("You: \nLeader? I'm not sure I've seen him. All the hostiles I have encountered so far are just normal hoodies and bandits.");
+					NPCText.Add ("Merlin: \nI saw a young man guiding a hoard of his troops up to the hill to Kalm and captured the villagers as I've told you.");
+					NPCText.Add ("Merlin: \nI don't like this one bit but I got a really bad feeling about this. Off you go, boy, I need to do some investigation.");
+					NPCText.Add ("You: \n*I'm too having a bad feeling about this, I guess Derrick should be fine. I need to help him investigate the missing villagers first.*");
+				
+					storyPhase2Done = true;
+				} else {
+					NPCText.Add ("Merlin: \nAnything else, boy? I'm rather busy here.");
+				}
+				break;
+
 
 			default:
 				NPCText.Add ("Invalid NPC");
