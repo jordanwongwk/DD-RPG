@@ -20,6 +20,7 @@ namespace RPG.Characters{
 		float playerStopDistance;
 
 		const float TARGET_OFFSET = 0.25f;
+		const float BOSS_ENCOUNTER_DIST = 15f;
 
 		void Start(){
 			abilities = GetComponent<SpecialAbilities> ();
@@ -105,7 +106,7 @@ namespace RPG.Characters{
 
 			if (boss != null) {
 				float bossDistance = Vector3.Distance (transform.position, boss.transform.position);
-				if (bossDistance <= 20f && !inBossBattle) {
+				if (bossDistance <= BOSS_ENCOUNTER_DIST && !inBossBattle) {
 					gameManager.TriggerBossBattleDelegate ();
 					inBossBattle = true;
 				} 

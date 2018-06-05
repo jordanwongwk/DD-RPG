@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 114658100131361872}
   - component: {fileID: 114546310373881758}
   - component: {fileID: 114255585141244740}
-  - component: {fileID: 114980870159384402}
+  - component: {fileID: 114853605968210568}
   m_Layer: 2
   m_Name: NPC-DockGuy
   m_TagString: Untagged
@@ -2202,6 +2202,19 @@ MonoBehaviour:
   baseDamage: 0
   currentWeaponConfig: {fileID: 11400000, guid: a4d0c8d976844fe44a374293c8248bac,
     type: 2}
+--- !u!114 &114853605968210568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519888563953266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectIdentity: 0
+  distanceToPlayerToTrigger: 2
 --- !u!114 &114927068168323912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2213,19 +2226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5949eb274a928e4cac5902008dee6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114980870159384402
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519888563953266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1eae9fadf4966744b2ba0966a11c38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCIdentity: 0
-  distanceToPlayerToTrigger: 2
 --- !u!137 &137722053452220358
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

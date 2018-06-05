@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 114659355081492084}
   - component: {fileID: 114733184796902312}
   - component: {fileID: 114896238316608156}
+  - component: {fileID: 114388585759031246}
   m_Layer: 2
   m_Name: NPC-EscapedGuy
   m_TagString: Untagged
@@ -2033,6 +2034,19 @@ MonoBehaviour:
   stationaryTurnSpeed: 180
   moveThreshold: 1
   characterForwardMove: 1
+--- !u!114 &114388585759031246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869945294769468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectIdentity: 5
+  distanceToPlayerToTrigger: 2
 --- !u!114 &114450793134460702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2138,6 +2152,10 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
+  abilities: []
+  dangerCircle: {fileID: 0}
+  timeWaitBetweenCasts: 5
+  channelTime: 3
 --- !u!114 &114896238316608156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2151,6 +2169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healingRadius: 3
   energyRecoveryRate: 10
+  healthRecoveryRate: 25
   isHealer: 1
   healingParticles: {fileID: 1564290477327006, guid: dee12528dde38ac41ac909ed66851605,
     type: 2}

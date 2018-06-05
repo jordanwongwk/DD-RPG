@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 114851743174223112}
   - component: {fileID: 114256210428473714}
   - component: {fileID: 114738996284701350}
-  - component: {fileID: 114697470922903854}
+  - component: {fileID: 114028127392434506}
   m_Layer: 2
   m_Name: NPC-Derrick
   m_TagString: Untagged
@@ -1886,6 +1886,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788159203625580}
   m_Mesh: {fileID: 4300006, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+--- !u!114 &114028127392434506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576368052723510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectIdentity: 1
+  distanceToPlayerToTrigger: 2
 --- !u!114 &114134108668692934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1924,19 +1937,6 @@ MonoBehaviour:
   dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
   channelTime: 3
---- !u!114 &114697470922903854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576368052723510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1eae9fadf4966744b2ba0966a11c38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCIdentity: 1
-  distanceToPlayerToTrigger: 2
 --- !u!114 &114726293296317900
 MonoBehaviour:
   m_ObjectHideFlags: 1

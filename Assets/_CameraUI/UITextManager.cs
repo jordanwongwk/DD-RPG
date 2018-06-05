@@ -7,13 +7,13 @@ namespace RPG.CameraUI {
 	public class UITextManager : MonoBehaviour {
 		[SerializeField] GameObject skillDescriptionTextBar = null;
 		[SerializeField] GameObject questTrackerTextBar = null;
-		[SerializeField] GameObject NPCConvoInstruction = null;
-		[SerializeField] GameObject convoTextBar = null;
+		[SerializeField] GameObject interactionInstruction = null;
+		[SerializeField] GameObject interactionTextBar = null;
 
 		Text skillText;
 		Text questText;
 		Text instructionText;
-		Text convoText;
+		Text interText;
 		GameManager gameManager;
 
 		// Use this for initialization
@@ -21,34 +21,34 @@ namespace RPG.CameraUI {
 			skillDescriptionTextBar.SetActive (false);	
 			skillText = skillDescriptionTextBar.GetComponentInChildren<Text> ();
 			questText = questTrackerTextBar.GetComponentInChildren<Text> (); 
-			instructionText = NPCConvoInstruction.GetComponent<Text> ();
-			convoText = convoTextBar.GetComponentInChildren<Text> ();
+			instructionText = interactionInstruction.GetComponent<Text> ();
+			interText = interactionTextBar.GetComponentInChildren<Text> ();
 			gameManager = FindObjectOfType<GameManager> ();
 
 			// Setting necessary window OFF
-			NPCConvoInstruction.SetActive(false);
-			convoTextBar.SetActive (false);
+			interactionInstruction.SetActive(false);
+			interactionTextBar.SetActive (false);
 
 			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
 
 		// Conversation Tracker
 		public void ShowInstruction(){
-			NPCConvoInstruction.SetActive (true);
+			interactionInstruction.SetActive (true);
 			instructionText.text = "Press F to Interact";
 		}
 
-		public void ShowNPCTextBox(){
-			convoTextBar.SetActive (true);
+		public void ShowInteractionTextBox(){
+			interactionTextBar.SetActive (true);
 		}
 
-		public void SetNPCConvoText(string NPCText){
-			convoText.text = NPCText;
+		public void SetInteractionText(string NPCText){
+			interText.text = NPCText;
 		}
 
-		public void DisableInstructionAndNPCTextBox(){
-			NPCConvoInstruction.SetActive (false);
-			convoTextBar.SetActive (false);
+		public void DisableInstructionAndInterTextBox(){
+			interactionInstruction.SetActive (false);
+			interactionTextBar.SetActive (false);
 		}
 		// END Conversation Tracker
 

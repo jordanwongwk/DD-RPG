@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 114866845872615980}
   - component: {fileID: 114039774101937152}
   - component: {fileID: 114955132287026062}
+  - component: {fileID: 114943203657575700}
   m_Layer: 2
   m_Name: NPC-HutGuy
   m_TagString: Untagged
@@ -1998,6 +1999,10 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 1
+  abilities: []
+  dangerCircle: {fileID: 0}
+  timeWaitBetweenCasts: 5
+  channelTime: 3
 --- !u!114 &114097324172491326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2175,6 +2180,19 @@ MonoBehaviour:
   baseDamage: 0
   currentWeaponConfig: {fileID: 11400000, guid: a4d0c8d976844fe44a374293c8248bac,
     type: 2}
+--- !u!114 &114943203657575700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684678451686410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectIdentity: 2
+  distanceToPlayerToTrigger: 2
 --- !u!114 &114955132287026062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2188,6 +2206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healingRadius: 3
   energyRecoveryRate: 10
+  healthRecoveryRate: 25
   isHealer: 1
   healingParticles: {fileID: 1564290477327006, guid: dee12528dde38ac41ac909ed66851605,
     type: 2}

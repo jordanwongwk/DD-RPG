@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	[Header("Dynamic Path Blockers")]
-	[SerializeField] GameObject bossBlocker = null;
-
 	bool isPhase1Done = false;		// Giving item to Derrick
 	bool isPhase2Done = false;		// Talking to Merlin (triggering secret event 1)
 	bool isPhase3Done = false;		// Defeated Boss & Phase 2 Complete
@@ -42,12 +39,10 @@ public class GameManager : MonoBehaviour {
 
 	public void TriggerBossBattleDelegate(){
 		triggerBossBattle ();
-		bossBlocker.SetActive (true);
 	}
 
 	public void TriggerBossEndDelegate(){
 		triggerBossEnd ();
-		bossBlocker.SetActive (false);
 	}
 
 

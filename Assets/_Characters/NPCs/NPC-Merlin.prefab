@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 114447078796637806}
   - component: {fileID: 114763974547195000}
   - component: {fileID: 114013868552129362}
+  - component: {fileID: 114707186177191744}
   m_Layer: 2
   m_Name: NPC-Merlin
   m_TagString: Untagged
@@ -1896,8 +1897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09e04232d216b244b3b6306afbf8e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healingRadius: 5
+  healingRadius: 3
   energyRecoveryRate: 10
+  healthRecoveryRate: 25
   isHealer: 0
   healingParticles: {fileID: 0}
 --- !u!114 &114298298872563360
@@ -1944,6 +1946,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ed13129af71e341b40babb6913dcb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114707186177191744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958104081128648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectIdentity: 3
+  distanceToPlayerToTrigger: 2
 --- !u!114 &114763974547195000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1959,6 +1974,10 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
+  abilities: []
+  dangerCircle: {fileID: 0}
+  timeWaitBetweenCasts: 5
+  channelTime: 3
 --- !u!114 &114915538676249150
 MonoBehaviour:
   m_ObjectHideFlags: 1
