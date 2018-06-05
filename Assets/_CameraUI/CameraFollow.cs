@@ -5,16 +5,41 @@ using UnityEngine;
 namespace RPG.CameraUI{
 	public class CameraFollow : MonoBehaviour {
 
-		private GameObject player;
+		[SerializeField] float transitionSpeed = 2.0f;
+		[SerializeField] bool isFollowingDerrick = false;
+
+		GameObject player;
+		GameObject derrickNPC;
+
+		float lastRecordTimeOnPlayer;
 
 		// Use this for initialization
 		void Start () {
 			player = GameObject.FindGameObjectWithTag ("Player");
+			derrickNPC = GameObject.FindGameObjectWithTag ("Derrick");
+		}
+
+		public void SetCameraFollowingDerrick () {
+			isFollowingDerrick = true;
+		}
+
+		public void SetCameraBackToPlayer () {
+			isFollowingDerrick = false;
+			// All other follow is false here
 		}
 		
 		// Update is called once per frame
 		void LateUpdate () {
-			transform.position = player.transform.position;
+			if (isFollowingDerrick) {
+				Vector3 derrickNPCPos = derrickNPC.transform.position;
+				float distance = Vector3.Distance (transform.position, derrickNPCPos);
+				float distCover = (Time.time - lastRecordTimeOnPlayer) * transitionSpeed;
+
+				transform.position = Vector3.Lerp (transform.position, derrickNPCPos, distCover / distance);
+			} else {
+				transform.position = player.transform.position;
+				lastRecordTimeOnPlayer = Time.time;
+			}
 		}
 	}
 }

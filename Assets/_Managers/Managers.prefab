@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4049989951570648}
   - component: {fileID: 114830889437644864}
   - component: {fileID: 114278299235564908}
+  - component: {fileID: 114886863584119422}
+  - component: {fileID: 114990318252788600}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -52,8 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6dd04d40f47e544a8265fae5def816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeLevel: 0.5
-  levelMusic: {fileID: 8300000, guid: 24b46214408e22e47a8da696f9b9c4b8, type: 3}
+  volumeLevel: 0.6
+  levelMusic: {fileID: 8300000, guid: be8bd2ed08fada246bd38d149ce080b0, type: 3}
   bossMusic: {fileID: 8300000, guid: e7fd00bbbb24e2e44b97b338c1e46983, type: 3}
 --- !u!114 &114830889437644864
 MonoBehaviour:
@@ -66,5 +68,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a72c6e50e9d0498626988f183d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossBlocker: {fileID: 0}
-  villageBackBlocker: {fileID: 0}
+  isPhase1Done: 0
+  isPhase2Done: 0
+--- !u!114 &114886863584119422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119971714740168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c351c261f205304a9361999402c6cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossBlocker: {fileID: 1912786804868568, guid: fbe2294a660e1994fb7888e3e18ef4ab,
+    type: 2}
+  backVillageBlocker: {fileID: 1231166832216212, guid: 6c1eed6aa57d3cf4492bc0bb769a53ba,
+    type: 2}
+  frontVillageBlocker: {fileID: 0}
+--- !u!114 &114990318252788600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119971714740168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0eccbc71a6ede845ad1505a14f512ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charPrefab: {fileID: 1454546707540358, guid: 27ce9699d9b1e42468e9e0f881e6cf12, type: 2}
+  charStandPosition: {fileID: 1933833187373296, guid: 27fbc9c371d729646a063c369189b2d6,
+    type: 2}

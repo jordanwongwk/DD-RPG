@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] bool isPhase2Done = false;		// Talking to Merlin (triggering secret event 1)
 	bool isPhase3Done = false;		// Defeated Boss & Phase 2 Complete
 
+	bool isSecret1Done = false;
+
 	public delegate void TriggerBossBattle();
 	public event TriggerBossBattle triggerBossBattle;
 
@@ -35,6 +37,16 @@ public class GameManager : MonoBehaviour {
 	// Phase 3
 	public void SetPhase3Done (){
 		isPhase3Done = true;
+	}
+
+
+	// Secret 1
+	public void SetSecret1Done (){
+		isSecret1Done = true;
+	}
+
+	public bool GetSecret1Info () {
+		return isSecret1Done;
 	}
 
 	public void TriggerBossBattleDelegate(){

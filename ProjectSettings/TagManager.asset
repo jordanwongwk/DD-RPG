@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemies
   - Boss
+  - Derrick
   layers:
   - Default
   - TransparentFX

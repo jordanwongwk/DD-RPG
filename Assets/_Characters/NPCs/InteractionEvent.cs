@@ -14,14 +14,20 @@ namespace RPG.Characters{
 
 		const float OFFSET_TO_CLEAR_CONVO = 0.5f;
 
+		EventManager eventManager;
 		GameObject player;
 		UITextManager textManager;
 		GameManager gameManager;
 		List<string> interactText = new List<string>();
 		int convoSequence;
 		bool startConversation = false;
+		bool inEvent = false;
+
+		// Checking Story / Secret Progression
 		bool storyPhase1Done = false;
 		bool storyPhase2Done = false;
+		bool secret1Done = false;
+
 
 		// Normal NPC Conversation Change
 		bool dockGuyInitialChat = false;
@@ -30,6 +36,7 @@ namespace RPG.Characters{
 			player = FindObjectOfType<PlayerControl> ().gameObject;
 			textManager = FindObjectOfType<UITextManager> ();
 			gameManager = FindObjectOfType<GameManager> ();
+			eventManager = FindObjectOfType<EventManager> ();
 		}
 
 		void Update(){
@@ -44,6 +51,7 @@ namespace RPG.Characters{
 
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger && Input.GetKeyDown (KeyCode.F)) {
 				if (!startConversation) {
+					CheckForEvent ();
 					StartInteraction ();
 				} else if (startConversation) {
 					convoSequence += 1;
@@ -60,6 +68,13 @@ namespace RPG.Characters{
 				CheckStoryProgress ();
 			} else {
 				textManager.SetInteractionText (interactText [convoSequence]);
+			}
+		}
+
+		void CheckForEvent(){
+			if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false && !inEvent) {
+				inEvent = true;
+				eventManager.StartSecretEvent1 ();
 			}
 		}
 
@@ -80,6 +95,11 @@ namespace RPG.Characters{
 
 			textManager.DisableInstructionAndInterTextBox ();
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
+
+			if (inEvent) {
+				eventManager.EndEvents ();
+				inEvent = false;
+			}
 		}
 
 		void CheckStoryProgress ()
@@ -88,6 +108,8 @@ namespace RPG.Characters{
 				gameManager.SetPhase1Done ();
 			} else if (storyPhase2Done) {
 				gameManager.SetPhase2Done ();
+			} else if (secret1Done) {
+				gameManager.SetSecret1Done ();
 			}
 		}
 
@@ -174,7 +196,11 @@ namespace RPG.Characters{
 			case ObjectName.BackVillage:
 				if (gameManager.GetPhase1Info () == false) {
 					interactText.Add ("You: \nI'm here to pass the package to Derrick. I think the guy at the center of town is him.");
-				} else if (gameManager.GetPhase2Info () == true) {
+				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
+					interactText.Add ("You: \nWait someone is talking to Derrick.");
+
+					secret1Done = true;
+				} else if (gameManager.GetPhase2Info () == true) {		// Phase2Done and Secret1Done
 					interactText.Add ("You: \nDerrick said that a dark knight is stationed in the castle, I should go check it out for now.");
 				} else {
 					interactText.Add ("Error 404: Text not found.");
