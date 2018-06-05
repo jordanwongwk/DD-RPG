@@ -25,13 +25,17 @@ namespace RPG.CameraUI {
 			convoText = convoTextBar.GetComponentInChildren<Text> ();
 			gameManager = FindObjectOfType<GameManager> ();
 
+			// Setting necessary window OFF
+			NPCConvoInstruction.SetActive(false);
+			convoTextBar.SetActive (false);
+
 			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
 
 		// Conversation Tracker
 		public void ShowInstruction(){
 			NPCConvoInstruction.SetActive (true);
-			instructionText.text = "Press F to Talk";
+			instructionText.text = "Press F to Interact";
 		}
 
 		public void ShowNPCTextBox(){
