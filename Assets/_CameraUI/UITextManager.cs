@@ -14,7 +14,7 @@ namespace RPG.CameraUI {
 		Text questText;
 		Text instructionText;
 		Text convoText;
-		LevelManager levelManager;
+		GameManager gameManager;
 
 		// Use this for initialization
 		void Start () {
@@ -23,7 +23,7 @@ namespace RPG.CameraUI {
 			questText = questTrackerTextBar.GetComponentInChildren<Text> (); 
 			instructionText = NPCConvoInstruction.GetComponent<Text> ();
 			convoText = convoTextBar.GetComponentInChildren<Text> ();
-			levelManager = FindObjectOfType<LevelManager> ();
+			gameManager = FindObjectOfType<GameManager> ();
 
 			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
@@ -49,7 +49,7 @@ namespace RPG.CameraUI {
 		// END Conversation Tracker
 
 		void Update(){
-			if (levelManager.GetPhase1Info() == true) {
+			if (gameManager.GetPhase1Info() == true) {
 				QuestTrackerUpdate ("Head to the castle to find out what happened to the missing villagers.");
 			}
 		}

@@ -13,8 +13,10 @@ namespace RPG.Characters{
 		WeaponSystem weaponSystem;
 		SpecialAbilities abilities;
 		Character character;
+		GameManager gameManager;
 		bool isPlayerStillAlive = true;	
 		bool isPlayerFreeToMove = true;
+		bool inBossBattle = false;
 		float playerStopDistance;
 
 		const float TARGET_OFFSET = 0.25f;
@@ -23,6 +25,7 @@ namespace RPG.Characters{
 			abilities = GetComponent<SpecialAbilities> ();
 			character = GetComponent<Character> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
+			gameManager = FindObjectOfType<GameManager> ();
 			playerStopDistance = character.GetStoppingDistance ();
 			RegisterOnMouseEvents ();
 		}
@@ -86,6 +89,7 @@ namespace RPG.Characters{
 		void Update() {
 			isPlayerStillAlive = GetComponent<HealthSystem> ().healthAsPercentage >= Mathf.Epsilon;
 			ScanForAbilityKeyDown ();
+			ScanForBoss ();
 		}
 
 		void ScanForAbilityKeyDown(){
@@ -93,6 +97,24 @@ namespace RPG.Characters{
 				if (Input.GetKeyDown(abilityIndex.ToString())){
 					abilities.AttemptSpecialAbility (abilityIndex);
 				}
+			}
+		}
+
+		void ScanForBoss(){
+			var boss = GameObject.FindGameObjectWithTag ("Boss");
+			Debug.Log (inBossBattle);
+
+			if (boss != null) {
+				float bossDistance = Vector3.Distance (transform.position, boss.transform.position);
+				if (bossDistance <= 20f && !inBossBattle) {
+					gameManager.TriggerBossBattleDelegate ();
+					inBossBattle = true;
+				} 
+			}
+
+			if (boss == null && inBossBattle) {
+				gameManager.TriggerBossEndDelegate ();
+				inBossBattle = false;
 			}
 		}
 

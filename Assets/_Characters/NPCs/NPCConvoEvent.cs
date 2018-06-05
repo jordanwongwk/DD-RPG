@@ -16,7 +16,7 @@ namespace RPG.Characters{
 
 		GameObject player;
 		UITextManager textManager;
-		LevelManager levelManager;
+		GameManager gameManager;
 		List<string> NPCText = new List<string>();
 		int convoSequence;
 		bool startConversation = false;
@@ -28,7 +28,7 @@ namespace RPG.Characters{
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
 			textManager = FindObjectOfType<UITextManager> ();
-			levelManager = FindObjectOfType<LevelManager> ();
+			gameManager = FindObjectOfType<GameManager> ();
 		}
 
 		void Update(){
@@ -36,7 +36,7 @@ namespace RPG.Characters{
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
 				textManager.ShowInstruction ();
 			} else if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger + OFFSET_TO_CLEAR_CONVO && distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
-				EndConversation ();
+				EndConvoWithNPC ();
 			} 
 			// The "else if" statement is to clear the conversation state when player pass by the circle.
 			// Also functions to avoid clearing of conversation box caused by other NPC's scripts.
@@ -46,35 +46,19 @@ namespace RPG.Characters{
 					StartConvoWithNPC ();
 				} else if (startConversation) {
 					convoSequence += 1;
-					ManageConversation ();
+					CheckIfConvoEnd ();
 				}
 			}
 		}
 
-		void ManageConversation ()
+		void CheckIfConvoEnd ()
 		{
 			// Triggers only when conversation successfully ended in a natural way
 			if (convoSequence >= NPCText.Count) {
-				EndConversation ();
+				EndConvoWithNPC ();
 				CheckStoryProgress ();
 			} else {
 				textManager.SetNPCConvoText (NPCText [convoSequence]);
-			}
-		}
-
-		void EndConversation ()
-		{
-			startConversation = false;
-			NPCText.Clear ();
-
-			textManager.DisableInstructionAndNPCTextBox ();
-			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
-		}
-
-		void CheckStoryProgress ()
-		{
-			if (storyPhase1Done) {
-				levelManager.SetPhase1Done ();
 			}
 		}
 
@@ -87,6 +71,23 @@ namespace RPG.Characters{
 			textManager.SetNPCConvoText (NPCText [convoSequence]);
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
 		}
+
+		void EndConvoWithNPC ()
+		{
+			startConversation = false;
+			NPCText.Clear ();
+
+			textManager.DisableInstructionAndNPCTextBox ();
+			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
+		}
+
+		void CheckStoryProgress ()
+		{
+			if (storyPhase1Done) {
+				gameManager.SetPhase1Done ();
+			}
+		}
+
 
 		void SettingUpConvoText(){
 			switch (NPCIdentity) 
@@ -108,7 +109,7 @@ namespace RPG.Characters{
 				break;
 
 			case NPCName.Derrick:
-				if (levelManager.GetPhase1Info() == false) {
+				if (gameManager.GetPhase1Info() == false) {
 					NPCText.Add ("You: \nAre you Derrick? I'm here for a delivery.");
 					NPCText.Add ("Derrick: \nIndeed I am. Oh, I've been waiting for this. Thank you. You did not peek into it right?");
 					NPCText.Add ("You: \nI didn't, sir. Its very rude to do so.");
