@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	bool isPhase1Done = false;		// Giving item to Derrick
-	bool isPhase2Done = false;		// Talking to Merlin (triggering secret event 1)
+	[SerializeField] bool isPhase1Done = false;		// Giving item to Derrick
+	[SerializeField] bool isPhase2Done = false;		// Talking to Merlin (triggering secret event 1)
 	bool isPhase3Done = false;		// Defeated Boss & Phase 2 Complete
 
 	public delegate void TriggerBossBattle();
