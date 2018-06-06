@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] bool isSecret3Done = false;
 	[SerializeField] bool isSecret4Done = false;
 
+	float bossDefeated = 0;
+
 	public delegate void TriggerBossBattle();
 	public event TriggerBossBattle triggerBossBattle;
 
@@ -91,6 +93,13 @@ public class GameManager : MonoBehaviour {
 
 	public void TriggerBossEndDelegate(){
 		triggerBossEnd ();
+		bossDefeated += 1;
+
+		if (bossDefeated == 1) {
+			SetPhase3Done ();
+		} else if (bossDefeated == 2) {
+			SetSecret3Done ();
+		}
 	}
 
 

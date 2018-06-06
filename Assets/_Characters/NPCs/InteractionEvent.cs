@@ -13,7 +13,7 @@ namespace RPG.Characters{
 		[Tooltip("Add 'Player' Portrait as elem 0; targetted 'NPC' as elem 1; others as elem 2 onwards")]
 		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
-		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage, BossEvent };
+		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage, BossEvent, BossOptionalEvent };
 
 		const int MC_PORTRAIT = 0;
 		const int NPC_PORTRAIT = 1;
@@ -33,6 +33,7 @@ namespace RPG.Characters{
 		bool storyPhase2Done = false;
 		bool secret1Done = false;
 		bool secret2Done = false;
+		bool secret3Done = false;
 
 
 		// Normal NPC Conversation Change
@@ -89,6 +90,11 @@ namespace RPG.Characters{
 				inEvent = true;
 				eventManager.StartSecretEvent2 ();
 			}
+
+			if (objectIdentity == ObjectName.BossOptionalEvent) {
+				inEvent = true;
+				eventManager.StartSecretEvent3 ();
+			}
 		}
 
 		void StartInteraction(){
@@ -127,6 +133,8 @@ namespace RPG.Characters{
 				gameManager.SetSecret1Done ();
 			} else if (secret2Done) {
 				gameManager.SetSecret2Done ();
+			} else if (secret3Done) {
+				gameManager.SetSecret3Done ();
 			}
 		}
 
@@ -379,6 +387,16 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 
 				secret2Done = true;
+				break;
+
+			case ObjectName.BossOptionalEvent:
+				interactText.Add ("You: \nDerrick!!!");
+				interactText.Add ("Derrick: \nMy my, you certain come at a poor timing.");
+
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
+				secret3Done = true;
 				break;
 
 			default:

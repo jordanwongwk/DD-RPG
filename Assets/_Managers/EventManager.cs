@@ -11,16 +11,23 @@ public class EventManager : MonoBehaviour {
 	[SerializeField] GameObject charStandPosition = null;
 
 	[Header ("Secret Event 2 Objects")]
-	[SerializeField] GameObject playerStandPosition = null;
+	[SerializeField] GameObject playerStandPositionSecret2 = null;
+
+	[Header ("Secret Event 3 Objects")]
+	[SerializeField] GameObject bossPrefab = null;
+	[SerializeField] GameObject bossSpawnPoint = null;
+	[SerializeField] GameObject playerStandPositionSecret3 = null;
 
 	GameObject player;
 	GameObject derrickNPC;
 	GameObject eventCharacter;
 	GameObject mainBoss;
+	GameObject optionalBoss;
 	CameraFollow cameraFollow;
 
 	bool secretEvent1Initiated = false;
 	bool secretEvent2Initiated = false;
+	bool secretEvent3Initiated = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,11 +50,24 @@ public class EventManager : MonoBehaviour {
 		mainBoss.GetComponent<EnemyAI> ().enabled = false;
 		mainBoss.transform.LookAt (player.transform);
 
-		player.GetComponent<Character> ().SetDestination (playerStandPosition.transform.position);
+		player.GetComponent<Character> ().SetDestination (playerStandPositionSecret2.transform.position);
 	}
 
 	public bool GetSecretEvent2Initiation() {	// To raise the collider
 		return secretEvent2Initiated;
+	}
+
+	public void StartSecretEvent3(){
+		secretEvent3Initiated = true;
+		optionalBoss = Instantiate (bossPrefab, bossSpawnPoint.transform.position, Quaternion.identity);
+		optionalBoss.transform.LookAt (player.transform);
+		optionalBoss.GetComponent<EnemyAI> ().enabled = false;
+
+		player.GetComponent<Character> ().SetDestination (playerStandPositionSecret3.transform.position);
+	}
+
+	public bool GetSecretEvent3Initiation() {
+		return secretEvent3Initiated;
 	}
 
 	public void EndEvents() {
@@ -60,6 +80,11 @@ public class EventManager : MonoBehaviour {
 		if (secretEvent2Initiated) {
 			mainBoss.GetComponent<EnemyAI> ().enabled = true;
 			secretEvent2Initiated = false;
+		}
+
+		if (secretEvent3Initiated) {
+			optionalBoss.GetComponent<EnemyAI> ().enabled = true;
+			secretEvent3Initiated = false;
 		}
 	}
 

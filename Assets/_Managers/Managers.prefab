@@ -89,7 +89,10 @@ MonoBehaviour:
   bossBlocker: {fileID: 0}
   backVillageBlocker: {fileID: 0}
   frontVillageBlocker: {fileID: 0}
-  bossEventBlocker: {fileID: 0}
+  bossSecret2Blocker: {fileID: 1909961325763500, guid: 7d01b62165202b745a1fbac2b41980ee,
+    type: 2}
+  bossSecret3Blocker: {fileID: 1799794712854244, guid: cbf5a4e90897dac4ab47995c1ce3a61c,
+    type: 2}
 --- !u!114 &114990318252788600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,5 +107,10 @@ MonoBehaviour:
   charPrefab: {fileID: 1454546707540358, guid: 27ce9699d9b1e42468e9e0f881e6cf12, type: 2}
   charStandPosition: {fileID: 1933833187373296, guid: 27fbc9c371d729646a063c369189b2d6,
     type: 2}
-  playerStandPosition: {fileID: 1375389877910164, guid: 3e974750077d8d54c8f5c27953aae9da,
+  playerStandPositionSecret2: {fileID: 1375389877910164, guid: 3e974750077d8d54c8f5c27953aae9da,
+    type: 2}
+  bossPrefab: {fileID: 1839175856864328, guid: a776798220ec5f143b5c739bef3cc43a, type: 2}
+  bossSpawnPoint: {fileID: 1096273956112986, guid: 06a80d707818f7640aebe196ce8dc7c6,
+    type: 2}
+  playerStandPositionSecret3: {fileID: 1621300274044612, guid: f5852c0f78d7f654aae3b5817eb95442,
     type: 2}
