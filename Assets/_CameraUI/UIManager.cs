@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace RPG.CameraUI {
-	public class UITextManager : MonoBehaviour {
+	public class UIManager : MonoBehaviour {
 		[SerializeField] GameObject skillDescriptionTextBar = null;
 		[SerializeField] GameObject questTrackerTextBar = null;
 		[SerializeField] GameObject interactionInstruction = null;
@@ -14,18 +14,20 @@ namespace RPG.CameraUI {
 		Text questText;
 		Text instructionText;
 		Text interText;
+		RawImage interPortrait;
 		GameManager gameManager;
 
 		// Use this for initialization
 		void Start () {
-			skillDescriptionTextBar.SetActive (false);	
 			skillText = skillDescriptionTextBar.GetComponentInChildren<Text> ();
 			questText = questTrackerTextBar.GetComponentInChildren<Text> (); 
 			instructionText = interactionInstruction.GetComponent<Text> ();
 			interText = interactionTextBar.GetComponentInChildren<Text> ();
+			interPortrait = interactionTextBar.GetComponentInChildren<RawImage> ();
 			gameManager = FindObjectOfType<GameManager> ();
 
 			// Setting necessary window OFF
+			skillDescriptionTextBar.SetActive (false);
 			interactionInstruction.SetActive(false);
 			interactionTextBar.SetActive (false);
 
@@ -44,6 +46,10 @@ namespace RPG.CameraUI {
 
 		public void SetInteractionText(string NPCText){
 			interText.text = NPCText;
+		}
+
+		public void SetInteractionPortrait (Texture speaker){
+			interPortrait.texture = speaker;
 		}
 
 		public void DisableInstructionAndInterTextBox(){

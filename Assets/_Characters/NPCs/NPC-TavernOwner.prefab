@@ -2095,6 +2095,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectIdentity: 4
   distanceToPlayerToTrigger: 2
+  characterPortrait:
+  - {fileID: 2800000, guid: d7e677363a0fe9d43bb20ff07cb16433, type: 3}
+  - {fileID: 2800000, guid: 1aad0fcabc962c74496d10b052213ea3, type: 3}
 --- !u!114 &114164946660643958
 MonoBehaviour:
   m_ObjectHideFlags: 1

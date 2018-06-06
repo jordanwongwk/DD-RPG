@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231166832216212}
   m_LocalRotation: {x: -0, y: 0.43634087, z: -0, w: 0.89978147}
-  m_LocalPosition: {x: -100.4, y: 0, z: 61.42}
+  m_LocalPosition: {x: -100.4, y: 6, z: 61.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4211790218148894}
@@ -95,3 +95,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectIdentity: 6
   distanceToPlayerToTrigger: 3.5
+  characterPortrait:
+  - {fileID: 2800000, guid: d7e677363a0fe9d43bb20ff07cb16433, type: 3}

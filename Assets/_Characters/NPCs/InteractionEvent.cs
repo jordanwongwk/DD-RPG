@@ -9,15 +9,20 @@ namespace RPG.Characters{
 
 		[SerializeField] ObjectName ObjectIdentity;
 		[SerializeField] float distanceToPlayerToTrigger = 2f;
+		[Tooltip("Add 'Player' Portrait as elem 0; targetted 'NPC' as elem 1; others as elem 2 onwards")]
+		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
 		public enum ObjectName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage };
 
 		const float OFFSET_TO_CLEAR_CONVO = 0.5f;
+		const int MC_PORTRAIT = 0;
+		const int NPC_PORTRAIT = 1;
 
 		EventManager eventManager;
 		GameObject player;
-		UITextManager textManager;
+		UIManager uIManager;
 		GameManager gameManager;
+		List<Texture> interactPortrait = new List<Texture> ();
 		List<string> interactText = new List<string>();
 		int convoSequence;
 		bool startConversation = false;
@@ -34,7 +39,7 @@ namespace RPG.Characters{
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
-			textManager = FindObjectOfType<UITextManager> ();
+			uIManager = FindObjectOfType<UIManager> ();
 			gameManager = FindObjectOfType<GameManager> ();
 			eventManager = FindObjectOfType<EventManager> ();
 		}
@@ -42,7 +47,7 @@ namespace RPG.Characters{
 		void Update(){
 			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
-				textManager.ShowInstruction ();
+				uIManager.ShowInstruction ();
 			} else if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger + OFFSET_TO_CLEAR_CONVO && distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
 				EndInteraction ();
 			} 
@@ -67,7 +72,8 @@ namespace RPG.Characters{
 				EndInteraction ();
 				CheckStoryProgress ();
 			} else {
-				textManager.SetInteractionText (interactText [convoSequence]);
+				uIManager.SetInteractionText (interactText [convoSequence]);
+				uIManager.SetInteractionPortrait (interactPortrait [convoSequence]);
 			}
 		}
 
@@ -82,9 +88,11 @@ namespace RPG.Characters{
 			startConversation = true;
 			convoSequence = 0;
 			SettingUpConvoText ();
+			SettingUpConvoPortrait ();
 
-			textManager.ShowInteractionTextBox ();
-			textManager.SetInteractionText (interactText [convoSequence]);
+			uIManager.ShowInteractionTextBox ();
+			uIManager.SetInteractionText (interactText [convoSequence]);
+			uIManager.SetInteractionPortrait (interactPortrait [convoSequence]);
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
 		}
 
@@ -92,8 +100,9 @@ namespace RPG.Characters{
 		{
 			startConversation = false;
 			interactText.Clear ();
+			interactPortrait.Clear ();
 
-			textManager.DisableInstructionAndInterTextBox ();
+			uIManager.DisableInstructionAndInterTextBox ();
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
 
 			if (inEvent) {
@@ -200,7 +209,7 @@ namespace RPG.Characters{
 					interactText.Add ("You: \nWait someone is talking to Derrick.");
 
 					secret1Done = true;
-				} else if (gameManager.GetPhase2Info () == true) {		// Phase2Done and Secret1Done
+				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == true) {		// Phase2Done and Secret1Done
 					interactText.Add ("You: \nDerrick said that a dark knight is stationed in the castle, I should go check it out for now.");
 				} else {
 					interactText.Add ("Error 404: Text not found.");
@@ -209,6 +218,96 @@ namespace RPG.Characters{
 
 			default:
 				interactText.Add ("Invalid Interaction, did you forget to give this thing text?");
+				break;
+			}
+		}
+
+		void SettingUpConvoPortrait() {
+			switch (ObjectIdentity) {
+			// NPC
+			case ObjectName.DockGuy:
+				if (dockGuyInitialChat == false) {
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				} else {
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				}
+				break;
+
+			case ObjectName.Derrick:
+				if (gameManager.GetPhase1Info () == false) {
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				} else {
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				}
+				break;
+
+			case ObjectName.HutGuy:
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				break;
+			
+			case ObjectName.Merlin:
+				if (gameManager.GetPhase2Info () == false) {
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else {
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				}
+				break;
+
+				// Non-Living Objects
+			case ObjectName.BackVillage:
+				if (gameManager.GetPhase1Info () == false) {
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == true) {		// Phase2Done and Secret1Done
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else {
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				}
+				break;
+
+			default:
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				break;
 			}
 		}
