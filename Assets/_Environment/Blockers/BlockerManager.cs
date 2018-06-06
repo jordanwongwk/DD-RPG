@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockerManager : MonoBehaviour {
 	
 	[SerializeField] GameObject bossBlocker = null;
+	[SerializeField] GameObject optionalBossBlocker = null;
 	[SerializeField] GameObject backVillageBlocker = null;
 	[SerializeField] GameObject frontVillageBlocker = null;
 	[SerializeField] GameObject bossSecret2Blocker = null;
@@ -31,6 +32,7 @@ public class BlockerManager : MonoBehaviour {
 
 	void SettingUpInitialBlockers () {
 		bossBlocker.SetActive (false);
+		optionalBossBlocker.SetActive (false);
 		backVillageBlocker.SetActive (true);
 		backVillageEnableBlockPos = backVillageBlocker.transform.position;
 		bossSecret2EnableBlockPos = bossSecret2Blocker.transform.position;
@@ -41,10 +43,12 @@ public class BlockerManager : MonoBehaviour {
 	// Boss Blocker
 	void enteringBossBattle(){
 		bossBlocker.SetActive (true);
+		optionalBossBlocker.SetActive (true);
 	}
 
 	void endingBossBattle(){
 		bossBlocker.SetActive (false);
+		optionalBossBlocker.SetActive (false);
 	}
 
 	void Update(){
@@ -80,7 +84,7 @@ public class BlockerManager : MonoBehaviour {
 	}
 
 	void CheckForBossSecret3Blocker () {
-		if (gameManager.GetSecret2Info () == true && gameManager.GetSecret3Info () == false) {
+		if (gameManager.GetSecret2Info () == true && gameManager.GetSecret3Info () == false && eventManager.GetSecretEvent3Ended() == false) {
 			bossSecret3Blocker.transform.position = bossSecret3EnableBlockPos;
 
 			if (eventManager.GetSecretEvent3Initiation () == true) {

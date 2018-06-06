@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour {
 	[SerializeField] GameObject bossPrefab = null;
 	[SerializeField] GameObject bossSpawnPoint = null;
 	[SerializeField] GameObject playerStandPositionSecret3 = null;
+	[SerializeField] GameObject derrickRunOffPoint = null;
 
 	GameObject player;
 	GameObject derrickNPC;
@@ -28,6 +29,7 @@ public class EventManager : MonoBehaviour {
 	bool secretEvent1Initiated = false;
 	bool secretEvent2Initiated = false;
 	bool secretEvent3Initiated = false;
+	bool secretEvent3Ended = false;
 
 	// Use this for initialization
 	void Start () {
@@ -70,6 +72,10 @@ public class EventManager : MonoBehaviour {
 		return secretEvent3Initiated;
 	}
 
+	public bool GetSecretEvent3Ended() {  	// Raise the trigger for boss battle
+		return secretEvent3Ended;
+	}
+
 	public void EndEvents() {
 		if (secretEvent1Initiated) {
 			Destroy (eventCharacter);
@@ -84,8 +90,10 @@ public class EventManager : MonoBehaviour {
 
 		if (secretEvent3Initiated) {
 			optionalBoss.GetComponent<EnemyAI> ().enabled = true;
+			derrickNPC.GetComponent<Character> ().SetDestination (derrickRunOffPoint.transform.position);
+			Destroy (derrickNPC, 20f);
 			secretEvent3Initiated = false;
+			secretEvent3Ended = true;
 		}
 	}
-
 }

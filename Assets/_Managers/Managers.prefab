@@ -89,10 +89,9 @@ MonoBehaviour:
   bossBlocker: {fileID: 0}
   backVillageBlocker: {fileID: 0}
   frontVillageBlocker: {fileID: 0}
-  bossSecret2Blocker: {fileID: 1909961325763500, guid: 7d01b62165202b745a1fbac2b41980ee,
-    type: 2}
-  bossSecret3Blocker: {fileID: 1799794712854244, guid: cbf5a4e90897dac4ab47995c1ce3a61c,
-    type: 2}
+  bossSecret2Blocker: {fileID: 0}
+  bossSecret3Blocker: {fileID: 0}
+  axeSecret3Reward: {fileID: 0}
 --- !u!114 &114990318252788600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,4 +112,6 @@ MonoBehaviour:
   bossSpawnPoint: {fileID: 1096273956112986, guid: 06a80d707818f7640aebe196ce8dc7c6,
     type: 2}
   playerStandPositionSecret3: {fileID: 1621300274044612, guid: f5852c0f78d7f654aae3b5817eb95442,
+    type: 2}
+  derrickRunOffPoint: {fileID: 1744772921109160, guid: 4db026a8c6b24f9449516f35776d1fea,
     type: 2}
