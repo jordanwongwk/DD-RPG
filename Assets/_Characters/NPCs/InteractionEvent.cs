@@ -7,12 +7,12 @@ using RPG.CameraUI;
 namespace RPG.Characters{
 	public class InteractionEvent : MonoBehaviour {
 
-		[SerializeField] ObjectName ObjectIdentity;
+		[SerializeField] ObjectName objectIdentity;
 		[SerializeField] float distanceToPlayerToTrigger = 2f;
 		[Tooltip("Add 'Player' Portrait as elem 0; targetted 'NPC' as elem 1; others as elem 2 onwards")]
 		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
-		public enum ObjectName {DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage };
+		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage };
 
 		const float OFFSET_TO_CLEAR_CONVO = 0.5f;
 		const int MC_PORTRAIT = 0;
@@ -36,6 +36,7 @@ namespace RPG.Characters{
 
 		// Normal NPC Conversation Change
 		bool dockGuyInitialChat = false;
+		bool tavernInitialChat = false;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
@@ -78,7 +79,7 @@ namespace RPG.Characters{
 		}
 
 		void CheckForEvent(){
-			if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false && !inEvent) {
+			if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false && objectIdentity == ObjectName.BackVillage &&!inEvent) {
 				inEvent = true;
 				eventManager.StartSecretEvent1 ();
 			}
@@ -87,8 +88,7 @@ namespace RPG.Characters{
 		void StartInteraction(){
 			startConversation = true;
 			convoSequence = 0;
-			SettingUpConvoText ();
-			SettingUpConvoPortrait ();
+			SettingUpConvoTextAndPortraits ();
 
 			uIManager.ShowInteractionTextBox ();
 			uIManager.SetInteractionText (interactText [convoSequence]);
@@ -123,8 +123,8 @@ namespace RPG.Characters{
 		}
 
 
-		void SettingUpConvoText(){
-			switch (ObjectIdentity) 
+		void SettingUpConvoTextAndPortraits(){
+			switch (objectIdentity) 
 			{
 			// NPC
 			case ObjectName.DockGuy:
@@ -137,9 +137,18 @@ namespace RPG.Characters{
 					interactText.Add ("You: \nThanks a lot!");
 					interactText.Add ("Man: \nDo be careful, the day grows dark and a lot of weird stuff been going on around. Keep your eyes wide open and watch your back.");
 
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
 					dockGuyInitialChat = true;
 				} else {
 					interactText.Add ("Man: \nKalm is up the hill to the west. Be careful and stay safe.");
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
 
@@ -165,9 +174,30 @@ namespace RPG.Characters{
 					interactText.Add ("You: \nGot it!");
 					interactText.Add ("Derrick: \nBe careful, I don't want my head being cut off by Sieg if something happened to you.");
 
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
 					storyPhase1Done = true;	
 				} else {
 					interactText.Add ("Derrick: \nBe extra careful boy");
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
 
@@ -176,6 +206,11 @@ namespace RPG.Characters{
 				interactText.Add ("Man: \nThe knights and archers pursued him and with a lot of fatal wounds, he died floating on the river nearby.");
 				interactText.Add ("Man: \nThe knights recovered the body but no one is able to find the dagger. Not even in the river and the rest is history.");
 				interactText.Add ("Man: \nA lot of people are offering high price for the dagger but heck even I can't find when I'm here all the time.");
+
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				break;
 
 			case ObjectName.Merlin:
@@ -195,118 +230,117 @@ namespace RPG.Characters{
 					interactText.Add ("Merlin: \nI don't like this one bit but I got a really bad feeling about this. Off you go, boy, I need to do some investigation.");
 					interactText.Add ("You: \n*I'm too having a bad feeling about this, I guess Derrick should be fine. I need to help him investigate the missing villagers first.*");
 				
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+
 					storyPhase2Done = true;
 				} else {
 					interactText.Add ("Merlin: \nAnything else, boy? I'm rather busy here.");
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
+
+			case ObjectName.TavernOwner:
+				if (tavernInitialChat == false && gameManager.GetPhase2Info() == true && gameManager.GetSecret4Info () == false) {
+					interactText.Add ("Tavern Owner: \nOh, if it isn't Sieghart's adopted son. How are you doing?");
+					interactText.Add ("You: \nHow do you know me? I believed we never met before.");
+					interactText.Add ("Tavern Owner: \nThis is a tavern, boy. A place filled with information. Even the deepest secret could possibly be revealed here.");
+					interactText.Add ("You: \nDo you know anything about these shady groups of people and the bandits collaboration?");
+					interactText.Add ("Tavern Owner: \nWell, not that deep. But I do know Derrick has been leading them here from south of here a few days ago.");
+					interactText.Add ("You: \nDerrick? You mean the guy who stay in Kalm?");
+					interactText.Add ("Tavern Owner: \nI don't think he came from Kalm but if you saw him in Kalm a moment ago then that's the guy. He led a raid this afternoon.");
+					interactText.Add ("You: \nThanks for the info, sir.");
+					interactText.Add ("Tavern Owner: \nWatch your back out there boy. Its dangerous at this hour.");
+
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
+					if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
+						interactText.Add ("You: \n*So that's the leader that the old man mentioned to me earlier? I guess I should go take a look in Kalm for a while.*");
+						interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					} else if (gameManager.GetSecret1Info () == true) {
+						interactText.Add ("You: \n*Guess I can confirm that Derrick is the main culprit for the raid. I should try reason with this 'Dark Knight' of his.*");
+						interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					}
+
+					tavernInitialChat = true;
+				} else {
+					interactText.Add ("Tavern Owner: \nWatch your back out there boy. Its dangerous at this hour.");
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				}
+				break;
+
+			case ObjectName.EscapedGuy:
+				interactText.Add ("Man: \nBe careful, the Dark Knight is outside the castle right up ahead. Let me heal you to prepare for the fight.");
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				break;
+
 
 			// Non-Living Objects
 			case ObjectName.BackVillage:
 				if (gameManager.GetPhase1Info () == false) {
 					interactText.Add ("You: \nI'm here to pass the package to Derrick. I think the guy at the center of town is him.");
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
 					interactText.Add ("You: \nWait someone is talking to Derrick.");
+					interactText.Add ("Derrick: \nHave we completely spread our 'religion' to all the villagers down at the barn and the gate village?");
+					interactText.Add ("You: \nHe must have meant the village where the villagers attacked me for no reason.");
+					interactText.Add ("Minion: \nYes, sir. Those who accepted Magnados are being equipped with proper gear. But those who don't are transported to the hideout.");
+					interactText.Add ("You: \nMagnados?");
+					interactText.Add ("Minion: \nAlso a boy passed by earlier and incapacitated some of our men.");
+					interactText.Add ("Derrick: \nYes, I've met the boy. I led him to the hideout and the dark knight will deal with the rest. Along with those captured villagers.");
+					interactText.Add ("Minion: \nThe dark knight as in the executioner?");
+					interactText.Add ("Derrick: \nMore of a loyal servant to me and Magnados. The dark knight's 'charming' aura will certainly put those who denied us to join us.");
+					interactText.Add ("Minion: \nIf they... don't?");
+					interactText.Add ("Derrick: \nThey die, simple as that. You ask too many questions, return to the search party at once.");
+					interactText.Add ("Minion: \nNoted, sir.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
 
 					secret1Done = true;
 				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == true) {		// Phase2Done and Secret1Done
-					interactText.Add ("You: \nDerrick said that a dark knight is stationed in the castle, I should go check it out for now.");
+					interactText.Add ("You: \nSo it seems that Derrick and this Magnados guy are kidnapping people around here.");
+					interactText.Add ("You: \nI should try heading to the castle. Maybe the dark knight could give me some answers.");
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				} else {
 					interactText.Add ("Error 404: Text not found.");
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				}
 				break;
 
 			default:
 				interactText.Add ("Invalid Interaction, did you forget to give this thing text?");
-				break;
-			}
-		}
-
-		void SettingUpConvoPortrait() {
-			switch (ObjectIdentity) {
-			// NPC
-			case ObjectName.DockGuy:
-				if (dockGuyInitialChat == false) {
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				} else {
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				}
-				break;
-
-			case ObjectName.Derrick:
-				if (gameManager.GetPhase1Info () == false) {
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				} else {
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				}
-				break;
-
-			case ObjectName.HutGuy:
-				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				break;
-			
-			case ObjectName.Merlin:
-				if (gameManager.GetPhase2Info () == false) {
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else {
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-				}
-				break;
-
-				// Non-Living Objects
-			case ObjectName.BackVillage:
-				if (gameManager.GetPhase1Info () == false) {
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == true) {		// Phase2Done and Secret1Done
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else {
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				}
-				break;
-
-			default:
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				break;
 			}

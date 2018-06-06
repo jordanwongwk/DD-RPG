@@ -93,7 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b069b67040aaa747be727a195868871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectIdentity: 6
+  objectIdentity: 6
   distanceToPlayerToTrigger: 3.5
   characterPortrait:
   - {fileID: 2800000, guid: d7e677363a0fe9d43bb20ff07cb16433, type: 3}
+  - {fileID: 2800000, guid: 2029b7c61cbd81743bb411af66cdcb8a, type: 3}
+  - {fileID: 2800000, guid: 5168394b4298a0849a0d9b37a6fff013, type: 3}
