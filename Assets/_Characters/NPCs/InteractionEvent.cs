@@ -9,12 +9,12 @@ namespace RPG.Characters{
 
 		[SerializeField] ObjectName objectIdentity;
 		[SerializeField] float distanceToPlayerToTrigger = 2f;
+		[SerializeField] float offsetToClearConvo = 0.5f;
 		[Tooltip("Add 'Player' Portrait as elem 0; targetted 'NPC' as elem 1; others as elem 2 onwards")]
 		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
-		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage };
+		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage, BossEvent };
 
-		const float OFFSET_TO_CLEAR_CONVO = 0.5f;
 		const int MC_PORTRAIT = 0;
 		const int NPC_PORTRAIT = 1;
 
@@ -32,6 +32,7 @@ namespace RPG.Characters{
 		bool storyPhase1Done = false;
 		bool storyPhase2Done = false;
 		bool secret1Done = false;
+		bool secret2Done = false;
 
 
 		// Normal NPC Conversation Change
@@ -49,7 +50,7 @@ namespace RPG.Characters{
 			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
 				uIManager.ShowInstruction ();
-			} else if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger + OFFSET_TO_CLEAR_CONVO && distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
+			} else if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger + offsetToClearConvo && distanceDifferenceToPlayer > distanceToPlayerToTrigger) {
 				EndInteraction ();
 			} 
 			// The "else if" statement is to clear the conversation state when player pass by the circle.
@@ -79,9 +80,14 @@ namespace RPG.Characters{
 		}
 
 		void CheckForEvent(){
-			if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false && objectIdentity == ObjectName.BackVillage &&!inEvent) {
+			if (objectIdentity == ObjectName.BackVillage && gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false && !inEvent) {
 				inEvent = true;
 				eventManager.StartSecretEvent1 ();
+			}
+
+			if (objectIdentity == ObjectName.BossEvent) {
+				inEvent = true;
+				eventManager.StartSecretEvent2 ();
 			}
 		}
 
@@ -119,6 +125,8 @@ namespace RPG.Characters{
 				gameManager.SetPhase2Done ();
 			} else if (secret1Done) {
 				gameManager.SetSecret1Done ();
+			} else if (secret2Done) {
+				gameManager.SetSecret2Done ();
 			}
 		}
 
@@ -158,7 +166,7 @@ namespace RPG.Characters{
 					interactText.Add ("Derrick: \nIndeed I am. Oh, I've been waiting for this. Thank you. You did not peek into it right?");
 					interactText.Add ("You: \nI didn't, sir. Its very rude to do so.");
 					interactText.Add ("Derrick: \nHaha just joking, its not something big. You must be the boy Sieghart always mentioned.");
-					interactText.Add ("You: \nI'm honoured, sir. My guild master always treat me as his son.");
+					interactText.Add ("You: \nI'm honoured, sir. The guild master always treat me as his real son even he adopted me.");
 					interactText.Add ("Derrick: \nSounds like good, old Sieghart to me. Hahaha.");
 					interactText.Add ("You: \nSir, if you don't mind me asking, what happened to the town? It seems awfully quiet.");
 					interactText.Add ("Derrick: \nThose hooded guys invaded the town during daytime. I am the only survivor left.");
@@ -290,7 +298,7 @@ namespace RPG.Characters{
 				break;
 
 			case ObjectName.EscapedGuy:
-				interactText.Add ("Man: \nBe careful, the Dark Knight is outside the castle right up ahead. Let me heal you to prepare for the fight.");
+				interactText.Add ("Man: \nThey brought the people to the dungeon of the castle up ahead. The entrance is to the left pass the main gate into the woods.");
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				break;
 
@@ -337,6 +345,40 @@ namespace RPG.Characters{
 					interactText.Add ("Error 404: Text not found.");
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				}
+				break;
+
+			case ObjectName.BossEvent:
+				interactText.Add ("You: \nSo you must be the dark knight Derrick mentioned.");
+				interactText.Add ("Dark Knight: \nIt seems like you know me and our leader's identity. This makes things easier.");
+				interactText.Add ("You: \nTell me, what have you done to the villagers? What are your cult is doing?");
+				interactText.Add ("Dark Knight: \nJust following orders, bring them to the dungeons, tortured them to join us and embraced themselves to Magnados.");
+				interactText.Add ("Dark Knight: \nThe stubborn ones, however, get executed by me. Orders from Derrick too, he's an impatient man.");
+				interactText.Add ("Dark Knight: \nAs for what we are doing, to fulfill Magnados' prophecy of course. Starting with raiding the city.");
+				interactText.Add ("You: \nWhat?! He's planning to raid the city?!");
+				interactText.Add ("Dark Knight: \nOh, you didn't know? Well, guess you are gonna die here anyway so let me just tell you the whole story.");
+				interactText.Add ("Dark Knight: \nDerrick raided towns after towns and forces people to serve him and Magnados. Those who obey are spared and join us.");
+				interactText.Add ("Dark Knight: \nRaiding a whole city is not as easy as raiding a town like this. That's why he's gathering explosives now up north.");
+				interactText.Add ("You: \nSo the item that I delievered to him was...");
+				interactText.Add ("Dark Knight: \nProbably a detonator.");
+				interactText.Add ("You: \n! I have to warn the people!");
+				interactText.Add ("Dark Knight: \nNot on my watch! En garde!");
+
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
+				secret2Done = true;
 				break;
 
 			default:

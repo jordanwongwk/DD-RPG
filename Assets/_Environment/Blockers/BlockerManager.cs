@@ -7,12 +7,18 @@ public class BlockerManager : MonoBehaviour {
 	[SerializeField] GameObject bossBlocker = null;
 	[SerializeField] GameObject backVillageBlocker = null;
 	[SerializeField] GameObject frontVillageBlocker = null;
+	[SerializeField] GameObject bossEventBlocker = null;
+
+	const string COLLISION_COLLIDER = "CollisionCollider";
 
 	GameManager gameManager;
+	EventManager eventManager;
 	Vector3 backVillageEnableBlockPos;
+	Vector3 bossEventEnableBlockPos;
 
 	void Start () {
 		gameManager = FindObjectOfType<GameManager> ();
+		eventManager = FindObjectOfType<EventManager> ();
 		gameManager.triggerBossBattle += enteringBossBattle;
 		gameManager.triggerBossEnd += endingBossBattle;
 
@@ -23,6 +29,7 @@ public class BlockerManager : MonoBehaviour {
 		bossBlocker.SetActive (false);
 		backVillageBlocker.SetActive (true);
 		backVillageEnableBlockPos = backVillageBlocker.transform.position;
+		bossEventEnableBlockPos = bossEventBlocker.transform.position;
 	}
 
 	// Boss Blocker
@@ -36,6 +43,7 @@ public class BlockerManager : MonoBehaviour {
 
 	void Update(){
 		CheckForBackVillageBlocker ();
+		CheckForBossEventBlocker ();
 	}
 
 	void CheckForBackVillageBlocker (){
@@ -47,6 +55,19 @@ public class BlockerManager : MonoBehaviour {
 		// Enable on Phase2Done, BossFight
 		if (gameManager.GetPhase2Info () == true) {
 			backVillageBlocker.transform.position = backVillageEnableBlockPos;
+		}
+	}
+
+	void CheckForBossEventBlocker () {
+		if (gameManager.GetSecret1Info () == true && gameManager.GetSecret2Info() == false) {
+			bossEventBlocker.transform.position = bossEventEnableBlockPos;
+
+			if(eventManager.GetSecretEvent2Initiation () == true){
+				bossEventBlocker.transform.Find (COLLISION_COLLIDER).gameObject.SetActive (false);
+			}
+		} else {
+			float currentXPos = bossEventBlocker.transform.position.x;
+			bossEventBlocker.transform.position = new Vector3 (currentXPos, 15f, bossEventEnableBlockPos.z);
 		}
 	}
 }

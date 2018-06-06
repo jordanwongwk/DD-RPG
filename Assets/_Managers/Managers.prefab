@@ -70,6 +70,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPhase1Done: 0
   isPhase2Done: 0
+  isPhase3Done: 0
+  isSecret1Done: 0
+  isSecret2Done: 0
+  isSecret3Done: 0
+  isSecret4Done: 0
 --- !u!114 &114886863584119422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,11 +86,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c351c261f205304a9361999402c6cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossBlocker: {fileID: 1912786804868568, guid: fbe2294a660e1994fb7888e3e18ef4ab,
-    type: 2}
-  backVillageBlocker: {fileID: 1231166832216212, guid: 6c1eed6aa57d3cf4492bc0bb769a53ba,
-    type: 2}
+  bossBlocker: {fileID: 0}
+  backVillageBlocker: {fileID: 0}
   frontVillageBlocker: {fileID: 0}
+  bossEventBlocker: {fileID: 0}
 --- !u!114 &114990318252788600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,4 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charPrefab: {fileID: 1454546707540358, guid: 27ce9699d9b1e42468e9e0f881e6cf12, type: 2}
   charStandPosition: {fileID: 1933833187373296, guid: 27fbc9c371d729646a063c369189b2d6,
+    type: 2}
+  playerStandPosition: {fileID: 1375389877910164, guid: 3e974750077d8d54c8f5c27953aae9da,
     type: 2}

@@ -301,23 +301,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1598374934022500
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224944262476989584}
-  - component: {fileID: 222533868632312738}
-  - component: {fileID: 114782073366611596}
-  m_Layer: 5
-  m_Name: Foreground (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1618465081924842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,11 +1161,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: 'Clever clever squirrel jump,
+  m_Text: 'Mark Twain:
 
-    in the end fall to the ground also
+    Clever clever squirrel jump,
 
-    Ok Datuk'
+    one day fall to the ground also.'
 --- !u!114 &114686391935728060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1272,33 +1255,6 @@ MonoBehaviour:
   questTrackerTextBar: {fileID: 1068347824783440}
   interactionInstruction: {fileID: 1962766647578290}
   interactionTextBar: {fileID: 1269168416788568}
---- !u!114 &114782073366611596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1598374934022500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.33088237, g: 0.33088237, b: 0.33088237, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ce0ce5a59507d9e43b1b92c8296c2607, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114840793424472266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1608,12 +1564,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480890772130116}
---- !u!222 &222533868632312738
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1598374934022500}
 --- !u!222 &222624272609361726
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1711,12 +1661,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224209824565428368}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -341.1, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -341.45264, y: 0.057994}
+  m_SizeDelta: {x: 96.32, y: 96.316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224058658980703536
 RectTransform:
@@ -1822,11 +1772,11 @@ RectTransform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 224209824565428368}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49, y: 0.0000059605113}
+  m_AnchoredPosition: {x: 51.799953, y: 0.0000059605113}
   m_SizeDelta: {x: 3258.8, y: 398.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224197804213953370
@@ -1859,7 +1809,6 @@ RectTransform:
   m_Children:
   - {fileID: 224058658980703536}
   - {fileID: 224426934930164408}
-  - {fileID: 224944262476989584}
   - {fileID: 224184684296555102}
   - {fileID: 224565376400094638}
   - {fileID: 224007829789055092}
@@ -2012,7 +1961,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49, y: 0.0000019073486}
+  m_AnchoredPosition: {x: 51.799953, y: 0.0000019073486}
   m_SizeDelta: {x: 671.8, y: 96.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224488573892838802
@@ -2062,11 +2011,11 @@ RectTransform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 224209824565428368}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 365.6, y: -29.85}
+  m_AnchoredPosition: {x: 368.4, y: -29.85}
   m_SizeDelta: {x: 176.1, y: 155.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224639382270017706
@@ -2232,24 +2181,6 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224944262476989584
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1598374934022500}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
-  m_Children: []
-  m_Father: {fileID: 224209824565428368}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: 0.0000019073486}
-  m_SizeDelta: {x: 91.6, y: 96.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224944344905739394
 RectTransform:
