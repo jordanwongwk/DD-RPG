@@ -402,7 +402,7 @@ namespace RPG.Characters{
 					interactText.Add ("Derrick: \nMore of a loyal servant to me and Magnados. The dark knight's 'charming' aura will certainly put those who denied us to join us.");
 					interactText.Add ("Minion: \nIf they... don't?");
 					interactText.Add ("Derrick: \nThey die, simple as that. You ask too many questions, return to the search party at once.");
-					interactText.Add ("Minion: \nNoted, sir.");
+					interactText.Add ("Minion: \nYes, sir.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -465,10 +465,34 @@ namespace RPG.Characters{
 
 			case ObjectName.BossOptionalEvent:
 				interactText.Add ("You: \nDerrick!!!");
-				interactText.Add ("Derrick: \nMy my, you certain come at a poor timing.");
+				interactText.Add ("Derrick: \nMy my, you certain come at a poor timing, boy. I'm a little busy here at the moment.");
+				interactText.Add ("You: \nWhy are you going to raid the city with explosives, there's a lot of innocent lives in there.");
+				interactText.Add ("Derrick: \nIt seems like your twin brother is at it again, running his mouth.");
+				interactText.Add ("Dark Knight: \nHe is not the type to keep secrets in the first place anyway.");
+				interactText.Add ("Derrick: \nWell, what's done is done. And yes, I'm raiding the city to fulfill 'His' prophecy.");
+				interactText.Add ("You: \nWho's damned prophecy involves killing innocent people?");
+				interactText.Add ("Derrick: \nAh, language dear boy. We should sit down and talk, probably we can see eye to eye.");
+				interactText.Add ("You: \nNo way.");
+				interactText.Add ("Derrick: \nIt seems like I'm wasting my time and breath here then.");
+				interactText.Add ("Derrick: \nYou see, I'm a rather busy man. I need to walk back to the hideout now to get my last preperation done.");
+				interactText.Add ("Derrick: \nAnd you are definitely not getting in my way, boy. My dear knight, you know what to do.");
+				interactText.Add ("Dark Knight: Yes, indeed. I'm gonna enjoy this.");
+				interactText.Add ("You: \nNo, wait! Get back here!");
 
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [2]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [2]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 
 				break;
 
