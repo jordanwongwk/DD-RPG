@@ -7,7 +7,6 @@ public class BlockerManager : MonoBehaviour {
 	[SerializeField] GameObject bossBlocker = null;
 	[SerializeField] GameObject optionalBossBlocker = null;
 	[SerializeField] GameObject backVillageBlocker = null;
-	[SerializeField] GameObject frontVillageBlocker = null;
 	[SerializeField] GameObject bossSecret2Blocker = null;
 	[SerializeField] GameObject bossSecret3Blocker = null;
 	[SerializeField] GameObject axeSecret3Reward = null;

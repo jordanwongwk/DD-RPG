@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Levels/01_MainMenu.unity
+    guid: f1244481847c6a64dbaad7251e19f5d2
+  - enabled: 1
+    path: Assets/_Levels/02_Loading.unity
+    guid: 2bf31a45205b2564abe309367af65cf5
+  - enabled: 1
+    path: Assets/_Levels/03_Ranking.unity
+    guid: 1dadfba5b09189244ae3e53287ffae69
+  - enabled: 1
     path: Assets/_Levels/Level Sandbox.unity
     guid: 2d0c664059839ef42a52f900d5e80008
-  - enabled: 1
-    path: Assets/_Levels/LoadingScene.unity
-    guid: 8e1b6fc39e06ca545b2109b8ff9a00fb

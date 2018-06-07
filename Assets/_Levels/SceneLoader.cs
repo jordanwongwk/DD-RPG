@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space) && !loadScene) {
+		if (!loadScene) {
 			loadScene = true;
 			loadingText.text = "Loading game...";
 			StartCoroutine (loadingNewScene ());

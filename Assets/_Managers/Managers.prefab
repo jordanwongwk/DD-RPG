@@ -87,8 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossBlocker: {fileID: 0}
+  optionalBossBlocker: {fileID: 0}
   backVillageBlocker: {fileID: 0}
-  frontVillageBlocker: {fileID: 0}
   bossSecret2Blocker: {fileID: 0}
   bossSecret3Blocker: {fileID: 0}
   axeSecret3Reward: {fileID: 0}
