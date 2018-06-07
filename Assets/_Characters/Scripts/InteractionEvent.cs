@@ -13,7 +13,9 @@ namespace RPG.Characters{
 		[Tooltip("Add 'Player' Portrait as elem 0; targetted 'NPC' as elem 1; others as elem 2 onwards")]
 		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
-		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, BackVillage, FrontVillage, BossEvent, BossOptionalEvent, AxePickupPoint };
+		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, 
+								 BackVillage, FrontVillage, BossEvent, BossOptionalEvent, AxePickupPoint,
+								 StartingPoint, EndingPoint};
 
 		const int MC_PORTRAIT = 0;
 		const int NPC_PORTRAIT = 1;
@@ -36,9 +38,11 @@ namespace RPG.Characters{
 		bool secret2Done = false;
 		bool secret4Done = false;
 
-		// Normal NPC Conversation Change
+		// One-Time Only
 		bool dockGuyInitialChat = false;
 		bool tavernInitialChat = false;
+		bool introductionConvo = false;
+		bool endingConvo = false;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
