@@ -22,6 +22,7 @@ namespace RPG.Characters{
 		GameObject player;
 		UIManager uIManager;
 		GameManager gameManager;
+		WeaponSystem playerWeaponSystem;
 		List<Texture> interactPortrait = new List<Texture> ();
 		List<string> interactText = new List<string>();
 		int convoSequence;
@@ -33,7 +34,7 @@ namespace RPG.Characters{
 		bool storyPhase2Done = false;
 		bool secret1Done = false;
 		bool secret2Done = false;
-
+		bool secret4Done = false;
 
 		// Normal NPC Conversation Change
 		bool dockGuyInitialChat = false;
@@ -44,6 +45,7 @@ namespace RPG.Characters{
 			uIManager = FindObjectOfType<UIManager> ();
 			gameManager = FindObjectOfType<GameManager> ();
 			eventManager = FindObjectOfType<EventManager> ();
+			playerWeaponSystem = player.GetComponent<WeaponSystem> ();
 		}
 
 		void Update(){
@@ -132,8 +134,9 @@ namespace RPG.Characters{
 				gameManager.SetSecret1Done ();
 			} else if (secret2Done) {
 				gameManager.SetSecret2Done ();
-			} 
-
+			} else if (secret4Done) {
+				gameManager.SetSecret4Done ();
+			}
 			// Secret 3 is done on optional boss death, managed by GameManager
 		}
 
@@ -268,7 +271,7 @@ namespace RPG.Characters{
 				break;
 
 			case ObjectName.TavernOwner:
-				if (tavernInitialChat == false && gameManager.GetPhase2Info() == true && gameManager.GetSecret4Info () == false) {
+				if (tavernInitialChat == false && gameManager.GetPhase2Info () == true && gameManager.GetSecret3Info () == false) {
 					interactText.Add ("Tavern Owner: \nOh, if it isn't Sieghart's adopted son. How are you doing?");
 					interactText.Add ("You: \nHow do you know me? I believed we never met before.");
 					interactText.Add ("Tavern Owner: \nThis is a tavern, boy. A place filled with information. Even the deepest secret could possibly be revealed here.");
@@ -290,7 +293,7 @@ namespace RPG.Characters{
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 
 					if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
-						interactText.Add ("You: \n*So that's the leader that the old man mentioned to me earlier? I guess I should go take a look in Kalm for a while.*");
+						interactText.Add ("You: \n*So that's the leader that the wise man mentioned to me earlier? I guess I should go take a look in Kalm for a while.*");
 						interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					} else if (gameManager.GetSecret1Info () == true) {
 						interactText.Add ("You: \n*Guess I can confirm that Derrick is the main culprit for the raid. I should try reason with this 'Dark Knight' of his.*");
@@ -298,6 +301,78 @@ namespace RPG.Characters{
 					}
 
 					tavernInitialChat = true;
+				} else if (gameManager.GetSecret3Info () == true && playerWeaponSystem.GetIsReadyForSecret4 () == false) {
+					interactText.Add ("Tavern Owner: \nYou need something boy? Got a feeling you have a question to me. Ask away.");
+					interactText.Add ("You: \n*Maybe I can ask him if I can show him the item.*");
+
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+
+				} else if (gameManager.GetSecret3Info () == true && gameManager.GetSecret4Info() == false && playerWeaponSystem.GetIsReadyForSecret4 () == true) {
+					interactText.Add ("You: \nOld man, you say you know a lot right? Tell me about this weapon.");
+					interactText.Add ("Tavern Owner: \nHmm, this is no ordinary axe. Was this wielded by Derrick's dark knight?");
+					interactText.Add ("You: \nYeah. The moment I hold it I felt strange, its very light and easy to hold but when I hit the floor, it felt like it weights a ton.");
+					interactText.Add ("Tavern Owner: \n... I believed you know the answer yourself... If I'm not mistaken.");
+					interactText.Add ("Tavern Owner: \nThis is one of the many Corrupted Axes. I guess in Derrick's party, only Derrick and the Dark Knight can hold it.");
+					interactText.Add ("Tavern Owner: \n... Or their 'supreme leader', Magnados.");
+					interactText.Add ("You: \nIs this some kind of joke? Getting their knees over some kind of fake god. Magnados is a god of shame!");
+					interactText.Add ("Tavern Owner: \nThis is interesting, no one knows what form Magnados is in. How did you know it is a god?");
+					interactText.Add ("You: \n...");
+					interactText.Add ("Tavern Owner: \nYou are not Sieghart's son, aren't you. Who are you?");
+					interactText.Add ("You(?): \n...");
+					interactText.Add ("Tavern Owner: \nNo matter, you might already know this but I'm pretty sure the player of this game did not know this.");
+					interactText.Add ("Tavern Owner: \nThat axe you are holding is a corrupted axe. No ordinary man can hold this axe. Like a hammer belonging to a thunder god.");
+					interactText.Add ("Tavern Owner: \nThere is a catch, however, the strength itself is unchanged but the weight of the axe will become lighter depending on the wielder.");
+					interactText.Add ("Tavern Owner: \nDepending on the wielder's sin.");
+					interactText.Add ("You(?): \n...");
+					interactText.Add ("Tavern Owner: \nEven though the weapon you are holding is not the true corrupted weapon and just an ordinary out of them.");
+					interactText.Add ("Tavern Owner: \nBut the weapon itself is a lot times stronger than an ordinary weapon.");
+					interactText.Add ("Tavern Owner: \nI'm confident that Sieghart's son won't be able to wield that axe entirely. Even impossible to swing it with ease.");
+					interactText.Add ("You(?): \n...");
+					interactText.Add ("Tavern Owner: \nYou wanted to know where Derrick went, am I wrong? That's why you are here. You won't ask something you already know.");
+					interactText.Add ("Tavern Owner: \nUnless you are so kind to let the player who control you to let them know more about yourself?");
+					interactText.Add ("You(?): \n... Who are you?");
+					interactText.Add ("Tavern Owner: \nAsking back a question I asked? Well, at least I'll answer you, I'm just an ordinary tavern owner.");
+					interactText.Add ("Tavern Owner: \nIf you are asking for Derrick, I saw him running off into Cornelia. I'm placing my bet he went back to their hideout.");
+					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. And don't get yourself killed. I'm sure Derrick has his own corrupted weapon up his sleeves.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+
+					secret4Done = true;
+
+				} else if (gameManager.GetSecret4Info() == true){
+					interactText.Add ("Tavern Owner: \nYou are nearly to the end. Good job on finding all the secrets in this prototype.");
+					interactText.Add ("You(?): \nWhat?");
+					interactText.Add ("Tavern Owner: \nI'm not talking to you. I'm talking to the person who's controlling you... And his/her friends standing at the side looking.");
+
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				} else {
 					interactText.Add ("Tavern Owner: \nWatch your back out there boy. Its dangerous at this hour.");
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
