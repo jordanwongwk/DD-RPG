@@ -131,11 +131,7 @@ namespace RPG.Characters{
 		}
 
 		void SetPlayerBackToRespawnPoint(){
-			Vector3 newInitialPos = character.GetInitialPosition ();
-			// TODO Need offset?
-			transform.localPosition = newInitialPos;
-			character.SetDestination (transform.position);
-			character.SetIsAlive (true);
+			character.PlayerRespawnSetup ();
 		}
 	}
 }

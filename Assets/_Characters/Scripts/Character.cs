@@ -87,10 +87,6 @@ namespace RPG.Characters {
 			initialPosition = newInitialPos;
 		}
 
-		public Vector3 GetInitialPosition () {
-			return initialPosition;
-		}
-
 		void Update(){
 			if (agent.remainingDistance > agent.stoppingDistance && isAlive) {
 				Move (agent.desiredVelocity);
@@ -119,6 +115,12 @@ namespace RPG.Characters {
 			SetDestination (initialPosition);
 		}
 
+		public void PlayerRespawnSetup() {
+			isAlive = true;
+			SetWarpPosition (initialPosition);
+			SetDestination (initialPosition);
+		}
+
 		public void OnAnimatorMove(){
 			// we implement this function to override the default root motion.
 			// this allows us to modify the positional speed before it's applied.
@@ -129,6 +131,10 @@ namespace RPG.Characters {
 				velocity.y = myRigidbody.velocity.y;
 				myRigidbody.velocity = velocity;
 			}
+		}
+
+		public void SetWarpPosition (Vector3 teleportPos){
+			agent.Warp (teleportPos);
 		}
 
 		public void SetDestination(Vector3 worldPos){
