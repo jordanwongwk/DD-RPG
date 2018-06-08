@@ -43,6 +43,7 @@ namespace RPG.Characters {
 		CameraRaycaster cameraRaycaster;
 		Animator animator;
 		Rigidbody myRigidbody;
+		Vector3 initialPosition;
 		float turnAmount;
 		float forwardAmount;
 		bool isAlive = true;
@@ -77,6 +78,9 @@ namespace RPG.Characters {
 			var audioSource = gameObject.AddComponent<AudioSource> ();
 			audioSource.volume = audioVolume;
 			audioSource.spatialBlend = audioSpatialBlend;
+			audioSource.playOnAwake = false;
+
+			initialPosition = transform.position;
 		}
 
 		void Update(){
@@ -93,6 +97,17 @@ namespace RPG.Characters {
 
 		public void Kill(){
 			isAlive = false;
+		}
+
+		public bool GetIsAlive () {
+			return isAlive;
+		}
+
+		public void RespawningSetup() {
+			isAlive = true;
+			GetComponent<CapsuleCollider> ().enabled = true;
+			GetComponent<HealthSystem> ().SetRespawnFullHealth ();
+			transform.position = initialPosition;
 		}
 
 		public void OnAnimatorMove(){

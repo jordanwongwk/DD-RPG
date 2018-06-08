@@ -48,26 +48,28 @@ namespace RPG.Characters {
 		}
 
 		void Update(){
-			distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-			WeaponSystem weaponSystem = GetComponent<WeaponSystem> ();
-			currentWeaponRange = weaponSystem.GetCurrentWeaponConfig ().GetMaxAttackRange ();
+			if (character.GetIsAlive () == true) {
+				distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
+				WeaponSystem weaponSystem = GetComponent<WeaponSystem> ();
+				currentWeaponRange = weaponSystem.GetCurrentWeaponConfig ().GetMaxAttackRange ();
 
-			if (distanceToPlayer > chaseRadius && state != State.patroling && !isReadyToCastAbility) {
-				StopAllCoroutines ();
-				StartCoroutine (Patrol ());
-			}
-			if (distanceToPlayer <= chaseRadius && state != State.chasing && !isReadyToCastAbility) {
-				StopAllCoroutines ();
-				StartCoroutine(ChasePlayer());
-			}
-			if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility) {
-				StopAllCoroutines ();
-				StartCoroutine (AttackPlayer ());
-			}
-			if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility) {
-				StopAllCoroutines ();
-				weaponSystem.StopAttacking ();
-				StartCoroutine (CastAbility ());
+				if (distanceToPlayer > chaseRadius && state != State.patroling && !isReadyToCastAbility) {
+					StopAllCoroutines ();
+					StartCoroutine (Patrol ());
+				}
+				if (distanceToPlayer <= chaseRadius && state != State.chasing && !isReadyToCastAbility) {
+					StopAllCoroutines ();
+					StartCoroutine (ChasePlayer ());
+				}
+				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility) {
+					StopAllCoroutines ();
+					StartCoroutine (AttackPlayer ());
+				}
+				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility) {
+					StopAllCoroutines ();
+					weaponSystem.StopAttacking ();
+					StartCoroutine (CastAbility ());
+				}
 			}
 		}
 

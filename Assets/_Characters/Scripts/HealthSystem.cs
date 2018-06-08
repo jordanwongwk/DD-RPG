@@ -15,11 +15,12 @@ namespace RPG.Characters{
 		const string DEATH_TRIGGER = "isDead";
 		const float DEATH_DELAY = 1.0f;
 
-		[SerializeField] float currentHealthPoints;
+		float currentHealthPoints;
 		Animator animator;
 		AudioSource audioSource;
 		Character characterMovement;
 		float regenAmount = 0f;
+		[SerializeField] bool enemyBrinkOfDeath = false;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
@@ -44,6 +45,10 @@ namespace RPG.Characters{
 
 		public void SetRegenAmount (float regenHealth){
 			regenAmount = regenHealth;
+		}
+
+		public void SetRespawnFullHealth () {
+			currentHealthPoints = maxHealthPoints;
 		}
 
 		public void TakeDamage (float damage){
@@ -79,8 +84,15 @@ namespace RPG.Characters{
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
 				GetComponent<CapsuleCollider> ().enabled = false;
-				DestroyObject (gameObject, deathVanishInSeconds);
+				yield return new WaitForSeconds (deathVanishInSeconds);
+				gameObject.SetActive (false);
+				enemyBrinkOfDeath = true;
+//				DestroyObject (gameObject, deathVanishInSeconds);
 			}
+		}
+
+		public bool GetBrinkOfDeathStatus (){
+			return enemyBrinkOfDeath;
 		}
 	}
 }
