@@ -13,14 +13,15 @@ namespace RPG.Characters{
 		[SerializeField] AudioClip[] deathSounds = null;
 
 		const string DEATH_TRIGGER = "isDead";
+		const string REVIVE_TRIGGER = "isRevive";
 		const float DEATH_DELAY = 1.0f;
 
-		float currentHealthPoints;
+		[SerializeField] float currentHealthPoints;
 		Animator animator;
 		AudioSource audioSource;
 		Character characterMovement;
+		GameManager gameManager;
 		float regenAmount = 0f;
-		[SerializeField] bool enemyBrinkOfDeath = false;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
 
@@ -28,7 +29,9 @@ namespace RPG.Characters{
 			animator = GetComponent<Animator> ();
 			audioSource = GetComponent<AudioSource> ();
 			characterMovement = GetComponent<Character> ();
+			gameManager = FindObjectOfType<GameManager> ();
 
+			gameManager.onPlayerRespawn += SetRespawnFullHealth;
 			currentHealthPoints = maxHealthPoints;
 		}
 
@@ -71,7 +74,7 @@ namespace RPG.Characters{
 		}
 
 		IEnumerator KillCharacter() {
-			characterMovement.Kill ();
+			characterMovement.SetIsAlive (false);
 			animator.SetTrigger (DEATH_TRIGGER);
 			audioSource.clip = deathSounds [Random.Range (0, deathSounds.Length)];
 			audioSource.Play ();	// Don't use PlayOneShot, we need this clip to override the current clip
@@ -79,20 +82,15 @@ namespace RPG.Characters{
 			var playerComponent = GetComponent<PlayerControl> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
-				SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+				gameManager.StartRespawnDelegates ();
+				animator.SetTrigger (REVIVE_TRIGGER);
 			}
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
 				GetComponent<CapsuleCollider> ().enabled = false;
 				yield return new WaitForSeconds (deathVanishInSeconds);
 				gameObject.SetActive (false);
-				enemyBrinkOfDeath = true;
-//				DestroyObject (gameObject, deathVanishInSeconds);
 			}
-		}
-
-		public bool GetBrinkOfDeathStatus (){
-			return enemyBrinkOfDeath;
 		}
 	}
 }

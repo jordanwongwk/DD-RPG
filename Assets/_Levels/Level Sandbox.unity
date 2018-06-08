@@ -27515,7 +27515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c858ff9d28d54274f849a8f27d2eed23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawn: 0
 --- !u!1 &610723395
 GameObject:
   m_ObjectHideFlags: 0
@@ -58609,7 +58608,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -115.98
+      value: -80.77
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.y
@@ -58617,7 +58616,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 164.11
+      value: 168.86
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalRotation.x
@@ -58642,6 +58641,11 @@ Prefab:
     - target: {fileID: 1214327417045444, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_Name
       value: Checkpoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65541321817897778, guid: 6d60689698a769a498c311bcfc2b73ec,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
@@ -75346,7 +75350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -93908,7 +93912,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -110.46
+      value: -75.48
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.y
@@ -93916,7 +93920,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 164.11
+      value: 148.6
       objectReference: {fileID: 0}
     - target: {fileID: 4114532799904640, guid: 6d60689698a769a498c311bcfc2b73ec, type: 2}
       propertyPath: m_LocalRotation.x

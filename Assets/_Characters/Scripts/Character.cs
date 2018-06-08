@@ -83,6 +83,14 @@ namespace RPG.Characters {
 			initialPosition = transform.position;
 		}
 
+		public void SetInitialPosition (Vector3 newInitialPos){
+			initialPosition = newInitialPos;
+		}
+
+		public Vector3 GetInitialPosition () {
+			return initialPosition;
+		}
+
 		void Update(){
 			if (agent.remainingDistance > agent.stoppingDistance && isAlive) {
 				Move (agent.desiredVelocity);
@@ -95,8 +103,8 @@ namespace RPG.Characters {
 			return animationSpeedMultiplier;
 		}
 
-		public void Kill(){
-			isAlive = false;
+		public void SetIsAlive(bool status){
+			isAlive = status;
 		}
 
 		public bool GetIsAlive () {
@@ -108,6 +116,7 @@ namespace RPG.Characters {
 			GetComponent<CapsuleCollider> ().enabled = true;
 			GetComponent<HealthSystem> ().SetRespawnFullHealth ();
 			transform.position = initialPosition;
+			SetDestination (initialPosition);
 		}
 
 		public void OnAnimatorMove(){

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Characters;
 
 public class CheckpointManager : MonoBehaviour {
 
@@ -14,6 +15,8 @@ public class CheckpointManager : MonoBehaviour {
 
 	List<GameObject> checkpoints = new List<GameObject>();
 	AudioSource audioSource;
+	EnemyManager enemyManager;
+	Character playerCharacter;
 
 	GameObject currentCheckpointRegistered = null;
 
@@ -22,6 +25,9 @@ public class CheckpointManager : MonoBehaviour {
 		audioSource = gameObject.AddComponent<AudioSource> ();
 		audioSource.playOnAwake = false;
 		audioSource.volume = audioSourceVolume;
+
+		enemyManager = FindObjectOfType<EnemyManager> ();
+		playerCharacter = FindObjectOfType<PlayerControl> ().GetComponent<Character> ();
 
 		for (int i = 0; i < transform.childCount; i++) {
 			checkpoints.Add (transform.GetChild (i).gameObject);
@@ -41,6 +47,7 @@ public class CheckpointManager : MonoBehaviour {
 		currentCP.SetCheckpointON (checkpointON);
 		audioSource.PlayOneShot (checkpointFoundClip);
 
-		// Enemies on "brinkOfDeath = true" are destroyed	healthSystem.KillOnBrinkOfDeathEnemies() 
+		enemyManager.DestroyEnemyOnBrinkOfDeath ();							// Completely Destroy enemies that are dead
+		playerCharacter.SetInitialPosition(currentCP.gameObject.transform.position);	// Player Checkpoint spawn position
 	}
 }

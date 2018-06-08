@@ -14,6 +14,7 @@ namespace RPG.Characters{
 		SpecialAbilities abilities;
 		Character character;
 		GameManager gameManager;
+		HealthSystem healthSystem;
 		bool isPlayerStillAlive = true;	
 		bool isPlayerFreeToMove = true;
 		bool inBossBattle = false;
@@ -36,6 +37,8 @@ namespace RPG.Characters{
 			cameraRayCaster = FindObjectOfType<CameraRaycaster> ();
 			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
 			cameraRayCaster.onMouseOverWalkable += MouseOverWalkable;
+
+			gameManager.onPlayerRespawn += SetPlayerBackToRespawnPoint;
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
@@ -125,6 +128,14 @@ namespace RPG.Characters{
 
 		public void SetPlayerFreeToMove(bool permission){
 			isPlayerFreeToMove = permission;
+		}
+
+		void SetPlayerBackToRespawnPoint(){
+			Vector3 newInitialPos = character.GetInitialPosition ();
+			// TODO Need offset?
+			transform.localPosition = newInitialPos;
+			character.SetDestination (transform.position);
+			character.SetIsAlive (true);
 		}
 	}
 }

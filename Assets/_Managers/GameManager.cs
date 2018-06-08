@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour {
 	public delegate void TriggerBossEnd();
 	public event TriggerBossEnd triggerBossEnd;
 
+	public delegate void OnRespawning();
+	public event OnRespawning onPlayerRespawn;
+
 	// MAIN STORY
 	// Phase 1 : Passed the package to Derrick, proceed to help investigate the castle to the west.
 	public void SetPhase1Done () {
@@ -102,14 +105,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public void StartRespawnDelegates(){
+		onPlayerRespawn ();
 	}
 }
