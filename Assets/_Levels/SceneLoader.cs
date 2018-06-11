@@ -9,27 +9,28 @@ public class SceneLoader : MonoBehaviour {
 	[SerializeField] int loadingSceneNumber = 0;
 	[SerializeField] Text loadingText = null;
 
-	bool loadScene = false;
-
 	// Use this for initialization
 	void Start () {
-		loadingText.text = "Press SPACE to begin the game.";
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (!loadScene) {
-			loadScene = true;
-			loadingText.text = "Loading game...";
-			StartCoroutine (loadingNewScene ());
-		}
+		loadingText.text = "Loading game...";
+		StartCoroutine (loadingNewScene ());
 	}
 
 	IEnumerator loadingNewScene(){
-		yield return new WaitForSeconds (3f);
+		yield return null;
 		AsyncOperation async = SceneManager.LoadSceneAsync (loadingSceneNumber);
+		async.allowSceneActivation = false;
 
 		while (!async.isDone) {
+			Debug.Log ("Progress: " + async.progress);
+
+			if (async.progress >= 0.9f) {
+				loadingText.text = "Press 'Space' to start game.";
+
+				if (Input.GetKeyDown (KeyCode.Space)) {
+					async.allowSceneActivation = true;
+				}
+			}
+
 			yield return null;
 		}
 	}

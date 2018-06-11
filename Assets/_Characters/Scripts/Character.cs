@@ -111,7 +111,7 @@ namespace RPG.Characters {
 			isAlive = true;
 			GetComponent<CapsuleCollider> ().enabled = true;
 			GetComponent<HealthSystem> ().SetRespawnFullHealth ();
-			transform.position = initialPosition;
+			SetWarpPosition (initialPosition);
 			SetDestination (initialPosition);
 		}
 
