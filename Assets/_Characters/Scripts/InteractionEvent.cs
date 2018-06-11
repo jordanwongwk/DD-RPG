@@ -497,21 +497,29 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [2]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-
 				break;
-
 
 			case ObjectName.EndingPoint:
 				if (gameManager.GetSecret4Info () == true && !triggerEndGame) {
-					interactText.Add ("You(?): \nHere goes.");
+					interactText.Add ("You(?): \nDerrick must have gone through here, I'm coming at you now.");
+					interactText.Add ("You(?): \nComing for you and your false god. And crush you both.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else if (gameManager.GetSecret4Info () == false && !triggerEndGame) {
-					interactText.Add ("You: \nHere goes.");
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else if (gameManager.GetSecret4Info () == false && gameManager.GetSecret3Info () == true && !triggerEndGame) {
+					interactText.Add ("You: \nI'm guessing Derrick went through here.");
+					interactText.Add ("You: \nHere goes nothing.");
 
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else if (gameManager.GetSecret3Info () == false && !triggerEndGame) {
+					interactText.Add ("You: \nSo, this is where the villagers are being taken to.");
+					interactText.Add ("You: \nHang in there everyone. I'm coming to help!");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				} else {
-					interactText.Add ("You: \nPlease be patient.");
+					interactText.Add ("You: \nHere goes.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				}
