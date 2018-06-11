@@ -128,15 +128,15 @@ namespace RPG.Characters{
 
 		void CheckStoryProgress ()
 		{
-			if (storyPhase1Done) {
+			if (gameManager.GetPhase1Info() == false && storyPhase1Done) {
 				gameManager.SetPhase1Done ();
-			} else if (storyPhase2Done) {
+			} else if (gameManager.GetPhase2Info() == false && storyPhase2Done) {
 				gameManager.SetPhase2Done ();
-			} else if (secret1Done) {
+			} else if (gameManager.GetSecret1Info() == false && secret1Done) {
 				gameManager.SetSecret1Done ();
-			} else if (secret2Done) {
+			} else if (gameManager.GetSecret2Info() == false && secret2Done) {
 				gameManager.SetSecret2Done ();
-			} else if (secret4Done) {
+			} else if (gameManager.GetSecret4Info() == false && secret4Done) {
 				gameManager.SetSecret4Done ();
 			} else if (triggerEndGame) {
 				gameManager.TriggerEndOfGame ();
@@ -480,7 +480,7 @@ namespace RPG.Characters{
 				interactText.Add ("Derrick: \nIt seems like I'm wasting my time and breath here then.");
 				interactText.Add ("Derrick: \nYou see, I'm a rather busy man. I need to walk back to the hideout now to get my last preperation done.");
 				interactText.Add ("Derrick: \nAnd you are definitely not getting in my way, boy. My dear knight, you know what to do.");
-				interactText.Add ("Dark Knight: Yes, indeed. I'm gonna enjoy this.");
+				interactText.Add ("Dark Knight: \nYes, indeed. I'm gonna enjoy this.");
 				interactText.Add ("You: \nNo, wait! Get back here!");
 
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);

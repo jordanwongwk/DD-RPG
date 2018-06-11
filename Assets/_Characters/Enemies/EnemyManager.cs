@@ -11,13 +11,9 @@ namespace RPG.Characters {
 			GameManager gameManager = FindObjectOfType<GameManager> ();
 			gameManager.onPlayerRespawn += RespawnEnemiesOnBrinkOfDeath;
 			gameManager.triggerBossEnd += UpdateEnemyList;
+			gameManager.endGameSetup += CalculateEnemiesLeft;
 
 			UpdateEnemyList ();
-		}
-		
-		// Update is called once per frame
-		void Update () {
-
 		}
 
 		void RespawnEnemiesOnBrinkOfDeath () {
@@ -45,6 +41,11 @@ namespace RPG.Characters {
 				}
 			}
 			UpdateEnemyList ();
+		}
+
+		void CalculateEnemiesLeft () {
+			DestroyEnemyOnBrinkOfDeath ();
+			PlayerPrefManager.SetEnemiesLeft (allEnemies.Count);
 		}
 	}
 }

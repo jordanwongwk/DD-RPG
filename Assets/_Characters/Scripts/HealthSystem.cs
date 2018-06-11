@@ -82,6 +82,7 @@ namespace RPG.Characters{
 			var playerComponent = GetComponent<PlayerControl> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
+				playerComponent.SetPlayerDeathCount ();
 				gameManager.StartRespawnDelegates ();
 				gameManager.RestartBossBattleUponDeath ();
 				animator.SetTrigger (REVIVE_TRIGGER);

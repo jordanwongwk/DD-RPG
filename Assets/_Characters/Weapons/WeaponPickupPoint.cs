@@ -8,12 +8,15 @@ namespace RPG.Characters {
 		
 		[SerializeField] WeaponConfig weaponConfig = null;
 		[SerializeField] AudioClip pickUpSFX = null;
+		[SerializeField] bool gotThisWeapon = false;
 
 		AudioSource audioSource;
+		GameManager gameManager;
 
 		// Use this for initialization
 		void Start () {
 			audioSource = GetComponent<AudioSource> ();
+			gameManager = FindObjectOfType<GameManager> ();
 		}
 
 		void DestroyChildren(){
@@ -40,6 +43,11 @@ namespace RPG.Characters {
 			if (collider.GetComponent<PlayerControl> ()) {
 				collider.GetComponent<WeaponSystem> ().ChangeWeaponInHand (weaponConfig);
 				audioSource.PlayOneShot (pickUpSFX);
+			}
+
+			if (gotThisWeapon == false) {
+				gameManager.SetWeaponFound ();
+				gotThisWeapon = true;
 			}
 		}
 	}

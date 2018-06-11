@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] bool isSecret2Done = false;
 	[SerializeField] bool isSecret3Done = false;
 	[SerializeField] bool isSecret4Done = false;
-	float bossDefeated = 0;
+	int bossDefeated = 0;
+	int secretsFound = 0;
+	int weaponsFound = 0;
 	bool isInBossBattle = false;
 
 	const float TIME_END_GAME = 5.0f;
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 1 : Learn about Derrick talking to a Minion and saying a guarding Dark Knight in the castle. UNLOCK SECRET 2.
 	public void SetSecret1Done (){
 		isSecret1Done = true;
+		secretsFound += 1;
 	}
 
 	public bool GetSecret1Info () {
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 2: Learn about Derrick from Dark Knight. Pre-boss?. REQUIRED SECRET 1
 	public void SetSecret2Done (){
 		isSecret2Done = true;
+		secretsFound += 1;
 	}
 
 	public bool GetSecret2Info () {
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 3: Confronted Derrick and boss battle with Dark Knight (Optional). REQUIRED SECRET 2
 	public void SetSecret3Done (){
 		isSecret3Done = true;
+		secretsFound += 1;
 	}
 
 	public bool GetSecret3Info () {
@@ -95,6 +100,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 4: Learn about Axe origin and MC's truth (hint). REQUIRED SECRET 3 and AXE
 	public void SetSecret4Done (){
 		isSecret4Done = true;
+		secretsFound += 1;
 	}
 
 	public bool GetSecret4Info () {
@@ -112,9 +118,9 @@ public class GameManager : MonoBehaviour {
 		isInBossBattle = false;
 		bossDefeated += 1;
 
-		if (bossDefeated == 1) {
+		if (GetPhase3Info() == false && bossDefeated == 1) {
 			SetPhase3Done ();
-		} else if (bossDefeated == 2) {
+		} else if (GetSecret3Info() == false && bossDefeated == 2) {
 			SetSecret3Done ();
 		}
 	}
@@ -129,13 +135,25 @@ public class GameManager : MonoBehaviour {
 		onPlayerRespawn ();
 	}
 
+	public void SetWeaponFound (){
+		weaponsFound += 1;
+	}
+
 	public void TriggerEndOfGame(){
 		StartCoroutine (EndGame ());
 	}
 
 	IEnumerator EndGame(){
 		endGameSetup ();
+		PlayerPrefSettingUp ();
 		yield return new WaitForSeconds (TIME_END_GAME);
 		SceneManager.LoadScene (sceneAfterEndGame);
+	}
+
+	void PlayerPrefSettingUp(){
+		PlayerPrefManager.SetTime (Time.timeSinceLevelLoad);
+		PlayerPrefManager.SetSecretDiscovered (secretsFound);
+		PlayerPrefManager.SetWeaponDiscovered (weaponsFound);
+		PlayerPrefManager.SetBossDefeated (bossDefeated);
 	}
 }

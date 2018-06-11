@@ -19,6 +19,7 @@ namespace RPG.Characters{
 		bool isPlayerFreeToMove = true;
 		bool inBossBattle = false;
 		float playerStopDistance;
+		int playerDeathCount = 0;
 
 		const float TARGET_OFFSET = 0.25f;
 		const float BOSS_ENCOUNTER_DIST = 15f;
@@ -39,6 +40,7 @@ namespace RPG.Characters{
 			cameraRayCaster.onMouseOverWalkable += MouseOverWalkable;
 
 			gameManager.onPlayerRespawn += OnPlayerRespawn;
+			gameManager.endGameSetup += GetPlayerDeathCount;
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
@@ -135,6 +137,14 @@ namespace RPG.Characters{
 				inBossBattle = false;
 			}
 			character.PlayerRespawnSetup ();
+		}
+
+		public void SetPlayerDeathCount(){
+			playerDeathCount += 1;
+		}
+
+		void GetPlayerDeathCount(){
+			PlayerPrefManager.SetDeathNumber (playerDeathCount);
 		}
 	}
 }
