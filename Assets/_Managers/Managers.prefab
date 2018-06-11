@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a72c6e50e9d0498626988f183d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneAfterEndGame: 2
   isPhase1Done: 0
   isPhase2Done: 0
   isPhase3Done: 0
@@ -92,6 +93,7 @@ MonoBehaviour:
   bossSecret2Blocker: {fileID: 0}
   bossSecret3Blocker: {fileID: 0}
   axeSecret3Reward: {fileID: 0}
+  endingBlocker: {fileID: 0}
 --- !u!114 &114990318252788600
 MonoBehaviour:
   m_ObjectHideFlags: 1

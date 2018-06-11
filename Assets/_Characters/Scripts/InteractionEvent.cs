@@ -14,8 +14,7 @@ namespace RPG.Characters{
 		[SerializeField] List<Texture> characterPortrait = new List<Texture>();
 
 		public enum ObjectName { DockGuy, Derrick, HutGuy, Merlin, TavernOwner, EscapedGuy, 
-								 BackVillage, FrontVillage, BossEvent, BossOptionalEvent, AxePickupPoint,
-								 StartingPoint, EndingPoint};
+								 BackVillage, FrontVillage, BossEvent, BossOptionalEvent, AxePickupPoint, EndingPoint};
 
 		const int MC_PORTRAIT = 0;
 		const int NPC_PORTRAIT = 1;
@@ -41,8 +40,7 @@ namespace RPG.Characters{
 		// One-Time Only
 		bool dockGuyInitialChat = false;
 		bool tavernInitialChat = false;
-		bool introductionConvo = false;
-		bool endingConvo = false;
+		bool triggerEndGame = false;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
@@ -140,6 +138,8 @@ namespace RPG.Characters{
 				gameManager.SetSecret2Done ();
 			} else if (secret4Done) {
 				gameManager.SetSecret4Done ();
+			} else if (triggerEndGame) {
+				gameManager.TriggerEndOfGame ();
 			}
 			// Secret 3 is done on optional boss death, managed by GameManager
 		}
@@ -498,6 +498,25 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [2]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 
+				break;
+
+
+			case ObjectName.EndingPoint:
+				if (gameManager.GetSecret4Info () == true && !triggerEndGame) {
+					interactText.Add ("You(?): \nHere goes.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else if (gameManager.GetSecret4Info () == false && !triggerEndGame) {
+					interactText.Add ("You: \nHere goes.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				} else {
+					interactText.Add ("You: \nPlease be patient.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				}
+
+				triggerEndGame = true;
 				break;
 
 			default:

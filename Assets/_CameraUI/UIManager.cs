@@ -9,13 +9,21 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject questTrackerTextBar = null;
 		[SerializeField] GameObject interactionInstruction = null;
 		[SerializeField] GameObject interactionTextBar = null;
+		[SerializeField] GameObject gamePanel = null;
 
 		Text skillText;
 		Text questText;
 		Text instructionText;
 		Text interText;
+		Image gamePanelBackground;
 		RawImage interPortrait;
 		GameManager gameManager;
+		Color panelColor;
+
+		bool isPanelFadingIn = false;
+		bool isPanelFadingOut = false;
+
+		const float FADE_TIME = 3.0f;
 
 		// Use this for initialization
 		void Start () {
@@ -24,12 +32,18 @@ namespace RPG.CameraUI {
 			instructionText = interactionInstruction.GetComponent<Text> ();
 			interText = interactionTextBar.GetComponentInChildren<Text> ();
 			interPortrait = interactionTextBar.GetComponentInChildren<RawImage> ();
+			gamePanelBackground = gamePanel.GetComponent<Image> ();
+			panelColor = gamePanelBackground.color;
+			panelColor.a = 1.0f;
+
 			gameManager = FindObjectOfType<GameManager> ();
+			gameManager.endGameSetup += PanelFadeOut;
 
 			// Setting necessary window OFF
 			skillDescriptionTextBar.SetActive (false);
 			interactionInstruction.SetActive(false);
 			interactionTextBar.SetActive (false);
+			PanelFadeIn();
 
 			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
@@ -62,6 +76,12 @@ namespace RPG.CameraUI {
 			if (gameManager.GetPhase1Info() == true) {
 				QuestTrackerUpdate ("Head to the castle to find out what happened to the missing villagers.");
 			}
+
+			if (isPanelFadingOut) {
+				StartCoroutine (FadingOutPanel ());
+			} else if (isPanelFadingIn) {
+				StartCoroutine (FadingInPanel ());
+			}
 		}
 
 		// Quest Tracker
@@ -89,5 +109,32 @@ namespace RPG.CameraUI {
 		public void MouseExit(){
 			skillDescriptionTextBar.SetActive (false);
 		}
+		// END Skill Descriptions
+
+		// Panel Fading
+		public void PanelFadeIn(){
+			gamePanel.SetActive (true);
+			isPanelFadingIn = true;
+		}
+
+		IEnumerator FadingInPanel(){
+			panelColor.a -= Time.deltaTime / FADE_TIME;
+			gamePanelBackground.color = panelColor;
+			yield return new WaitForSeconds (FADE_TIME);
+			gamePanel.SetActive (false);
+			isPanelFadingIn = false;
+		}
+
+		public void PanelFadeOut(){
+			gamePanel.SetActive (true);
+			isPanelFadingOut = true;
+		}
+
+		IEnumerator FadingOutPanel(){
+			panelColor.a += Time.deltaTime / FADE_TIME;
+			gamePanelBackground.color = panelColor;
+			yield return null;
+		}
+		// END Panel Fading
 	}
 }

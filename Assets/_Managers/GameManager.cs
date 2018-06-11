@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using RPG.CameraUI;
 
 public class GameManager : MonoBehaviour {
+
+	[SerializeField] int sceneAfterEndGame = 0;
 
 	[SerializeField] bool isPhase1Done = false;		
 	[SerializeField] bool isPhase2Done = false;		
@@ -11,9 +15,10 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] bool isSecret2Done = false;
 	[SerializeField] bool isSecret3Done = false;
 	[SerializeField] bool isSecret4Done = false;
-
 	float bossDefeated = 0;
 	bool isInBossBattle = false;
+
+	const float TIME_END_GAME = 5.0f;
 
 	public delegate void TriggerBossBattle();
 	public event TriggerBossBattle triggerBossBattle;
@@ -26,6 +31,9 @@ public class GameManager : MonoBehaviour {
 
 	public delegate void OnRespawning();
 	public event OnRespawning onPlayerRespawn;
+
+	public delegate void EndGameSetup();
+	public event EndGameSetup endGameSetup;
 
 	// MAIN STORY
 	// Phase 1 : Passed the package to Derrick, proceed to help investigate the castle to the west.
@@ -119,5 +127,15 @@ public class GameManager : MonoBehaviour {
 
 	public void StartRespawnDelegates(){
 		onPlayerRespawn ();
+	}
+
+	public void TriggerEndOfGame(){
+		StartCoroutine (EndGame ());
+	}
+
+	IEnumerator EndGame(){
+		endGameSetup ();
+		yield return new WaitForSeconds (TIME_END_GAME);
+		SceneManager.LoadScene (sceneAfterEndGame);
 	}
 }

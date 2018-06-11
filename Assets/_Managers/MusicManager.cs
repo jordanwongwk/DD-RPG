@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour {
 
 	AudioSource audioSource;
 	GameManager gameManager;
+	bool BGMFadeOutVolume = false;
 
 	// Use this for initialization
 	void Start () {
@@ -25,12 +26,15 @@ public class MusicManager : MonoBehaviour {
 		gameManager.triggerBossBattle += ChangeBossBGM;
 		gameManager.triggerBossEnd += ChangeFieldBGM;
 		gameManager.triggerRestartBoss += ChangeFieldBGM;
+		gameManager.endGameSetup += BGMFadeOut;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (!audioSource.isPlaying) {
 			audioSource.Play ();
+		} else if (BGMFadeOutVolume) {
+			audioSource.volume -= Time.deltaTime / 5.0f;
 		}
 	}
 
@@ -40,5 +44,9 @@ public class MusicManager : MonoBehaviour {
 
 	void ChangeFieldBGM(){
 		audioSource.clip = levelMusic;
+	}
+
+	void BGMFadeOut (){
+		BGMFadeOutVolume = true;
 	}
 }

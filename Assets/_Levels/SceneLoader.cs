@@ -21,8 +21,6 @@ public class SceneLoader : MonoBehaviour {
 		async.allowSceneActivation = false;
 
 		while (!async.isDone) {
-			Debug.Log ("Progress: " + async.progress);
-
 			if (async.progress >= 0.9f) {
 				loadingText.text = "Press 'Space' to start game.";
 

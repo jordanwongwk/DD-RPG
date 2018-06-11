@@ -10,6 +10,7 @@ public class BlockerManager : MonoBehaviour {
 	[SerializeField] GameObject bossSecret2Blocker = null;
 	[SerializeField] GameObject bossSecret3Blocker = null;
 	[SerializeField] GameObject axeSecret3Reward = null;
+	[SerializeField] GameObject endingBlocker = null;
 
 	const string COLLISION_COLLIDER = "CollisionCollider";
 
@@ -19,6 +20,7 @@ public class BlockerManager : MonoBehaviour {
 	Vector3 bossSecret2EnableBlockPos;
 	Vector3 bossSecret3EnableBlockPos;
 	Vector3 axeSecret3RewardInitialPos;
+	Vector3 endingBlockerInitialPos;
 
 	void Start () {
 		gameManager = FindObjectOfType<GameManager> ();
@@ -38,6 +40,7 @@ public class BlockerManager : MonoBehaviour {
 		bossSecret2EnableBlockPos = bossSecret2Blocker.transform.position;
 		bossSecret3EnableBlockPos = bossSecret3Blocker.transform.position;
 		axeSecret3RewardInitialPos = axeSecret3Reward.transform.position;
+		endingBlockerInitialPos = endingBlocker.transform.position;
 	}
 
 	// Boss Blocker
@@ -56,6 +59,7 @@ public class BlockerManager : MonoBehaviour {
 		CheckForBossSecret2Blocker ();
 		CheckForBossSecret3Blocker ();
 		CheckForAxeSecret3Reward ();
+		CheckForEnding ();
 	}
 
 	void CheckForBackVillageBlocker (){
@@ -100,6 +104,14 @@ public class BlockerManager : MonoBehaviour {
 			axeSecret3Reward.transform.position = axeSecret3RewardInitialPos;
 		} else {
 			axeSecret3Reward.transform.position = new Vector3 (axeSecret3RewardInitialPos.x, 0f, axeSecret3RewardInitialPos.z);
+		}
+	}
+
+	void CheckForEnding() {
+		if (gameManager.GetPhase3Info () == true) {
+			endingBlocker.transform.position = endingBlockerInitialPos;
+		} else {
+			endingBlocker.transform.position = new Vector3 (endingBlockerInitialPos.x, 10f, endingBlockerInitialPos.z);
 		}
 	}
 }
