@@ -63,6 +63,7 @@ public class EventManager : MonoBehaviour {
 		secretEvent3Initiated = true;
 		optionalBoss = Instantiate (bossPrefab, bossSpawnPoint.transform.position, Quaternion.identity);
 		optionalBoss.transform.LookAt (player.transform);
+		optionalBoss.transform.parent = FindObjectOfType<EnemyManager> ().gameObject.transform;
 		optionalBoss.GetComponent<EnemyAI> ().enabled = false;
 
 		player.GetComponent<Character> ().SetDestination (playerStandPositionSecret3.transform.position);

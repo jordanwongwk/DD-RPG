@@ -23,8 +23,9 @@ public class BlockerManager : MonoBehaviour {
 	void Start () {
 		gameManager = FindObjectOfType<GameManager> ();
 		eventManager = FindObjectOfType<EventManager> ();
-		gameManager.triggerBossBattle += enteringBossBattle;
-		gameManager.triggerBossEnd += endingBossBattle;
+		gameManager.triggerBossBattle += blockBossArena;
+		gameManager.triggerBossEnd += unblockBossArena;
+		gameManager.triggerRestartBoss += unblockBossArena;
 
 		SettingUpInitialBlockers ();
 	}
@@ -40,12 +41,12 @@ public class BlockerManager : MonoBehaviour {
 	}
 
 	// Boss Blocker
-	void enteringBossBattle(){
+	void blockBossArena(){
 		bossBlocker.SetActive (true);
 		optionalBossBlocker.SetActive (true);
 	}
 
-	void endingBossBattle(){
+	void unblockBossArena(){
 		bossBlocker.SetActive (false);
 		optionalBossBlocker.SetActive (false);
 	}

@@ -24,6 +24,7 @@ public class MusicManager : MonoBehaviour {
 		gameManager = GetComponent<GameManager> ();
 		gameManager.triggerBossBattle += ChangeBossBGM;
 		gameManager.triggerBossEnd += ChangeFieldBGM;
+		gameManager.triggerRestartBoss += ChangeFieldBGM;
 	}
 
 	// Update is called once per frame

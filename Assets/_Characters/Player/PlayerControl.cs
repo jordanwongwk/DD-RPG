@@ -38,7 +38,7 @@ namespace RPG.Characters{
 			cameraRayCaster.onMouseOverEnemy += MouseOverEnemy;
 			cameraRayCaster.onMouseOverWalkable += MouseOverWalkable;
 
-			gameManager.onPlayerRespawn += SetPlayerBackToRespawnPoint;
+			gameManager.onPlayerRespawn += OnPlayerRespawn;
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
@@ -130,7 +130,10 @@ namespace RPG.Characters{
 			isPlayerFreeToMove = permission;
 		}
 
-		void SetPlayerBackToRespawnPoint(){
+		void OnPlayerRespawn(){
+			if (inBossBattle) {
+				inBossBattle = false;
+			}
 			character.PlayerRespawnSetup ();
 		}
 	}

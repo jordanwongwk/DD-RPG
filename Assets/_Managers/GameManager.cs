@@ -13,12 +13,16 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] bool isSecret4Done = false;
 
 	float bossDefeated = 0;
+	bool isInBossBattle = false;
 
 	public delegate void TriggerBossBattle();
 	public event TriggerBossBattle triggerBossBattle;
 
 	public delegate void TriggerBossEnd();
 	public event TriggerBossEnd triggerBossEnd;
+
+	public delegate void TriggerRestartBoss();
+	public event TriggerRestartBoss triggerRestartBoss;
 
 	public delegate void OnRespawning();
 	public event OnRespawning onPlayerRespawn;
@@ -92,16 +96,24 @@ public class GameManager : MonoBehaviour {
 
 	public void TriggerBossBattleDelegate(){
 		triggerBossBattle ();
+		isInBossBattle = true;
 	}
 
 	public void TriggerBossEndDelegate(){
 		triggerBossEnd ();
+		isInBossBattle = false;
 		bossDefeated += 1;
 
 		if (bossDefeated == 1) {
 			SetPhase3Done ();
 		} else if (bossDefeated == 2) {
 			SetSecret3Done ();
+		}
+	}
+
+	public void RestartBossBattleUponDeath() {
+		if (isInBossBattle) {
+			triggerRestartBoss ();
 		}
 	}
 

@@ -83,13 +83,18 @@ namespace RPG.Characters{
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
 				gameManager.StartRespawnDelegates ();
+				gameManager.RestartBossBattleUponDeath ();
 				animator.SetTrigger (REVIVE_TRIGGER);
 			}
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
 				GetComponent<CapsuleCollider> ().enabled = false;
 				yield return new WaitForSeconds (deathVanishInSeconds);
-				gameObject.SetActive (false);
+				if (gameObject.tag == "Boss") {
+					Destroy (gameObject);
+				} else {
+					gameObject.SetActive (false);
+				}
 			}
 		}
 	}

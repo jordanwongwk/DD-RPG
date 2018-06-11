@@ -10,6 +10,7 @@ namespace RPG.Characters {
 		void Start () {
 			GameManager gameManager = FindObjectOfType<GameManager> ();
 			gameManager.onPlayerRespawn += RespawnEnemiesOnBrinkOfDeath;
+			gameManager.triggerBossEnd += UpdateEnemyList;
 
 			UpdateEnemyList ();
 		}
