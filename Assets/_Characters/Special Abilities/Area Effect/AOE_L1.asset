@@ -19,3 +19,7 @@ MonoBehaviour:
   abilityAnimation: {fileID: 7400000, guid: cfbcf9f760221e34d91bd6f4c6aeed64, type: 3}
   radius: 5
   damageEachTarget: 60
+  requiresChanneling: 0
+  channelTime: 2
+  dangerCircle: {fileID: 1501884616789356, guid: cf32cc0230f35d34ca9ccabbcf131bef,
+    type: 2}

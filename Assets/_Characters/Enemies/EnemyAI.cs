@@ -14,9 +14,7 @@ namespace RPG.Characters {
 
 		[Header("Skills")]
 		[SerializeField] AbilityConfig[] abilities = null;
-		[SerializeField] GameObject dangerCircle = null;
-		[SerializeField] float timeWaitBetweenCasts = 5f;
-		[SerializeField] float channelTime = 3f;
+		[SerializeField] float timeWaitBetweenCasts = 5f;			
 
 		const int ABILITY_NUMBER_0 = 0;
 
@@ -116,14 +114,11 @@ namespace RPG.Characters {
 
 		IEnumerator CastAbility(){
 			state = State.castingAbility;
-			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
-			targetCircle.transform.parent = gameObject.transform;
 			// TODO Add Audio
-			yield return new WaitForSeconds (channelTime);
-
-			timeLastCast = Time.time;
 			abilities [ABILITY_NUMBER_0].Use (null);
-			Destroy (targetCircle);
+			float channelTime = abilities [ABILITY_NUMBER_0].GetChannelTime ();
+			yield return new WaitForSeconds (channelTime);
+			timeLastCast = Time.time;
 			isReadyToCastAbility = false;
 		}
 

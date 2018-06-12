@@ -5,8 +5,28 @@ using RPG.Core;
 
 namespace RPG.Characters {
 	public class AreaEffectBehaviour : AbilityBehaviour {
-
+		
 		public override void Use(GameObject target) {
+			if ((config as AreaEffectConfig).GetRequiresChanneling () == true) {
+				StartCoroutine (AbilityChanneling ());
+			} else {
+				ExecuteAbility ();
+			}
+		}
+
+		IEnumerator AbilityChanneling(){
+			float channelTime = (config as AreaEffectConfig).GetChannelTime ();
+			var dangerCircle = (config as AreaEffectConfig).GetDangerCircle ();
+			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
+			targetCircle.transform.parent = gameObject.transform;
+
+			yield return new WaitForSeconds (channelTime);
+			Destroy (targetCircle);
+			ExecuteAbility ();
+		}
+
+		void ExecuteAbility ()
+		{
 			DealingRadialDamage ();
 			PlayParticleEffect ();
 			PlayAbilitySound ();

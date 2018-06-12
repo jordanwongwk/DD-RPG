@@ -12,6 +12,11 @@ namespace RPG.Characters {
 		[SerializeField] AudioClip[] audioClips = null;
 		[SerializeField] AnimationClip abilityAnimation = null;
 
+		[Header("Channeling Setup")]
+		[SerializeField] bool requiresChanneling = false;
+		[SerializeField] float channelTime = 5f;
+		[SerializeField] GameObject dangerCircle = null;
+
 		protected AbilityBehaviour behaviour;
 
 		public abstract AbilityBehaviour GetAbilityBehaviour (GameObject gameObjectToAttachTo);
@@ -41,6 +46,18 @@ namespace RPG.Characters {
 		public AnimationClip GetAbilityAnimation(){
 			RemoveAnimationEvent ();
 			return abilityAnimation;
+		}
+
+		public bool GetRequiresChanneling(){
+			return requiresChanneling;
+		}
+
+		public float GetChannelTime(){
+			return channelTime;
+		}
+
+		public GameObject GetDangerCircle(){
+			return dangerCircle;
 		}
 
 		// Removing the asset pack's animation's event clip to prevent errors or bugs
