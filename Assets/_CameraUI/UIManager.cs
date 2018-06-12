@@ -50,8 +50,6 @@ namespace RPG.CameraUI {
 			interactionInstruction.SetActive(false);
 			interactionTextBar.SetActive (false);
 			PanelFadeIn();
-
-			QuestTrackerUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
 		}
 
 		// Conversation Tracker
@@ -79,9 +77,7 @@ namespace RPG.CameraUI {
 		// END Conversation Tracker
 
 		void Update(){
-			if (gameManager.GetPhase1Info() == true) {
-				QuestTrackerUpdate ("Head to the castle to find out what happened to the missing villagers.");
-			}
+			QuestTrackerUpdate ();
 
 			if (isPanelFadingOut) {
 				StartCoroutine (FadingOutPanel ());
@@ -95,9 +91,22 @@ namespace RPG.CameraUI {
 				ResumingGame ();
 			}
 		}
-
+			
 		// Quest Tracker
-		public void QuestTrackerUpdate(string questObjective){
+		void QuestTrackerUpdate ()
+		{
+			if (gameManager.GetPhase1Info () == false) {
+				QuestTrackerTextUpdate ("Head to the Village of Kalm and deliver the package to Derrick.");
+			} else if (gameManager.GetPhase1Info () == true && gameManager.GetSecret2Info () == false) {
+				QuestTrackerTextUpdate ("Head to the castle and find out what happened to the missing villagers.");
+			} else if (gameManager.GetSecret2Info () == true && gameManager.GetSecret3Info () == false) {
+				QuestTrackerTextUpdate ("Head back to town to warn the people about the impending attack!");
+			} else if (gameManager.GetSecret3Info () == true) {
+				QuestTrackerTextUpdate ("Chase after Derrick towards the direction of Cornelia's castle!");
+			}
+		}
+
+		void QuestTrackerTextUpdate(string questObjective){
 			questText.text = questObjective;
 		}
 		// END Quest Tracker

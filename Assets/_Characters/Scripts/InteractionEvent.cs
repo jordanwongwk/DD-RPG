@@ -218,7 +218,7 @@ namespace RPG.Characters{
 
 					storyPhase1Done = true;	
 				} else {
-					interactText.Add ("Derrick: \nBe extra careful boy");
+					interactText.Add ("Derrick: \nBe extra careful boy.");
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
