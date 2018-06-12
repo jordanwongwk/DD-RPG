@@ -1969,6 +1969,7 @@ MonoBehaviour:
   baseDamage: 24
   currentWeaponConfig: {fileID: 11400000, guid: 4b60e262c01d77046a094cf022c9241b,
     type: 2}
+  secret4RequirementWeapon: {fileID: 0}
 --- !u!114 &114128352834922494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1984,6 +1985,7 @@ MonoBehaviour:
   colliderRadius: 0.5
   colliderHeight: 2
   isTriggerCollider: 1
+  isThisKinematic: 0
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
@@ -1998,6 +2000,7 @@ MonoBehaviour:
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
+  characterForwardMove: 1
 --- !u!114 &114293466969886052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2040,6 +2043,10 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
+  abilities: []
+  dangerCircle: {fileID: 0}
+  timeWaitBetweenCasts: 5
+  channelTime: 3
 --- !u!114 &114547933991010538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2143,7 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742fbee13f1732b42a45580ffdc40ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 80
+  maxHealthPoints: 180
   deathVanishInSeconds: 2
   healthBar: {fileID: 114599885360249740}
   damageSounds:

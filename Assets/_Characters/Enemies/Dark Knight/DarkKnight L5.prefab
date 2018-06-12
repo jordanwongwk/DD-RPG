@@ -2063,6 +2063,7 @@ MonoBehaviour:
   baseDamage: 60
   currentWeaponConfig: {fileID: 11400000, guid: 5562c51e1dade56409e79c384434b212,
     type: 2}
+  secret4RequirementWeapon: {fileID: 0}
 --- !u!114 &114680213613707274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2190,7 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742fbee13f1732b42a45580ffdc40ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 800
+  maxHealthPoints: 900
   deathVanishInSeconds: 2
   healthBar: {fileID: 114554153322371400}
   damageSounds:
