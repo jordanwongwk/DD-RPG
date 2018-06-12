@@ -15,6 +15,7 @@ namespace RPG.Characters {
 		[Header("Channeling Setup")]
 		[SerializeField] bool requiresChanneling = false;
 		[SerializeField] float channelTime = 5f;
+		[SerializeField] GameObject channelParticle = null;
 		[SerializeField] GameObject dangerCircle = null;
 
 		protected AbilityBehaviour behaviour;
@@ -54,6 +55,10 @@ namespace RPG.Characters {
 
 		public float GetChannelTime(){
 			return channelTime;
+		}
+
+		public GameObject GetChannelParticle(){
+			return channelParticle;
 		}
 
 		public GameObject GetDangerCircle(){

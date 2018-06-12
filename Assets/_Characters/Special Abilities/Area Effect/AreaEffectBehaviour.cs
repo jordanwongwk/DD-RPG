@@ -17,11 +17,20 @@ namespace RPG.Characters {
 		IEnumerator AbilityChanneling(){
 			float channelTime = (config as AreaEffectConfig).GetChannelTime ();
 			var dangerCircle = (config as AreaEffectConfig).GetDangerCircle ();
-			GameObject targetCircle = Instantiate (dangerCircle, transform.position, Quaternion.identity);
+			Vector3 circlePostion = new Vector3 (transform.position.x, (transform.position.y + 0.25f), transform.position.z);
+			GameObject targetCircle = Instantiate (dangerCircle, circlePostion, Quaternion.identity);
 			targetCircle.transform.parent = gameObject.transform;
+
+			GameObject particleSystemPrefab = null;
+			if (config.GetChannelParticle () != null) {
+				particleSystemPrefab = Instantiate (config.GetChannelParticle (), transform.position, Quaternion.identity);
+				particleSystemPrefab.transform.parent = transform;
+				particleSystemPrefab.GetComponent<ParticleSystem> ().Play ();
+			}
 
 			yield return new WaitForSeconds (channelTime);
 			Destroy (targetCircle);
+			Destroy (particleSystemPrefab);
 			ExecuteAbility ();
 		}
 

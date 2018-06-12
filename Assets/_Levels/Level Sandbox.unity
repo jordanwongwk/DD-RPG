@@ -65965,16 +65965,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114862130377802458, guid: 8d9867d6645067344b200e3c0d866e6f,
-        type: 2}
-      propertyPath: chaseRadius
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114680213613707274, guid: 8d9867d6645067344b200e3c0d866e6f,
-        type: 2}
-      propertyPath: moveSpeedMultiplier
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d9867d6645067344b200e3c0d866e6f, type: 2}
   m_IsPrefabParent: 0

@@ -16,8 +16,6 @@ namespace RPG.Characters {
 		[SerializeField] AbilityConfig[] abilities = null;
 		[SerializeField] float timeWaitBetweenCasts = 5f;			
 
-		const int ABILITY_NUMBER_0 = 0;
-
 		float timeLastCast;
 		bool isReadyToCastAbility = false;
 
@@ -66,7 +64,9 @@ namespace RPG.Characters {
 				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility) {
 					StopAllCoroutines ();
 					weaponSystem.StopAttacking ();
-					StartCoroutine (CastAbility ());
+					Debug.Log (abilities.Length);
+					int chosenAbility = Random.Range (0, abilities.Length);
+					StartCoroutine (CastAbility (chosenAbility));
 				}
 			}
 		}
@@ -112,11 +112,11 @@ namespace RPG.Characters {
 			}
 		}
 
-		IEnumerator CastAbility(){
+		IEnumerator CastAbility(int abilityNumber){
 			state = State.castingAbility;
 			// TODO Add Audio
-			abilities [ABILITY_NUMBER_0].Use (null);
-			float channelTime = abilities [ABILITY_NUMBER_0].GetChannelTime ();
+			abilities [abilityNumber].Use (null);
+			float channelTime = abilities [abilityNumber].GetChannelTime ();
 			yield return new WaitForSeconds (channelTime);
 			timeLastCast = Time.time;
 			isReadyToCastAbility = false;

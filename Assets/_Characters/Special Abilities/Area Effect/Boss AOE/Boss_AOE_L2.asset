@@ -9,18 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a841c4936ad9c9448a303e2d7e3366c3, type: 3}
-  m_Name: Boss_AOE_L1
+  m_Name: Boss_AOE_L2
   m_EditorClassIdentifier: 
   energyCost: 0
-  particleSystem: {fileID: 1030251185491102, guid: 73a8e8a2f60657248a04e5a3fbb839e8,
+  particleSystem: {fileID: 1516384764789250, guid: e6565d22ac32d2441afaa96fdff4838d,
     type: 2}
   audioClips:
   - {fileID: 8300000, guid: ebe28f02c050dcb4ca0e25813cf48624, type: 3}
   abilityAnimation: {fileID: 7400000, guid: d3c489e10a6d2a845a62c2119a24b697, type: 3}
   requiresChanneling: 1
-  channelTime: 3
-  channelParticle: {fileID: 0}
-  dangerCircle: {fileID: 1501884616789356, guid: cf32cc0230f35d34ca9ccabbcf131bef,
+  channelTime: 5
+  channelParticle: {fileID: 1585912433350714, guid: 6a83aa79b19271d4689a2d6c57bcb79e,
     type: 2}
-  radius: 5
-  damageEachTarget: 100
+  dangerCircle: {fileID: 1501884616789356, guid: 06d6480aeb24830488da60fb585e34bf,
+    type: 2}
+  radius: 7
+  damageEachTarget: 450

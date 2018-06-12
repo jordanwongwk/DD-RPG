@@ -2063,7 +2063,6 @@ MonoBehaviour:
   baseDamage: 60
   currentWeaponConfig: {fileID: 11400000, guid: 5562c51e1dade56409e79c384434b212,
     type: 2}
-  secret4RequirementWeapon: {fileID: 0}
 --- !u!114 &114680213613707274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2089,7 +2088,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
-  moveSpeedMultiplier: 0.8
+  moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
@@ -2127,16 +2126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 20
+  chaseRadius: 15
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
   abilities:
   - {fileID: 11400000, guid: 02e823f1eb1b7574ca1bfc5ea969cdd1, type: 2}
-  dangerCircle: {fileID: 1501884616789356, guid: cf32cc0230f35d34ca9ccabbcf131bef,
-    type: 2}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114893860188358018
 MonoBehaviour:
   m_ObjectHideFlags: 1
