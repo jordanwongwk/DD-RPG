@@ -10,6 +10,7 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject interactionInstruction = null;
 		[SerializeField] GameObject interactionTextBar = null;
 		[SerializeField] GameObject gamePanel = null;
+		[SerializeField] GameObject pausePanel = null;
 
 		Text skillText;
 		Text questText;
@@ -18,12 +19,15 @@ namespace RPG.CameraUI {
 		Image gamePanelBackground;
 		RawImage interPortrait;
 		GameManager gameManager;
+		MySceneManager mySceneManager;
 		Color panelColor;
 
+		bool isPausePanelActive = false;
 		bool isPanelFadingIn = false;
 		bool isPanelFadingOut = false;
 
 		const float FADE_TIME = 3.0f;
+		const float TIME_END_GAME = 5.0f;
 
 		// Use this for initialization
 		void Start () {
@@ -32,6 +36,8 @@ namespace RPG.CameraUI {
 			instructionText = interactionInstruction.GetComponent<Text> ();
 			interText = interactionTextBar.GetComponentInChildren<Text> ();
 			interPortrait = interactionTextBar.GetComponentInChildren<RawImage> ();
+			mySceneManager = FindObjectOfType<MySceneManager> ();
+
 			gamePanelBackground = gamePanel.GetComponent<Image> ();
 			panelColor = gamePanelBackground.color;
 			panelColor.a = 1.0f;
@@ -81,6 +87,12 @@ namespace RPG.CameraUI {
 				StartCoroutine (FadingOutPanel ());
 			} else if (isPanelFadingIn) {
 				StartCoroutine (FadingInPanel ());
+			}
+
+			if (Input.GetKeyDown (KeyCode.Escape) && !isPausePanelActive) {
+				PausingGame ();
+			} else if (Input.GetKeyDown (KeyCode.Escape) && isPausePanelActive) {
+				ResumingGame ();
 			}
 		}
 
@@ -136,5 +148,30 @@ namespace RPG.CameraUI {
 			yield return null;
 		}
 		// END Panel Fading
+
+		// Pause Panel
+		void PausingGame ()
+		{
+			pausePanel.SetActive (true);
+			isPausePanelActive = true;
+			Time.timeScale = 0f;
+		}
+
+		public void ResumingGame() {
+			pausePanel.SetActive (false);
+			isPausePanelActive = false;
+			Time.timeScale = 1f;
+		}
+
+		public void BackToMainMenu () {
+			StartCoroutine (BackToMainMenuCoroutine ());
+		}
+
+		IEnumerator BackToMainMenuCoroutine() {
+			PanelFadeOut ();
+			yield return new WaitForSeconds (TIME_END_GAME);
+			mySceneManager.MainMenuScene ();
+		}
+		// END Pause Panel
 	}
 }

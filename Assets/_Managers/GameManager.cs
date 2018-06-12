@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using RPG.CameraUI;
 
 public class GameManager : MonoBehaviour {
 
-	[SerializeField] int sceneAfterEndGame = 0;
+	MySceneManager mySceneManager;
 
 	[SerializeField] bool isPhase1Done = false;		
 	[SerializeField] bool isPhase2Done = false;		
@@ -36,6 +35,10 @@ public class GameManager : MonoBehaviour {
 
 	public delegate void EndGameSetup();
 	public event EndGameSetup endGameSetup;
+
+	void Start() {
+		mySceneManager = FindObjectOfType<MySceneManager> ();
+	}
 
 	// MAIN STORY
 	// Phase 1 : Passed the package to Derrick, proceed to help investigate the castle to the west.
@@ -147,7 +150,7 @@ public class GameManager : MonoBehaviour {
 		endGameSetup ();
 		PlayerPrefSettingUp ();
 		yield return new WaitForSeconds (TIME_END_GAME);
-		SceneManager.LoadScene (sceneAfterEndGame);
+		mySceneManager.RankingScene ();
 	}
 
 	void PlayerPrefSettingUp(){

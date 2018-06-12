@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114278299235564908}
   - component: {fileID: 114886863584119422}
   - component: {fileID: 114990318252788600}
+  - component: {fileID: 114977658390443312}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -68,7 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a72c6e50e9d0498626988f183d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAfterEndGame: 2
   isPhase1Done: 0
   isPhase2Done: 0
   isPhase3Done: 0
@@ -94,6 +94,20 @@ MonoBehaviour:
   bossSecret3Blocker: {fileID: 0}
   axeSecret3Reward: {fileID: 0}
   endingBlocker: {fileID: 0}
+--- !u!114 &114977658390443312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119971714740168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2291ed03d94364cb828961ae4105d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuSceneIndex: 0
+  startGameSceneIndex: 1
+  rankingSceneIndex: 2
 --- !u!114 &114990318252788600
 MonoBehaviour:
   m_ObjectHideFlags: 1
