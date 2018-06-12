@@ -8,8 +8,8 @@ namespace RPG.Characters {
 		
 		[SerializeField] WeaponConfig weaponConfig = null;
 		[SerializeField] AudioClip pickUpSFX = null;
-		[SerializeField] bool gotThisWeapon = false;
 
+		bool gotThisWeapon = false;
 		AudioSource audioSource;
 		GameManager gameManager;
 

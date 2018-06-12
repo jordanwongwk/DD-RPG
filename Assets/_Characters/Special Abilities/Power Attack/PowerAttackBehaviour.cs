@@ -14,7 +14,12 @@ namespace RPG.Characters {
 
 		void DealingPowerDamage (GameObject target)
 		{
-			float damageToDeal = (config as PowerAttackConfig).GetExtraDamage ();
+			float damageMultiplier = (config as PowerAttackConfig).GetDamageMultiplier ();
+			float baseDamage = GetComponent<WeaponSystem> ().GetBaseDamage ();
+			var weaponInHand = GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
+			float weaponDamage = weaponInHand.GetAdditionalDamage ();
+			float damageToDeal = (weaponDamage * damageMultiplier) + baseDamage;
+
 			target.GetComponent<HealthSystem>().TakeDamage (damageToDeal);
 		}
 	}

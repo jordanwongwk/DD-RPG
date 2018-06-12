@@ -7,7 +7,7 @@ namespace RPG.Characters{
 	public class WeaponSystem : MonoBehaviour {
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] WeaponConfig currentWeaponConfig;
-		[SerializeField] WeaponConfig secret4RequirementWeapon;
+		[SerializeField] WeaponConfig secret4RequirementWeapon = null;
 
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 		const string ATTACK_TRIGGER = "isAttacking";
@@ -69,6 +69,10 @@ namespace RPG.Characters{
 
 		public WeaponConfig GetCurrentWeaponConfig(){
 			return currentWeaponConfig;
+		}
+
+		public float GetBaseDamage(){
+			return baseDamage;
 		}
 
 		public void AttackTarget(GameObject targetToAttack){
