@@ -27061,7 +27061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: 19e0998e105d0ba4581aab56c89dafb8, type: 2}
   pickUpSFX: {fileID: 8300000, guid: 0ffc03b1b9ccb0545af7d5871a93b44a, type: 3}
-  gotThisWeapon: 0
 --- !u!4 &561229330 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4485790557928886, guid: 9462365560fea9046a1b5a2b34b74a38,
@@ -35367,7 +35366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: ab5dd990355c3ec44bb7d9291657897d, type: 2}
   pickUpSFX: {fileID: 8300000, guid: 0ffc03b1b9ccb0545af7d5871a93b44a, type: 3}
-  gotThisWeapon: 0
 --- !u!4 &678838041 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4485790557928886, guid: 9462365560fea9046a1b5a2b34b74a38,
@@ -45320,7 +45318,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: cb2670f787941d047a37d741386f623e, type: 2}
   pickUpSFX: {fileID: 8300000, guid: 0ffc03b1b9ccb0545af7d5871a93b44a, type: 3}
-  gotThisWeapon: 0
 --- !u!1001 &913092772
 Prefab:
   m_ObjectHideFlags: 0
@@ -60626,7 +60623,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: f634af8f15ec22a4597754a4f65518e2, type: 2}
   pickUpSFX: {fileID: 8300000, guid: 0ffc03b1b9ccb0545af7d5871a93b44a, type: 3}
-  gotThisWeapon: 0
 --- !u!1 &1251125036
 GameObject:
   m_ObjectHideFlags: 0
@@ -65718,7 +65714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: 9f755b8f4a5912a48811ce5859d42498, type: 2}
   pickUpSFX: {fileID: 8300000, guid: 0ffc03b1b9ccb0545af7d5871a93b44a, type: 3}
-  gotThisWeapon: 0
 --- !u!1 &1352217171 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1799794712854244, guid: cbf5a4e90897dac4ab47995c1ce3a61c,
@@ -75596,7 +75591,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -11.6
+      value: 40.9
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -75604,7 +75599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -39.7
+      value: -93.5
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -92665,6 +92660,12 @@ Prefab:
       propertyPath: endingBlocker
       value: 
       objectReference: {fileID: 1204134232}
+    - target: {fileID: 114830889437644864, guid: f0ec9c3d184b61b41ae9490b77205cc2,
+        type: 2}
+      propertyPath: secret4RequirementWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: cb2670f787941d047a37d741386f623e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
   m_IsPrefabParent: 0

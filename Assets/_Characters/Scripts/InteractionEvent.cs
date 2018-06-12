@@ -23,7 +23,6 @@ namespace RPG.Characters{
 		GameObject player;
 		UIManager uIManager;
 		GameManager gameManager;
-		WeaponSystem playerWeaponSystem;
 		List<Texture> interactPortrait = new List<Texture> ();
 		List<string> interactText = new List<string>();
 		int convoSequence;
@@ -47,7 +46,6 @@ namespace RPG.Characters{
 			uIManager = FindObjectOfType<UIManager> ();
 			gameManager = FindObjectOfType<GameManager> ();
 			eventManager = FindObjectOfType<EventManager> ();
-			playerWeaponSystem = player.GetComponent<WeaponSystem> ();
 		}
 
 		void Update(){
@@ -305,14 +303,14 @@ namespace RPG.Characters{
 					}
 
 					tavernInitialChat = true;
-				} else if (gameManager.GetSecret3Info () == true && playerWeaponSystem.GetIsReadyForSecret4 () == false) {
+				} else if (gameManager.GetSecret3Info () == true && gameManager.GetSecret4Info() == false && gameManager.GetSecret4ReadyInfo() == false) {
 					interactText.Add ("Tavern Owner: \nYou need something boy? Got a feeling you have a question to me. Ask away.");
 					interactText.Add ("You: \n*Maybe I can ask him if I can show him the item.*");
 
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 
-				} else if (gameManager.GetSecret3Info () == true && gameManager.GetSecret4Info() == false && playerWeaponSystem.GetIsReadyForSecret4 () == true) {
+				} else if (gameManager.GetSecret3Info () == true && gameManager.GetSecret4Info() == false && gameManager.GetSecret4ReadyInfo() == true) {
 					interactText.Add ("You: \nOld man, you say you know a lot right? Tell me about this weapon.");
 					interactText.Add ("Tavern Owner: \nHmm, this is no ordinary axe. Was this wielded by Derrick's dark knight?");
 					interactText.Add ("You: \nYeah. The moment I hold it I felt strange, its very light and easy to hold but when I hit the floor, it felt like it weights a ton.");

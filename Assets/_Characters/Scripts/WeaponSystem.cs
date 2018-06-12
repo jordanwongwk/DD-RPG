@@ -7,25 +7,22 @@ namespace RPG.Characters{
 	public class WeaponSystem : MonoBehaviour {
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] WeaponConfig currentWeaponConfig;
-		[SerializeField] WeaponConfig secret4RequirementWeapon = null;
 
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 		const string ATTACK_TRIGGER = "isAttacking";
 
 		float timeLastHit;
-		bool isReadyForSecret4 = false;
+
 		Animator animator;
 		GameObject target;
 		GameObject weaponObject;
 		Character character;
 		GameObject projectile;
-		GameObject player;
 		WeaponConfig playerWeaponInHand;
 
 		void Start () {
 			character = GetComponent<Character> ();
 			animator = GetComponent<Animator> ();
-			player = FindObjectOfType<PlayerControl> ().gameObject;
 
 			ChangeWeaponInHand (currentWeaponConfig);	
 			SetAttackAnimation (); 
@@ -34,16 +31,6 @@ namespace RPG.Characters{
 		void Update() {
 			bool targetIsDead;
 			bool targetIsOutOfRange;
-
-			if (player) {
-				playerWeaponInHand = player.GetComponent<WeaponSystem> ().currentWeaponConfig;
-
-				if (playerWeaponInHand == secret4RequirementWeapon && isReadyForSecret4 == false) {
-					isReadyForSecret4 = true;
-				} else if (playerWeaponInHand != secret4RequirementWeapon && isReadyForSecret4 == true) {
-					isReadyForSecret4 = false;
-				}
-			}
 
 			if (target == null) {
 				targetIsDead = false;
@@ -61,10 +48,6 @@ namespace RPG.Characters{
 			if (characterIsDead || targetIsDead || targetIsOutOfRange) {
 				StopAllCoroutines ();
 			}
-		}
-
-		public bool GetIsReadyForSecret4(){
-			return isReadyForSecret4;
 		}
 
 		public WeaponConfig GetCurrentWeaponConfig(){

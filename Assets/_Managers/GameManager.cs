@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.CameraUI;
+using RPG.Characters;
 
 public class GameManager : MonoBehaviour {
+	[SerializeField] WeaponConfig secret4RequirementWeapon = null;
 
 	MySceneManager mySceneManager;
 
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	int secretsFound = 0;
 	int weaponsFound = 0;
 	bool isInBossBattle = false;
+	bool isReadyForSecret4 = false;
 
 	const float TIME_END_GAME = 5.0f;
 
@@ -101,9 +104,24 @@ public class GameManager : MonoBehaviour {
 	}
 
 	// Secret 4: Learn about Axe origin and MC's truth (hint). REQUIRED SECRET 3 and AXE
+	void ReadyForSecret4(){
+		var player = FindObjectOfType<PlayerControl>();
+		var playerWeaponInHand = player.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
+
+		if (playerWeaponInHand == secret4RequirementWeapon && isReadyForSecret4 == false && GetSecret4Info() == false) {
+			isReadyForSecret4 = true;
+		} else if (GetSecret4Info() == true) {
+			isReadyForSecret4 = false;			// Toggle back to false
+		}
+	}
+
 	public void SetSecret4Done (){
 		isSecret4Done = true;
 		secretsFound += 1;
+	}
+
+	public bool GetSecret4ReadyInfo(){
+		return isReadyForSecret4;
 	}
 
 	public bool GetSecret4Info () {
@@ -158,5 +176,10 @@ public class GameManager : MonoBehaviour {
 		PlayerPrefManager.SetSecretDiscovered (secretsFound);
 		PlayerPrefManager.SetWeaponDiscovered (weaponsFound);
 		PlayerPrefManager.SetBossDefeated (bossDefeated);
+	}
+
+
+	void Update(){
+		ReadyForSecret4 ();
 	}
 }
