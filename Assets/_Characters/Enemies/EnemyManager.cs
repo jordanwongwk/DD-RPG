@@ -12,6 +12,7 @@ namespace RPG.Characters {
 			gameManager.onPlayerRespawn += RespawnEnemiesOnBrinkOfDeath;
 			gameManager.triggerBossEnd += UpdateEnemyList;
 			gameManager.endGameSetup += CalculateEnemiesLeft;
+			gameManager.triggerBossBattle += RegisteringEnemyIntoList;
 
 			UpdateEnemyList ();
 		}
@@ -46,6 +47,10 @@ namespace RPG.Characters {
 		void CalculateEnemiesLeft () {
 			DestroyEnemyOnBrinkOfDeath ();
 			PlayerPrefManager.SetEnemiesLeft (allEnemies.Count);
+		}
+
+		void RegisteringEnemyIntoList(){
+			UpdateEnemyList ();
 		}
 	}
 }

@@ -25,6 +25,7 @@ namespace RPG.Characters {
 		PlayerControl player;
 		Character character;
 		WeaponSystem weaponSystem;
+		GameManager gameManager;
 
 		public enum State { idle, attacking, chasing, patroling, castingAbility }
 		State state = State.idle;
@@ -32,9 +33,16 @@ namespace RPG.Characters {
 		void Start(){
 			character = GetComponent<Character> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
-			player = FindObjectOfType<PlayerControl>();
+			player = FindObjectOfType<PlayerControl> ();
+			gameManager = FindObjectOfType<GameManager> ();
+			gameManager.onPlayerRespawn += OnPlayerRespawn;
 
 			SetupAbilitiesBehaviour ();
+		}
+
+		void OnPlayerRespawn ()
+		{
+			State state = State.idle;
 		}
 
 		void SetupAbilitiesBehaviour () {
@@ -57,14 +65,13 @@ namespace RPG.Characters {
 					StopAllCoroutines ();
 					StartCoroutine (ChasePlayer ());
 				}
-				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility) {
+				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility && player.GetComponent<Character>().GetIsAlive()) {
 					StopAllCoroutines ();
 					StartCoroutine (AttackPlayer ());
 				}
-				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility) {
+				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility && player.GetComponent<Character>().GetIsAlive()) {
 					StopAllCoroutines ();
 					weaponSystem.StopAttacking ();
-					Debug.Log (abilities.Length);
 					int chosenAbility = Random.Range (0, abilities.Length);
 					StartCoroutine (CastAbility (chosenAbility));
 				}
