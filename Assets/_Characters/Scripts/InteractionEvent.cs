@@ -103,12 +103,21 @@ namespace RPG.Characters{
 		void StartInteraction(){
 			startConversation = true;
 			convoSequence = 0;
+			PlayingGreetingsClip ();
 			SettingUpConvoTextAndPortraits ();
 
 			uIManager.ShowInteractionTextBox ();
 			uIManager.SetInteractionText (interactText [convoSequence]);
 			uIManager.SetInteractionPortrait (interactPortrait [convoSequence]);
 			player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
+		}
+
+		void PlayingGreetingsClip(){
+			if (GetComponent<Character> () == true) {
+				AudioClip greetings = GetComponent<Character> ().GetGreetingsAudioClip ();
+				AudioSource audioSource = GetComponent<AudioSource> ();
+				audioSource.PlayOneShot (greetings);
+			}
 		}
 
 		void EndInteraction ()
@@ -341,7 +350,7 @@ namespace RPG.Characters{
 					interactText.Add ("You(?): \nHe's making fake weapons out of such pure power! The nerve of that human.");
 					interactText.Add ("Tavern Owner: \nHmm... Fake? That's an interesting reply. Well, I can dig that information out of my own source.");
 					interactText.Add ("Tavern Owner: \nAnyway, if you are asking for Derrick, I saw him running off into Cornelia. I'm placing my bet he went back to their hideout.");
-					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. Don't get yourself killed. I'm sure Derrick is more dangerous now with those weapons up his sleeves.");
+					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. Don't get yourself killed. I'm sure Derrick is more dangerous now with those corrupted weapons.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);

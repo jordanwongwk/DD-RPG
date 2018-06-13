@@ -30,6 +30,7 @@ namespace RPG.Characters {
 		[Header("Audio Source Settings")]
 		[Range(0, 1.0f)][SerializeField] float audioVolume = 0.8f;
 		[Range(0, 1.0f)][SerializeField] float audioSpatialBlend = 0f;
+		[Tooltip("Only for NPC")][SerializeField] AudioClip greetingsClip = null;
 
 		[Header("Movement Settings")]
 		[SerializeField] float moveSpeedMultiplier = 1.5f;
@@ -93,6 +94,10 @@ namespace RPG.Characters {
 			} else {
 				Move (Vector3.zero);
 			}
+		}
+
+		public AudioClip GetGreetingsAudioClip(){
+			return greetingsClip;
 		}
 
 		public float GetAnimSpeedMultiplier(){

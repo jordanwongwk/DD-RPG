@@ -5,15 +5,22 @@ namespace RPG.Characters{
 
 		[SerializeField] AudioClip clip = null;
 		[SerializeField] float distanceToPlayerToTrigger = 5f;
+		[Range(0, 1.0f)][SerializeField] float audioSpatialBlend = 0f;
+		[Range(0, 1.0f)][SerializeField] float audioVolume = 0.8f;
 		[SerializeField] bool isOneTimeOnly = false;
-
-		[SerializeField] bool hasPlayed = false;
+		[SerializeField] bool isLooping = false;
+		[SerializeField] bool simple3DVolume = false;
+			
+		bool hasPlayed = false;
 		AudioSource audioSource;
 		GameObject player;
 
 		void Start () {
 			audioSource = gameObject.AddComponent<AudioSource> ();
 			audioSource.playOnAwake = false;
+			audioSource.spatialBlend = audioSpatialBlend;
+			audioSource.volume = audioVolume;
+			audioSource.loop = isLooping;
 			audioSource.clip = clip;
 			player = FindObjectOfType<PlayerControl> ().gameObject;
 		}
@@ -22,6 +29,12 @@ namespace RPG.Characters{
 			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
 				RequestPlayAudioClip ();
+				if (simple3DVolume) {
+					float realtimeVolume = audioVolume - ((distanceDifferenceToPlayer / distanceToPlayerToTrigger) * audioVolume);
+					audioSource.volume = realtimeVolume;
+				}
+			} else {
+				audioSource.Stop ();
 			}
 		}
 

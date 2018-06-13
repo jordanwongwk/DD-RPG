@@ -541,7 +541,6 @@ GameObject:
   - component: {fileID: 114844387810953160}
   - component: {fileID: 114658100131361872}
   - component: {fileID: 114546310373881758}
-  - component: {fileID: 114255585141244740}
   - component: {fileID: 114853605968210568}
   m_Layer: 2
   m_Name: NPC-DockGuy
@@ -1977,21 +1976,6 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 0}
   currentHealthPoints: 0
---- !u!114 &114255585141244740
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519888563953266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3644fc579118dd4284688acc0cdf6a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 86f0aa21a6a76354097de1caa001ce5b, type: 3}
-  distanceToPlayerToTrigger: 5
-  isOneTimeOnly: 1
-  hasPlayed: 0
 --- !u!114 &114362965392028002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2044,6 +2028,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 8300000, guid: 25b7b6763db231748b4bbcb987b2092a, type: 3}
   moveSpeedMultiplier: 0.75
   animationSpeedMultiplier: 0.75
   movingTurnSpeed: 360
@@ -2104,9 +2089,7 @@ MonoBehaviour:
   waypointTolerance: 2
   waitAtWaypoint: 2
   abilities: []
-  dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114736845238733958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2215,6 +2198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectIdentity: 0
   distanceToPlayerToTrigger: 2
+  offsetToClearConvo: 0.5
   characterPortrait:
   - {fileID: 2800000, guid: d7e677363a0fe9d43bb20ff07cb16433, type: 3}
   - {fileID: 2800000, guid: 1aad0fcabc962c74496d10b052213ea3, type: 3}

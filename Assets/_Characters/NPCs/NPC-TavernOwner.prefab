@@ -1971,7 +1971,6 @@ MonoBehaviour:
   baseDamage: 0
   currentWeaponConfig: {fileID: 11400000, guid: a4d0c8d976844fe44a374293c8248bac,
     type: 2}
-  secret4RequirementWeapon: {fileID: 0}
 --- !u!114 &114037614631002460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2015,9 +2014,7 @@ MonoBehaviour:
   waypointTolerance: 2
   waitAtWaypoint: 1
   abilities: []
-  dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114074789762718494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2162,6 +2159,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 8300000, guid: 327dbec7155f30c4daef4ef2039fd6b2, type: 3}
   moveSpeedMultiplier: 0.75
   animationSpeedMultiplier: 0.75
   movingTurnSpeed: 360

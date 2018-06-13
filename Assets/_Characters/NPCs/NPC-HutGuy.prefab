@@ -2000,9 +2000,7 @@ MonoBehaviour:
   waypointTolerance: 2
   waitAtWaypoint: 1
   abilities: []
-  dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114097324172491326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2055,6 +2053,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 8300000, guid: ba90dffa033dbb04d8f0c89e84e6b16a, type: 3}
   moveSpeedMultiplier: 0.75
   animationSpeedMultiplier: 0.75
   movingTurnSpeed: 360
@@ -2193,6 +2192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectIdentity: 2
   distanceToPlayerToTrigger: 2
+  offsetToClearConvo: 0.5
   characterPortrait:
   - {fileID: 2800000, guid: d7e677363a0fe9d43bb20ff07cb16433, type: 3}
   - {fileID: 2800000, guid: 1aad0fcabc962c74496d10b052213ea3, type: 3}
