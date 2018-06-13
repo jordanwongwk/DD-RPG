@@ -18,6 +18,7 @@ namespace RPG.Characters {
 
 		float timeLastCast;
 		bool isReadyToCastAbility = false;
+		bool channelingAbility = false;
 
 		int nextWaypointIndex;
 		float currentWeaponRange;
@@ -61,7 +62,7 @@ namespace RPG.Characters {
 					StopAllCoroutines ();
 					StartCoroutine (Patrol ());
 				}
-				if (distanceToPlayer <= chaseRadius && distanceToPlayer > currentWeaponRange && state != State.chasing && !isReadyToCastAbility) {
+				if (distanceToPlayer <= chaseRadius && distanceToPlayer > currentWeaponRange && state != State.chasing && !channelingAbility) {
 					StopAllCoroutines ();
 					StartCoroutine (ChasePlayer ());
 				}
@@ -128,12 +129,14 @@ namespace RPG.Characters {
 		IEnumerator CastAbility(int abilityNumber){
 			state = State.castingAbility;
 			// TODO Add Audio
+			channelingAbility = true;
 			abilities [abilityNumber].Use (null);
 			float channelTime = abilities [abilityNumber].GetChannelTime ();
 			yield return new WaitForSeconds (channelTime);
 			timeLastCast = Time.time;
 			yield return new WaitForSeconds (0.75f);			// Make a slight delay between done casting ability -> attacking to prevent damageDelay from messing up
 			isReadyToCastAbility = false;
+			channelingAbility = false;
 		}
 
 		void OnDrawGizmos(){

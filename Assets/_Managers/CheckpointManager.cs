@@ -18,8 +18,6 @@ public class CheckpointManager : MonoBehaviour {
 	EnemyManager enemyManager;
 	Character playerCharacter;
 
-	GameObject currentCheckpointRegistered = null;
-
 	// Use this for initialization
 	void Start () {
 		audioSource = gameObject.AddComponent<AudioSource> ();
@@ -43,7 +41,6 @@ public class CheckpointManager : MonoBehaviour {
 		foreach (GameObject cp in checkpoints) {
 			cp.GetComponent<Checkpoint> ().SetCheckpointOFF (checkpointOFF);
 		}
-		currentCheckpointRegistered = currentCP.gameObject;
 		currentCP.SetCheckpointON (checkpointON);
 		audioSource.PlayOneShot (checkpointFoundClip);
 
