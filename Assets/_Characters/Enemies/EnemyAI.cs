@@ -61,20 +61,21 @@ namespace RPG.Characters {
 					StopAllCoroutines ();
 					StartCoroutine (Patrol ());
 				}
-				if (distanceToPlayer <= chaseRadius && state != State.chasing && !isReadyToCastAbility) {
+				if (distanceToPlayer <= chaseRadius && distanceToPlayer > currentWeaponRange && state != State.chasing && !isReadyToCastAbility) {
 					StopAllCoroutines ();
 					StartCoroutine (ChasePlayer ());
 				}
-				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility && player.GetComponent<Character>().GetIsAlive()) {
+				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility && player.GetComponent<Character> ().GetIsAlive ()) {
 					StopAllCoroutines ();
 					StartCoroutine (AttackPlayer ());
 				}
-				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility && player.GetComponent<Character>().GetIsAlive()) {
+				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility && player.GetComponent<Character> ().GetIsAlive ()) {
 					StopAllCoroutines ();
 					weaponSystem.StopAttacking ();
 					int chosenAbility = Random.Range (0, abilities.Length);
 					StartCoroutine (CastAbility (chosenAbility));
 				}
+
 			}
 		}
 
@@ -99,6 +100,7 @@ namespace RPG.Characters {
 			state = State.chasing;
 			while (distanceToPlayer >= currentWeaponRange) {
 				character.SetDestination (player.transform.position);
+				CheckForAbilityAvailability ();
 				yield return new WaitForEndOfFrame();
 			}
 		}
@@ -106,16 +108,25 @@ namespace RPG.Characters {
 		IEnumerator AttackPlayer(){
 			state = State.attacking;
 			while (distanceToPlayer <= currentWeaponRange) {
-				if (abilities.Length != 0) {				// If there is ability in the enemy
-					float timeWaitForCast = timeWaitBetweenCasts;
-
-					bool isTimeToCast = (Time.time - timeLastCast) > timeWaitForCast;
-					if (isTimeToCast) {
-						isReadyToCastAbility = true;
-					}
-				}
+				changeStateGreenLight = false;
 				weaponSystem.AttackTarget (player.gameObject);
+				CheckForAbilityAvailability ();
 				yield return new WaitForEndOfFrame ();
+			}
+		}
+
+		public void SetChangeStateGreenLight(bool status){
+			changeStateGreenLight = status;
+		}
+
+		void CheckForAbilityAvailability ()
+		{
+			if (abilities.Length != 0) {				// If there is ability in the enemy
+				float timeWaitForCast = timeWaitBetweenCasts;
+				bool isTimeToCast = (Time.time - timeLastCast) > timeWaitForCast;
+				if (isTimeToCast) {
+					isReadyToCastAbility = true;
+				}
 			}
 		}
 
@@ -126,6 +137,7 @@ namespace RPG.Characters {
 			float channelTime = abilities [abilityNumber].GetChannelTime ();
 			yield return new WaitForSeconds (channelTime);
 			timeLastCast = Time.time;
+			yield return new WaitForSeconds (0.75f);			// Make a slight delay between done casting ability -> attacking to prevent damageDelay from messing up
 			isReadyToCastAbility = false;
 		}
 

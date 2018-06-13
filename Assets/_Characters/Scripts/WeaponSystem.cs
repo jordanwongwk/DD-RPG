@@ -95,12 +95,15 @@ namespace RPG.Characters{
 			} else {
 				StartCoroutine (DamageAfterDelay (damageDelay));
 			}
+
+
 		}
 
 		IEnumerator DamageAfterDelay (float damageDelay){
 			yield return new WaitForSecondsRealtime (damageDelay);
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
 			PlayWeaponSFX ();
+
 		}
 
 		IEnumerator FireProjectile(GameObject target, float firingDelay){

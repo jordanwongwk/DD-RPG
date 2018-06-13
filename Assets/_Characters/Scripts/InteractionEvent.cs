@@ -151,7 +151,7 @@ namespace RPG.Characters{
 				if (dockGuyInitialChat == false) {
 					interactText.Add ("Man: \nHeard a lot of commotion in town. Is everything alright?");
 					interactText.Add ("You: \nSome weird people in hood and the townsman start attacking me for no reason. I'm not even sure why.");
-					interactText.Add ("Man: \nSounds like hypnotize spell to me. You should be careful and head back to the city if you can.");
+					interactText.Add ("Man: \nSounds like hypnotize spell to me or defectors. You should be careful and head back to the city if you can.");
 					interactText.Add ("You: \nThanks but I'm heading to Kalm, which way should I go?");
 					interactText.Add ("Man: \nOnly way is up the hill. Take the rod over there, it should be lighter compared to your hoe. Should be handy.");
 					interactText.Add ("You: \nThanks a lot!");
@@ -216,7 +216,7 @@ namespace RPG.Characters{
 
 					storyPhase1Done = true;	
 				} else {
-					interactText.Add ("Derrick: \nBe extra careful boy.");
+					interactText.Add ("Derrick: \nBe prepared for the worst, boy. It is a dark night full of terrors.");
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
@@ -311,16 +311,14 @@ namespace RPG.Characters{
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 
 				} else if (gameManager.GetSecret3Info () == true && gameManager.GetSecret4Info() == false && gameManager.GetSecret4ReadyInfo() == true) {
-					interactText.Add ("You: \nOld man, you say you know a lot right? Tell me about this weapon.");
+					interactText.Add ("You: \nOld man, I heard you know a lot right? Tell me about this weapon.");
 					interactText.Add ("Tavern Owner: \nHmm, this is no ordinary axe. Was this wielded by Derrick's dark knight?");
 					interactText.Add ("You: \nYeah. The moment I hold it I felt strange, its very light and easy to hold but when I hit the floor, it felt like it weights a ton.");
 					interactText.Add ("Tavern Owner: \n... I believed you know the answer yourself... If I'm not mistaken.");
-					interactText.Add ("Tavern Owner: \nThis is one of the many Corrupted Axes. I guess in Derrick's party, only Derrick and the Dark Knight can hold it.");
-					interactText.Add ("Tavern Owner: \n... Or their 'supreme leader', Magnados.");
-					interactText.Add ("You: \nIs this some kind of joke? Getting their knees over some kind of fake god. Magnados is a god of shame!");
-					interactText.Add ("Tavern Owner: \nThis is interesting, no one knows what form Magnados is in. How did you know it is a god?");
+					interactText.Add ("Tavern Owner: \nThis is one of the many Corrupted Axes. I guess in Derrick's party, only the Dark Knights are wielding it.");
+					interactText.Add ("Tavern Owner: \nThe corrupted weapons will corrupt the person overtime. The longer the wield it, the more they are being consumed.");
 					interactText.Add ("You: \n...");
-					interactText.Add ("Tavern Owner: \nYou are not Sieghart's son, aren't you. Who are you?");
+					interactText.Add ("Tavern Owner: \nHmm... You are not Sieghart's son, aren't you. Who are you?");
 					interactText.Add ("You(?): \n...");
 					interactText.Add ("Tavern Owner: \nNo matter, you might already know this but I'm pretty sure the player of this game did not know this.");
 					interactText.Add ("Tavern Owner: \nThat axe you are holding is a corrupted axe. No ordinary man can hold this axe. Like a hammer belonging to a thunder god.");
@@ -330,13 +328,14 @@ namespace RPG.Characters{
 					interactText.Add ("Tavern Owner: \nEven though the weapon you are holding is not the true corrupted weapon and just an ordinary out of them.");
 					interactText.Add ("Tavern Owner: \nBut the weapon itself is a lot times stronger than an ordinary weapon.");
 					interactText.Add ("Tavern Owner: \nI'm confident that Sieghart's son won't be able to wield that axe entirely. Even impossible to swing it with ease.");
+					interactText.Add ("Tavern Owner: \nIt seems you are holding quite a lot of sin there huh, 'boy'?");
 					interactText.Add ("You(?): \n...");
 					interactText.Add ("Tavern Owner: \nYou wanted to know where Derrick went, am I wrong? That's why you are here. You won't ask something you already know.");
-					interactText.Add ("Tavern Owner: \nUnless you are so kind to let the player who control you to let them know more about yourself?");
-					interactText.Add ("You(?): \n... Who are you?");
-					interactText.Add ("Tavern Owner: \nAsking back a question I asked? Well, at least I'll answer you, I'm just an ordinary tavern owner.");
-					interactText.Add ("Tavern Owner: \nIf you are asking for Derrick, I saw him running off into Cornelia. I'm placing my bet he went back to their hideout.");
-					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. And don't get yourself killed. I'm sure Derrick has his own corrupted weapon up his sleeves.");
+					interactText.Add ("Tavern Owner: \nOh something interesting to tell you, Derrick has a lot of such replica corrupted weapons up in his arsenal.");
+					interactText.Add ("You(?): \nHe's making fake weapons out of such pure power! The nerve of that human.");
+					interactText.Add ("Tavern Owner: \nHmm... Fake? That's an interesting reply. Well, I can dig that information out of my own source.");
+					interactText.Add ("Tavern Owner: \nAnyway, if you are asking for Derrick, I saw him running off into Cornelia. I'm placing my bet he went back to their hideout.");
+					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. And don't get yourself killed. I'm sure Derrick is more dangerous than ever with those weapons on his sleeves.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -348,12 +347,11 @@ namespace RPG.Characters{
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -390,38 +388,42 @@ namespace RPG.Characters{
 			// Non-Living Objects
 			case ObjectName.BackVillage:
 				if (gameManager.GetPhase1Info () == false) {
-					interactText.Add ("You: \nI'm here to pass the package to Derrick. I think the guy at the center of town is him.");
+					interactText.Add ("You: \nI'm here to pass the package to Derrick. I think he is the guy in the center of town by the well.");
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == false) {
 					interactText.Add ("You: \nWait someone is talking to Derrick.");
-					interactText.Add ("Derrick: \nHave we completely spread our 'religion' to all the villagers down at the barn and the gate village?");
-					interactText.Add ("You: \nHe must have meant the village where the villagers attacked me for no reason.");
-					interactText.Add ("Minion: \nYes, sir. Those who accepted Magnados are being equipped with proper gear. But those who don't are transported to the hideout.");
-					interactText.Add ("You: \nMagnados?");
-					interactText.Add ("Minion: \nAlso a boy passed by earlier and incapacitated some of our men.");
-					interactText.Add ("Derrick: \nYes, I've met the boy. I led him to the hideout and the dark knight will deal with the rest. Along with those captured villagers.");
+					interactText.Add ("Derrick: \nHave you completely search the barn and the village by the gate? It is a very vital location for our plan.");
+					interactText.Add ("You: \nHe must have meant the village where the villagers attacked me for no reason. And 'plan'?");
+					interactText.Add ("Minion: \nYes, sir. Those who obeyed and believed in us are being directed as plan. But those who don't are transported to the hideout.");
+					interactText.Add ("Minion: \nAlso a boy passed by earlier and incapacitated some of our men while we are searching.");
+					interactText.Add ("Derrick: \nYes, I've met the boy. He is a rather troublesome. Our plan is going to be at the peak and we still have someone to deal with.");
+					interactText.Add ("Derrick: \nSieghart's timing can never be better. But no matter, I led the boy to our hideout. The dark knight should know how to deal with him.");
 					interactText.Add ("Minion: \nThe dark knight as in the executioner?");
-					interactText.Add ("Derrick: \nMore of a loyal servant to me and Magnados. The dark knight's 'charming' aura will certainly put those who denied us to join us.");
-					interactText.Add ("Minion: \nIf they... don't?");
-					interactText.Add ("Derrick: \nThey die, simple as that. You ask too many questions, return to the search party at once.");
+					interactText.Add ("Derrick: \nNow now, the dark knight is actually a loyal friend and general to me. You know he hates anyone who call him an executioner.");
+					interactText.Add ("Minion: \nMy apologies, sir. Please don't let him know I said that, I don't want to see my head being chopped off by that axe of his.");
+					interactText.Add ("Derrick: \nExactly, you don't want him to use that axe of his. Now, go continue the search, we are late on schedule.");
 					interactText.Add ("Minion: \nYes, sir.");
+					interactText.Add ("You: \nSo this dark knight who's waiting for me might have some answers for this plan. And I can't abandoned those who are captured now.");
+					interactText.Add ("You: \nI'll stick to the current plan then. To the castle.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [2]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [2]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [2]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [2]);
-					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
-					interactPortrait.Add (characterPortrait [2]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 
 					secret1Done = true;
 				} else if (gameManager.GetPhase2Info () == true && gameManager.GetSecret1Info () == true) {		// Phase2Done and Secret1Done
-					interactText.Add ("You: \nSo it seems that Derrick and this Magnados guy are kidnapping people around here.");
+					interactText.Add ("You: \nSo it seems that Derrick is kidnapping people around here.");
 					interactText.Add ("You: \nI should try heading to the castle. Maybe the dark knight could give me some answers.");
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
@@ -434,17 +436,20 @@ namespace RPG.Characters{
 			case ObjectName.BossEvent:
 				interactText.Add ("You: \nSo you must be the dark knight Derrick mentioned.");
 				interactText.Add ("Dark Knight: \nIt seems like you know me and our leader's identity. This makes things easier.");
-				interactText.Add ("You: \nTell me, what have you done to the villagers? What are your cult is doing?");
-				interactText.Add ("Dark Knight: \nJust following orders, bring them to the dungeons, tortured them to join us and embraced themselves to Magnados.");
-				interactText.Add ("Dark Knight: \nThe stubborn ones, however, get executed by me. Orders from Derrick too, he's an impatient man.");
-				interactText.Add ("Dark Knight: \nAs for what we are doing, to fulfill Magnados' prophecy of course. Starting with raiding the city.");
-				interactText.Add ("You: \nWhat?! He's planning to raid the city?!");
+				interactText.Add ("You: \nTell me, what have you done to the villagers? What are you and your lackeys are doing?");
+				interactText.Add ("Dark Knight: \nJust following orders, bring them to the dungeons, tortured them to join us and enjoy life with the empire.");
+				interactText.Add ("Dark Knight: \nThe stubborn ones, however, get executed by me. Though I did not like that job much.");
+				interactText.Add ("Dark Knight: \nAs for what we are doing, we're just going to raid the city and destroy the resistance.");
+				interactText.Add ("You: \nWhat?! He's planning to raid the city?! And you guys are from the empire?!");
 				interactText.Add ("Dark Knight: \nOh, you didn't know? Well, guess you are gonna die here anyway so let me just tell you the whole story.");
-				interactText.Add ("Dark Knight: \nDerrick raided towns after towns and forces people to serve him and Magnados. Those who obey are spared and join us.");
+				interactText.Add ("Dark Knight: \nDerrick is the commander of the empire's army. The growing of resistance cause uneasiness to the emperor.");
+				interactText.Add ("Dark Knight: \nWe were ordered to use any measures to destroy those pesky resistance in the city and surrounding towns.");
+				interactText.Add ("Dark Knight: \nDerrick is a man of strategy. He decided to raid from a smaller scale, gain some allies then invade the city grounds.");
+				interactText.Add ("Dark Knight: \nWe raided towns after towns and forced people to serve us and forget about any plans to rebel against the empire.");
 				interactText.Add ("Dark Knight: \nRaiding a whole city is not as easy as raiding a town like this. That's why he's gathering explosives now up north.");
 				interactText.Add ("You: \nSo the item that I delievered to him was...");
 				interactText.Add ("Dark Knight: \nProbably a detonator.");
-				interactText.Add ("You: \n! I have to warn the people!");
+				interactText.Add ("You: \n! I have to warn the guards now!");
 				interactText.Add ("Dark Knight: \nNot on my watch! En garde!");
 
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
@@ -454,6 +459,9 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -468,12 +476,16 @@ namespace RPG.Characters{
 			case ObjectName.BossOptionalEvent:
 				interactText.Add ("You: \nDerrick!!!");
 				interactText.Add ("Derrick: \nMy my, you certain come at a poor timing, boy. I'm a little busy here at the moment.");
-				interactText.Add ("You: \nWhy are you going to raid the city with explosives, there's a lot of innocent lives in there.");
-				interactText.Add ("Derrick: \nIt seems like your twin brother is at it again, running his mouth.");
+				interactText.Add ("You: \nWhy are you doing this? Why are you in the empire? Aren't you dad's best friend?!");
+				interactText.Add ("Derrick: \nBoy, I've been working with the empire for years now. You could ask your dad on that. I'm not a defector.");
+				interactText.Add ("You: \nYou killed, murdered and even trying to bomb towns and cities just so cause your emperor can't sleep at night?!");
+				interactText.Add ("Derrick: \n*Sigh* It seems like your twin brother is at it again, running his mouth.");
 				interactText.Add ("Dark Knight: \nHe is not the type to keep secrets in the first place anyway.");
-				interactText.Add ("Derrick: \nWell, what's done is done. And yes, I'm raiding the city to fulfill 'His' prophecy.");
-				interactText.Add ("You: \nWho's damned prophecy involves killing innocent people?");
-				interactText.Add ("Derrick: \nAh, language dear boy. We should sit down and talk, probably we can see eye to eye.");
+				interactText.Add ("Derrick: \nWell, what's done is done. And yes, I'm raiding the city to kill all those pesky resistance.");
+				interactText.Add ("You: \nWhy won't you use a more peaceful measures in reducing such rebel? Killing the innocents seems...");
+				interactText.Add ("Derrick: \nYou are too young to understand, boy. Fear is the best weapon to cleanse these corrupted humans.");
+				interactText.Add ("Derrick: \nAnd the only way to successfully instill fear in a fighter is by death and destruction. Come boy, join us.");
+				interactText.Add ("Derrick: \nThe emperor will pay you handsomely if the job is done. You could probably get your own villa in the city.");
 				interactText.Add ("You: \nNo way.");
 				interactText.Add ("Derrick: \nIt seems like I'm wasting my time and breath here then.");
 				interactText.Add ("Derrick: \nYou see, I'm a rather busy man. I need to walk back to the hideout now to get my last preperation done.");
@@ -485,9 +497,13 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [2]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -499,8 +515,8 @@ namespace RPG.Characters{
 
 			case ObjectName.EndingPoint:
 				if (gameManager.GetSecret4Info () == true && !triggerEndGame) {
-					interactText.Add ("You(?): \nDerrick must have gone through here, I'm coming at you now.");
-					interactText.Add ("You(?): \nComing for you and your false god. And crush you both.");
+					interactText.Add ("You(?): \nThat Derrick guy must have gone through here, I'm coming at you now.");
+					interactText.Add ("You(?): \nComing for you and your fake replicas. I'm gonna burn them all!");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
