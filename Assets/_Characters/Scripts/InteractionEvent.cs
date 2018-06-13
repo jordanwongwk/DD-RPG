@@ -341,7 +341,7 @@ namespace RPG.Characters{
 					interactText.Add ("You(?): \nHe's making fake weapons out of such pure power! The nerve of that human.");
 					interactText.Add ("Tavern Owner: \nHmm... Fake? That's an interesting reply. Well, I can dig that information out of my own source.");
 					interactText.Add ("Tavern Owner: \nAnyway, if you are asking for Derrick, I saw him running off into Cornelia. I'm placing my bet he went back to their hideout.");
-					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. And don't get yourself killed. I'm sure Derrick is more dangerous than ever with those weapons on his sleeves.");
+					interactText.Add ("Tavern Owner: \nI have my eyes on you, boy. Don't get yourself killed. I'm sure Derrick is more dangerous now with those weapons up his sleeves.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
@@ -409,7 +409,7 @@ namespace RPG.Characters{
 					interactText.Add ("Minion: \nMy apologies, sir. Please don't let him know I said that, I don't want to see my head being chopped off by that axe of his.");
 					interactText.Add ("Derrick: \nExactly, you don't want him to use that axe of his. Now, go continue the search, we are late on schedule.");
 					interactText.Add ("Minion: \nYes, sir.");
-					interactText.Add ("You: \nSo this dark knight who's waiting for me might have some answers for this plan. And I can't abandoned those who are captured now.");
+					interactText.Add ("You: \nSo this dark knight who's waiting for me might know of this 'plan'. And I can't abandoned those who are captured now.");
 					interactText.Add ("You: \nI'll stick to the current plan then. To the castle.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
@@ -549,8 +549,8 @@ namespace RPG.Characters{
 
 			case ObjectName.EndingPoint:
 				if (gameManager.GetSecret4Info () == true && !triggerEndGame) {
-					interactText.Add ("You(?): \nThat Derrick guy must have gone through here, I'm coming at you now.");
-					interactText.Add ("You(?): \nComing for you and your fake replicas. I'm gonna burn them all!");
+					interactText.Add ("You(?): \nThat Derrick guy must have gone through here.");
+					interactText.Add ("You(?): \nI'm coming for you and your fake replicas. I'm gonna burn them all!");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
