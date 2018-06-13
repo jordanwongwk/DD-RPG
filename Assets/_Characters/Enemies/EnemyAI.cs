@@ -108,15 +108,10 @@ namespace RPG.Characters {
 		IEnumerator AttackPlayer(){
 			state = State.attacking;
 			while (distanceToPlayer <= currentWeaponRange) {
-				changeStateGreenLight = false;
 				weaponSystem.AttackTarget (player.gameObject);
 				CheckForAbilityAvailability ();
 				yield return new WaitForEndOfFrame ();
 			}
-		}
-
-		public void SetChangeStateGreenLight(bool status){
-			changeStateGreenLight = status;
 		}
 
 		void CheckForAbilityAvailability ()

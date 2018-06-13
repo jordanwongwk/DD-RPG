@@ -39,6 +39,8 @@ namespace RPG.Characters{
 		// One-Time Only
 		bool dockGuyInitialChat = false;
 		bool tavernInitialChat = false;
+		bool pickedUpAxe = false;
+		bool pickedUpAxeStatus = false;
 		bool triggerEndGame = false;
 
 		void Start () {
@@ -140,6 +142,10 @@ namespace RPG.Characters{
 				gameManager.TriggerEndOfGame ();
 			}
 			// Secret 3 is done on optional boss death, managed by GameManager
+
+			if (pickedUpAxe) {
+				pickedUpAxeStatus = true;
+			}
 		}
 
 
@@ -511,6 +517,34 @@ namespace RPG.Characters{
 				interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				interactPortrait.Add (characterPortrait [2]);
 				interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				break;
+
+			case ObjectName.AxePickupPoint:
+				if (pickedUpAxeStatus == false) {
+					interactText.Add ("You: \nThis weapon is dropped by the dark knight earlier. It seems rather odd-looking. Let me try take it.");
+					interactText.Add ("You: \nOuch! There's a sudden spark. Let me give it a shot again.");
+					interactText.Add ("You: \n...");
+					interactText.Add ("You: \nNope, its too heavy. Guess I should give up...");
+					interactText.Add ("You: \n...");
+					interactText.Add ("You: \nOne more time... ...");
+					interactText.Add ("You: \nGot it. Its not as heavy as first. I wondered why.");
+					interactText.Add ("You: \nAnd this purple gem. Wonder what is it. I wonder if anyone knows about this weapon.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+
+					pickedUpAxe = true;
+				} else {
+					interactText.Add ("You: \nI wonder if anyone knows about this weapon. Its getting lighter now.");
+
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+				}
 				break;
 
 			case ObjectName.EndingPoint:
