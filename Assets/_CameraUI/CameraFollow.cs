@@ -10,13 +10,20 @@ namespace RPG.CameraUI{
 
 		GameObject player;
 		GameObject derrickNPC;
+		GameManager gameManager;
 
 		float lastRecordTimeOnPlayer;
+		float lastRecordTimeNotOnPlayer;
 
 		// Use this for initialization
 		void Start () {
 			player = GameObject.FindGameObjectWithTag ("Player");
 			derrickNPC = GameObject.FindGameObjectWithTag ("Derrick");
+
+			gameManager = FindObjectOfType<GameManager> ();
+			gameManager.onPlayerRespawn += SetLastRecordNotOnPlayer;
+
+			transform.position = player.transform.position;
 		}
 
 		public void SetCameraFollowingDerrick () {
@@ -36,10 +43,18 @@ namespace RPG.CameraUI{
 				float distCover = (Time.time - lastRecordTimeOnPlayer) * transitionSpeed;
 
 				transform.position = Vector3.Lerp (transform.position, derrickNPCPos, distCover / distance);
+				lastRecordTimeNotOnPlayer = Time.time;
 			} else {
-				transform.position = player.transform.position;
+				float distanceToLastPlayerPos = Vector3.Distance (transform.position, player.transform.position);
+				float distCoverToLastPlayerPos = (Time.time - lastRecordTimeNotOnPlayer) * transitionSpeed;
+
+				transform.position = Vector3.Lerp(transform.position, player.transform.position, distCoverToLastPlayerPos / distanceToLastPlayerPos);
 				lastRecordTimeOnPlayer = Time.time;
 			}
+		}
+
+		void SetLastRecordNotOnPlayer(){
+			lastRecordTimeNotOnPlayer = Time.time;
 		}
 	}
 }
