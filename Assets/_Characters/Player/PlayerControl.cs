@@ -14,6 +14,7 @@ namespace RPG.Characters{
 		SpecialAbilities abilities;
 		Character character;
 		GameManager gameManager;
+		CheckpointManager checkpointManager;
 		HealthSystem healthSystem;
 		bool isPlayerStillAlive = true;	
 		bool isPlayerFreeToMove = true;
@@ -29,6 +30,7 @@ namespace RPG.Characters{
 			character = GetComponent<Character> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
 			gameManager = FindObjectOfType<GameManager> ();
+			checkpointManager = FindObjectOfType<CheckpointManager> ();
 			playerStopDistance = character.GetStoppingDistance ();
 			RegisterOnMouseEvents ();
 		}
@@ -133,9 +135,16 @@ namespace RPG.Characters{
 		}
 
 		void OnPlayerRespawn(){
+			var lastEquippedWeapon = checkpointManager.GetLastEquippedWeapon ();
+
+			if (lastEquippedWeapon != null) {
+				weaponSystem.ChangeWeaponInHand (lastEquippedWeapon);
+			}
+
 			if (inBossBattle) {
 				inBossBattle = false;
 			}
+
 			character.PlayerRespawnSetup ();
 		}
 

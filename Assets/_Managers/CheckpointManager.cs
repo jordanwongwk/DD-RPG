@@ -13,6 +13,7 @@ public class CheckpointManager : MonoBehaviour {
 	[SerializeField] float audioSourceVolume = 0.2f;
 	[SerializeField] AudioClip checkpointFoundClip = null;
 
+	WeaponConfig lastWeaponEquipped;
 	List<GameObject> checkpoints = new List<GameObject>();
 	AudioSource audioSource;
 	EnemyManager enemyManager;
@@ -32,9 +33,8 @@ public class CheckpointManager : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public WeaponConfig GetLastEquippedWeapon(){
+		return lastWeaponEquipped;
 	}
 
 	public void SettingUpTheCheckpoint(Checkpoint currentCP){
@@ -44,6 +44,7 @@ public class CheckpointManager : MonoBehaviour {
 		currentCP.SetCheckpointON (checkpointON);
 		audioSource.PlayOneShot (checkpointFoundClip);
 
+		lastWeaponEquipped = playerCharacter.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
 		enemyManager.DestroyEnemyOnBrinkOfDeath ();							// Completely Destroy enemies that are dead
 		playerCharacter.SetInitialPosition(currentCP.gameObject.transform.position);	// Player Checkpoint spawn position
 	}
