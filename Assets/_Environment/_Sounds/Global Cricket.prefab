@@ -54,7 +54,7 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 2aae399e027df924da7bb4d80c95c67b, type: 3}
   distanceToPlayerToTrigger: 200
   audioSpatialBlend: 0
-  audioVolume: 0.05
+  audioVolume: 0.2
   isOneTimeOnly: 0
   isLooping: 1
   simple3DVolume: 0
