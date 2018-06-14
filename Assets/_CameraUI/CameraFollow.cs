@@ -12,8 +12,8 @@ namespace RPG.CameraUI{
 		GameObject derrickNPC;
 		GameManager gameManager;
 
-		float lastRecordTimeOnPlayer;
-		float lastRecordTimeNotOnPlayer;
+		float lastRecordTimeOnPlayer = 0;
+		float lastRecordTimeNotOnPlayer = 0;
 
 		// Use this for initialization
 		void Start () {
@@ -23,7 +23,8 @@ namespace RPG.CameraUI{
 			gameManager = FindObjectOfType<GameManager> ();
 			gameManager.onPlayerRespawn += SetLastRecordNotOnPlayer;
 
-			transform.position = player.transform.position;
+			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y + 0.1f, player.transform.position.z); 
+			// Made a slight offset to prevent divide by 0
 		}
 
 		public void SetCameraFollowingDerrick () {
@@ -34,8 +35,7 @@ namespace RPG.CameraUI{
 			isFollowingDerrick = false;
 			// All other follow is false here
 		}
-		
-		// Update is called once per frame
+
 		void LateUpdate () {
 			if (isFollowingDerrick) {
 				Vector3 derrickNPCPos = derrickNPC.transform.position;
