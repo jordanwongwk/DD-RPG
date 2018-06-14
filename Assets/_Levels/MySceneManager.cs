@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MySceneManager : MonoBehaviour {
 	[Header("Level Management")]
-	[SerializeField] int mainMenuSceneIndex;
-	[SerializeField] int startGameSceneIndex;
-	[SerializeField] int rankingSceneIndex;
+	[SerializeField] int mainMenuSceneIndex = 0;
+	[SerializeField] int startGameSceneIndex = 1;
+	[SerializeField] int rankingSceneIndex = 2;
 
 	public void StartGameScene(){
 		SceneManager.LoadScene (startGameSceneIndex);
+		Destroy (GameObject.FindObjectOfType<MenuMusicManager> ().gameObject);
 	}
 
 	public void RankingScene(){

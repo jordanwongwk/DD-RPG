@@ -65084,6 +65084,10 @@ Prefab:
 
         One day fall to the ground also.'
       objectReference: {fileID: 0}
+    - target: {fileID: 1832554852916310, guid: 915aeab6486841d4f8a44dca54d23ce6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 915aeab6486841d4f8a44dca54d23ce6, type: 2}
   m_IsPrefabParent: 0
@@ -75807,6 +75811,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: cb2670f787941d047a37d741386f623e,
         type: 2}
+    - target: {fileID: 114810148887738032, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: outOfEnergy
+      value: 
+      objectReference: {fileID: 8300000, guid: b85ee96ae58d14e4b875a7c5b44adbcc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
   m_IsPrefabParent: 0
@@ -92882,6 +92891,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: cb2670f787941d047a37d741386f623e,
         type: 2}
+    - target: {fileID: 1119971714740168, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
   m_IsPrefabParent: 0

@@ -142,7 +142,9 @@ namespace RPG.CameraUI {
 			panelColor.a -= Time.deltaTime / FADE_TIME;
 			gamePanelBackground.color = panelColor;
 			yield return new WaitForSeconds (FADE_TIME);
-			gamePanel.SetActive (false);
+			if (isPanelFadingIn) {					// Need to call this so the other called FadingInPanel coroutine won't keep disable the fade panel
+				gamePanel.SetActive (false);
+			}
 			isPanelFadingIn = false;
 		}
 
@@ -159,8 +161,7 @@ namespace RPG.CameraUI {
 		// END Panel Fading
 
 		// Pause Panel
-		void PausingGame ()
-		{
+		void PausingGame () {
 			pausePanel.SetActive (true);
 			isPausePanelActive = true;
 			Time.timeScale = 0f;
@@ -177,6 +178,7 @@ namespace RPG.CameraUI {
 		}
 
 		IEnumerator BackToMainMenuCoroutine() {
+			ResumingGame ();
 			PanelFadeOut ();
 			yield return new WaitForSeconds (TIME_END_GAME);
 			mySceneManager.MainMenuScene ();
