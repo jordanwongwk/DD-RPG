@@ -65,7 +65,7 @@ public class BlockerManager : MonoBehaviour {
 	void CheckForBackVillageBlocker (){
 		// Disable on Phase1Done, Phase3Done
 		if (gameManager.GetPhase1Info () == true ) {
-			backVillageBlocker.transform.position = new Vector3 (backVillageEnableBlockPos.x, 0f, backVillageEnableBlockPos.z);
+			backVillageBlocker.transform.position = new Vector3 (backVillageEnableBlockPos.x, 15f, backVillageEnableBlockPos.z);
 		}
 
 		// Enable on Phase2Done
