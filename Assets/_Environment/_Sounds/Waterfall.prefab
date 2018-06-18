@@ -51,9 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3644fc579118dd4284688acc0cdf6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 6a4673201d3c1dd478c6c66f8465d206, type: 3}
-  distanceToPlayerToTrigger: 14
+  clip: {fileID: 8300000, guid: cd447c53aa6ea92468341c09c1d72623, type: 3}
+  distanceToPlayerToTrigger: 17
   audioSpatialBlend: 1
+  audioVolume: 1
   isOneTimeOnly: 0
   isLooping: 1
-  simple3DVolume: 0
+  simple3DVolume: 1

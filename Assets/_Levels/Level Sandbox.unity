@@ -65031,6 +65031,46 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224520798196288152, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224520798196288152, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 216.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224520798196288152, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 23.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224520798196288152, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 379.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224379108812889626, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 23.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224379108812889626, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224379108812889626, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 379.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224379108812889626, guid: 915aeab6486841d4f8a44dca54d23ce6,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 216.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 915aeab6486841d4f8a44dca54d23ce6, type: 2}
   m_IsPrefabParent: 0
@@ -84814,21 +84854,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114417108124146064, guid: 9b156488d9d4b204ea44805bbea6d8e3,
-        type: 2}
-      propertyPath: simple3DVolume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114417108124146064, guid: 9b156488d9d4b204ea44805bbea6d8e3,
-        type: 2}
-      propertyPath: distanceToPlayerToTrigger
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 114417108124146064, guid: 9b156488d9d4b204ea44805bbea6d8e3,
-        type: 2}
-      propertyPath: audioVolume
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b156488d9d4b204ea44805bbea6d8e3, type: 2}
   m_IsPrefabParent: 0
@@ -92815,6 +92840,11 @@ Prefab:
     - target: {fileID: 1119971714740168, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114278299235564908, guid: f0ec9c3d184b61b41ae9490b77205cc2,
+        type: 2}
+      propertyPath: volumeLevel
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
