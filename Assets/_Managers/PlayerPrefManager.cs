@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerPrefManager : MonoBehaviour {
 
 	const string TIME = "time";
+	const string GAME_COMPLETED = "game_completed";
 	const string SECRET_DISCOVERED = "secret_discovered";
 	const string WEAPON_DISCOVERED = "weapon_discovered";
 	const string BOSS_DEFEATED = "boss_defeated";
@@ -17,6 +18,14 @@ public class PlayerPrefManager : MonoBehaviour {
 
 	public static float GetTime (){
 		return PlayerPrefs.GetFloat (TIME);
+	}
+
+	public static void SetGameCompleted (int gameCompletion){
+		PlayerPrefs.SetInt (GAME_COMPLETED, gameCompletion);
+	}
+
+	public static int GetGameCompleted () {
+		return PlayerPrefs.GetInt (GAME_COMPLETED);
 	}
 
 	public static void SetSecretDiscovered (int secretFound){

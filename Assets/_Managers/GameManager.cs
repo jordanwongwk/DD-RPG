@@ -9,13 +9,15 @@ public class GameManager : MonoBehaviour {
 
 	MySceneManager mySceneManager;
 
-	[SerializeField] bool isPhase1Done = false;		
-	[SerializeField] bool isPhase2Done = false;		
-	[SerializeField] bool isPhase3Done = false;		
-	[SerializeField] bool isSecret1Done = false;
-	[SerializeField] bool isSecret2Done = false;
-	[SerializeField] bool isSecret3Done = false;
-	[SerializeField] bool isSecret4Done = false;
+	bool isPhase1Done = false;		
+	bool isPhase2Done = false;		
+	bool isPhase3Done = false;		
+	bool isSecret1Done = false;
+	bool isSecret2Done = false;
+	bool isSecret3Done = false;
+	bool isSecret4Done = false;
+
+	int gameComplete = 0;
 	int bossDefeated = 0;
 	int secretsFound = 0;
 	int weaponsFound = 0;
@@ -166,13 +168,21 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator EndGame(){
 		endGameSetup ();
+		CheckIfGameFinishes ();
 		PlayerPrefSettingUp ();
 		yield return new WaitForSeconds (TIME_END_GAME);
 		mySceneManager.RankingScene ();
 	}
 
+	void CheckIfGameFinishes(){
+		if (isPhase3Done == true) {
+			gameComplete = 1;
+		}
+	}
+
 	void PlayerPrefSettingUp(){
 		PlayerPrefManager.SetTime (Time.timeSinceLevelLoad);
+		PlayerPrefManager.SetGameCompleted (gameComplete);
 		PlayerPrefManager.SetSecretDiscovered (secretsFound);
 		PlayerPrefManager.SetWeaponDiscovered (weaponsFound);
 		PlayerPrefManager.SetBossDefeated (bossDefeated);

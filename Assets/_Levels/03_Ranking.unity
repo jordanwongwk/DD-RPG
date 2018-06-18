@@ -1068,7 +1068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: X
 --- !u!222 &755968494
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1365,11 +1365,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayTimeText: {fileID: 1841065833}
+  completionText: {fileID: 755968493}
   secretDiscoveredText: {fileID: 337544327}
   weaponDiscoveredText: {fileID: 158543989}
   bossDefeatedText: {fileID: 1588844575}
   enemiesAliveText: {fileID: 127387644}
   deathNumberText: {fileID: 818711945}
+  completionTotalText: {fileID: 1604594004}
   secretsTotalText: {fileID: 1871713157}
   weaponsTotalText: {fileID: 914486833}
   bossDefeatedTotalText: {fileID: 268363859}
@@ -2114,7 +2116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: = 1000
+  m_Text: X
 --- !u!222 &1604594005
 CanvasRenderer:
   m_ObjectHideFlags: 0
