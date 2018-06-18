@@ -15,7 +15,7 @@ MonoBehaviour:
   particleSystem: {fileID: 1030251185491102, guid: 73a8e8a2f60657248a04e5a3fbb839e8,
     type: 2}
   audioClips:
-  - {fileID: 8300000, guid: ebe28f02c050dcb4ca0e25813cf48624, type: 3}
+  - {fileID: 8300000, guid: bba9c45e0dcc1d24d954de069affa84a, type: 3}
   abilityAnimation: {fileID: 7400000, guid: d3c489e10a6d2a845a62c2119a24b697, type: 3}
   requiresChanneling: 1
   channelTime: 3

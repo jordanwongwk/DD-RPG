@@ -1650,7 +1650,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939906218202142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -125.9, y: 0, z: 158.5}
+  m_LocalPosition: {x: -128.79, y: 0, z: 163.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4191751098049110}
@@ -1988,6 +1988,7 @@ MonoBehaviour:
   colliderRadius: 0.2
   colliderHeight: 2
   isTriggerCollider: 0
+  isThisKinematic: 0
   steeringSpeed: 1
   stoppingDistance: 0.9
   obstacleAvoidanceRadius: 0.1
@@ -1997,6 +1998,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 0}
   moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1.25
   movingTurnSpeed: 1000
@@ -2018,16 +2020,12 @@ MonoBehaviour:
   deathVanishInSeconds: 2
   healthBar: {fileID: 0}
   damageSounds:
-  - {fileID: 8300000, guid: da84d6dfff318164c9a0475379df155d, type: 3}
-  - {fileID: 8300000, guid: 1a36361030c6e694c8f97f3216479f87, type: 3}
-  - {fileID: 8300000, guid: dd361f90220474348a6116edb16253f7, type: 3}
-  - {fileID: 8300000, guid: da39e6027af0bc348b6916cb70658b10, type: 3}
-  - {fileID: 8300000, guid: 44391561aa068cf49aedd20aea4fc30e, type: 3}
-  - {fileID: 8300000, guid: b0d96ec5f40b3a447988d33424083021, type: 3}
+  - {fileID: 8300000, guid: 197d9412219e8fd46b79cce7fda3f81b, type: 3}
+  - {fileID: 8300000, guid: b18e7076dd67d0b43a19b2fc779b767b, type: 3}
+  - {fileID: 8300000, guid: d5ab77f8ab5088043ad90fcea34d43b1, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 193209fef52834b46ab53104cf88dd33, type: 3}
-  - {fileID: 8300000, guid: e14cf2f1e0ec8934c92ea23474bc4cf2, type: 3}
-  - {fileID: 8300000, guid: 0862cf6f22485c8498dadc80c0efe71c, type: 3}
+  - {fileID: 8300000, guid: 01ea53f18d98cec448e00b775dd753e2, type: 3}
+  - {fileID: 8300000, guid: 8b6a4f0b02ede0a46bb149bf73063324, type: 3}
   currentHealthPoints: 0
 --- !u!114 &114810148887738032
 MonoBehaviour:
@@ -2047,7 +2045,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59e1efabe2a1c3e498970eb5cf896102, type: 2}
   maxEnergyPoints: 100
   regenEnergyPerSecond: 3
-  outOfEnergy: {fileID: 8300000, guid: ffbf8dd8b6e325a4d8df060a3bc48eb6, type: 3}
+  outOfEnergy: {fileID: 8300000, guid: b85ee96ae58d14e4b875a7c5b44adbcc, type: 3}
 --- !u!114 &114868929214744236
 MonoBehaviour:
   m_ObjectHideFlags: 1

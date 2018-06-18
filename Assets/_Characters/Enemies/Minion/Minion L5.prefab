@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
-  colliderRadius: 0.4
+  colliderRadius: 0.6
   colliderHeight: 2
   isTriggerCollider: 1
   isThisKinematic: 0
@@ -1991,6 +1991,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 0}
   moveSpeedMultiplier: 1.5
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
@@ -2132,7 +2133,6 @@ MonoBehaviour:
   baseDamage: 15
   currentWeaponConfig: {fileID: 11400000, guid: befa403f1e5291e488bcc75930580c70,
     type: 2}
-  secret4RequirementWeapon: {fileID: 0}
 --- !u!114 &114835915027861236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2149,9 +2149,7 @@ MonoBehaviour:
   waypointTolerance: 2
   waitAtWaypoint: 2
   abilities: []
-  dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114856250003025496
 MonoBehaviour:
   m_ObjectHideFlags: 1
