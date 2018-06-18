@@ -409,10 +409,10 @@ namespace RPG.Characters{
 					interactText.Add ("You: \nWait someone is talking to Derrick.");
 					interactText.Add ("Derrick: \nHave you completely search the barn and the village by the gate? It is a very vital location for our plan.");
 					interactText.Add ("You: \nHe must have meant the village where the villagers attacked me for no reason. And 'plan'?");
-					interactText.Add ("Minion: \nYes, sir. Those who obeyed and believed in us are being directed as plan. But those who don't are transported to the hideout.");
+					interactText.Add ("Minion: \nYes, sir. Those who obeyed and believed in us are being directed as planned. But those who don't are transported to the hideout.");
 					interactText.Add ("Minion: \nAlso a boy passed by earlier and incapacitated some of our men while we are searching.");
 					interactText.Add ("Derrick: \nYes, I've met the boy. He is a rather troublesome. Our plan is going to be at the peak and we still have someone to deal with.");
-					interactText.Add ("Derrick: \nSieghart's timing can never be better. But no matter, I led the boy to our hideout. The dark knight should know how to deal with him.");
+					interactText.Add ("Derrick: \nSieghart's timing can never be better. No matter, I led the boy to our hideout. The dark knight should know what to do.");
 					interactText.Add ("Minion: \nThe dark knight as in the executioner?");
 					interactText.Add ("Derrick: \nNow now, the dark knight is actually a loyal friend and general to me. You know he hates anyone who call him an executioner.");
 					interactText.Add ("Minion: \nMy apologies, sir. Please don't let him know I said that, I don't want to see my head being chopped off by that axe of his.");

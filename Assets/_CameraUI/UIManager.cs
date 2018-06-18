@@ -100,7 +100,7 @@ namespace RPG.CameraUI {
 			} else if (gameManager.GetPhase1Info () == true && gameManager.GetSecret2Info () == false) {
 				QuestTrackerTextUpdate ("Head to the castle and find out what happened to the missing villagers.");
 			} else if (gameManager.GetSecret2Info () == true && gameManager.GetSecret3Info () == false) {
-				QuestTrackerTextUpdate ("Head back to town to warn the people about the impending attack!");
+				QuestTrackerTextUpdate ("Head back to town to warn the guards in Carconia about the impending attack!");
 			} else if (gameManager.GetSecret3Info () == true) {
 				QuestTrackerTextUpdate ("Chase after Derrick towards the direction of Cornelia's castle!");
 			}
