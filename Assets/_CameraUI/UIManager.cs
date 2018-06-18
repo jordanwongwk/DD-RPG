@@ -124,7 +124,7 @@ namespace RPG.CameraUI {
 
 		public void MouseOverSkillRM(){
 			skillDescriptionTextBar.SetActive (true);
-			skillText.text = "Power Attack [Key-3] ; Energy Cost = 25 \nDeliver a much powerful blow by using energy.";
+			skillText.text = "Power Strike [Right-click] ; Energy Cost = 25 \nEnchant energy into weapon and deal a powerful blow.";
 		}
 
 		public void MouseExit(){
