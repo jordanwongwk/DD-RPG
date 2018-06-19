@@ -50,7 +50,7 @@ namespace RPG.Characters{
 
 		void UpdateHealthText(){
 			if (healthText) {
-				healthText.text = currentHealthPoints + " / " + maxHealthPoints;
+				healthText.text = Mathf.RoundToInt(currentHealthPoints) + " / " + maxHealthPoints;
 			}
 		}
 
