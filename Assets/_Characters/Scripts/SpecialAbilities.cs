@@ -6,7 +6,8 @@ using UnityEngine.UI;
 namespace RPG.Characters {
 	public class SpecialAbilities : MonoBehaviour {
 
-		[SerializeField] Image energyBar = null;		
+		[SerializeField] Image energyBar = null;
+		[SerializeField] Text energyText = null;
 		[SerializeField] AbilityConfig[] abilities = null;
 		[SerializeField] float maxEnergyPoints = 100f;
 		[SerializeField] float regenEnergyPerSecond = 1f;
@@ -27,6 +28,7 @@ namespace RPG.Characters {
 			currentEnergyPoints = maxEnergyPoints;
 			defaultEnergyRecoverRate = regenEnergyPerSecond;
 			UpdateEnergyBar ();
+			UpdateEnergyText ();
 			SetupAbilitiesBehaviour ();
 		}
 
@@ -34,7 +36,17 @@ namespace RPG.Characters {
 			if (currentEnergyPoints < maxEnergyPoints) {
 				RegenEnergy ();
 				UpdateEnergyBar ();
+				UpdateEnergyText ();
 			}
+		}
+
+		void UpdateEnergyBar ()
+		{
+			energyBar.fillAmount = energyAsPercent;
+		}
+
+		void UpdateEnergyText () {
+			energyText.text = Mathf.RoundToInt(currentEnergyPoints) + " / " + maxEnergyPoints;
 		}
 
 		public void SetEnergyRecoveryRate (float newEnergyRecRate){
@@ -76,11 +88,6 @@ namespace RPG.Characters {
 		public void ConsumeEnergy (float amount) {
 			currentEnergyPoints = Mathf.Clamp (currentEnergyPoints - amount, 0f, maxEnergyPoints);
 			UpdateEnergyBar ();
-		}
-
-		void UpdateEnergyBar ()
-		{
-			energyBar.fillAmount = energyAsPercent;
 		}
 	}
 }

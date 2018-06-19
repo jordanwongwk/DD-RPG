@@ -9,6 +9,7 @@ namespace RPG.Characters{
 		[SerializeField] float maxHealthPoints = 100f;
 		[SerializeField] float deathVanishInSeconds = 2.0f;
 		[SerializeField] Image healthBar = null;
+		[SerializeField] Text healthText = null;
 		[SerializeField] AudioClip[] damageSounds = null;
 		[SerializeField] AudioClip[] deathSounds = null;
 
@@ -16,7 +17,7 @@ namespace RPG.Characters{
 		const string REVIVE_TRIGGER = "isRevive";
 		const float DEATH_DELAY = 1.0f;
 
-		[SerializeField] float currentHealthPoints;
+		float currentHealthPoints;
 		Animator animator;
 		AudioSource audioSource;
 		Character characterMovement;
@@ -37,12 +38,19 @@ namespace RPG.Characters{
 
 		void Update () {
 			UpdateHealthBar ();
+			UpdateHealthText ();
 			RegenHealth (regenAmount);			// TODO Consider a better alternative if laggy
 		}
 
 		void UpdateHealthBar(){
 			if (healthBar) {
 				healthBar.fillAmount = healthAsPercentage;
+			}
+		}
+
+		void UpdateHealthText(){
+			if (healthText) {
+				healthText.text = currentHealthPoints + " / " + maxHealthPoints;
 			}
 		}
 

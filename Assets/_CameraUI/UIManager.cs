@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using RPG.Characters;
 
 namespace RPG.CameraUI {
 	public class UIManager : MonoBehaviour {
@@ -9,6 +10,8 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject questTrackerTextBar = null;
 		[SerializeField] GameObject interactionInstruction = null;
 		[SerializeField] GameObject interactionTextBar = null;
+		[SerializeField] GameObject healthRemainingGlobe = null;
+		[SerializeField] GameObject energyRemainingGlobe = null;
 		[SerializeField] GameObject gamePanel = null;
 		[SerializeField] GameObject pausePanel = null;
 
@@ -184,5 +187,19 @@ namespace RPG.CameraUI {
 			mySceneManager.MainMenuScene ();
 		}
 		// END Pause Panel
+
+		// START Health and Energy Remaining Text
+		public void MouseOverHPGlobe (){
+			healthRemainingGlobe.SetActive (true);
+		}
+
+		public void MouseOverEnergyGlobe () {
+			energyRemainingGlobe.SetActive (true);
+		}
+
+		public void MouseExitGlobe () {
+			healthRemainingGlobe.SetActive (false);
+			energyRemainingGlobe.SetActive (false);
+		}
 	}
 }
