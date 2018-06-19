@@ -98,6 +98,7 @@ namespace RPG.Characters{
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
 				GetComponent<CapsuleCollider> ().enabled = false;
+				GetComponent<EnemyAI> ().EnemyStopAllAction ();
 				yield return new WaitForSeconds (deathVanishInSeconds);
 				if (gameObject.tag == "Boss") {
 					Destroy (gameObject);

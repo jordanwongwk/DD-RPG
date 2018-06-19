@@ -139,6 +139,10 @@ namespace RPG.Characters {
 			channelingAbility = false;
 		}
 
+		public void EnemyStopAllAction(){
+			StopAllCoroutines ();
+		}
+
 		void OnDrawGizmos(){
 			// Drawing Attack Radius
 			Gizmos.color = new Color(255,0,0,0.5f);
