@@ -2151,11 +2151,11 @@ MonoBehaviour:
   maxHealthPoints: 180
   deathVanishInSeconds: 2
   healthBar: {fileID: 114599885360249740}
+  healthText: {fileID: 0}
   damageSounds:
   - {fileID: 0}
   deathSounds:
   - {fileID: 8300000, guid: b1bac5e192e735c49b67823bfc01b0b6, type: 3}
-  currentHealthPoints: 0
 --- !u!114 &114933100149449458
 MonoBehaviour:
   m_ObjectHideFlags: 1
