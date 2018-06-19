@@ -22,6 +22,7 @@ namespace RPG.Characters{
 		AudioSource audioSource;
 		Character characterMovement;
 		GameManager gameManager;
+		bool isCurrentlyDying = false;
 		float regenAmount = 0f;
 
 		public float healthAsPercentage	{ get {	return currentHealthPoints / maxHealthPoints; }}
@@ -67,7 +68,8 @@ namespace RPG.Characters{
 			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
 			var clip = damageSounds [Random.Range (0, damageSounds.Length)];
 			audioSource.PlayOneShot (clip);
-			if (characterDies) {	
+			if (characterDies && !isCurrentlyDying) {
+				isCurrentlyDying = true;	
 				StartCoroutine (KillCharacter ());
 			} 
 		} 
@@ -91,15 +93,17 @@ namespace RPG.Characters{
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
 				playerComponent.SetPlayerDeathCount ();
+				animator.SetTrigger (REVIVE_TRIGGER);
 				gameManager.StartRespawnDelegates ();
 				gameManager.RestartBossBattleUponDeath ();
-				animator.SetTrigger (REVIVE_TRIGGER);
+				isCurrentlyDying = false;
 			}
 			else //consider changing this if NPC is involved, otherwise it is assumed to be enemies 
 			{
 				GetComponent<CapsuleCollider> ().enabled = false;
 				GetComponent<EnemyAI> ().EnemyStopAllAction ();
 				yield return new WaitForSeconds (deathVanishInSeconds);
+				isCurrentlyDying = false;
 				if (gameObject.tag == "Boss") {
 					Destroy (gameObject);
 				} else {
