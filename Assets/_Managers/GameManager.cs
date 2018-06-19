@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
 		return isSecret1Done;
 	}
 
-	// Secret 2: Learn about Derrick from Dark Knight. Pre-boss?. REQUIRED SECRET 1
+	// Secret 2: Learn about Derrick from Dark Knight. Pre-boss. REQUIRED SECRET 1
 	public void SetSecret2Done (){
 		isSecret2Done = true;
 		secretsFound += 1;

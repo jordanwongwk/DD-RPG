@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockerManager : MonoBehaviour {
 	
 	[SerializeField] GameObject bossBlocker = null;
+	[SerializeField] GameObject bossBlockerAtCheckpoint = null;
 	[SerializeField] GameObject optionalBossBlocker = null;
 	[SerializeField] GameObject backVillageBlocker = null;
 	[SerializeField] GameObject bossSecret2Blocker = null;
@@ -34,6 +35,7 @@ public class BlockerManager : MonoBehaviour {
 
 	void SettingUpInitialBlockers () {
 		bossBlocker.SetActive (false);
+		bossBlockerAtCheckpoint.SetActive (false);
 		optionalBossBlocker.SetActive (false);
 		backVillageBlocker.SetActive (true);
 		backVillageEnableBlockPos = backVillageBlocker.transform.position;
@@ -55,11 +57,21 @@ public class BlockerManager : MonoBehaviour {
 	}
 
 	void Update(){
+		CheckForMainBossBlocker ();
+
 		CheckForBackVillageBlocker ();
 		CheckForBossSecret2Blocker ();
 		CheckForBossSecret3Blocker ();
 		CheckForAxeSecret3Reward ();
 		CheckForEnding ();
+	}
+
+	void CheckForMainBossBlocker(){
+		if (gameManager.GetSecret2Info () == true && gameManager.GetPhase3Info () == false) {
+			bossBlockerAtCheckpoint.SetActive (true);
+		} else {
+			bossBlockerAtCheckpoint.SetActive (false);
+		}
 	}
 
 	void CheckForBackVillageBlocker (){
