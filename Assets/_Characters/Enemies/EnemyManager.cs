@@ -35,10 +35,12 @@ namespace RPG.Characters {
 		}
 
 		public void DestroyEnemyOnBrinkOfDeath () {
-			for (int i = 0; i < transform.childCount; i++)  {
+			int currentChildCount = transform.childCount;
+			for (int i = 0; i < currentChildCount; i++)  {
 				if (allEnemies[i].activeInHierarchy == false) {
 					allEnemies [i].transform.parent = null;				// Unparent the child
 					Destroy (allEnemies[i]);							// Destroy
+					Debug.Log(i);
 				}
 			}
 			UpdateEnemyList ();

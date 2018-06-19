@@ -23,4 +23,4 @@ MonoBehaviour:
   dangerCircle: {fileID: 1501884616789356, guid: cf32cc0230f35d34ca9ccabbcf131bef,
     type: 2}
   radius: 5
-  damageEachTarget: 100
+  damageEachTarget: 200
