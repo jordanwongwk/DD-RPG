@@ -115,7 +115,7 @@ namespace RPG.Characters {
 		public void RespawningSetup() {
 			isAlive = true;
 			GetComponent<CapsuleCollider> ().enabled = true;
-			GetComponent<HealthSystem> ().SetRespawnFullHealth ();
+			GetComponent<HealthSystem> ().SetRespawnAnimationAndHealth ();
 			SetWarpPosition (initialPosition);
 			SetDestination (initialPosition);
 		}

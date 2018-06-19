@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Characters;
 
 namespace RPG.CameraUI{
 	public class CameraFollow : MonoBehaviour {
@@ -50,6 +51,12 @@ namespace RPG.CameraUI{
 
 				transform.position = Vector3.Lerp(transform.position, player.transform.position, distCoverToLastPlayerPos / distanceToLastPlayerPos);
 				lastRecordTimeOnPlayer = Time.time;
+
+				if (transform.position != player.transform.position) {
+					player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
+				} else {
+					player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
+				}
 			}
 		}
 

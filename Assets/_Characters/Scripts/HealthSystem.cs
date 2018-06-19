@@ -32,7 +32,7 @@ namespace RPG.Characters{
 			characterMovement = GetComponent<Character> ();
 			gameManager = FindObjectOfType<GameManager> ();
 
-			gameManager.onPlayerRespawn += SetRespawnFullHealth;
+			gameManager.onPlayerRespawn += SetRespawnAnimationAndHealth;
 			currentHealthPoints = maxHealthPoints;
 		}
 
@@ -58,7 +58,7 @@ namespace RPG.Characters{
 			regenAmount = regenHealth;
 		}
 
-		public void SetRespawnFullHealth () {
+		public void SetRespawnAnimationAndHealth () {
 			currentHealthPoints = maxHealthPoints;
 		}
 

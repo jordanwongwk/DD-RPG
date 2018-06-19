@@ -40,7 +40,6 @@ namespace RPG.Characters {
 				if (allEnemies[i].activeInHierarchy == false) {
 					allEnemies [i].transform.parent = null;				// Unparent the child
 					Destroy (allEnemies[i]);							// Destroy
-					Debug.Log(i);
 				}
 			}
 			UpdateEnemyList ();

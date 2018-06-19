@@ -19,6 +19,8 @@ public class EventManager : MonoBehaviour {
 	[SerializeField] GameObject playerStandPositionSecret3 = null;
 	[SerializeField] GameObject derrickRunOffPoint = null;
 
+	const float DESTROY_DELAY = 20f;
+
 	GameObject player;
 	GameObject derrickNPC;
 	GameObject eventCharacter;
@@ -79,7 +81,7 @@ public class EventManager : MonoBehaviour {
 
 	public void EndEvents() {
 		if (secretEvent1Initiated) {
-			Destroy (eventCharacter);
+			Destroy (eventCharacter, DESTROY_DELAY);
 			cameraFollow.SetCameraBackToPlayer ();
 			secretEvent1Initiated = false;
 		}
@@ -92,7 +94,7 @@ public class EventManager : MonoBehaviour {
 		if (secretEvent3Initiated) {
 			optionalBoss.GetComponent<EnemyAI> ().enabled = true;
 			derrickNPC.GetComponent<Character> ().SetDestination (derrickRunOffPoint.transform.position);
-			Destroy (derrickNPC, 20f);
+			Destroy (derrickNPC, DESTROY_DELAY);
 			secretEvent3Initiated = false;
 			secretEvent3Ended = true;
 		}
