@@ -122,7 +122,7 @@ namespace RPG.CameraUI {
 
 		public void MouseOverSkill2(){
 			skillDescriptionTextBar.SetActive (true);
-			skillText.text = "Heal [Key-2] ; Energy Cost = 20 \nRecover moderate amount of health.";
+			skillText.text = "Heal [Key-2] ; Energy Cost = 30 \nRecover moderate amount of health.";
 		}
 
 		public void MouseOverSkillRM(){
