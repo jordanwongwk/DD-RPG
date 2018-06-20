@@ -19,12 +19,15 @@ namespace RPG.Characters {
 
 		AudioSource audioSource;
 		WeaponSystem weaponSystem;
+		GameManager gameManager;
 		GameObject encounteredNPC;
 
 		void Start () {
 			audioSource = GetComponent<AudioSource> ();
 			weaponSystem = GetComponent<WeaponSystem> ();
+			gameManager = FindObjectOfType<GameManager> ();
 
+			gameManager.onPlayerRespawn += SetRespawnFullEnergy;
 			currentEnergyPoints = maxEnergyPoints;
 			defaultEnergyRecoverRate = regenEnergyPerSecond;
 			UpdateEnergyBar ();
@@ -33,7 +36,7 @@ namespace RPG.Characters {
 		}
 
 		void Update() {
-			if (currentEnergyPoints < maxEnergyPoints) {
+			if (currentEnergyPoints <= maxEnergyPoints) {
 				RegenEnergy ();
 				UpdateEnergyBar ();
 				UpdateEnergyText ();
@@ -47,6 +50,10 @@ namespace RPG.Characters {
 
 		void UpdateEnergyText () {
 			energyText.text = Mathf.RoundToInt(currentEnergyPoints) + " / " + maxEnergyPoints;
+		}
+
+		void SetRespawnFullEnergy(){
+			currentEnergyPoints = maxEnergyPoints;
 		}
 
 		public void SetEnergyRecoveryRate (float newEnergyRecRate){

@@ -17,4 +17,8 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: d451768b949dad142ab8368d64839ceb, type: 3}
   abilityAnimation: {fileID: 7400000, guid: c78137fcedc5ac34eb998beb409a0004, type: 3}
-  damageMultiplier: 1.75
+  requiresChanneling: 0
+  channelTime: 5
+  channelParticle: {fileID: 0}
+  dangerCircle: {fileID: 0}
+  damageMultiplier: 2
