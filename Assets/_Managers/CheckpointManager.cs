@@ -27,6 +27,7 @@ public class CheckpointManager : MonoBehaviour {
 
 		enemyManager = FindObjectOfType<EnemyManager> ();
 		playerCharacter = FindObjectOfType<PlayerControl> ().GetComponent<Character> ();
+		lastWeaponEquipped = playerCharacter.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
 
 		for (int i = 0; i < transform.childCount; i++) {
 			checkpoints.Add (transform.GetChild (i).gameObject);
