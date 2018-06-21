@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2510a80fd589e314bb69ad3d96e16abc
-timeCreated: 1529552434
+guid: 4fa2000b4e35a5d40b930ada1c6c12af
+timeCreated: 1529564366
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -60,7 +60,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
