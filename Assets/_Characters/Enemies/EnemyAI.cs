@@ -23,6 +23,7 @@ namespace RPG.Characters {
 		int nextWaypointIndex;
 		float currentWeaponRange;
 		float distanceToPlayer;
+		Vector3 enemyOriginalPosition;
 		PlayerControl player;
 		Character character;
 		WeaponSystem weaponSystem;
@@ -37,6 +38,8 @@ namespace RPG.Characters {
 			player = FindObjectOfType<PlayerControl> ();
 			gameManager = FindObjectOfType<GameManager> ();
 			gameManager.onPlayerRespawn += OnPlayerRespawn;
+
+			enemyOriginalPosition = transform.position;
 
 			SetupAbilitiesBehaviour ();
 		}
@@ -82,6 +85,10 @@ namespace RPG.Characters {
 
 		IEnumerator Patrol(){
 			state = State.patroling;
+			if (patrolPath == null) {
+				character.SetDestination (enemyOriginalPosition);
+			}
+
 			while (patrolPath != null) {
 				Vector3 nextWaypointPos = patrolPath.transform.GetChild (nextWaypointIndex).position;
 				character.SetDestination (nextWaypointPos);

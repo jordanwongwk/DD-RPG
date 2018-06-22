@@ -53,9 +53,9 @@ namespace RPG.CameraUI{
 				lastRecordTimeOnPlayer = Time.time;
 
 				if (transform.position != player.transform.position) {
-					player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (false);
+					player.GetComponent<PlayerControl> ().SetPlayerIsRespawning (true);
 				} else {
-					player.GetComponent<PlayerControl> ().SetPlayerFreeToMove (true);
+					player.GetComponent<PlayerControl> ().SetPlayerIsRespawning (false);
 				}
 			}
 		}

@@ -18,6 +18,7 @@ namespace RPG.Characters{
 		HealthSystem healthSystem;
 		bool isPlayerStillAlive = true;	
 		bool isPlayerFreeToMove = true;
+		bool isPlayerInRespawnProcess = false;
 		bool inBossBattle = false;
 		float playerStopDistance;
 		int playerDeathCount = 0;
@@ -46,7 +47,7 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverEnemy (EnemyAI enemy){
-			if (isPlayerStillAlive && isPlayerFreeToMove) {
+			if (isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
 				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
 					weaponSystem.AttackTarget (enemy.gameObject);
 				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
@@ -86,7 +87,7 @@ namespace RPG.Characters{
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
-			if (Input.GetMouseButton (0) && isPlayerStillAlive && isPlayerFreeToMove) {
+			if (Input.GetMouseButton (0) && isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
 				StopAllCoroutines ();
 				targetIndicator.transform.position = destination;
 				character.SetStoppingDistance (TARGET_OFFSET); 				// So that the character move closer to the target center point
@@ -132,6 +133,10 @@ namespace RPG.Characters{
 
 		public void SetPlayerFreeToMove(bool permission){
 			isPlayerFreeToMove = permission;
+		}
+
+		public void SetPlayerIsRespawning(bool permission){
+			isPlayerInRespawnProcess = permission;
 		}
 
 		void OnPlayerRespawn(){
