@@ -193,7 +193,7 @@ namespace RPG.Characters{
 					interactText.Add ("Derrick: \nIndeed I am. Oh, I've been waiting for this. Thank you. You did not peek into it right?");
 					interactText.Add ("You: \nI didn't, sir. Its very rude to do so.");
 					interactText.Add ("Derrick: \nHaha just joking, its not something big. You must be the boy Sieghart always mentioned.");
-					interactText.Add ("You: \nI'm honoured, sir. The guild master always treat me as his real son even he adopted me.");
+					interactText.Add ("You: \nI'm honoured, sir. The guild master always treat me as his real son even though he adopted me.");
 					interactText.Add ("Derrick: \nSounds like good, old Sieghart to me. Hahaha.");
 					interactText.Add ("You: \nSir, if you don't mind me asking, what happened to the town? It seems awfully quiet.");
 					interactText.Add ("Derrick: \nThose hooded guys invaded the town during daytime. I am the only survivor left.");
@@ -206,7 +206,11 @@ namespace RPG.Characters{
 					interactText.Add ("You: \nTrust me! I'm stronger than I looked.");
 					interactText.Add ("Derrick: \nIf you insists, I've already asked a few town guards to help me with the investigation.");
 					interactText.Add ("Derrick: \nYou should be able to meet them there at the castle.");
-					interactText.Add ("You: \nGot it!");
+					interactText.Add ("You: \nGot it! But wait, how do I get there?");
+					interactText.Add ("Derrick: \nThe enemies have blocked the main road outside of town. There's a secret route that can lead you to the main road.");
+					interactText.Add ("Derrick: \nThe secret route is behind the Shop, which is the building to the right of me. Go around it and you are back outside.");
+					interactText.Add ("Derrick: \nThe castle is to the west down the hill. Cross the river and the road is pretty much straight forward.");
+					interactText.Add ("You: \nThanks for the directions!");
 					interactText.Add ("Derrick: \nBe careful, I don't want my head being cut off by Sieg if something happened to you.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
@@ -228,10 +232,18 @@ namespace RPG.Characters{
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 
 					storyPhase1Done = true;	
 				} else {
+					interactText.Add ("Derrick: \nSecret route is behind the building to the right of me. Get around it to exit to the main road.");
+					interactText.Add ("Derrick: \nThe castle is to the west down the hill. Cross the river and the road is pretty much straight forward.");
 					interactText.Add ("Derrick: \nBe prepared for the worst, boy. It is a dark night full of terrors.");
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
+					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
