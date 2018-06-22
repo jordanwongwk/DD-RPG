@@ -25,6 +25,7 @@ namespace RPG.Characters{
 
 		const float TARGET_OFFSET = 0.25f;
 		const float BOSS_ENCOUNTER_DIST = 15f;
+		const float INDICATION_APPEAR_TIME = 1.5f;
 
 		void Start(){
 			abilities = GetComponent<SpecialAbilities> ();
@@ -62,7 +63,7 @@ namespace RPG.Characters{
 
 		IEnumerator MoveToTarget (GameObject target){
 			while (!IsTargetInRange (target)) {
-				MovingTargetIndication (target);
+				StartCoroutine (MovingTargetIndication (target));
 				character.SetDestination (target.transform.position);
 				yield return new WaitForEndOfFrame();
 			}
@@ -71,28 +72,39 @@ namespace RPG.Characters{
 		IEnumerator MoveAndAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
 			character.SetStoppingDistance (playerStopDistance);				// Leave some distance for combat
-			MovingTargetIndication (enemy);
+			StartCoroutine (MovingTargetIndication (enemy));
 			weaponSystem.AttackTarget (enemy);
 		}
 
 		IEnumerator MoveAndSpecialAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
 			character.SetStoppingDistance (playerStopDistance);
-			MovingTargetIndication (enemy);
+			StartCoroutine (MovingTargetIndication (enemy));
 			abilities.AttemptSpecialAbility (0, enemy);
 		}
 
-		void MovingTargetIndication (GameObject target){
+		IEnumerator MovingTargetIndication (GameObject target){
+			targetIndicator.SetActive (true);
 			targetIndicator.transform.position = target.transform.position;
+			yield return new WaitForSeconds (INDICATION_APPEAR_TIME);
+			targetIndicator.SetActive (false);
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
 			if (Input.GetMouseButton (0) && isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
 				StopAllCoroutines ();
-				targetIndicator.transform.position = destination;
+				StartCoroutine (MovingDestinationIndication (destination));
 				character.SetStoppingDistance (TARGET_OFFSET); 				// So that the character move closer to the target center point
 				character.SetDestination (destination);
 			}
+		}
+
+		IEnumerator MovingDestinationIndication (Vector3 destination)
+		{
+			targetIndicator.SetActive (true);
+			targetIndicator.transform.position = destination;
+			yield return new WaitForSeconds (INDICATION_APPEAR_TIME);
+			targetIndicator.SetActive (false);
 		}
 
 		void Update() {
