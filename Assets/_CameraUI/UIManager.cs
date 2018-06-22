@@ -14,6 +14,7 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject energyRemainingGlobe = null;
 		[SerializeField] GameObject gamePanel = null;
 		[SerializeField] GameObject pausePanel = null;
+		[SerializeField] GameObject endGameConfirmationWindow = null;
 
 		Text skillText;
 		Text questText;
@@ -28,6 +29,7 @@ namespace RPG.CameraUI {
 		bool isPausePanelActive = false;
 		bool isPanelFadingIn = false;
 		bool isPanelFadingOut = false;
+		bool isGameEnding = false;
 
 		const float FADE_TIME = 3.0f;
 		const float TIME_END_GAME = 5.0f;
@@ -201,5 +203,24 @@ namespace RPG.CameraUI {
 			healthRemainingGlobe.SetActive (false);
 			energyRemainingGlobe.SetActive (false);
 		}
+		// END Health and Energy Remaining Text
+
+		// START End Game Confirmation Window
+		public void SetEndGameConfirmationActive(){
+			if (endGameConfirmationWindow.activeInHierarchy == false) {
+				endGameConfirmationWindow.SetActive (true);
+			}
+		}
+
+		public void EndGameYes () {
+			endGameConfirmationWindow.SetActive (false);
+			gameManager.TriggerEndOfGame ();
+		}
+
+		public void EndGameNo (){
+			endGameConfirmationWindow.SetActive (false);
+			gameManager.SetIsGameEnding (false);
+		}
+		// END End Game Confirmation Window
 	}
 }

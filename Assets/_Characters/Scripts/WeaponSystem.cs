@@ -95,8 +95,6 @@ namespace RPG.Characters{
 			} else {
 				StartCoroutine (DamageAfterDelay (damageDelay));
 			}
-
-
 		}
 
 		IEnumerator DamageAfterDelay (float damageDelay){

@@ -49,7 +49,7 @@ namespace RPG.Characters{
 			gameManager = FindObjectOfType<GameManager> ();
 			eventManager = FindObjectOfType<EventManager> ();
 		}
-
+			
 		void Update(){
 			float distanceDifferenceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 			if (distanceDifferenceToPlayer <= distanceToPlayerToTrigger) {
@@ -147,8 +147,8 @@ namespace RPG.Characters{
 				gameManager.SetSecret2Done ();
 			} else if (gameManager.GetSecret4Info() == false && secret4Done) {
 				gameManager.SetSecret4Done ();
-			} else if (triggerEndGame) {
-				gameManager.TriggerEndOfGame ();
+			} else if (gameManager.GetIsGameEnding() == true) {
+				uIManager.SetEndGameConfirmationActive ();
 			}
 			// Secret 3 is done on optional boss death, managed by GameManager
 
@@ -294,7 +294,7 @@ namespace RPG.Characters{
 
 					storyPhase2Done = true;
 				} else {
-					interactText.Add ("Merlin: \nAnything else, boy? I'm rather busy here.");
+					interactText.Add ("Merlin: \nAnything else, boy? I'm rather busy here. You want to go Cornelia, its west of here. Turn right on the roundabout.");
 					interactPortrait.Add (characterPortrait [NPC_PORTRAIT]);
 				}
 				break;
@@ -569,19 +569,19 @@ namespace RPG.Characters{
 				break;
 
 			case ObjectName.EndingPoint:
-				if (gameManager.GetSecret4Info () == true && !triggerEndGame) {
+				if (gameManager.GetSecret4Info () == true) {
 					interactText.Add ("You(?): \nThat Derrick guy must have gone through here.");
 					interactText.Add ("You(?): \nI'm coming for you and your fake replicas. I'm gonna burn them all!");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else if (gameManager.GetSecret4Info () == false && gameManager.GetSecret3Info () == true && !triggerEndGame) {
+				} else if (gameManager.GetSecret4Info () == false && gameManager.GetSecret3Info () == true) {
 					interactText.Add ("You: \nI'm guessing Derrick went through here.");
 					interactText.Add ("You: \nHere goes nothing.");
 
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
-				} else if (gameManager.GetSecret3Info () == false && !triggerEndGame) {
+				} else if (gameManager.GetSecret3Info () == false) {
 					interactText.Add ("You: \nSo, this is where the villagers are being taken to.");
 					interactText.Add ("You: \nHang in there everyone. I'm coming to help!");
 
@@ -593,7 +593,7 @@ namespace RPG.Characters{
 					interactPortrait.Add (characterPortrait [MC_PORTRAIT]);
 				}
 
-				triggerEndGame = true;
+				gameManager.SetIsGameEnding (true);
 				break;
 
 			default:

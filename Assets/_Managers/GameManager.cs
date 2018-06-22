@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	int weaponsFound = 0;
 	bool isInBossBattle = false;
 	bool isReadyForSecret4 = false;
+	bool isGameEnding = false; 
 
 	const float TIME_END_GAME = 5.0f;
 
@@ -160,6 +161,15 @@ public class GameManager : MonoBehaviour {
 
 	public void SetWeaponFound (){
 		weaponsFound += 1;
+	}
+
+	// End Game Stuff
+	public void SetIsGameEnding (bool endingPermission){
+		isGameEnding = endingPermission;
+	}
+
+	public bool GetIsGameEnding (){
+		return isGameEnding;
 	}
 
 	public void TriggerEndOfGame(){
