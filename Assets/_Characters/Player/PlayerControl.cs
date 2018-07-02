@@ -16,6 +16,7 @@ namespace RPG.Characters{
 		GameManager gameManager;
 		CheckpointManager checkpointManager;
 		HealthSystem healthSystem;
+		PlayerDetectEnemy playerDetection;
 		bool isPlayerStillAlive = true;	
 		bool isPlayerFreeToMove = true;
 		bool isPlayerInRespawnProcess = false;
@@ -33,6 +34,7 @@ namespace RPG.Characters{
 			weaponSystem = GetComponent<WeaponSystem> ();
 			gameManager = FindObjectOfType<GameManager> ();
 			checkpointManager = FindObjectOfType<CheckpointManager> ();
+			playerDetection = GetComponentInChildren<PlayerDetectEnemy> ();
 			playerStopDistance = character.GetStoppingDistance ();
 			RegisterOnMouseEvents ();
 		}
@@ -72,7 +74,7 @@ namespace RPG.Characters{
 		IEnumerator MoveAndAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
 			character.SetStoppingDistance (playerStopDistance);				// Leave some distance for combat
-			StartCoroutine (MovingTargetIndication (enemy));
+			// Attack indicator
 			weaponSystem.AttackTarget (enemy);
 		}
 
@@ -109,8 +111,32 @@ namespace RPG.Characters{
 
 		void Update() {
 			isPlayerStillAlive = GetComponent<HealthSystem> ().healthAsPercentage >= Mathf.Epsilon;
-			ScanForAbilityKeyDown ();
+			TargettingEnemy ();
 			ScanForBoss ();
+
+			if (isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
+				ScanForAutoAttack ();
+				ScanForAbilityKeyDown ();
+			}
+		}
+			
+		void TargettingEnemy() {
+			if (Input.GetKeyDown (KeyCode.Tab)) {
+				playerDetection.SelectingEnemyTarget ();
+			}
+		}
+
+		void ScanForAutoAttack(){
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				var selectedEnemy = playerDetection.GetEnemyTarget ();
+				if (selectedEnemy != null) {
+					if (IsTargetInRange (selectedEnemy)) {
+						weaponSystem.AttackTarget (selectedEnemy);
+					} else if (!IsTargetInRange (selectedEnemy)) {
+						StartCoroutine (MoveAndAttack (selectedEnemy));
+					}
+				}
+			}
 		}
 
 		void ScanForAbilityKeyDown(){

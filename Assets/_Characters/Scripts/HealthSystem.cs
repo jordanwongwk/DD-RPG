@@ -22,6 +22,7 @@ namespace RPG.Characters{
 		AudioSource audioSource;
 		Character characterMovement;
 		GameManager gameManager;
+		PlayerDetectEnemy playerDetection;
 		bool isCurrentlyDying = false;
 		float regenAmount = 0f;
 
@@ -32,6 +33,7 @@ namespace RPG.Characters{
 			audioSource = GetComponent<AudioSource> ();
 			characterMovement = GetComponent<Character> ();
 			gameManager = FindObjectOfType<GameManager> ();
+			playerDetection = FindObjectOfType<PlayerDetectEnemy> ();
 
 			gameManager.onPlayerRespawn += SetRespawnAnimationAndHealth;
 			currentHealthPoints = maxHealthPoints;
@@ -92,6 +94,7 @@ namespace RPG.Characters{
 			var playerComponent = GetComponent<PlayerControl> ();
 			if (playerComponent && playerComponent.isActiveAndEnabled) {	// Relying on lazy evaluation
 				yield return new WaitForSeconds (audioSource.clip.length + DEATH_DELAY);
+				playerDetection.ResettingSelectedEnemyAndIndicator ();
 				playerComponent.SetPlayerDeathCount ();
 				animator.SetTrigger (REVIVE_TRIGGER);
 				gameManager.StartRespawnDelegates ();
@@ -103,6 +106,7 @@ namespace RPG.Characters{
 				GetComponent<CapsuleCollider> ().enabled = false;
 				GetComponent<EnemyAI> ().EnemyStopAllAction ();
 				yield return new WaitForSeconds (deathVanishInSeconds);
+				playerDetection.SetIndicatorOffStillTargetted (this.gameObject);
 				isCurrentlyDying = false;
 				if (gameObject.tag == "Boss") {
 					Destroy (gameObject);

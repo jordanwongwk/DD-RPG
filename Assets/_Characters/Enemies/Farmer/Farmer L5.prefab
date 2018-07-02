@@ -1981,8 +1981,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
-  colliderRadius: 0.6
-  colliderHeight: 2
+  colliderRadius: 1
+  colliderHeight: 3
   isTriggerCollider: 1
   isThisKinematic: 0
   steeringSpeed: 1
