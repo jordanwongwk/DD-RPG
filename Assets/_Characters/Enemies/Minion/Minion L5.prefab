@@ -1978,8 +1978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
-  colliderRadius: 0.6
-  colliderHeight: 2
+  colliderRadius: 1
+  colliderHeight: 3
   isTriggerCollider: 1
   isThisKinematic: 0
   steeringSpeed: 1
@@ -2087,11 +2087,11 @@ MonoBehaviour:
   maxHealthPoints: 60
   deathVanishInSeconds: 2
   healthBar: {fileID: 114576231339596074}
+  healthText: {fileID: 0}
   damageSounds:
   - {fileID: 0}
   deathSounds:
   - {fileID: 8300000, guid: 7f7eb6a13d920d448bb3eb198437e16a, type: 3}
-  currentHealthPoints: 0
 --- !u!114 &114662011850435112
 MonoBehaviour:
   m_ObjectHideFlags: 1

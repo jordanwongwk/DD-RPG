@@ -2050,11 +2050,11 @@ MonoBehaviour:
   maxHealthPoints: 160
   deathVanishInSeconds: 2
   healthBar: {fileID: 114667089705324314}
+  healthText: {fileID: 0}
   damageSounds:
   - {fileID: 0}
   deathSounds:
   - {fileID: 8300000, guid: a4ee485e9ca862e40be3d99841626213, type: 3}
-  currentHealthPoints: 0
 --- !u!114 &114667089705324314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2126,8 +2126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderCenter: {x: 0, y: 1, z: 0}
-  colliderRadius: 0.5
-  colliderHeight: 2
+  colliderRadius: 1
+  colliderHeight: 3
   isTriggerCollider: 1
   isThisKinematic: 0
   steeringSpeed: 1
@@ -2139,6 +2139,7 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioVolume: 0.8
   audioSpatialBlend: 0
+  greetingsClip: {fileID: 0}
   moveSpeedMultiplier: 1.25
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
@@ -2161,9 +2162,7 @@ MonoBehaviour:
   waypointTolerance: 2
   waitAtWaypoint: 0.5
   abilities: []
-  dangerCircle: {fileID: 0}
   timeWaitBetweenCasts: 5
-  channelTime: 3
 --- !u!114 &114950434901042400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2178,7 +2177,6 @@ MonoBehaviour:
   baseDamage: 0
   currentWeaponConfig: {fileID: 11400000, guid: 1272c6e776b3ff94cb6a811aa0dd2430,
     type: 2}
-  secret4RequirementWeapon: {fileID: 0}
 --- !u!137 &137428286723854162
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

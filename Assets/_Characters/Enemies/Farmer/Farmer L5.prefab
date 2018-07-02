@@ -1995,7 +1995,7 @@ MonoBehaviour:
   audioVolume: 0.8
   audioSpatialBlend: 0
   greetingsClip: {fileID: 0}
-  moveSpeedMultiplier: 0.8
+  moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180

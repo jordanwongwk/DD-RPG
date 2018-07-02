@@ -11,11 +11,6 @@ namespace RPG.Characters {
 		int selectedEnemyNumber = 100; 				// Make absurd high number
 		GameObject selectedEnemy;
 		List<GameObject> enemyInSight = new List<GameObject>();
-
-		void Start(){
-			SphereCollider sphereCollider = GetComponent<SphereCollider> ();
-			sphereCollider.radius = detectionRange;
-		}
 			
 		void Update()
 		{
