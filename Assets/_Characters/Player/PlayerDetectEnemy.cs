@@ -16,11 +16,11 @@ namespace RPG.Characters {
 		{
 			GetEnemyInRange ();
 
-			if (selectedEnemy != null) {
+			if (selectedEnemy != null && !enemyInSight.Contains(selectedEnemy)) {		// Go false if enemy out of sight
+				ResettingSelectedEnemyAndIndicator ();
+			} else if (selectedEnemy != null){
 				IndicateTargettedEnemy ();
-			} else {
-				enemyTargetIndicator.SetActive (false);
-			}
+			} 
 
 			for (int i = enemyInSight.Count-1; i > -1; i--) {
 				if (enemyInSight [i] == null) {			// Boss destroys immediately
@@ -66,6 +66,12 @@ namespace RPG.Characters {
 			
 		public GameObject GetEnemyTarget (){
 			return selectedEnemy;
+		}
+
+		public void SetEnemyTarget (GameObject target) {
+			selectedEnemy = target;
+			IndicateTargettedEnemy ();
+			enemyTargetIndicator.SetActive (true);
 		}
 
 		public void SetIndicatorOffStillTargetted(GameObject target){

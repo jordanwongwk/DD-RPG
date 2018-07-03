@@ -21,6 +21,7 @@ namespace RPG.Characters {
 		[SerializeField] float steeringSpeed = 1.0f;
 		[SerializeField] float stoppingDistance = 1f;
 		[SerializeField] float obstacleAvoidanceRadius = 0.1f;
+		[SerializeField] float accelerationAmount = 8.0f;
 
 		[Header("Animator Setup Settings")]
 		[SerializeField] RuntimeAnimatorController animatorController = null;
@@ -68,6 +69,7 @@ namespace RPG.Characters {
 			agent.speed = steeringSpeed;
 			agent.stoppingDistance = stoppingDistance;
 			agent.radius = obstacleAvoidanceRadius;
+			agent.acceleration = accelerationAmount;
 			agent.updateRotation = false;
 			agent.updatePosition = true;
 			agent.autoBraking = false;

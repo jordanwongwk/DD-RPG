@@ -51,6 +51,7 @@ namespace RPG.Characters{
 
 		void MouseOverEnemy (EnemyAI enemy){
 			if (isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
+				playerDetection.SetEnemyTarget (enemy.gameObject);
 				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
 					weaponSystem.AttackTarget (enemy.gameObject);
 				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
@@ -74,7 +75,6 @@ namespace RPG.Characters{
 		IEnumerator MoveAndAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
 			character.SetStoppingDistance (playerStopDistance);				// Leave some distance for combat
-			// Attack indicator
 			weaponSystem.AttackTarget (enemy);
 		}
 

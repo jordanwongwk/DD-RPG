@@ -77430,7 +77430,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -11.38
+      value: -130.92
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -77438,7 +77438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -41.18
+      value: 161.79
       objectReference: {fileID: 0}
     - target: {fileID: 4922386615519990, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -77460,26 +77460,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114185833742608680, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
-        type: 2}
-      propertyPath: enemyTargetIndicator
-      value: 
-      objectReference: {fileID: 143908255}
-    - target: {fileID: 114488285442263634, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
-        type: 2}
-      propertyPath: targetIndicator
-      value: 
-      objectReference: {fileID: 210207556}
-    - target: {fileID: 114810148887738032, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
-        type: 2}
-      propertyPath: energyBar
-      value: 
-      objectReference: {fileID: 1129850991}
-    - target: {fileID: 114810148887738032, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
-        type: 2}
-      propertyPath: energyText
-      value: 
-      objectReference: {fileID: 948142701}
     - target: {fileID: 114767606073093910, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
         type: 2}
       propertyPath: healthBar
@@ -77490,14 +77470,32 @@ Prefab:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 906040568}
-    - target: {fileID: 114473020469667452, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+    - target: {fileID: 114810148887738032, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
         type: 2}
-      propertyPath: currentWeaponConfig
+      propertyPath: energyBar
       value: 
-      objectReference: {fileID: 11400000, guid: 19e0998e105d0ba4581aab56c89dafb8,
+      objectReference: {fileID: 1129850991}
+    - target: {fileID: 114810148887738032, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
         type: 2}
-    m_RemovedComponents:
-    - {fileID: 135944899073394978, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
+      propertyPath: energyText
+      value: 
+      objectReference: {fileID: 948142701}
+    - target: {fileID: 114488285442263634, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: targetIndicator
+      value: 
+      objectReference: {fileID: 210207556}
+    - target: {fileID: 114185833742608680, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: enemyTargetIndicator
+      value: 
+      objectReference: {fileID: 143908255}
+    - target: {fileID: 114185833742608680, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: detectionRange
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1624878425
