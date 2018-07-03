@@ -22,10 +22,15 @@ namespace RPG.Characters {
 				enemyTargetIndicator.SetActive (false);
 			}
 
-			for (int i = enemyInSight.Count; i > 0; i--) {
-				float distanceToPlayer = Vector3.Distance (transform.position, enemyInSight [i-1].transform.position);
-				if (!enemyInSight [i-1].activeInHierarchy || distanceToPlayer > detectionRange) {
-					enemyInSight.Remove (enemyInSight [i-1]);
+			for (int i = enemyInSight.Count-1; i > -1; i--) {
+				if (enemyInSight [i] == null) {			// Boss destroys immediately
+					enemyInSight.RemoveAt (i);
+					return;
+				}
+
+				float distanceToPlayer = Vector3.Distance (transform.position, enemyInSight [i].transform.position);
+				if (!enemyInSight [i].activeInHierarchy || distanceToPlayer > detectionRange) {
+					enemyInSight.RemoveAt (i);
 				}
 			}
 		}
