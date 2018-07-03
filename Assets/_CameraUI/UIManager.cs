@@ -14,6 +14,7 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject energyRemainingGlobe = null;
 		[SerializeField] GameObject gamePanel = null;
 		[SerializeField] GameObject pausePanel = null;
+		[SerializeField] GameObject tutorialPanel = null;
 		[SerializeField] GameObject endGameConfirmationWindow = null;
 
 		Text skillText;
@@ -222,5 +223,15 @@ namespace RPG.CameraUI {
 			gameManager.SetIsGameEnding (false);
 		}
 		// END End Game Confirmation Window
+
+		// Tutorial Panel
+		public void OnStartCloseTutorialWindow(){
+			tutorialPanel.SetActive (false);
+		}
+
+		public void OnClickOpenTutorialWindow () {
+			tutorialPanel.GetComponentInChildren<TutorialText> ().ResetAllCounts ();
+			tutorialPanel.SetActive (true);
+		}
 	}
 }
