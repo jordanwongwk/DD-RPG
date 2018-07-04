@@ -23,5 +23,7 @@ MonoBehaviour:
     type: 2}
   dangerCircle: {fileID: 1501884616789356, guid: 06d6480aeb24830488da60fb585e34bf,
     type: 2}
+  dangerCircleTop: {fileID: 1501884616789356, guid: 18eeafccbdda5104581a1c1308230d6a,
+    type: 2}
   radius: 7
   damageEachTarget: 450

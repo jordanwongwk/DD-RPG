@@ -63,8 +63,10 @@ namespace RPG.Characters{
 					playerDetection.SetEnemyTarget (enemy.gameObject);
 					StartCoroutine (MoveAndAttack (enemy.gameObject));
 				} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
+					playerDetection.SetEnemyTarget (enemy.gameObject);
 					abilities.AttemptSpecialAbility (0, enemy.gameObject);
 				} else if (Input.GetMouseButtonDown (1) && !IsTargetInRange (enemy.gameObject)) {
+					playerDetection.SetEnemyTarget (enemy.gameObject);
 					StartCoroutine (MoveAndSpecialAttack (enemy.gameObject));
 				}
 			}

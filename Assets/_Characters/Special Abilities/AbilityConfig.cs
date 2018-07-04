@@ -17,6 +17,7 @@ namespace RPG.Characters {
 		[SerializeField] float channelTime = 5f;
 		[SerializeField] GameObject channelParticle = null;
 		[SerializeField] GameObject dangerCircle = null;
+		[SerializeField] GameObject dangerCircleTop = null;
 
 		protected AbilityBehaviour behaviour;
 
@@ -63,6 +64,10 @@ namespace RPG.Characters {
 
 		public GameObject GetDangerCircle(){
 			return dangerCircle;
+		}
+
+		public GameObject GetDangerCircleTop() {
+			return dangerCircleTop;
 		}
 
 		// Removing the asset pack's animation's event clip to prevent errors or bugs
