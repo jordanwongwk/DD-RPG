@@ -9,23 +9,28 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject previousButton = null;
 		[SerializeField] GameObject nextButton = null;
 		[SerializeField] Text pageNumberText = null;
+		[SerializeField] AudioClip pageFlipSound = null;
 
 		int tutorialDisplayCount = 0;
 		UIManager uiManager;
+		AudioSource audioSource;
 
 		void Start () {
 			uiManager = FindObjectOfType<UIManager> ();
+			audioSource = GetComponent<AudioSource> ();
 			ManagingTutorialTextWindow ();
 		}
 		
 		public void OnClickNext () {
 			tutorialDisplayCount++;
 			ManagingTutorialTextWindow ();
+			audioSource.PlayOneShot (pageFlipSound);
 		}
 
 		public void OnClickPrevious () {
 			tutorialDisplayCount--;
 			ManagingTutorialTextWindow ();
+			audioSource.PlayOneShot (pageFlipSound);
 		}
 
 		void ManagingTutorialTextWindow() {
