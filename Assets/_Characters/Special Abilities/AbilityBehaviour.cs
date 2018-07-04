@@ -39,11 +39,13 @@ namespace RPG.Characters {
 		}
 
 		protected void PlayAbilityAnimation(){
-			var animatorOverrideController = GetComponent<Character>().GetOverrideController ();
-			var animator = GetComponent<Animator> ();
-			animator.runtimeAnimatorController = animatorOverrideController;
-			animatorOverrideController [DEFAULT_ATTACK] = config.GetAbilityAnimation ();
-			animator.SetTrigger (ATTACK_TRIGGER);
+			if (config.GetAbilityAnimation () != null) {
+				var animatorOverrideController = GetComponent<Character> ().GetOverrideController ();
+				var animator = GetComponent<Animator> ();
+				animator.runtimeAnimatorController = animatorOverrideController;
+				animatorOverrideController [DEFAULT_ATTACK] = config.GetAbilityAnimation ();
+				animator.SetTrigger (ATTACK_TRIGGER);
+			}
 		}
 	}
 }

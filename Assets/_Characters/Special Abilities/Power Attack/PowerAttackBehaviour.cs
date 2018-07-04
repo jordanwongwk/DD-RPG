@@ -14,6 +14,8 @@ namespace RPG.Characters {
 
 		void DealingPowerDamage (GameObject target)
 		{
+			transform.LookAt (target.transform.position);
+			StartCoroutine (LookBackAtTarget (target));				// Forced character to lookback at target due to animation / navmesh offset
 			float damageMultiplier = (config as PowerAttackConfig).GetDamageMultiplier ();
 			float baseDamage = GetComponent<WeaponSystem> ().GetBaseDamage ();
 			var weaponInHand = GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
@@ -21,6 +23,12 @@ namespace RPG.Characters {
 			float damageToDeal = (weaponDamage * damageMultiplier) + baseDamage;
 
 			target.GetComponent<HealthSystem>().TakeDamage (damageToDeal);
+		}
+
+		IEnumerator LookBackAtTarget (GameObject target) {			
+			float animationClipTime = (config as PowerAttackConfig).GetAbilityAnimation ().length;
+			yield return new WaitForSeconds (animationClipTime / 2);
+			transform.LookAt (target.transform.position);
 		}
 	}
 }

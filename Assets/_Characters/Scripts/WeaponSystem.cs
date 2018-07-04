@@ -96,7 +96,7 @@ namespace RPG.Characters{
 		void AttackTargetOnce(){
 			projectile = currentWeaponConfig.GetWeaponProjectile();
 
-			transform.LookAt (target.transform);
+			transform.LookAt (target.transform.position);
 			animator.SetTrigger (ATTACK_TRIGGER);
 			float damageDelay = currentWeaponConfig.GetDamageDelay ();
 			SetAttackAnimation();
@@ -111,6 +111,7 @@ namespace RPG.Characters{
 
 		IEnumerator DamageAfterDelay (float damageDelay){
 			yield return new WaitForSecondsRealtime (damageDelay);
+			transform.LookAt (target.transform.position);				// Look back at target 
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
 			PlayWeaponSFX ();
 		}

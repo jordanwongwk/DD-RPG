@@ -68,7 +68,9 @@ namespace RPG.Characters {
 		// Removing the asset pack's animation's event clip to prevent errors or bugs
 		void RemoveAnimationEvent ()
 		{
-			abilityAnimation.events = new AnimationEvent[0];
+			if (abilityAnimation != null) {
+				abilityAnimation.events = new AnimationEvent[0];
+			}
 		}
 	}
 }
