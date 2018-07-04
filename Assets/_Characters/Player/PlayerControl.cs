@@ -56,10 +56,11 @@ namespace RPG.Characters{
 
 		void MouseOverEnemy (EnemyAI enemy){
 			if (isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
-				playerDetection.SetEnemyTarget (enemy.gameObject);
 				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
+					playerDetection.SetEnemyTarget (enemy.gameObject);
 					weaponSystem.AttackTarget (enemy.gameObject);
 				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
+					playerDetection.SetEnemyTarget (enemy.gameObject);
 					StartCoroutine (MoveAndAttack (enemy.gameObject));
 				} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
 					abilities.AttemptSpecialAbility (0, enemy.gameObject);

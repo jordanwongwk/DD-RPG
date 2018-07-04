@@ -33,7 +33,9 @@ namespace RPG.Characters{
 
 		void SetStoppingDistanceBasedOnWeaponRange(){
 			float currentWeaponRange = currentWeaponConfig.GetMaxAttackRange();
-			character.SetStoppingDistance (currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+			if (currentWeaponConfig.GetMaxAttackRange () != 0) {			// IF its player and enemy but NOT NPC
+				character.SetStoppingDistance (currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+			}
 
 			if (gameObject.GetComponent<PlayerControl>() != null) {
 				gameObject.GetComponent<PlayerControl> ().SetPlayerStopDistanceToAttack(currentWeaponRange - ATTACK_DISTANCE_OFFSET);
