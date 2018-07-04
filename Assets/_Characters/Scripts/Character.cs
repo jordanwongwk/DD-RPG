@@ -19,6 +19,7 @@ namespace RPG.Characters {
 
 		[Header("Nav Mesh Settings")]
 		[SerializeField] float steeringSpeed = 1.0f;
+		[SerializeField] float stoppingDistance = 2.0f;
 		[SerializeField] float obstacleAvoidanceRadius = 0.1f;
 		[SerializeField] float accelerationAmount = 8.0f;
 
@@ -66,6 +67,7 @@ namespace RPG.Characters {
 
 			agent = gameObject.AddComponent<NavMeshAgent> ();
 			agent.speed = steeringSpeed;
+			agent.stoppingDistance = stoppingDistance;
 			agent.radius = obstacleAvoidanceRadius;
 			agent.acceleration = accelerationAmount;
 			agent.updateRotation = false;

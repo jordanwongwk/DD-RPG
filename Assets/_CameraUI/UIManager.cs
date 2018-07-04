@@ -30,7 +30,6 @@ namespace RPG.CameraUI {
 		bool isPausePanelActive = false;
 		bool isPanelFadingIn = false;
 		bool isPanelFadingOut = false;
-		bool isGameEnding = false;
 
 		const float FADE_TIME = 3.0f;
 		const float TIME_END_GAME = 5.0f;

@@ -41,7 +41,6 @@ namespace RPG.Characters{
 		bool tavernInitialChat = false;
 		bool pickedUpAxe = false;
 		bool pickedUpAxeStatus = false;
-		bool triggerEndGame = false;
 
 		void Start () {
 			player = FindObjectOfType<PlayerControl> ().gameObject;
