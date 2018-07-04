@@ -18,7 +18,7 @@ MonoBehaviour:
   weaponAnimation: {fileID: 7400000, guid: 4496e3e9b4c7231499b46f4e5d36d430, type: 3}
   weaponSFX: {fileID: 8300000, guid: bf58418d9a91b8c41bc0375337141ff5, type: 3}
   timeBetweenHits: 0.7
-  maxAttackRange: 1.5
+  maxAttackRange: 2.4
   additionalDamage: 0
   damageDelay: 0.3
   weaponProjectile: {fileID: 0}

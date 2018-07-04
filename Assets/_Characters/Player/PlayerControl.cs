@@ -21,8 +21,10 @@ namespace RPG.Characters{
 		bool isPlayerFreeToMove = true;
 		bool isPlayerInRespawnProcess = false;
 		bool inBossBattle = false;
-		float playerStopDistance;
+		float playerStopDistanceForAttacking;
 		int playerDeathCount = 0;
+
+		Vector3 testing;
 
 		const float TARGET_OFFSET = 0.25f;
 		const float BOSS_ENCOUNTER_DIST = 15f;
@@ -35,8 +37,11 @@ namespace RPG.Characters{
 			gameManager = FindObjectOfType<GameManager> ();
 			checkpointManager = FindObjectOfType<CheckpointManager> ();
 			playerDetection = GetComponentInChildren<PlayerDetectEnemy> ();
-			playerStopDistance = character.GetStoppingDistance ();
 			RegisterOnMouseEvents ();
+		}
+
+		public void SetPlayerStopDistanceToAttack (float currentWeaponRange) {
+			playerStopDistanceForAttacking = currentWeaponRange;
 		}
 			
 		void RegisterOnMouseEvents ()
@@ -74,13 +79,13 @@ namespace RPG.Characters{
 
 		IEnumerator MoveAndAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
-			character.SetStoppingDistance (playerStopDistance);				// Leave some distance for combat
+			character.SetStoppingDistance (playerStopDistanceForAttacking);				// Leave some distance for combat
 			weaponSystem.AttackTarget (enemy);
 		}
 
 		IEnumerator MoveAndSpecialAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
-			character.SetStoppingDistance (playerStopDistance);
+			character.SetStoppingDistance (playerStopDistanceForAttacking);
 			StartCoroutine (MovingTargetIndication (enemy));
 			abilities.AttemptSpecialAbility (0, enemy);
 		}

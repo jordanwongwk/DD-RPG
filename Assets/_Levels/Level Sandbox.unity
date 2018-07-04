@@ -16768,7 +16768,7 @@ Transform:
   - {fileID: 210207557}
   - {fileID: 143908256}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281244200
 GameObject:
@@ -77285,6 +77285,22 @@ Prefab:
       propertyPath: detectionRange
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114566465204983110, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: isThisKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114566465204983110, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: stoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473020469667452, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc,
+        type: 2}
+      propertyPath: currentWeaponConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f755b8f4a5912a48811ce5859d42498,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b9c9ed912ae764daa52e9f2f1c1bbc, type: 2}
   m_IsPrefabParent: 0
@@ -82755,7 +82771,7 @@ Transform:
   - {fileID: 281244201}
   - {fileID: 712894639}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1786632318 stripped
 Transform:
@@ -94631,7 +94647,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4049989951570648, guid: f0ec9c3d184b61b41ae9490b77205cc2, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114886863584119422, guid: f0ec9c3d184b61b41ae9490b77205cc2,
         type: 2}
@@ -95215,6 +95231,10 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1505623929213384, guid: 915aeab6486841d4f8a44dca54d23ce6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940649565642092, guid: 915aeab6486841d4f8a44dca54d23ce6, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

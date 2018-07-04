@@ -2041,6 +2041,7 @@ MonoBehaviour:
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
+  accelerationAmount: 8
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 08969e1af87202a488b77391e5450fea,
     type: 2}

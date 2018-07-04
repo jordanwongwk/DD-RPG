@@ -19,7 +19,6 @@ namespace RPG.Characters {
 
 		[Header("Nav Mesh Settings")]
 		[SerializeField] float steeringSpeed = 1.0f;
-		[SerializeField] float stoppingDistance = 1f;
 		[SerializeField] float obstacleAvoidanceRadius = 0.1f;
 		[SerializeField] float accelerationAmount = 8.0f;
 
@@ -67,7 +66,6 @@ namespace RPG.Characters {
 
 			agent = gameObject.AddComponent<NavMeshAgent> ();
 			agent.speed = steeringSpeed;
-			agent.stoppingDistance = stoppingDistance;
 			agent.radius = obstacleAvoidanceRadius;
 			agent.acceleration = accelerationAmount;
 			agent.updateRotation = false;
@@ -93,7 +91,7 @@ namespace RPG.Characters {
 		void Update(){
 			if (agent.remainingDistance > agent.stoppingDistance && isAlive) {
 				Move (agent.desiredVelocity);
-			} else {
+			} else {			
 				Move (Vector3.zero);
 			}
 		}
@@ -163,8 +161,8 @@ namespace RPG.Characters {
 		void Move(Vector3 movement)
 		{
 			SetForwardAndTurn (movement);
-			ApplyExtraTurnRotation();
-			UpdateAnimator(); 
+			ApplyExtraTurnRotation ();
+			UpdateAnimator (); 
 		}
 
 		void SetForwardAndTurn (Vector3 movement)

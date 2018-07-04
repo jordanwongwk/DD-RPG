@@ -20,12 +20,24 @@ namespace RPG.Characters{
 		GameObject projectile;
 		WeaponConfig playerWeaponInHand;
 
+		const float ATTACK_DISTANCE_OFFSET = 0.1f;
+
 		void Start () {
 			character = GetComponent<Character> ();
 			animator = GetComponent<Animator> ();
 
 			ChangeWeaponInHand (currentWeaponConfig);	
 			SetAttackAnimation (); 
+			SetStoppingDistanceBasedOnWeaponRange ();
+		}
+
+		void SetStoppingDistanceBasedOnWeaponRange(){
+			float currentWeaponRange = currentWeaponConfig.GetMaxAttackRange();
+			character.SetStoppingDistance (currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+
+			if (gameObject.GetComponent<PlayerControl>() != null) {
+				gameObject.GetComponent<PlayerControl> ().SetPlayerStopDistanceToAttack(currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+			}
 		}
 
 		void Update() {
@@ -101,7 +113,6 @@ namespace RPG.Characters{
 			yield return new WaitForSecondsRealtime (damageDelay);
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
 			PlayWeaponSFX ();
-
 		}
 
 		IEnumerator FireProjectile(GameObject target, float firingDelay){
@@ -145,6 +156,7 @@ namespace RPG.Characters{
 			weaponObject = Instantiate(weaponPrefab, armToHoldWeapon.transform);
 			weaponObject.transform.localPosition = weaponToChange.gripTransform.transform.localPosition;
 			weaponObject.transform.localRotation = weaponToChange.gripTransform.transform.localRotation;
+			SetStoppingDistanceBasedOnWeaponRange ();
 		}
 			
 		GameObject SelectDominantHand(){

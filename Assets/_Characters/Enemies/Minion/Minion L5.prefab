@@ -1982,9 +1982,9 @@ MonoBehaviour:
   colliderHeight: 3
   isTriggerCollider: 1
   isThisKinematic: 0
-  steeringSpeed: 1
-  stoppingDistance: 1
+  steeringSpeed: 2
   obstacleAvoidanceRadius: 0.1
+  accelerationAmount: 8
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 03b42a9a7f4d1434a869823637e2defd,
     type: 2}
@@ -1992,7 +1992,7 @@ MonoBehaviour:
   audioVolume: 0.8
   audioSpatialBlend: 0
   greetingsClip: {fileID: 0}
-  moveSpeedMultiplier: 1.5
+  moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
