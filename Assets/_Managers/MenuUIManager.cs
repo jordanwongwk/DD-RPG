@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class MenuUIManager : MonoBehaviour {
 	[SerializeField] GameObject gamePanel = null;
+	[SerializeField] GameObject quitPanel = null;
 
 	Color panelColor;
 	Image gamePanelBackground;
 	bool isPanelFadingIn = false;
+	bool isQuitPanelActive = false;
 	const float FADE_TIME = 3.0f;
 
 	// Use this for initialization
@@ -16,6 +18,7 @@ public class MenuUIManager : MonoBehaviour {
 		gamePanelBackground = gamePanel.GetComponent<Image> ();
 		panelColor = gamePanelBackground.color;
 		panelColor.a = 1.0f;
+		quitPanel.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -38,5 +41,17 @@ public class MenuUIManager : MonoBehaviour {
 			gamePanel.SetActive (false);
 		}
 		isPanelFadingIn = false;
+	}
+
+	public void OnPressPrompExitPanel(){
+		if (!isQuitPanelActive) {
+			quitPanel.SetActive (true);
+			isQuitPanelActive = true;
+		}
+	}
+
+	public void CancelExit () {
+		quitPanel.SetActive (false);
+		isQuitPanelActive = false;
 	}
 }

@@ -1495,10 +1495,10 @@ RectTransform:
   m_Father: {fileID: 323496496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.7499967, y: 0}
-  m_SizeDelta: {x: 1371.5, y: 914.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -2.75, y: 0}
+  m_SizeDelta: {x: 5.5, y: 146.40002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990357026
 MonoBehaviour:
@@ -1773,8 +1773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuSceneIndex: 0
-  startGameSceneIndex: 0
-  rankingSceneIndex: 0
+  startGameSceneIndex: 1
+  rankingSceneIndex: 2
 --- !u!4 &1316291947
 Transform:
   m_ObjectHideFlags: 0

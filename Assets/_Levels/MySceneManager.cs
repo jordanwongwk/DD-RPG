@@ -10,6 +10,12 @@ public class MySceneManager : MonoBehaviour {
 	[SerializeField] int startGameSceneIndex = 1;
 	[SerializeField] int rankingSceneIndex = 2;
 
+	MenuUIManager menuUIManager;
+
+	void Start(){
+		menuUIManager = FindObjectOfType<MenuUIManager> ();
+	}
+
 	public void StartGameScene(){
 		SceneManager.LoadScene (startGameSceneIndex);
 		Destroy (GameObject.FindObjectOfType<MenuMusicManager> ().gameObject);
@@ -28,4 +34,17 @@ public class MySceneManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void CancelQuitGame(){
+		menuUIManager.CancelExit ();
+	}
+
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (SceneManager.GetActiveScene ().buildIndex == rankingSceneIndex) {
+				SceneManager.LoadScene (mainMenuSceneIndex);
+			} else if (SceneManager.GetActiveScene ().buildIndex == mainMenuSceneIndex) {
+				menuUIManager.OnPressPrompExitPanel ();
+			}
+		}
+	}
 }
