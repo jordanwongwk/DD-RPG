@@ -116,6 +116,6 @@ Material:
     - _RefrColor: {r: 0.34, g: 0.85, b: 0.92, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _TintColor: {r: 1, g: 0.9724138, b: 0, a: 0.5}
+    - _TintColor: {r: 0, g: 1, b: 0.5448277, a: 0.5}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
