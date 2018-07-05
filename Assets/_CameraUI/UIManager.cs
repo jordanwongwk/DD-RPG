@@ -246,7 +246,7 @@ namespace RPG.CameraUI {
 		// END End Game Confirmation Window
 
 		// Tutorial Panel
-		public void OnStartCloseTutorialWindow(){
+		public void OnStartCloseTutorialWindow() {
 			tutorialPanel.SetActive (false);
 			isTutorialPanelActive = false;
 		}
