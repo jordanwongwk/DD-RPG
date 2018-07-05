@@ -20,7 +20,7 @@ namespace RPG.Characters{
 		GameObject projectile;
 		WeaponConfig playerWeaponInHand;
 
-		const float ATTACK_DISTANCE_OFFSET = 0.1f;
+		const float ATTACK_DISTANCE_OFFSET = 0.15f;
 
 		void Start () {
 			character = GetComponent<Character> ();

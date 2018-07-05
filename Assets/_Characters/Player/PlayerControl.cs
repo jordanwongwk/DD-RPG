@@ -56,16 +56,25 @@ namespace RPG.Characters{
 
 		void MouseOverEnemy (EnemyAI enemy){
 			if (isPlayerStillAlive && isPlayerFreeToMove && !isPlayerInRespawnProcess) {
-				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) {
+				if (Input.GetMouseButtonDown (0) && IsTargetInRange (enemy.gameObject)) 
+				{
 					playerDetection.SetEnemyTarget (enemy.gameObject);
+					InterruptWalkingAction (enemy.gameObject);
 					weaponSystem.AttackTarget (enemy.gameObject);
-				} else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) {
+				} 
+				else if (Input.GetMouseButtonDown (0) && !IsTargetInRange (enemy.gameObject)) 
+				{
 					playerDetection.SetEnemyTarget (enemy.gameObject);
 					StartCoroutine (MoveAndAttack (enemy.gameObject));
-				} else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) {
+				} 
+				else if (Input.GetMouseButtonDown (1) && IsTargetInRange (enemy.gameObject)) 
+				{
 					playerDetection.SetEnemyTarget (enemy.gameObject);
+					InterruptWalkingAction (enemy.gameObject);
 					abilities.AttemptSpecialAbility (0, enemy.gameObject);
-				} else if (Input.GetMouseButtonDown (1) && !IsTargetInRange (enemy.gameObject)) {
+				} 
+				else if (Input.GetMouseButtonDown (1) && !IsTargetInRange (enemy.gameObject)) 
+				{
 					playerDetection.SetEnemyTarget (enemy.gameObject);
 					StartCoroutine (MoveAndSpecialAttack (enemy.gameObject));
 				}
@@ -98,6 +107,13 @@ namespace RPG.Characters{
 			targetIndicator.transform.position = target.transform.position;
 			yield return new WaitForSeconds (INDICATION_APPEAR_TIME);
 			targetIndicator.SetActive (false);
+		}
+
+		// When prompt to attack nearby enemy, force player to stop its previous order to walk to the previous destination
+		void InterruptWalkingAction (GameObject newTarget){
+			StopAllCoroutines ();
+			character.SetStoppingDistance (playerStopDistanceForAttacking);
+			character.SetDestination (newTarget.transform.position);
 		}
 
 		void MouseOverWalkable (Vector3 destination) {
@@ -139,6 +155,7 @@ namespace RPG.Characters{
 				var selectedEnemy = playerDetection.GetEnemyTarget ();
 				if (selectedEnemy != null) {
 					if (IsTargetInRange (selectedEnemy)) {
+						InterruptWalkingAction (selectedEnemy);
 						weaponSystem.AttackTarget (selectedEnemy);
 					} else if (!IsTargetInRange (selectedEnemy)) {
 						StartCoroutine (MoveAndAttack (selectedEnemy));
