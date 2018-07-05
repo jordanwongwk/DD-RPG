@@ -33,6 +33,10 @@ namespace RPG.CameraUI {
 			audioSource.PlayOneShot (pageFlipSound);
 		}
 
+		public void OnClickCloseWindow(){
+			uiManager.OnStartCloseTutorialWindow ();
+		}
+
 		void ManagingTutorialTextWindow() {
 
 			// Configure Next Button

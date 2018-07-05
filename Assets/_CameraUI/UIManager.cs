@@ -15,6 +15,7 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject gamePanel = null;
 		[SerializeField] GameObject pausePanel = null;
 		[SerializeField] GameObject tutorialPanel = null;
+		[SerializeField] GameObject returnToMainMenuWindow = null;
 		[SerializeField] GameObject endGameConfirmationWindow = null;
 
 		Text skillText;
@@ -28,6 +29,7 @@ namespace RPG.CameraUI {
 		Color panelColor;
 
 		bool isPausePanelActive = false;
+		bool isTutorialPanelActive = false;
 		bool isPanelFadingIn = false;
 		bool isPanelFadingOut = false;
 
@@ -49,6 +51,11 @@ namespace RPG.CameraUI {
 
 			gameManager = FindObjectOfType<GameManager> ();
 			gameManager.endGameSetup += PanelFadeOut;
+
+			// Find Tutorial Panel Active
+			if (tutorialPanel.activeInHierarchy == true){
+				isTutorialPanelActive = true;
+			}
 
 			// Setting necessary window OFF
 			skillDescriptionTextBar.SetActive (false);
@@ -90,10 +97,14 @@ namespace RPG.CameraUI {
 				StartCoroutine (FadingInPanel ());
 			}
 
-			if (Input.GetKeyDown (KeyCode.Escape) && !isPausePanelActive) {
-				PausingGame ();
-			} else if (Input.GetKeyDown (KeyCode.Escape) && isPausePanelActive) {
-				ResumingGame ();
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				if (!isPausePanelActive && !isTutorialPanelActive) {
+					PausingGame ();
+				} else if (isPausePanelActive && !isTutorialPanelActive) {
+					ResumingGame ();
+				} else if (isTutorialPanelActive) {
+					OnStartCloseTutorialWindow ();
+				}
 			}
 		}
 			
@@ -178,11 +189,22 @@ namespace RPG.CameraUI {
 			Time.timeScale = 1f;
 		}
 
+		public void SetMainMenuConfirmationWindowActive () {
+			if (returnToMainMenuWindow.activeInHierarchy == false) {
+				returnToMainMenuWindow.SetActive (true);
+			}
+		}
+
+		public void CancelBackToMainMenu() {
+			returnToMainMenuWindow.SetActive (false);
+		}
+
 		public void BackToMainMenu () {
 			StartCoroutine (BackToMainMenuCoroutine ());
 		}
 
 		IEnumerator BackToMainMenuCoroutine() {
+			returnToMainMenuWindow.SetActive (false);
 			ResumingGame ();
 			PanelFadeOut ();
 			yield return new WaitForSeconds (TIME_END_GAME);
@@ -226,11 +248,14 @@ namespace RPG.CameraUI {
 		// Tutorial Panel
 		public void OnStartCloseTutorialWindow(){
 			tutorialPanel.SetActive (false);
+			isTutorialPanelActive = false;
 		}
 
 		public void OnClickOpenTutorialWindow () {
 			tutorialPanel.GetComponentInChildren<TutorialText> ().ResetAllCounts ();
 			tutorialPanel.SetActive (true);
+			isTutorialPanelActive = true;
 		}
+		// END Tutorial Panel
 	}
 }
