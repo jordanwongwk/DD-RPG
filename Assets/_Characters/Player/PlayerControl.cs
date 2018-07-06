@@ -83,7 +83,6 @@ namespace RPG.Characters{
 
 		IEnumerator MoveToTarget (GameObject target){
 			while (!IsTargetInRange (target)) {
-				StartCoroutine (MovingTargetIndication (target));
 				character.SetDestination (target.transform.position);
 				yield return new WaitForEndOfFrame();
 			}
@@ -98,20 +97,13 @@ namespace RPG.Characters{
 		IEnumerator MoveAndSpecialAttack(GameObject enemy){
 			yield return StartCoroutine (MoveToTarget (enemy));
 			character.SetStoppingDistance (playerStopDistanceForAttacking);
-			StartCoroutine (MovingTargetIndication (enemy));
 			abilities.AttemptSpecialAbility (0, enemy);
-		}
-
-		IEnumerator MovingTargetIndication (GameObject target){
-			targetIndicator.SetActive (true);
-			targetIndicator.transform.position = target.transform.position;
-			yield return new WaitForSeconds (INDICATION_APPEAR_TIME);
-			targetIndicator.SetActive (false);
 		}
 
 		// When prompt to attack nearby enemy, force player to stop its previous order to walk to the previous destination
 		void InterruptWalkingAction (GameObject newTarget){
 			StopAllCoroutines ();
+			targetIndicator.SetActive (false);
 			character.SetStoppingDistance (playerStopDistanceForAttacking);
 			character.SetDestination (newTarget.transform.position);
 		}
