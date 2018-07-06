@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] WeaponConfig secret4RequirementWeapon = null;
 
 	MySceneManager mySceneManager;
+	UIManager uiManager;
 
 	[SerializeField] bool isPhase1Done = false;		
 	[SerializeField] bool isPhase2Done = false;		
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start() {
 		mySceneManager = FindObjectOfType<MySceneManager> ();
+		uiManager = FindObjectOfType<UIManager> ();
 	}
 
 	// MAIN STORY
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 1 : Learn about Derrick talking to a Minion and saying a guarding Dark Knight in the castle. UNLOCK SECRET 2.
 	public void SetSecret1Done (){
 		isSecret1Done = true;
-		secretsFound += 1;
+		ManagingSecretCounts ();
 	}
 
 	public bool GetSecret1Info () {
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 2: Learn about Derrick from Dark Knight. Pre-boss. REQUIRED SECRET 1
 	public void SetSecret2Done (){
 		isSecret2Done = true;
-		secretsFound += 1;
+		ManagingSecretCounts ();
 	}
 
 	public bool GetSecret2Info () {
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour {
 	// Secret 3: Confronted Derrick and boss battle with Dark Knight (Optional). REQUIRED SECRET 2
 	public void SetSecret3Done (){
 		isSecret3Done = true;
-		secretsFound += 1;
+		ManagingSecretCounts ();
 	}
 
 	public bool GetSecret3Info () {
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour {
 
 	public void SetSecret4Done (){
 		isSecret4Done = true;
-		secretsFound += 1;
+		ManagingSecretCounts ();
 	}
 
 	public bool GetSecret4ReadyInfo(){
@@ -130,6 +132,13 @@ public class GameManager : MonoBehaviour {
 	public bool GetSecret4Info () {
 		return isSecret4Done;
 	}
+
+	void ManagingSecretCounts ()
+	{
+		secretsFound += 1;
+		uiManager.SecretFoundText (secretsFound);
+	}
+
 	// SECRET STORY END
 
 	public void TriggerBossBattleDelegate(){
@@ -161,6 +170,7 @@ public class GameManager : MonoBehaviour {
 
 	public void SetWeaponFound (){
 		weaponsFound += 1;
+		uiManager.WeaponFoundText (weaponsFound);
 	}
 
 	// End Game Stuff

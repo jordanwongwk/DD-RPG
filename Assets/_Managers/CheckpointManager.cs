@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Characters;
+using RPG.CameraUI;
 
 public class CheckpointManager : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class CheckpointManager : MonoBehaviour {
 	List<GameObject> checkpoints = new List<GameObject>();
 	AudioSource audioSource;
 	EnemyManager enemyManager;
+	UIManager uiManager;
 	Character playerCharacter;
 
 	// Use this for initialization
@@ -26,6 +28,7 @@ public class CheckpointManager : MonoBehaviour {
 		audioSource.volume = audioSourceVolume;
 
 		enemyManager = FindObjectOfType<EnemyManager> ();
+		uiManager = FindObjectOfType<UIManager> ();
 		playerCharacter = FindObjectOfType<PlayerControl> ().GetComponent<Character> ();
 		lastWeaponEquipped = playerCharacter.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
 
@@ -44,6 +47,7 @@ public class CheckpointManager : MonoBehaviour {
 		}
 		currentCP.SetCheckpointON (checkpointON);
 		audioSource.PlayOneShot (checkpointFoundClip);
+		uiManager.CheckpointFoundText ();
 
 		lastWeaponEquipped = playerCharacter.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
 		enemyManager.DestroyEnemyOnBrinkOfDeath ();							// Completely Destroy enemies that are dead

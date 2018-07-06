@@ -43,12 +43,13 @@ namespace RPG.Characters {
 			if (collider.GetComponent<PlayerControl> ()) {
 				collider.GetComponent<WeaponSystem> ().ChangeWeaponInHand (weaponConfig);
 				audioSource.PlayOneShot (pickUpSFX);
+
+				if (gotThisWeapon == false) {
+					gameManager.SetWeaponFound ();
+					gotThisWeapon = true;
+				}
 			}
 
-			if (gotThisWeapon == false) {
-				gameManager.SetWeaponFound ();
-				gotThisWeapon = true;
-			}
 		}
 	}
 }

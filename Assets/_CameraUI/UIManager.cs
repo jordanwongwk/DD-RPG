@@ -17,11 +17,13 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject tutorialPanel = null;
 		[SerializeField] GameObject returnToMainMenuWindow = null;
 		[SerializeField] GameObject endGameConfirmationWindow = null;
+		[SerializeField] GameObject notificationTextBox = null;
 
 		Text skillText;
 		Text questText;
 		Text instructionText;
 		Text interText;
+		Text notificationText;
 		Image gamePanelBackground;
 		RawImage interPortrait;
 		GameManager gameManager;
@@ -43,6 +45,7 @@ namespace RPG.CameraUI {
 			instructionText = interactionInstruction.GetComponent<Text> ();
 			interText = interactionTextBar.GetComponentInChildren<Text> ();
 			interPortrait = interactionTextBar.GetComponentInChildren<RawImage> ();
+			notificationText = notificationTextBox.GetComponent<Text> ();
 			mySceneManager = FindObjectOfType<MySceneManager> ();
 
 			gamePanelBackground = gamePanel.GetComponent<Image> ();
@@ -257,5 +260,28 @@ namespace RPG.CameraUI {
 			isTutorialPanelActive = true;
 		}
 		// END Tutorial Panel
+
+		// Notification text
+		public void SecretFoundText (int numberOfSecretsFound){
+			notificationText.text = "Secret found! ( " + numberOfSecretsFound + " / 4 )";
+			StartCoroutine (DisplayNotificationText ());
+		}
+
+		public void WeaponFoundText (int numberOfWeaponsFound) {
+			notificationText.text = "New weapon discovered! ( " + numberOfWeaponsFound + " / 5 )";
+			StartCoroutine (DisplayNotificationText ());
+		}
+
+		public void CheckpointFoundText () {
+			notificationText.text = "Checkpoint registered!";
+			StartCoroutine (DisplayNotificationText ());
+		}
+
+		IEnumerator DisplayNotificationText () {
+			notificationTextBox.SetActive (true);
+			yield return new WaitForSecondsRealtime (5f);
+			notificationTextBox.SetActive (false);
+		}
+		// END Notification text
 	}
 }
