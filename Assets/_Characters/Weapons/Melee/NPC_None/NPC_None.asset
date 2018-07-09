@@ -21,6 +21,7 @@ MonoBehaviour:
   maxAttackRange: 0
   additionalDamage: 0
   damageDelay: 1
+  isRangedWeapon: 0
   weaponProjectile: {fileID: 0}
   impactSFX: {fileID: 0}
   projectileDamage: 10

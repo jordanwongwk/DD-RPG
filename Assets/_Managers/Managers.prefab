@@ -55,9 +55,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6dd04d40f47e544a8265fae5def816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeLevel: 0.6
+  volumeLevel: 0.5
   levelMusic: {fileID: 8300000, guid: be8bd2ed08fada246bd38d149ce080b0, type: 3}
   bossMusic: {fileID: 8300000, guid: e7fd00bbbb24e2e44b97b338c1e46983, type: 3}
+  secret1CutsceneMusic: {fileID: 8300000, guid: be0f48e1e8c51014ab8e0bbef2e60c3a,
+    type: 3}
 --- !u!114 &114830889437644864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a72c6e50e9d0498626988f183d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secret4RequirementWeapon: {fileID: 11400000, guid: cb2670f787941d047a37d741386f623e,
+    type: 2}
   isPhase1Done: 0
   isPhase2Done: 0
   isPhase3Done: 0
@@ -88,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossBlocker: {fileID: 0}
+  bossBlockerAtCheckpoint: {fileID: 0}
   optionalBossBlocker: {fileID: 0}
   backVillageBlocker: {fileID: 0}
   bossSecret2Blocker: {fileID: 0}
