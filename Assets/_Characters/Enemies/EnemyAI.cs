@@ -16,9 +16,6 @@ namespace RPG.Characters {
 		[SerializeField] AbilityConfig[] abilities = null;
 		[SerializeField] float timeWaitBetweenCasts = 5f;		
 
-		[Header("Ranged Enemy")]
-		[SerializeField] GameObject fleeWaypoint = null;
-
 		float timeLastCast;
 		bool isReadyToCastAbility = false;
 		bool channelingAbility = false;

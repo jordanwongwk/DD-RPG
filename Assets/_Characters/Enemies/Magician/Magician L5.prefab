@@ -2014,6 +2014,7 @@ MonoBehaviour:
   steeringSpeed: 1
   stoppingDistance: 1
   obstacleAvoidanceRadius: 0.1
+  accelerationAmount: 8
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: ea069d02bf5ad1a4aba1f611162e7854,
     type: 2}
@@ -2079,7 +2080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e47e8bdd54e98428b7de7f0a68976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 6
+  chaseRadius: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypoint: 2
