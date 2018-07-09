@@ -43,7 +43,7 @@ namespace RPG.CameraUI {
 			if (tutorialDisplayCount < transform.childCount - 1) {
 				nextButton.GetComponentInChildren<Text> ().text = "Next >>";
 			} else if (tutorialDisplayCount == transform.childCount - 1) {
-				nextButton.GetComponentInChildren<Text> ().text = "START GAME!";
+				nextButton.GetComponentInChildren<Text> ().text = "Close";
 			} else if (tutorialDisplayCount >= transform.childCount) {
 				uiManager.OnStartCloseTutorialWindow ();
 				return;

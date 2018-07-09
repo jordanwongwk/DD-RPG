@@ -14,22 +14,31 @@ namespace RPG.Characters {
 
 		[Header("Skills")]
 		[SerializeField] AbilityConfig[] abilities = null;
-		[SerializeField] float timeWaitBetweenCasts = 5f;			
+		[SerializeField] float timeWaitBetweenCasts = 5f;		
+
+		[Header("Ranged Enemy")]
+		[SerializeField] GameObject fleeWaypoint = null;
 
 		float timeLastCast;
 		bool isReadyToCastAbility = false;
 		bool channelingAbility = false;
+		bool isRunningAway = false;
 
 		int nextWaypointIndex;
 		float currentWeaponRange;
 		float distanceToPlayer;
+		float enemyStoppingDistanceForAttack;
+		float timeLastHit;
+		float timeToWait;
 		Vector3 enemyOriginalPosition;
 		PlayerControl player;
 		Character character;
 		WeaponSystem weaponSystem;
 		GameManager gameManager;
 
-		public enum State { idle, attacking, chasing, patroling, castingAbility }
+		const float DESTINATION_STOPPING_DISTANCE = 0.25f;
+
+		public enum State { idle, attacking, chasing, patroling, fleeing, castingAbility }
 		State state = State.idle;
 
 		void Start(){
@@ -58,20 +67,27 @@ namespace RPG.Characters {
 		void Update(){
 			if (character.GetIsAlive () == true) {
 				distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-				WeaponSystem weaponSystem = GetComponent<WeaponSystem> ();
 				currentWeaponRange = weaponSystem.GetCurrentWeaponConfig ().GetMaxAttackRange ();
+				ToggleOffRunningAway ();
 
 				if (distanceToPlayer > chaseRadius && state != State.patroling && !isReadyToCastAbility) {
 					StopAllCoroutines ();
+					character.SetStoppingDistance (DESTINATION_STOPPING_DISTANCE); 
 					StartCoroutine (Patrol ());
 				}
-				if (distanceToPlayer <= chaseRadius && distanceToPlayer > currentWeaponRange && state != State.chasing && !channelingAbility) {
+				if (distanceToPlayer <= chaseRadius && distanceToPlayer > currentWeaponRange && state != State.chasing && !channelingAbility && !isRunningAway) {
 					StopAllCoroutines ();
+					character.SetStoppingDistance (enemyStoppingDistanceForAttack);
 					StartCoroutine (ChasePlayer ());
 				}
-				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility && player.GetComponent<Character> ().GetIsAlive ()) {
+				if (distanceToPlayer <= currentWeaponRange && state != State.attacking && !isReadyToCastAbility && !isRunningAway && player.GetComponent<Character> ().GetIsAlive ()) {
 					StopAllCoroutines ();
+					character.SetStoppingDistance (enemyStoppingDistanceForAttack);
 					StartCoroutine (AttackPlayer ());
+				}
+				if (distanceToPlayer <= currentWeaponRange && state != State.fleeing && !isReadyToCastAbility && isRunningAway) {
+					StopAllCoroutines ();
+					StartCoroutine (FleeFromPlayer ());
 				}
 				if (distanceToPlayer <= currentWeaponRange && state != State.castingAbility && isReadyToCastAbility && player.GetComponent<Character> ().GetIsAlive ()) {
 					StopAllCoroutines ();
@@ -80,6 +96,15 @@ namespace RPG.Characters {
 					StartCoroutine (CastAbility (chosenAbility));
 				}
 
+			}
+		}
+
+		void ToggleOffRunningAway(){
+			if (isRunningAway) {
+				bool isTimeToStopRunning = (Time.time - timeLastHit) > timeToWait;
+				if (isTimeToStopRunning) {
+					isRunningAway = false;
+				}
 			}
 		}
 
@@ -116,6 +141,7 @@ namespace RPG.Characters {
 		IEnumerator AttackPlayer(){
 			state = State.attacking;
 			while (distanceToPlayer <= currentWeaponRange) {
+				transform.LookAt (player.transform);
 				weaponSystem.AttackTarget (player.gameObject);
 				CheckForAbilityAvailability ();
 				yield return new WaitForEndOfFrame ();
@@ -133,6 +159,14 @@ namespace RPG.Characters {
 			}
 		}
 
+		IEnumerator FleeFromPlayer () {
+			state = State.fleeing;
+			Vector3 normalizedFleePos = (transform.position - player.transform.position).normalized;
+			Vector3 fleePos = (10f * normalizedFleePos) + transform.position;
+			character.SetDestination (fleePos);
+			yield return new WaitForEndOfFrame ();
+		}
+
 		IEnumerator CastAbility(int abilityNumber){
 			state = State.castingAbility;
 			// TODO Add Audio
@@ -148,6 +182,19 @@ namespace RPG.Characters {
 
 		public void EnemyStopAllAction(){
 			StopAllCoroutines ();
+		}
+
+		public void SetIsRunningAway (bool status){
+			isRunningAway = status;
+		}
+
+		public void SetTimingToDisableRun (float lastHitTime, float waitingTime) {
+			timeLastHit = lastHitTime;
+			timeToWait = waitingTime;
+		}
+
+		public void SetStoppingDistanceForAttack (float stoppingDistance){
+			enemyStoppingDistanceForAttack = stoppingDistance;
 		}
 
 		void OnDrawGizmos(){

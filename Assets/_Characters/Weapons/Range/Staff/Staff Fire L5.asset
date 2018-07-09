@@ -20,6 +20,7 @@ MonoBehaviour:
   maxAttackRange: 6
   additionalDamage: 0
   damageDelay: 1
+  isRangedWeapon: 1
   weaponProjectile: {fileID: 1241740911561924, guid: 67bb82285d744ba4dbc9e0bfdb30fc7c,
     type: 2}
   impactSFX: {fileID: 8300000, guid: 15b61cecc9c413944b23744fbd523914, type: 3}

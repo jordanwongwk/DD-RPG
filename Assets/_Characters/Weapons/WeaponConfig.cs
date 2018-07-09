@@ -15,6 +15,7 @@ namespace RPG.Characters {
 		[SerializeField] float maxAttackRange = 1f;
 		[SerializeField] float additionalDamage = 10f;
 		[SerializeField] float damageDelay = 1f;
+		[SerializeField] bool isRangedWeapon = false;
 
 		[Header("Projectile Settings")]
 		[SerializeField] GameObject weaponProjectile = null;
@@ -70,6 +71,10 @@ namespace RPG.Characters {
 
 		public float GetDamageDelay(){
 			return damageDelay;
+		}
+
+		public bool GetIsRangedWeapon(){
+			return isRangedWeapon;
 		}
 
 		// Removing the asset pack's animation's event clip to prevent errors or bugs

@@ -19,27 +19,18 @@ namespace RPG.Characters{
 		Character character;
 		GameObject projectile;
 		WeaponConfig playerWeaponInHand;
+		EnemyAI enemy = null;
 
 		const float ATTACK_DISTANCE_OFFSET = 0.2f;
+		const float ENEMY_FLEE_DELAY = 0.1f;
 
 		void Start () {
 			character = GetComponent<Character> ();
 			animator = GetComponent<Animator> ();
+			enemy = GetComponent<EnemyAI> ();
 
 			ChangeWeaponInHand (currentWeaponConfig);	
 			SetAttackAnimation (); 
-			SetStoppingDistanceBasedOnWeaponRange ();
-		}
-
-		void SetStoppingDistanceBasedOnWeaponRange(){
-			float currentWeaponRange = currentWeaponConfig.GetMaxAttackRange();
-			if (currentWeaponConfig.GetMaxAttackRange () != 0) {			// IF its player and enemy but NOT NPC
-				character.SetStoppingDistance (currentWeaponRange - ATTACK_DISTANCE_OFFSET);
-			}
-
-			if (gameObject.GetComponent<PlayerControl>() != null) {
-				gameObject.GetComponent<PlayerControl> ().SetPlayerStopDistanceToAttack(currentWeaponRange - ATTACK_DISTANCE_OFFSET);
-			}
 		}
 
 		void Update() {
@@ -90,8 +81,11 @@ namespace RPG.Characters{
 				if (isTimeToHit) {
 					AttackTargetOnce ();
 					timeLastHit = Time.time;
+					if (enemy) {
+						enemy.SetTimingToDisableRun (timeLastHit, timeToWait);
+					}
 				}
-				yield return new WaitForSeconds (timeToWait);
+				yield return new WaitForSeconds (timeToWait);		
 			}
 		}
 
@@ -103,7 +97,7 @@ namespace RPG.Characters{
 			float damageDelay = currentWeaponConfig.GetDamageDelay ();
 			SetAttackAnimation();
 
-			if (projectile != null) {
+			if (currentWeaponConfig.GetIsRangedWeapon() == true && projectile != null) {		
 				float fireDelay = currentWeaponConfig.GetFiringDelay ();
 				StartCoroutine (FireProjectile (target, fireDelay));
 			} else {
@@ -112,14 +106,14 @@ namespace RPG.Characters{
 		}
 
 		IEnumerator DamageAfterDelay (float damageDelay){
-			yield return new WaitForSecondsRealtime (damageDelay);
+			yield return new WaitForSeconds (damageDelay);
 			transform.LookAt (target.transform.position);				// Look back at target 
 			target.GetComponent<HealthSystem> ().TakeDamage (CalculateDamage());
 			PlayWeaponSFX ();
 		}
 
 		IEnumerator FireProjectile(GameObject target, float firingDelay){
-			yield return new WaitForSecondsRealtime (firingDelay);
+			yield return new WaitForSeconds (firingDelay);
 			var projectileFirePoint = GetComponentInChildren<ProjectileSpawner> ().gameObject;
 
 			GameObject instantProj = Instantiate (projectile, projectileFirePoint.transform.position, Quaternion.Euler(270,0,0));
@@ -131,6 +125,11 @@ namespace RPG.Characters{
 			Vector3 unitVectorToTarget = (target.transform.position - projectileFirePoint.transform.position).normalized;
 			float projectileSpeed = currentWeaponConfig.GetProjectileSpeed ();
 			instantProj.GetComponent<Rigidbody> ().velocity = unitVectorToTarget * projectileSpeed;
+
+			yield return new WaitForSeconds (ENEMY_FLEE_DELAY);
+			if (enemy) {
+				enemy.SetIsRunningAway (true);
+			}
 		}
 
 		void PlayWeaponSFX(){
@@ -159,7 +158,18 @@ namespace RPG.Characters{
 			weaponObject = Instantiate(weaponPrefab, armToHoldWeapon.transform);
 			weaponObject.transform.localPosition = weaponToChange.gripTransform.transform.localPosition;
 			weaponObject.transform.localRotation = weaponToChange.gripTransform.transform.localRotation;
-			SetStoppingDistanceBasedOnWeaponRange ();
+			SetStoppingDistanceBasedOnWeaponRange ();		
+		}
+			
+		void SetStoppingDistanceBasedOnWeaponRange(){
+			float currentWeaponRange = currentWeaponConfig.GetMaxAttackRange();
+			if (currentWeaponConfig.GetMaxAttackRange () != 0) {			// IF its player and enemy but NOT NPC
+				if (gameObject.GetComponent<EnemyAI> () != null) {
+					gameObject.GetComponent<EnemyAI> ().SetStoppingDistanceForAttack (currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+				} else if (gameObject.GetComponent<PlayerControl>() != null) {
+					gameObject.GetComponent<PlayerControl> ().SetPlayerStopDistanceToAttack(currentWeaponRange - ATTACK_DISTANCE_OFFSET);
+				}
+			}
 		}
 			
 		GameObject SelectDominantHand(){
