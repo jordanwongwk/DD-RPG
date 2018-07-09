@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour {
 	[Header("Clips Placement")]
 	[SerializeField] AudioClip levelMusic = null;
 	[SerializeField] AudioClip bossMusic = null;
+	[SerializeField] AudioClip secret1CutsceneMusic = null;
 
 	AudioSource audioSource;
 	GameManager gameManager;
@@ -48,5 +49,13 @@ public class MusicManager : MonoBehaviour {
 
 	void BGMFadeOut (){
 		BGMFadeOutVolume = true;
+	}
+
+	public void SetSecret1BGM(){
+		audioSource.clip = secret1CutsceneMusic;
+	}
+
+	public void SetBackToFieldBGM() {
+		audioSource.clip = levelMusic;
 	}
 }

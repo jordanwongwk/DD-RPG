@@ -27,6 +27,7 @@ public class EventManager : MonoBehaviour {
 	GameObject mainBoss;
 	GameObject optionalBoss;
 	CameraFollow cameraFollow;
+	MusicManager musicManager;
 
 	bool secretEvent1Initiated = false;
 	bool secretEvent2Initiated = false;
@@ -39,12 +40,14 @@ public class EventManager : MonoBehaviour {
 		mainBoss = GameObject.FindGameObjectWithTag ("Boss");
 		cameraFollow = FindObjectOfType<CameraFollow> ();
 		player = FindObjectOfType<PlayerControl> ().gameObject;
+		musicManager = GetComponent<MusicManager> ();
 	}
 
 	public void StartSecretEvent1() {
 		secretEvent1Initiated = true;
 		eventCharacter = Instantiate (charPrefab, charStandPosition.transform.position, Quaternion.identity);
 		eventCharacter.transform.LookAt (derrickNPC.transform);
+		musicManager.SetSecret1BGM ();
 
 		cameraFollow.SetCameraFollowingDerrick ();
 	}
@@ -82,6 +85,7 @@ public class EventManager : MonoBehaviour {
 	public void EndEvents() {
 		if (secretEvent1Initiated) {
 			Destroy (eventCharacter, DESTROY_DELAY);
+			musicManager.SetBackToFieldBGM ();
 			cameraFollow.SetCameraBackToPlayer ();
 			secretEvent1Initiated = false;
 		}
