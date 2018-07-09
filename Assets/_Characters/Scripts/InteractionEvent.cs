@@ -97,6 +97,12 @@ namespace RPG.Characters{
 				inEvent = true;
 				eventManager.StartSecretEvent3 ();
 			}
+
+			if (objectIdentity == ObjectName.TavernOwner && gameManager.GetSecret3Info () == true && 
+				gameManager.GetSecret4Info () == false && gameManager.GetSecret4ReadyInfo () == true) {
+				inEvent = true;
+				eventManager.StartSecretEvent4 ();
+			} 
 		}
 
 		void StartInteraction(){

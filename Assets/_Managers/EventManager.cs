@@ -33,6 +33,7 @@ public class EventManager : MonoBehaviour {
 	bool secretEvent2Initiated = false;
 	bool secretEvent3Initiated = false;
 	bool secretEvent3Ended = false;
+	bool secretEvent4Initiated = false;
 
 	// Use this for initialization
 	void Start () {
@@ -82,6 +83,11 @@ public class EventManager : MonoBehaviour {
 		return secretEvent3Ended;
 	}
 
+	public void StartSecretEvent4(){
+		secretEvent4Initiated = true;
+		musicManager.SetSecretBGM ();
+	}
+
 	public void EndEvents() {
 		if (secretEvent1Initiated) {
 			Destroy (eventCharacter, DESTROY_DELAY);
@@ -101,6 +107,11 @@ public class EventManager : MonoBehaviour {
 			Destroy (derrickNPC, DESTROY_DELAY);
 			secretEvent3Initiated = false;
 			secretEvent3Ended = true;
+		}
+
+		if (secretEvent4Initiated) {
+			musicManager.SetBackToFieldBGM ();
+			secretEvent4Initiated = false;
 		}
 	}
 }
