@@ -166,7 +166,6 @@ namespace RPG.Characters {
 
 		IEnumerator CastAbility(int abilityNumber){
 			state = State.castingAbility;
-			// TODO Add Audio
 			channelingAbility = true;
 			abilities [abilityNumber].Use (null);
 			float channelTime = abilities [abilityNumber].GetChannelTime ();

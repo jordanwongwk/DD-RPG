@@ -12,7 +12,7 @@ namespace RPG.Characters{
 		[SerializeField] bool isHealer = true;					// Remember to make the above requirement when setting up healer
 		[SerializeField] GameObject healingParticles;
 
-		float defaultHealthRegen = 0f; 		// TODO Need regen for player?
+		float defaultHealthRegen = 0f; 		
 		GameObject player;
 		GameObject healParticles;
 
@@ -21,7 +21,7 @@ namespace RPG.Characters{
 		}
 
 		void OnTriggerEnter (Collider collider){
-			if (isHealer && collider.gameObject == player) {			// TODO Tag reference?
+			if (isHealer && collider.gameObject == player) {			
 				collider.GetComponent<SpecialAbilities>().SetEnergyRecoveryRate(energyRecoveryRate);
 				collider.GetComponent<HealthSystem> ().SetRegenAmount (healthRecoveryRate);
 				healParticles = Instantiate (healingParticles, player.transform.position, Quaternion.identity);

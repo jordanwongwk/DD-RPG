@@ -18,6 +18,7 @@ namespace RPG.CameraUI {
 		[SerializeField] GameObject returnToMainMenuWindow = null;
 		[SerializeField] GameObject endGameConfirmationWindow = null;
 		[SerializeField] GameObject notificationTextBox = null;
+		[SerializeField] AudioSource uiAudio = null;
 
 		Text skillText;
 		Text questText;
@@ -265,11 +266,13 @@ namespace RPG.CameraUI {
 		public void SecretFoundText (int numberOfSecretsFound){
 			notificationText.text = "Secret found! ( " + numberOfSecretsFound + " / 4 )";
 			StartCoroutine (DisplayNotificationText ());
+			uiAudio.Play ();
 		}
 
 		public void WeaponFoundText (int numberOfWeaponsFound) {
 			notificationText.text = "New weapon discovered! ( " + numberOfWeaponsFound + " / 5 )";
 			StartCoroutine (DisplayNotificationText ());
+			uiAudio.Play ();
 		}
 
 		public void CheckpointFoundText () {

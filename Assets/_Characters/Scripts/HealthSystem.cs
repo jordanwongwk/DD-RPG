@@ -42,7 +42,7 @@ namespace RPG.Characters{
 		void Update () {
 			UpdateHealthBar ();
 			UpdateHealthText ();
-			RegenHealth (regenAmount);			// TODO Consider a better alternative if laggy
+			RegenHealth (regenAmount);			
 		}
 
 		void UpdateHealthBar(){
