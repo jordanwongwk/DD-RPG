@@ -1983,6 +1983,7 @@ MonoBehaviour:
   isTriggerCollider: 1
   isThisKinematic: 0
   steeringSpeed: 2
+  stoppingDistance: 2
   obstacleAvoidanceRadius: 0.1
   accelerationAmount: 8
   animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}

@@ -7,11 +7,13 @@ public class Checkpoint : MonoBehaviour {
 
 	MeshRenderer meshRenderer;
 	CheckpointManager checkpointManager;
+	GameObject player;
 	bool currentCheckpoint = false;
 
 	// Use this for initialization
 	void Start () {
 		meshRenderer = GetComponent<MeshRenderer> ();
+		player = FindObjectOfType<PlayerControl> ().gameObject;
 		checkpointManager = FindObjectOfType<CheckpointManager> ();
 	}
 	
@@ -26,7 +28,7 @@ public class Checkpoint : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		if (col.gameObject == FindObjectOfType<PlayerControl> ().gameObject && currentCheckpoint == false) {
+		if (col.gameObject == player && currentCheckpoint == false) {
 			checkpointManager.SettingUpTheCheckpoint (this);
 		}
 	}
