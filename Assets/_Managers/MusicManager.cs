@@ -51,7 +51,7 @@ public class MusicManager : MonoBehaviour {
 		BGMFadeOutVolume = true;
 	}
 
-	public void SetSecret1BGM(){
+	public void SetSecretBGM(){
 		audioSource.clip = secret1CutsceneMusic;
 	}
 

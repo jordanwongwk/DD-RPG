@@ -24,7 +24,7 @@ namespace RPG.Characters {
 		int nextWaypointIndex;
 		float currentWeaponRange;
 		float distanceToPlayer;
-		float enemyStoppingDistanceForAttack;
+		float enemyStoppingDistanceForAttack = 1.0f;			// Initialize for NPC
 		float timeLastHit;
 		float timeToWait;
 		Vector3 enemyOriginalPosition;

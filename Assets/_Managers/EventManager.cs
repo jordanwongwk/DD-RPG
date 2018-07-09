@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour {
 		secretEvent1Initiated = true;
 		eventCharacter = Instantiate (charPrefab, charStandPosition.transform.position, Quaternion.identity);
 		eventCharacter.transform.LookAt (derrickNPC.transform);
-		musicManager.SetSecret1BGM ();
+		musicManager.SetSecretBGM ();
 
 		cameraFollow.SetCameraFollowingDerrick ();
 	}
