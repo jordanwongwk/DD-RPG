@@ -20,12 +20,6 @@ namespace RPG.Characters {
 			if (timeLastCalled > timeDelay) {
 				GetEnemyInRange ();
 
-				if (selectedEnemy != null && !enemyInSight.Contains (selectedEnemy)) {		// Go false if enemy out of sight
-					ResettingSelectedEnemyAndIndicator ();
-				} else if (selectedEnemy != null) {
-					IndicateTargettedEnemy ();
-				} 
-
 				for (int i = enemyInSight.Count - 1; i > -1; i--) {
 					if (enemyInSight [i] == null) {			// Boss destroys immediately
 						enemyInSight.RemoveAt (i);
@@ -37,9 +31,14 @@ namespace RPG.Characters {
 						enemyInSight.RemoveAt (i);
 					}
 				}
-
 				timeLastCalled = 0f;
 			}
+
+			if (selectedEnemy != null && !enemyInSight.Contains (selectedEnemy)) {		// Go false if enemy out of sight
+				ResettingSelectedEnemyAndIndicator ();
+			} else if (selectedEnemy != null) {
+				IndicateTargettedEnemy ();
+			} 
 		}
 
 		void GetEnemyInRange(){
