@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	MySceneManager mySceneManager;
 	UIManager uiManager;
+	GameObject player;
 
 	[SerializeField] bool isPhase1Done = false;		
 	[SerializeField] bool isPhase2Done = false;		
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		mySceneManager = FindObjectOfType<MySceneManager> ();
 		uiManager = FindObjectOfType<UIManager> ();
+		player = FindObjectOfType<PlayerControl> ().gameObject;
 	}
 
 	// MAIN STORY
@@ -110,7 +112,6 @@ public class GameManager : MonoBehaviour {
 
 	// Secret 4: Learn about Axe origin and MC's truth (hint). REQUIRED SECRET 3 and AXE
 	void ReadyForSecret4(){
-		var player = FindObjectOfType<PlayerControl>();
 		var playerWeaponInHand = player.GetComponent<WeaponSystem> ().GetCurrentWeaponConfig ();
 
 		if (playerWeaponInHand == secret4RequirementWeapon && isReadyForSecret4 == false && GetSecret4Info() == false) {

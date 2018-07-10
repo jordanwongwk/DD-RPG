@@ -9,29 +9,36 @@ namespace RPG.Characters {
 		[SerializeField] GameObject enemyTargetIndicator = null;
 
 		int selectedEnemyNumber = 100; 				// Make absurd high number
+		float timeDelay = 0.5f;
+		float timeLastCalled;
 		GameObject selectedEnemy;
 		List<GameObject> enemyInSight = new List<GameObject>();
 			
 		void Update()
-		{
-			GetEnemyInRange ();
+		{	
+			timeLastCalled += Time.deltaTime;			// Adding delay so that garbage collection didnt occur every frame but instead every 0.5 seconds
+			if (timeLastCalled > timeDelay) {
+				GetEnemyInRange ();
 
-			if (selectedEnemy != null && !enemyInSight.Contains(selectedEnemy)) {		// Go false if enemy out of sight
-				ResettingSelectedEnemyAndIndicator ();
-			} else if (selectedEnemy != null){
-				IndicateTargettedEnemy ();
-			} 
+				if (selectedEnemy != null && !enemyInSight.Contains (selectedEnemy)) {		// Go false if enemy out of sight
+					ResettingSelectedEnemyAndIndicator ();
+				} else if (selectedEnemy != null) {
+					IndicateTargettedEnemy ();
+				} 
 
-			for (int i = enemyInSight.Count-1; i > -1; i--) {
-				if (enemyInSight [i] == null) {			// Boss destroys immediately
-					enemyInSight.RemoveAt (i);
-					return;
+				for (int i = enemyInSight.Count - 1; i > -1; i--) {
+					if (enemyInSight [i] == null) {			// Boss destroys immediately
+						enemyInSight.RemoveAt (i);
+						return;
+					}
+
+					float distanceToPlayer = Vector3.Distance (transform.position, enemyInSight [i].transform.position);
+					if (!enemyInSight [i].activeInHierarchy || distanceToPlayer > detectionRange) {
+						enemyInSight.RemoveAt (i);
+					}
 				}
 
-				float distanceToPlayer = Vector3.Distance (transform.position, enemyInSight [i].transform.position);
-				if (!enemyInSight [i].activeInHierarchy || distanceToPlayer > detectionRange) {
-					enemyInSight.RemoveAt (i);
-				}
+				timeLastCalled = 0f;
 			}
 		}
 
